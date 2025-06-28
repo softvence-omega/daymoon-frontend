@@ -1,5 +1,6 @@
 import SearchBar from '../SearchBar'
 import Categories from './Categories'
+import ContactOptions from './ContactOptions'
 
 const Help = () => {
   return (
@@ -13,6 +14,9 @@ const Help = () => {
         </div>
         <div>
             <Categories/>
+        </div>
+        <div className='py-5'>
+            <ContactOptions/>
         </div>
     </div>
   )
