@@ -11,7 +11,7 @@ const Join = () => {
           </p>
         </div>
         <button className="bg-blue-900 text-white px-6 py-2 rounded-md hover:bg-blue-950">
-          Sign Up
+          Sign Up Now
         </button>
       </div>
       <div>
