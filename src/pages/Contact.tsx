@@ -1,7 +1,13 @@
+import CommonWrapper from "@/common/CommonWrapper"
+import Help from "@/components/contact/Help"
 
 const Contact = () => {
   return (
-    <div>Contact</div>
+    <CommonWrapper>
+      <div>
+        <Help/>
+      </div>
+    </CommonWrapper>
   )
 }
 

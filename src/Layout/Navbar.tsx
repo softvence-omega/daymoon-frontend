@@ -11,7 +11,7 @@ const Navbar = () => {
   return (
     <CommonWrapper>
     <div className='flex justify-between items-center bg-white p-4'>
-        <div className='w-32 h-11 flex items-center justify-center'>
+        <div className='w-36 h-14 flex items-center justify-center'>
             <img src={logo} alt="" />
         </div>
         <div>
