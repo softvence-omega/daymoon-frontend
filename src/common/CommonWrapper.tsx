@@ -12,7 +12,7 @@ const CommonWrapper: React.FC<CommonWrapperProps> = ({
   className = "",
 }) => {
   return (
-    <div className={`max-w-[1400px] mx-auto my-auto ${className}`}>
+    <div className={`max-w-[1400px] mx-auto my-auto ${className} px-2 lg:px-0`}>
       {children}
     </div>
   );
