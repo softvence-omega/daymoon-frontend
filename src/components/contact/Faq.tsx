@@ -3,6 +3,10 @@ import { FaMinus, FaPlus } from "react-icons/fa";
 
 const Faq = () => {
 const faqs = [
+{
+    question: "What is Pangeti?",
+    answer: "Lorem ipsum dolor sit amet consectetur. Ipsum facilisi orci amet id dignissim. A quis turpis fringilla libero malesuada elementum morbi. Dui tristique venenatis pretium vitae diam et aliquam."
+  },
   {
     question: "How can I upgrade my subscription?",
     answer: "You can upgrade anytime through the account settings page."
@@ -43,18 +47,11 @@ const toggleFAQ = (index: number) => {
   };
   return (
     <div className="space-y-8">
-        <div>
-          <h3 className="text-orange-500 font-semibold text-sm">What is Pangeti?</h3>
-          <p className="text-gray-600 max-w-2xl">
-            Lorem ipsum dolor sit amet consectetur. Ipsum facilisi orci amet id dignissim. A quis turpis fringilla libero
-            malesuada elementum morbi. Dui tristique venenatis pretium vitae diam et aliquam.
-          </p>
-        </div>
 
         <div className="space-y-4">
           <h2 className="text-2xl font-bold">FAQ</h2>
           {faqs.map((faq, index) => (
-            <div key={index} className="border-b pb-2">
+            <div key={index} className=" pb-2">
               <button
                 onClick={() => toggleFAQ(index)}
                 className="w-full flex justify-between items-center text-left text-lg font-semibold text-black"
