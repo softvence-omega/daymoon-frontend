@@ -1,5 +1,5 @@
-import React from 'react'
 import SearchBar from '../SearchBar'
+import Categories from './Categories'
 
 const Help = () => {
   return (
@@ -10,6 +10,9 @@ const Help = () => {
         </div>
         <div className='pt-5'>
             <SearchBar/>
+        </div>
+        <div>
+            <Categories/>
         </div>
     </div>
   )
