@@ -1,150 +1,46 @@
-import UserAvatar from "@/ui/UserAvatar";
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { Button } from "@/components/ui/button";
-import { useAppDispatch } from "@/hooks/useRedux";
-import { logout } from "@/store/Slices/AuthSlice/authSlice";
+import logo from '../assets/logo.png'; // Adjust the path as necessary
+import { RiArrowDropDownLine } from "react-icons/ri";
+import flag from '../assets/fi_3909383.png'; // Adjust the path as necessary
+import { RiArrowDropDownFill } from "react-icons/ri";
+import { IoCartOutline } from "react-icons/io5";
+import { BiWorld } from "react-icons/bi";
+import { VscThreeBars } from "react-icons/vsc";
+import CommonWrapper from '@/common/CommonWrapper';
 
-const Navbar: React.FC = () => {
-  const navigate = useNavigate();
-  const [isOpen, setIsOpen] = useState(false);
-
-  const dispatch = useAppDispatch();
-
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const handleLogout = () => {
-    dispatch(logout());
-    navigate("/login");
-  };
-
+const Navbar = () => {
   return (
-    <nav className="bg-black shadow-lg">
-      <div className=" mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <div className="flex-shrink-0">
-            <Link to="/" className="text-white text-2xl font-bold">
-              MyApp
-            </Link>
-          </div>
-
-          {/* Desktop Menu */}
-          <div className="hidden md:flex space-x-4">
-            <Link
-              to="/"
-              className="text-white hover:bg-white hover:text-black px-3 py-2 rounded-md text-sm font-medium"
-            >
-              Home
-            </Link>
-            <Link
-              to="/about"
-              className="text-white hover:bg-white hover:text-black px-3 py-2 rounded-md text-sm font-medium"
-            >
-              About
-            </Link>
-            <Link
-              to="/services"
-              className="text-white hover:bg-white hover:text-black px-3 py-2 rounded-md text-sm font-medium"
-            >
-              Services
-            </Link>
-            <Link
-              to="/contact"
-              className="text-white hover:bg-white hover:text-black px-3 py-2 rounded-md text-sm font-medium"
-            >
-              Contact
-            </Link>
-
-            <Popover>
-              <PopoverTrigger>
-                <UserAvatar userName="Mahim" />
-              </PopoverTrigger>
-              <PopoverContent className="mr-3 bg-black border-none text-white">
-                <Button
-                  onClick={handleLogout}
-                  className="bg-white text-black w-full"
-                >
-                  Logout
-                </Button>
-              </PopoverContent>
-            </Popover>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center">
-            <button
-              onClick={toggleMenu}
-              type="button"
-              className="text-white hover:text-gray-300 focus:outline-none"
-            >
-              <svg
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                {isOpen ? (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                ) : (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 6h16M4 12h16m-7 6h7"
-                  />
-                )}
-              </svg>
-            </button>
-          </div>
+    <CommonWrapper>
+    <div className='flex justify-between items-center bg-white p-4'>
+        <div className='w-32 h-11 flex items-center justify-center'>
+            <img src={logo} alt="" />
         </div>
-      </div>
-
-      {/* Mobile Menu */}
-      {isOpen && (
-        <div className="md:hidden">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <Link
-              to="/"
-              className="text-white block hover:bg-purple-700 px-3 py-2 rounded-md text-base font-medium"
-            >
-              Home
-            </Link>
-            <Link
-              to="/about"
-              className="text-white block hover:bg-purple-700 px-3 py-2 rounded-md text-base font-medium"
-            >
-              About
-            </Link>
-            <Link
-              to="/services"
-              className="text-white block hover:bg-purple-700 px-3 py-2 rounded-md text-base font-medium"
-            >
-              Services
-            </Link>
-            <Link
-              to="/contact"
-              className="text-white block hover:bg-purple-700 px-3 py-2 rounded-md text-base font-medium"
-            >
-              Contact
-            </Link>
-          </div>
+        <div>
+            <ul className='flex gap-4'>
+                <li className='text-[16px] font-[500] flex items-center justify-between gap-2'>Categories <RiArrowDropDownLine /></li>
+                <li className='text-[16px] font-[500]'>Shop</li>
+                <li className='text-[16px] font-[500]'>About</li>
+                <li className='text-[16px] font-[500] text-sunset-orange'>Contact</li>
+            </ul>
         </div>
-      )}
-    </nav>
-  );
-};
+        <div className='flex items-center gap-4 text-[16px]'>
+            <div >
+                <p className='text-sm font-normal text-gray-400'>Delivered To</p>
+                <div className='flex items-center gap-1 w-[200px]'>
+                    <p className='text-lg font-normal'>USA</p>
+                    <img className='text-xl' src={flag} alt="" />
+                    <RiArrowDropDownFill className='text-yellow-200 text-4xl' />
+                </div>
+            </div>
+            <div className='flex items-center gap-4 text-2xl'>
+            <IoCartOutline />
+            <BiWorld />
+            <VscThreeBars />
+        </div>
+        </div>
+        
+    </div>
+    </CommonWrapper>
+  )
+}
 
-export default Navbar;
+export default Navbar
