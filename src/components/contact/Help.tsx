@@ -1,6 +1,7 @@
 import SearchBar from '../SearchBar'
 import Categories from './Categories'
 import ContactOptions from './ContactOptions'
+import Faq from './Faq'
 import MassageForm from './MassageForm'
 
 const Help = () => {
@@ -21,6 +22,9 @@ const Help = () => {
         </div>
         <div className='py-5'>
             <MassageForm/>
+        </div>
+        <div className='py-5'>
+            <Faq />
         </div>
     </div>
   )
