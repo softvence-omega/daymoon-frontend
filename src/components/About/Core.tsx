@@ -4,24 +4,24 @@ import shoeImg from "../../assets/About/coreShow.png";
 
 const Core = () => {
   return (
-    <div className="w-full mx-auto flex flex-col lg:flex-row items-center gap-8 lg:gap-[160px]">
+    <div className="w-full mx-auto flex flex-col lg:flex-row lg:justify-between items-center gap-8 lg:gap-[160px]">
       {/* Images Container - First on mobile */}
-      <div className="lg:relative flex-shrink-0 w-full lg:w-[615px]">
+      <div className="lg:relative flex-shrink-0 w-full lg:w-[615px] lg:ps-[100px]">
         {/* Main Image */}
         <img
-          className="w-full h-[300px] lg:h-[529px] rounded-lg lg:rounded-[12px] object-cover"
+          className="lg:w-[629px] w-full h-[300px] lg:h-[529px] rounded-lg lg:rounded-[12px] object-cover"
           src={coreImg}
           alt="Core"
         />
 
         {/* Desktop Overlay Images */}
         <img
-          className="hidden lg:block absolute top-[60px] left-[-130px] w-[220px] h-[150px] rounded-[12px] object-cover shadow-lg"
+          className="hidden lg:block absolute top-[60px] left-[-10px] w-[250px] h-[150px] rounded-[12px] object-cover shadow-lg pl-2"
           src={bagImg}
           alt="Bag"
         />
         <img
-          className="hidden lg:block absolute bottom-[48px] right-[-130px] w-[220px] h-[180px] rounded-[12px] object-cover shadow-lg"
+          className="hidden lg:block absolute bottom-[48px] right-[-110px]  w-[250px] h-[180px] rounded-[12px] object-cover shadow-lg"
           src={shoeImg}
           alt="Shoe"
         />
