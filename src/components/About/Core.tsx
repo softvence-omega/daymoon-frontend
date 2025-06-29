@@ -16,7 +16,7 @@ const Core = () => {
 
         {/* Desktop Overlay Images */}
         <img
-          className="hidden lg:block absolute top-[60px] left-[-10px] w-[250px] h-[150px] rounded-[12px] object-cover shadow-lg pl-2"
+          className="hidden lg:block absolute top-[60px] left-[-10px] w-[250px] h-[150px] rounded-[12px] object-cover shadow-lg"
           src={bagImg}
           alt="Bag"
         />
