@@ -26,22 +26,7 @@ const routes = createBrowserRouter([
         path: "/contact",
         element: <Contact />,
       },
-      {
-        path: "/login",
-        element: <Login />,
-      },
-      {
-        path: "signup",
-        element: <Signup />,
-      },
-      {
-        path: "signup-buyer",
-        element: <BuyerSignup />,
-      },
-      {
-        path: "signup-supplier",
-        element: <BuyerSignup />,
-      },
+
       {
         path: "/admin",
         element: <AdminRoute />, // This will check if the user is an admin
@@ -50,6 +35,22 @@ const routes = createBrowserRouter([
         ],
       },
     ],
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "signup",
+    element: <Signup />,
+  },
+  {
+    path: "signup-buyer",
+    element: <BuyerSignup />,
+  },
+  {
+    path: "signup-supplier",
+    element: <BuyerSignup />,
   },
   {
     path: "*",
