@@ -4,7 +4,7 @@ import Help from "@/components/contact/Help"
 const Contact = () => {
   return (
     <CommonWrapper>
-      <div>
+      <div className="">
         <Help/>
       </div>
     </CommonWrapper>

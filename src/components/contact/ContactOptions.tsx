@@ -45,7 +45,7 @@ const ContactOptions = () => {
           <h3 className="text-xl font-semibold mb-2">Phone Support</h3>
           <p className="text-gray-600 mb-2">Available 9am - 6pm (Mon to Fri)</p>
           <p className="text-lg font-medium mb-4">+123 456 789</p>
-          <button className="bg-blue-900 text-white px-30 py-2 rounded-xl hover:bg-blue-950">
+          <button className="bg-[#192D4E] text-white px-30 py-2 rounded-xl hover:bg-blue-950">
             Start Chatting
           </button>
         </div>
