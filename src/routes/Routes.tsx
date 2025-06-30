@@ -8,6 +8,8 @@ import AdminRoute from "./AdminRoutes";
 import AdminDashboard from "@/pages/Admin/AdminDashboard";
 import Login from "@/pages/Login";
 import Signup from "@/pages/Signup";
+import BuyerSignup from "@/components/Authentication/BuyerSignup";
+import SupplierSignup from "@/components/Authentication/SupplierSignup";
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -30,8 +32,16 @@ const routes = createBrowserRouter([
         element: <Login />,
       },
       {
-        path: "/signup",
+        path: "signup",
         element: <Signup />,
+      },
+      {
+        path: "signup-buyer",
+        element: <BuyerSignup />,
+      },
+      {
+        path: "signup-supplier",
+        element: <SupplierSignup/>
       },
       {
         path: "/admin",
