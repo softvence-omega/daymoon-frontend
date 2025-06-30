@@ -15,7 +15,7 @@ const Categories = () => {
         {categories.map((item) => (
           <div
             key={item}
-            className="border border-gray-200 rounded-md py-4 px-2 hover:bg-gray-50 cursor-pointer"
+            className="border bg-white border-gray-200 rounded-md py-4 px-2 hover:bg-gray-50 cursor-pointer"
           >
             {item}
           </div>
