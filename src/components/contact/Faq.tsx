@@ -51,10 +51,12 @@ const toggleFAQ = (index: number) => {
         <div className="space-y-4">
           <h2 className="text-2xl font-bold">FAQ</h2>
           {faqs.map((faq, index) => (
-            <div key={index} className=" pb-2">
+            <div key={index} className=" pb-4">
               <button
                 onClick={() => toggleFAQ(index)}
-                className="w-full flex justify-between items-center text-left text-lg font-semibold text-black"
+                className={`w-full flex justify-between items-center text-left text-lg transition-colors duration-200 ${
+                  openIndex === index ? "text-red-500 font-bold" : "text-black font-semibold"
+                }`}
               >
                 {faq.question}
                 <span className="text-red-500">
