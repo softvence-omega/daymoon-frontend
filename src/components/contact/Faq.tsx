@@ -55,7 +55,7 @@ const toggleFAQ = (index: number) => {
               <button
                 onClick={() => toggleFAQ(index)}
                 className={`w-full flex justify-between items-center text-left text-lg transition-colors duration-200 ${
-                  openIndex === index ? "text-red-500 font-bold" : "text-black font-semibold"
+                  openIndex === index ? "text-[#FCAB3F] font-bold" : "text-black font-semibold"
                 }`}
               >
                 {faq.question}
