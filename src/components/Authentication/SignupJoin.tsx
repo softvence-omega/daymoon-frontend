@@ -10,15 +10,17 @@ const SignupJoin = () => {
   const navigate = useNavigate();
 
   const handleSubmit = () => {
-    if (role) {
-      navigate(`/signup/${role}`);
+    if (role === "buyer") {
+      navigate("/signup-buyer");
+    } else if (role === "supplier") {
+      navigate("/signup-supplier");
     }
   };
 
   return (
     <div className="flex flex-col lg:flex-row min-h-screen w-full font-sans">
       {/* Left Side */}
-      <div className="w-full lg:w-1/2 bg-[#651D17] flex items-center justify-center min-h-[300px] lg:min-h-screen py-8">
+      <div className="hidden md:flex w-full lg:w-1/2 bg-[#651D17] items-center justify-center min-h-[300px] lg:min-h-screen py-8">
         <img
           src={img}
           alt="Signup"

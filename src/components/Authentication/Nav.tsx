@@ -2,11 +2,10 @@ import { FaGlobe, FaChevronDown } from "react-icons/fa";
 import buyer from "../../assets/Icon/cart.png";
 import seller from "../../assets/Icon/truck.png";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const navigate = useNavigate();
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -54,20 +53,20 @@ const Nav = () => {
               className="absolute top-full left-0 right-0 mt-1 bg-white border border-foundation-gray rounded-lg shadow-sm z-10"
               onClick={(e) => e.stopPropagation()}
             >
-              <button
-                onClick={() => navigate("/signup-buyer")}
-                className="w-full text-left flex items-center gap-2 px-5 py-3 border-b border-foundation-gray"
+              <Link
+                to="/signup-buyer"
+                className="w-full text-left flex items-center gap-2 px-5 py-3 border-b border-foundation-gray cursor-pointer"
               >
                 <img src={buyer} alt="" className="w-5 h-5" />
                 <span>Buyer</span>
-              </button>
-              <button
-                onClick={() => navigate("/signup-supplier")}
-                className="w-full text-left flex items-center gap-2 px-5 py-3"
+              </Link>
+              <Link
+                to="/signup-supplier"
+                className="w-full text-left flex items-center gap-2 px-5 py-3 cursor-pointer"
               >
                 <img src={seller} alt="" className="w-5 h-5" />
                 <span>Supplier</span>
-              </button>
+              </Link>
             </div>
           )}
         </div>
