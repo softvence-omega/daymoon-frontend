@@ -52,7 +52,7 @@ const SignupJoin = () => {
                 JOIN US!
               </h1>
               <p className="text-gray-600 text-[12px] sm:text-[14px] mb-6 leading-[1.4]">
-                To begin this journey, tell us what type of account you'd be
+                To begin this journey, tell us what type of <br /> account you'd be
                 opening.
               </p>
 

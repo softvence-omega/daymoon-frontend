@@ -2,10 +2,11 @@ import { FaGlobe, FaChevronDown } from "react-icons/fa";
 import buyer from "../../assets/Icon/cart.png";
 import seller from "../../assets/Icon/truck.png";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -16,22 +17,27 @@ const Nav = () => {
     return () => document.removeEventListener("click", closeDropdown);
   }, [isOpen]);
 
+  // Determine if we're on the login page
+  const isLogin = location.pathname === "/login";
+
   return (
     <div className="w-full px-4 md:px-6 pt-4 pb-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-      {/* Sign In section - TOP on mobile, right on desktop */}
+      {/* Sign In / Register section */}
       <div className="flex flex-col items-end md:order-2">
         <div className="flex justify-end">
           <FaGlobe className="text-gray-800 w-[20px] h-[20px]" />
         </div>
         <p className="text-gray-500 text-sm my-4 text-right">
-          Already have an account?{" "}
-          <span className="text-[#F14141] font-medium cursor-pointer">
-            Sign In
-          </span>
+          {isLogin ? "Don't have an account? " : "Already have an account? "}
+          <Link to={isLogin ? "/signup-buyer" : "/login"}>
+            <span className="text-[#F14141] font-medium cursor-pointer">
+              {isLogin ? "Register" : "Sign In"}
+            </span>
+          </Link>
         </p>
       </div>
 
-      {/* Role Selector - BOTTOM on mobile, left on desktop */}
+      {/* Role Selector */}
       <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-0 md:order-1">
         <div className="relative w-full md:w-auto">
           <button
@@ -65,7 +71,7 @@ const Nav = () => {
                 className="w-full text-left flex items-center gap-2 px-5 py-3 cursor-pointer"
               >
                 <img src={seller} alt="" className="w-5 h-5" />
-                <span>Supplier</span>
+                <span>Seller</span>
               </Link>
             </div>
           )}

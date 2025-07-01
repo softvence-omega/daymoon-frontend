@@ -52,7 +52,7 @@ const BuyerSignup = () => {
     phoneButton: "!bg-transparent !border-none !px-2",
     checkbox:
       "mt-1 h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500 focus:border-transparent focus:shadow-[0_0_0_4px_rgba(59,130,246,0.2)]",
-    button: "w-full bg-sunset-orange text-white py-3 rounded-md hover:bg-[#e73333]",
+    button: "w-full bg-sunset-orange text-white py-3 rounded-[20px] hover:bg-[#e73333]",
     label: "block text-sm font-medium text-gray-700 mb-[14px]",
     error: "text-sm text-red-500",
     termsLabel: "text-sm text-gray-600",
