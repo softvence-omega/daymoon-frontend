@@ -41,6 +41,23 @@ const BuyerSignup = () => {
     navigate("/login");
   };
 
+  // Custom Tailwind classes with no transition
+  const styles = {
+    input:
+      "w-full px-4 py-3 rounded-[20px] border border-[#B3B3B3] bg-white focus:outline-none focus:border-blue-400 focus:shadow-2xl",
+    phoneContainer:
+      "w-full border border-[#B3B3B3] rounded-[20px] bg-white px-1 py-1.5 focus-within:border-blue-400 focus-within:shadow-2xl transition",
+    phoneInput:
+      "!w-full !border-none !bg-transparent !shadow-none !text-gray-900 focus:!outline-none",
+    phoneButton: "!bg-transparent !border-none !px-2",
+    checkbox:
+      "mt-1 h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500 focus:border-transparent focus:shadow-[0_0_0_4px_rgba(59,130,246,0.2)]",
+    button: "w-full bg-sunset-orange text-white py-3 rounded-md hover:bg-[#e73333]",
+    label: "block text-sm font-medium text-gray-700 mb-[14px]",
+    error: "text-sm text-red-500",
+    termsLabel: "text-sm text-gray-600",
+  };
+
   return (
     <div className="w-full min-h-screen">
       <div className="flex flex-col md:flex-row min-h-screen">
@@ -61,93 +78,91 @@ const BuyerSignup = () => {
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
               {/* Full Name */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-[14px]">
-                  Full Name
-                </label>
+                <label className={styles.label}>Full Name</label>
                 <input
                   type="text"
                   placeholder="Full Name"
                   {...register("name")}
-                  className="w-full px-4 py-3 focus:outline-none focus:ring-1 focus:ring-[#1565D8] rounded-[20px] bg-white shadow-[0px_4px_10px_3px_rgba(0,0,0,0.11)]"
+                  className={styles.input}
                 />
                 {errors.name && (
-                  <p className="text-sm text-red-500">{errors.name.message}</p>
+                  <p className={styles.error}>{errors.name.message}</p>
                 )}
               </div>
 
               {/* Phone Number */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-[14px]">
-                  Phone number
-                </label>
-                <Controller
-                  name="phone"
-                  control={control}
-                  render={({ field }) => (
-                    <PhoneInput
-                      {...field}
-                      country={"us"}
-                      containerClass="w-full"
-                      inputClass="w-full px-4 py-3"
-                      specialLabel=""
-                      onChange={field.onChange}
-                      value={field.value}
-                      enableSearch
-                    />
-                  )}
-                />
+              <div className="w-full">
+                <label className={styles.label}>Phone number</label>
+
+                <div className="w-full">
+                  <Controller
+                    name="phone"
+                    control={control}
+                    render={({ field }) => (
+                      <PhoneInput
+                        {...field}
+                        country="us"
+                        value={field.value}
+                        onChange={field.onChange}
+                        inputProps={{
+                          name: "phone",
+                          required: true,
+                        }}
+                        containerClass={styles.phoneContainer}
+                        inputClass={styles.phoneInput}
+                        buttonClass={styles.phoneButton}
+                        enableSearch
+                      />
+                    )}
+                  />
+                </div>
+
                 {errors.phone && (
-                  <p className="text-sm text-red-500">{errors.phone.message}</p>
+                  <p className={`${styles.error} mt-1`}>
+                    {errors.phone.message}
+                  </p>
                 )}
               </div>
 
               {/* Email */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-[14px]">
-                  Email
-                </label>
+                <label className={styles.label}>Email</label>
                 <input
                   type="email"
                   placeholder="Enter your email"
                   {...register("email")}
-                  className="w-full px-4 py-3 rounded-[20px] border border-[#B3B3B3] bg-white focus:outline-none focus:ring-1 focus:ring-blue-400"
+                  className={styles.input}
                 />
                 {errors.email && (
-                  <p className="text-sm text-red-500">{errors.email.message}</p>
+                  <p className={styles.error}>{errors.email.message}</p>
                 )}
               </div>
 
               {/* Password */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-[14px]">
-                  Password
-                </label>
+                <label className={styles.label}>Password</label>
                 <input
                   type="password"
                   placeholder="Set Password"
                   {...register("password")}
-                  className="w-full px-4 py-3 rounded-[20px] border border-[#B3B3B3] bg-white focus:outline-none focus:ring-1 focus:ring-blue-400"
+                  className={styles.input}
                 />
                 {errors.password && (
-                  <p className="text-sm text-red-500">
-                    {errors.password.message}
-                  </p>
+                  <p className={styles.error}>{errors.password.message}</p>
                 )}
               </div>
 
               {/* Confirm Password */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-[14px]">
-                  Confirm Password
-                </label>
+                <label className={styles.label}>Confirm Password</label>
                 <input
                   type="password"
                   placeholder="Retype password"
                   {...register("confirmPassword")}
-                  className="w-full px-4 py-3 rounded-[20px] border border-[#B3B3B3] bg-white focus:outline-none focus:ring-1 focus:ring-blue-400"
+                  className={styles.input}
                 />
                 {errors.confirmPassword && (
-                  <p className="text-sm text-red-500">
+                  <p className={styles.error}>
                     {errors.confirmPassword.message}
                   </p>
                 )}
@@ -155,19 +170,15 @@ const BuyerSignup = () => {
 
               {/* Company Name */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-[14px]">
-                  Company Name
-                </label>
+                <label className={styles.label}>Company Name</label>
                 <input
                   type="text"
                   placeholder="Enter your Company name"
                   {...register("companyName")}
-                  className="w-full px-4 py-3 rounded-[20px] border border-[#B3B3B3] bg-white focus:outline-none focus:ring-1 focus:ring-blue-400"
+                  className={styles.input}
                 />
                 {errors.companyName && (
-                  <p className="text-sm text-red-500">
-                    {errors.companyName.message}
-                  </p>
+                  <p className={styles.error}>{errors.companyName.message}</p>
                 )}
               </div>
 
@@ -176,23 +187,20 @@ const BuyerSignup = () => {
                 <input
                   type="checkbox"
                   {...register("terms")}
-                  className="mt-1"
+                  className={styles.checkbox}
                 />
-                <label className="text-sm text-gray-600">
+                <label className={styles.termsLabel}>
                   I accept the privacy policy. We value your personal
                   information and outline how we collect, use, and protect your
                   data. By using our services, you agree to these terms.
                 </label>
               </div>
               {errors.terms && (
-                <p className="text-sm text-red-500">{errors.terms.message}</p>
+                <p className={styles.error}>{errors.terms.message}</p>
               )}
 
               {/* Submit Button */}
-              <button
-                type="submit"
-                className="w-full bg-[#EF3F3F] text-white py-2 rounded-md hover:bg-[#e73333] transition"
-              >
+              <button type="submit" className={styles.button}>
                 Create Account
               </button>
             </form>
