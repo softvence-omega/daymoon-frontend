@@ -74,22 +74,24 @@ const OverViewBanner = () => {
                   </div>
                 </div>
               </div>
-            </div>
-
-            {/* Middle: Stats */}
-            <div className="flex flex-1 justify-center gap-8 px-6 min-w-[340px] divide-x divide-[#666]">
-              {[
-                { value: "12", label: "Years" },
-                { value: "1,250", label: "Orders" },
-                { value: "42", label: "Countries" },
-                { value: "2H", label: "Responses" },
-              ].map((stat, index) => (
-                <div
-                  key={index}
-                  className="text-center px-6" // padding for spacing between divided items
-                >
-                  <div className=" text-[24px] lg:text-[48px] text-[#192D4E] font-semibold lg:leading-[120%] lg:tracking-[-0.06em] uppercase">
-                    {stat.value}
+              {/* Middle: Stats */}
+              <div className="flex flex-wrap justify-center gap-4 md:gap-8 px-0 md:px-6 min-w-0 w-full md:w-auto md:flex-1 md:divide-x divide-[#666] my-6 md:my-0">
+                {[
+                  { value: "12", label: "Years" },
+                  { value: "1,250", label: "Orders" },
+                  { value: "42", label: "Countries" },
+                  { value: "2H", label: "Responses" },
+                ].map((stat, index) => (
+                  <div
+                    key={index}
+                    className="text-center px-2 md:px-6 flex-1 min-w-[100px] md:flex-none"
+                  >
+                    <div className="text-[20px] md:text-[24px] lg:text-[32px] xl:text-[48px] text-[#192D4E] font-semibold leading-[120%] tracking-[-0.06em] uppercase">
+                      {stat.value}
+                    </div>
+                    <div className="text-[14px] text-jet-black">
+                      {stat.label}
+                    </div>
                   </div>
                   <div className="text-[14px] text-jet-black">{stat.label}</div>
                 </div>
