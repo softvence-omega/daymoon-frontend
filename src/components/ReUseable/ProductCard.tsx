@@ -1,0 +1,115 @@
+import { useState } from "react";
+import { useKeenSlider } from "keen-slider/react";
+import { Heart, ChevronLeft, ChevronRight } from "lucide-react";
+import star from "@/assets/Icon/star_rate.svg";
+import "keen-slider/keen-slider.min.css";
+
+interface ProductProps {
+  title: string;
+  images: string[];
+  priceRange: string;
+  rating: number;
+  moq: string;
+}
+
+const ProductCard = ({
+  title,
+  images = [],
+  priceRange,
+  rating,
+  moq,
+}: ProductProps) => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
+    loop: true,
+    slides: { perView: 1 },
+    slideChanged(slider) {
+      setCurrentSlide(slider.track.details.rel);
+    },
+  });
+
+  return (
+    <div className="bg-white shadow-[2px_4px_14.1px_rgba(0,0,0,0.08)] rounded-lg hover:shadow-lg transition-shadow duration-300 overflow-hidden relative flex flex-col min-h-[428px]">
+      {/* Favorite Button */}
+      <button className="absolute top-4 right-4 z-10 bg-[rgba(0,0,0,0.4)] h-9 w-9 flex items-center justify-center shadow rounded-[12px] hover:bg-sunset-orange ">
+        <Heart className="h-5 w-5 text-white" />
+      </button>
+
+      {/* Image Slider */}
+      <div className="relative w-full h-[264px] flex items-center justify-center">
+        <div ref={sliderRef} className="keen-slider w-full h-full">
+          {images.map((src, i) => (
+            <div
+              key={i}
+              className="keen-slider__slide flex items-center justify-center"
+            >
+              <img
+                src={src}
+                alt={`product-slide-${i}`}
+                className="object-contain max-w-full"
+              />
+            </div>
+          ))}
+        </div>
+
+        {/* Navigation Arrows */}
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            instanceRef.current?.prev();
+          }}
+          className="absolute left-3 top-1/2 -translate-y-1/2 bg-white border border-[#E4E7EC] p-2 rounded-full shadow hover:bg-sunset-orange hover:text-white text-sunset-orange transition"
+        >
+          <ChevronLeft className="w-4 h-4" />
+        </button>
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            instanceRef.current?.next();
+          }}
+          className="absolute right-3 top-1/2 -translate-y-1/2 bg-white border border-[#E4E7EC] p-2 rounded-full shadow hover:bg-sunset-orange hover:text-white text-sunset-orange transition"
+        >
+          <ChevronRight className="w-4 h-4" />
+        </button>
+
+        {/* Pagination Dots */}
+        {images.length > 1 && (
+          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
+            {images.map((_, idx) => (
+              <span
+                key={idx}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  idx === currentSlide ? "bg-sunset-orange" : "bg-[#E4E7EC]"
+                }`}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* Product Info */}
+      <div className="flex-1 flex flex-col justify-between px-[12px] pt-[20px]">
+        <div className="flex items-start justify-between mb-2 gap-2">
+          <h3 className="text-[15px] font-[500] line-clamp-2 leading-snug text-[#181C32] w-[85%]">
+            {title}
+          </h3>
+          <div className="flex items-center gap-1">
+            <img src={star} alt="star" className="w-4 h-4" />
+            <span className="text-[14px] font-medium text-[#484848]">
+              {rating}
+            </span>
+          </div>
+        </div>
+
+        <div className="flex items-center gap-2 pb-[12px]">
+          <span className="text-[15px] font-semibold text-[#FCAB3F]">{priceRange}</span>
+          <span className="text-[#484848] text-[15px]">•</span>
+          <span className="text-[13px] text-[#484848]">MOQ: {moq}</span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ProductCard;
