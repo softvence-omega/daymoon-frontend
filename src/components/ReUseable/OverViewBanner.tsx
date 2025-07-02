@@ -30,53 +30,13 @@ const OverViewBanner = () => {
                 <div className="w-[100px] h-[100px] md:w-[120px] md:h-[120px] lg:w-[164px] lg:h-[164px] rounded-full flex items-center justify-center overflow-hidden">
                   <img src={icon} alt="Logo" className="object-contain" />
                 </div>
-                <div className="flex items-center justify-center gap-[6.50px] text-sm py-[12px]">
-                  {[...Array(5)].map((_, i) => (
-                    <FaStar
-                      key={i}
-                      className="text-[#FFC633] text-base w-[22px] h-[22px] "
-                    />
-                  ))}
-                  <div className="flex items-center justify-center">
-                    <span className="text-jet-black font-[500] text-[16px] ml-[24px]">
-                      4.5
-                    </span>
-                    <span className="text-[16px] text-[#666] ml-1 font-[400]">
-                      (234)
-                    </span>
-                  </div>
-                  <div className="flex flex-col items-center md:items-start">
-                    <div className="flex items-center gap-1 text-sm py-2 md:py-[12px]">
-                      {[...Array(5)].map((_, i) => (
-                        <FaStar
-                          key={i}
-                          className="text-[#FFC633] w-[18px] h-[18px] md:w-[22px] md:h-[22px]"
-                        />
-                      ))}
-
-                      {/* Group numbers properly aligned */}
-                      <div className="flex items-center ml-4 gap-1">
-                        <span className="text-jet-black font-medium text-[14px] md:text-[16px] leading-[1] flex items-center">
-                          4.5
-                        </span>
-                        <span className="text-[#666] font-normal text-[14px] md:text-[16px] leading-[1] flex items-center">
-                          (234)
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center text-sm text-[#484848] gap-1">
-                      <MdLocationOn className="h-[20px] w-[20px] md:h-[24px] md:w-[24px]" />
-                      <p className="text-sm font-normal leading-[1.6]">
-                        Sunnyvale, California, USA
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex items-center text-sm text-[#484848] gap-1">
-                  <MdLocationOn className=" h-[24px] w-[24px] " />
-                  <p className="text-sm font-normal leading-[1.6]">
-                    Sunnyvale, California, USA
+                {/* Text Info */}
+                <div className="mt-4 text-center md:text-left">
+                  <h2 className="text-[20px] md:text-[24px] font-semibold leading-[120%]">
+                    TechCraft Industries
+                  </h2>
+                  <p className="text-[14px] font-normal leading-[160%] py-2 md:py-[12px]">
+                    Manufacturer
                   </p>
                   <div className="mb-2">
                     <span

@@ -13,21 +13,17 @@ export interface ProductType {
   priceRange: string;
   rating: number;
   moq: string;
-  category:string;
-  discount: number;
 }
 
-// ...existing code...
 export const products: ProductType[] = [
   {
     id: 1,
-    title: "Bluetooth Wireless Earbuds with Deep Bass, 40H Playtime, LED Display, IP7 Rating, Mic for Phone and Android, Black.",
+    title:
+      "Bluetooth Wireless Earbuds with Deep Bass, 40H Playtime, LED Display, IP7 Rating, Mic for Phone and Android, Black.",
     images: [prdt1, prdt2],
     priceRange: "$20-$28",
     rating: 4.2,
     moq: "MOQ : 10",
-    category: "Electronics",
-    discount: 20, // Added
   },
   {
     id: 2,
@@ -36,8 +32,6 @@ export const products: ProductType[] = [
     priceRange: "$12-$18",
     rating: 4.5,
     moq: "MOQ : 20",
-    category: "Electronics",
-    discount: 30
   },
   {
     id: 3,
@@ -46,8 +40,6 @@ export const products: ProductType[] = [
     priceRange: "$30-$35",
     rating: 4.8,
     moq: "MOQ : 5",
-    category: "Clothing",
-    discount: 0, // Added
   },
   {
     id: 4,
@@ -56,8 +48,6 @@ export const products: ProductType[] = [
     priceRange: "$45-$60",
     rating: 4.6,
     moq: "MOQ : 8",
-    category: "Electronics",
-    discount: 0, // Added
   },
   {
     id: 5,
@@ -66,8 +56,6 @@ export const products: ProductType[] = [
     priceRange: "$25-$40",
     rating: 4.4,
     moq: "MOQ : 15",
-    category: "Electronics",
-    discount: 0, // Added
   },
   {
     id: 6,
@@ -76,8 +64,6 @@ export const products: ProductType[] = [
     priceRange: "$80-$120",
     rating: 4.7,
     moq: "MOQ : 12",
-    category: "Electronics",
-    discount: 0, // Added
   },
   {
     id: 7,
@@ -86,8 +72,6 @@ export const products: ProductType[] = [
     priceRange: "$80-$120",
     rating: 4.7,
     moq: "MOQ : 12",
-    category: "Electronics",
-    discount: 0, // Added
   },
   {
     id: 8,
@@ -96,8 +80,6 @@ export const products: ProductType[] = [
     priceRange: "$80-$120",
     rating: 4.7,
     moq: "MOQ : 12",
-    category: "Electronics",
-    discount: 0, // Added
   },
   {
     id: 9,
@@ -106,38 +88,5 @@ export const products: ProductType[] = [
     priceRange: "$30-$35",
     rating: 4.8,
     moq: "MOQ : 5",
-    category: "Laptop",
-    discount: 0, // Added
-  },
-  {
-    id: 10,
-    title: "Stylish Analog Watch for Men - Waterproof & Durable.",
-    images: [prdt5, prdt6],
-    priceRange: "$30-$35",
-    rating: 4.8,
-    moq: "MOQ : 5",
-    category: "Computer",
-    discount: 0, // Added
-  },
-  {
-    id: 11,
-    title: "Stylish Analog Watch for Men - Waterproof & Durable.",
-    images: [prdt5, prdt6],
-    priceRange: "$30-$35",
-    rating: 4.8,
-    moq: "MOQ : 5",
-    category: "Laptop",
-    discount: 0, // Added
-  },
-  {
-    id: 12,
-    title: "Stylish Analog Watch for Men - Waterproof & Durable.",
-    images: [prdt5, prdt6],
-    priceRange: "$30-$35",
-    rating: 4.8,
-    moq: "MOQ : 5",
-    category: "Mobile",
-    discount: 0, // Added
   },
 ];
-// ...existing code...
