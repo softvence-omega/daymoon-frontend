@@ -6,14 +6,14 @@ import buyer from "../../assets/Icon/cart.png";
 import supplier from "../../assets/Icon/truck.png";
 
 const SignupJoin = () => {
-  const [role, setRole] = useState<"buyer" | "supplier" | "">("");
+  const [role, setRole] = useState<"buyer" | "seller" | "">("");
   const navigate = useNavigate();
 
   const handleSubmit = () => {
     if (role === "buyer") {
       navigate("/signup-buyer");
-    } else if (role === "supplier") {
-      navigate("/signup-supplier");
+    } else if (role === "seller") {
+      navigate("/signup-seller");
     }
   };
 
@@ -88,9 +88,9 @@ const SignupJoin = () => {
                 </div>
                 {/* Supplier Card */}
                 <div
-                  onClick={() => setRole("supplier")}
+                  onClick={() => setRole("seller")}
                   className={`flex items-start gap-3 p-3 sm:px-4 sm:py-6 rounded-lg cursor-pointer transition-all ${
-                    role === "supplier"
+                    role === "seller"
                       ? "bg-[#FFF7EE] border border-goldenrod"
                       : "bg-[#EDEDED] border border-transparent"
                   }`}
@@ -104,7 +104,7 @@ const SignupJoin = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold text-black text-xs sm:text-sm mb-1">
-                      Supplier
+                      Seller
                     </h3>
                     <p className="text-[11px] sm:text-[13px] text-gray-600 leading-tight">
                       Lorem ipsum dolor sit amet consectetur. Aliquet ac arcu
@@ -117,7 +117,7 @@ const SignupJoin = () => {
               <button
                 onClick={handleSubmit}
                 disabled={!role}
-                className={`mt-4 sm:mt-6 px-4 sm:px-6 py-2 rounded-[20px] font-medium transition w-full sm:w-auto ${
+                className={`mt-4 sm:mt-6 px-4 sm:px-6 py-2 rounded-[20px] font-medium transition w-full sm:w-auto cursor-pointer ${
                   role
                     ? "bg-[#F14141] text-white hover:bg-red-600"
                     : "bg-gray-300 text-white cursor-not-allowed"
