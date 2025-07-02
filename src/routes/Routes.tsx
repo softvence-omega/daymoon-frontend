@@ -57,7 +57,7 @@ const routes = createBrowserRouter([
     element: <BuyerSignup />,
   },
   {
-    path: "signup-supplier",
+    path: "signup-seller",
     element: <SellerRegistration />,
   },
   {

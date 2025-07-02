@@ -21,7 +21,7 @@ const Nav = () => {
   const isLogin = location.pathname === "/login";
 
   return (
-    <div className="w-full px-4 md:px-6 pt-4 pb-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+    <div className="w-full px-4 md:px-6 pt-2 pb-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
       {/* Sign In / Register section */}
       <div className="flex flex-col items-end md:order-2">
         <div className="flex justify-end">
@@ -59,15 +59,12 @@ const Nav = () => {
               className="absolute top-full left-0 right-0 mt-1 bg-white border border-foundation-gray rounded-lg shadow-sm z-10"
               onClick={(e) => e.stopPropagation()}
             >
-              <Link
-                to="/signup-buyer"
-                className="w-full text-left flex items-center gap-2 px-5 py-3 border-b border-foundation-gray cursor-pointer"
-              >
+              <p className="w-full text-left flex items-center gap-2 px-5 py-3 border-b border-foundation-gray cursor-pointer">
                 <img src={buyer} alt="" className="w-5 h-5" />
                 <span>Buyer</span>
-              </Link>
+              </p>
               <Link
-                to="/signup-supplier"
+                to="/signup-seller"
                 className="w-full text-left flex items-center gap-2 px-5 py-3 cursor-pointer"
               >
                 <img src={seller} alt="" className="w-5 h-5" />

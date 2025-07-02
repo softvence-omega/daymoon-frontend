@@ -30,9 +30,12 @@ const BuyerSignup = () => {
   const {
     register,
     handleSubmit,
+    watch,
     control,
     formState: { errors },
   } = useForm<SignupFormInputs>({ resolver: zodResolver(signupSchema) });
+
+  const termsChecked = watch("terms");
 
   const navigate = useNavigate();
 
@@ -52,8 +55,9 @@ const BuyerSignup = () => {
     phoneButton: "!bg-transparent !border-none !px-2",
     checkbox:
       "mt-1 h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500 focus:border-transparent focus:shadow-[0_0_0_4px_rgba(59,130,246,0.2)]",
-    button: "w-full bg-sunset-orange text-white py-3 rounded-[20px] hover:bg-[#e73333]",
-    label: "block text-sm font-medium text-gray-700 mb-[14px]",
+    button:
+      "w-full bg-sunset-orange text-white py-3 rounded-[20px] hover:bg-[#e73333]",
+    label: "block text-sm font-medium text-gray-700 mb-[14px] ",
     error: "text-sm text-red-500",
     termsLabel: "text-sm text-gray-600",
   };
@@ -200,7 +204,11 @@ const BuyerSignup = () => {
               )}
 
               {/* Submit Button */}
-              <button type="submit" className={styles.button}>
+              <button
+                disabled={!termsChecked}
+                type="submit"
+                className={`mt-8 cursor-pointer disabled:cursor-not-allowed disabled:bg-red-100 ${styles.button}`}
+              >
                 Create Account
               </button>
             </form>
