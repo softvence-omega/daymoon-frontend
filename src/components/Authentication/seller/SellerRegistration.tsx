@@ -6,7 +6,6 @@ import Nav from "@/components/Authentication/Nav";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { cn } from "@/lib/utils";
-import { Progress } from "@/components/ui/progress";
 
 const signupSchema = z
   .object({
