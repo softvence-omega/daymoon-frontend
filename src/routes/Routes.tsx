@@ -9,7 +9,8 @@ import AdminDashboard from "@/pages/Admin/AdminDashboard";
 import Login from "@/pages/Login";
 import Signup from "@/pages/Signup";
 import BuyerSignup from "@/components/Authentication/BuyerSignup";
-import SupplierSignup from "@/components/Authentication/SupplierSignup";
+import OverViewBanner from "@/components/ReUseable/OverViewBanner";
+import SellerRegistration from "@/components/Authentication/seller/SellerRegistration";
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -27,22 +28,13 @@ const routes = createBrowserRouter([
         path: "/contact",
         element: <Contact />,
       },
+      // --------------
+      // extra add
       {
-        path: "/login",
-        element: <Login />,
+        path: "overview",
+        element: <OverViewBanner />,
       },
-      {
-        path: "signup",
-        element: <Signup />,
-      },
-      {
-        path: "signup-buyer",
-        element: <BuyerSignup />,
-      },
-      {
-        path: "signup-supplier",
-        element: <SupplierSignup/>
-      },
+      // -------------------
       {
         path: "/admin",
         element: <AdminRoute />, // This will check if the user is an admin
@@ -51,6 +43,22 @@ const routes = createBrowserRouter([
         ],
       },
     ],
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "signup",
+    element: <Signup />,
+  },
+  {
+    path: "signup-buyer",
+    element: <BuyerSignup />,
+  },
+  {
+    path: "signup-supplier",
+    element: <SellerRegistration />,
   },
   {
     path: "*",
