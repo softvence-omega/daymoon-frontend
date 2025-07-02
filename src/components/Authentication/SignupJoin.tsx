@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import img from "../../assets/SignUp/signup.png";
 import { FaGlobe } from "react-icons/fa";
 import buyer from "../../assets/Icon/cart.png";
@@ -39,9 +39,11 @@ const SignupJoin = () => {
               </div>
               <p className="text-gray-500 mt-4 text-xs sm:text-sm">
                 Already have an account?{" "}
-                <span className="text-[#F14141] font-medium cursor-pointer">
-                  Sign In
-                </span>
+                <Link to="/login">
+                  <span className="text-[#F14141] font-medium cursor-pointer">
+                    Sign In
+                  </span>
+                </Link>
               </p>
             </div>
           </div>
@@ -52,8 +54,8 @@ const SignupJoin = () => {
                 JOIN US!
               </h1>
               <p className="text-gray-600 text-[12px] sm:text-[14px] mb-6 leading-[1.4]">
-                To begin this journey, tell us what type of <br /> account you'd be
-                opening.
+                To begin this journey, tell us what type of <br /> account you'd
+                be opening.
               </p>
 
               {/* Cards */}

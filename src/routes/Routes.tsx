@@ -9,8 +9,8 @@ import AdminDashboard from "@/pages/Admin/AdminDashboard";
 import Login from "@/pages/Login";
 import Signup from "@/pages/Signup";
 import BuyerSignup from "@/components/Authentication/BuyerSignup";
-import SellerSignup from "@/components/Authentication/seller/SellerRegistration";
 import OverViewBanner from "@/components/ReUseable/OverViewBanner";
+import SellerRegistration from "@/components/Authentication/seller/SellerRegistration";
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -29,12 +29,12 @@ const routes = createBrowserRouter([
         element: <Contact />,
       },
       // --------------
-      // extra add 
+      // extra add
       {
-path: "overview",
-element: <OverViewBanner/>
+        path: "overview",
+        element: <OverViewBanner />,
       },
-// -------------------
+      // -------------------
       {
         path: "/admin",
         element: <AdminRoute />, // This will check if the user is an admin
@@ -58,7 +58,7 @@ element: <OverViewBanner/>
   },
   {
     path: "signup-supplier",
-    element: <SellerSignup/>,
+    element: <SellerRegistration />,
   },
   {
     path: "*",
