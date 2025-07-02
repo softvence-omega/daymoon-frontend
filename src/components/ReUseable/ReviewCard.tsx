@@ -1,5 +1,4 @@
-import { Star } from "lucide-react";
-import icon from "../../assets/Icon/verified.svg";
+import { CheckCircle, Star } from "lucide-react";
 
 interface ReviewCardProps {
   name: string;
@@ -25,7 +24,7 @@ const ReviewCard = ({ name, rating, review }: ReviewCardProps) => {
       {/* Name + Verified */}
       <div className="flex items-center font-semibold text-[#181C32] mb-2">
         {name}
-        <img src={icon} className="h-4 w-4 ml-2" />
+        <CheckCircle className="text-green-500 h-4 w-4 ml-2" />
       </div>
 
       {/* Review Text */}
