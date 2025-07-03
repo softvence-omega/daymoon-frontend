@@ -8,18 +8,19 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-import React, { useState } from "react";
+import React from "react";
 import ReactApexChart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
 
 const OrderStatus: React.FC = () => {
-  const [series, setSeries] = useState<number[]>([44, 55, 13, 33]);
+  const series = [44, 55, 13, 33]; // Delivered, Shipped, Processing, Cancelled
 
   const options: ApexOptions = {
     chart: {
       width: 380,
       type: "donut",
     },
+    labels: ["Delivered", "Shipped", "Processing", "Cancelled"],
     dataLabels: {
       enabled: false,
     },
@@ -28,7 +29,7 @@ const OrderStatus: React.FC = () => {
         breakpoint: 480,
         options: {
           chart: {
-            width: 200,
+            width: 280,
           },
           legend: {
             show: false,
@@ -41,34 +42,15 @@ const OrderStatus: React.FC = () => {
       offsetY: 0,
       height: 230,
     },
-  };
-
-  const appendData = () => {
-    const newSeries = [...series, Math.floor(Math.random() * 100) + 1];
-    setSeries(newSeries);
-  };
-
-  const removeData = () => {
-    if (series.length === 1) return;
-    const newSeries = series.slice(0, -1);
-    setSeries(newSeries);
-  };
-
-  const randomize = () => {
-    const newSeries = series.map(() => Math.floor(Math.random() * 100) + 1);
-    setSeries(newSeries);
-  };
-
-  const reset = () => {
-    setSeries([44, 55, 13, 33]);
+    colors: ["#9BDFC4", "#62B2FD", "#FFB450", "#FF676E"],
   };
 
   return (
-    <div className="p-6">
+    <div className="p-6 bg-white rounded-xl shadow-md">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 md:gap-8 lg:gap-12 mb-8 w-full">
-        {/* Title Section */}
+        {/* Title */}
         <div className="w-full md:flex-1">
-          <h1 className="w-[152px] h-[31px] text-[24px] leading-[130%] font-sans font-medium text-[#484848] mb-4">
+          <h1 className="text-[24px] leading-[130%] font-medium text-[#484848] mb-4">
             Order Status
           </h1>
         </div>
@@ -94,40 +76,14 @@ const OrderStatus: React.FC = () => {
         </div>
       </div>
 
-      <div className="mb-6">
+      {/* Chart */}
+      <div className="flex justify-center">
         <ReactApexChart
           options={options}
           series={series}
           type="donut"
           width={380}
         />
-      </div>
-
-      <div className="flex gap-3 flex-wrap">
-        <button
-          onClick={appendData}
-          className="bg-green-500 text-white px-4 py-2 rounded"
-        >
-          + ADD
-        </button>
-        <button
-          onClick={removeData}
-          className="bg-red-500 text-white px-4 py-2 rounded"
-        >
-          - REMOVE
-        </button>
-        <button
-          onClick={randomize}
-          className="bg-yellow-500 text-white px-4 py-2 rounded"
-        >
-          RANDOMIZE
-        </button>
-        <button
-          onClick={reset}
-          className="bg-blue-500 text-white px-4 py-2 rounded"
-        >
-          RESET
-        </button>
       </div>
     </div>
   );
