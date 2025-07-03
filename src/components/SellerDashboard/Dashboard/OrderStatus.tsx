@@ -17,19 +17,43 @@ const OrderStatus: React.FC = () => {
 
   const options: ApexOptions = {
     chart: {
-      width: 380,
+      width: 393,
+      height: 393,
       type: "donut",
     },
     labels: ["Delivered", "Shipped", "Processing", "Cancelled"],
     dataLabels: {
       enabled: false,
     },
+    plotOptions: {
+      pie: {
+        startAngle: 90,
+        endAngle: 450,
+        donut: {
+          size: "64%", // ~70.74px ring thickness for 393px circle
+        },
+      },
+    },
+    legend: {
+      position: "right",
+      offsetY: 50, // Push the legend down
+      offsetX: -90, // Slightly to the right if needed
+      fontSize: "16px",
+      labels: {
+        colors: ["#484848"],
+        useSeriesColors: false,
+      },
+      height: 330,
+    },
+
+    colors: ["#9BDFC4", "#62B2FD", "#FFB450", "#FF676E"],
     responsive: [
       {
         breakpoint: 480,
         options: {
           chart: {
-            width: 280,
+            width: 320,
+            height: 320,
           },
           legend: {
             show: false,
@@ -37,25 +61,18 @@ const OrderStatus: React.FC = () => {
         },
       },
     ],
-    legend: {
-      position: "right",
-      offsetY: 0,
-      height: 230,
-    },
-    colors: ["#9BDFC4", "#62B2FD", "#FFB450", "#FF676E"],
   };
 
   return (
-    <div className="p-6 bg-white rounded-xl shadow-md">
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 md:gap-8 lg:gap-12 mb-8 w-full">
+    <div className="w-full max-w-[748px] h-full max-h-[555px] p-6 bg-white rounded-xl shadow-md">
+      {/* Top Section: Title & Dropdown */}
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
         {/* Title */}
-        <div className="w-full md:flex-1">
-          <h1 className="text-[24px] leading-[130%] font-medium text-[#484848] mb-4">
-            Order Status
-          </h1>
-        </div>
+        <h1 className="text-[24px] leading-[130%] font-medium text-[#484848]">
+          Order Status
+        </h1>
 
-        {/* Filter Dropdown */}
+        {/* Dropdown */}
         <div className="w-full sm:w-[250px] md:w-[221px]">
           <Select>
             <SelectTrigger className="w-full h-[48px] border border-[#B3B3B3] rounded-[12px] px-[20px] py-[10px] flex items-center justify-between text-[#484848]">
@@ -76,13 +93,14 @@ const OrderStatus: React.FC = () => {
         </div>
       </div>
 
-      {/* Chart */}
-      <div className="flex justify-center">
+      {/* Donut Chart */}
+      <div className="flex justify-center mt-20">
         <ReactApexChart
           options={options}
           series={series}
           type="donut"
-          width={380}
+          width={393}
+          height={393}
         />
       </div>
     </div>
