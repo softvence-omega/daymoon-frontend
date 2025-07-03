@@ -1,27 +1,28 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
-@import "tailwindcss";
+  @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+  @import "tailwindcss";
 
-@theme {
-  /* color  */
-  --color-foundation-white: #e5e5e5;
-  --color-foundation-gray: #666666;
-  --color-goldenrod: #fcab3f;
-  --color-sunset-orange: #f04436;
-  --color-catalien-blue: #192d4e;
-  --color-catalien-blue-dark: #0b1321;
-  --color-jet-black: #1A1A1A;
-  --background-image-my-gradient: linear-gradient(
-    270deg,
-    #f7813b 0%,
-    #f46a39 100%
-  );
+  @theme {
+    /* color  */
+    --color-foundation-white: #e5e5e5;
+    --color-foundation-gray: #666666;
+    --color-goldenrod: #fcab3f;
+    --color-sunset-orange: #f04436;
+    --color-catalien-blue: #192d4e;
+    --color-catalien-blue-dark: #0b1321;
+    --color-jet-black: #1A1A1A;
+    --background-image-my-gradient: linear-gradient(
+      270deg,
+      #f7813b 0%,
+      #f46a39 100%
+    );
+    --seller-gradient :linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, #1A1A1A 100%)
 
-  /* font  */
-  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
-}
-
-@layer base {
-  body {
-    @apply font-sans;
+    /* font  */
+    --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
   }
-}
+
+  @layer base {
+    body {
+      @apply font-sans;
+    }
+  }

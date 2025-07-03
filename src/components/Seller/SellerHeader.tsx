@@ -8,7 +8,7 @@ interface SellerHeader {
 const SellerHeader: React.FC<SellerHeader> = ({ children, className }) => {
   return (
     <h2
-      className={`font-medium text-2xl sm:text-4xl lg:text-5xl leading-tight tracking-tight uppercase ${className}`}
+      className={`font-semibold text-xl sm:text-xl md:text-2xl lg:text-4xl xl:text-5xl lg:leading-[57px] lg:tracking-[-.96px] uppercase ${className}`}
     >
       {children}
     </h2>
