@@ -14,7 +14,8 @@ import SellerRegistration from "@/components/Authentication/seller/SellerRegistr
 import Seller from "@/components/Seller/Seller";
 import BuyerRoute from "./BuyerRoute";
 import BuyerLayout from "@/Layout/BuyerLayout";
-import BuyerSettings from "@/pages/BuyerDashboard/BuyerSettings";
+import BuyerDashboardDemo from "@/pages/BuyerDashboard/BuyerDashboardDemo";
+import BuyerSettings from '@/pages/BuyerDashboard/BuyerSettings';
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -38,22 +39,25 @@ const routes = createBrowserRouter([
       },
       {
         path: "/buyer",
-        element: <BuyerRoute />, 
+        element: <BuyerRoute />,
         children: [
           {
             path: "dashboard",
-            element: <BuyerLayout />, 
+            element: <BuyerLayout />,
             children: [
-             {
-               path: "settings",
-               element: <BuyerSettings/>
-             }
-
+              {
+                path: "",
+                element: <BuyerDashboardDemo />,
+              },
+              {
+                path: "settings",
+                element: <BuyerSettings />,
+              },
             ],
           },
         ],
       },
-      
+
       {
         path: "overview",
         element: <OverViewBanner />,
