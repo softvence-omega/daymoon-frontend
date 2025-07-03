@@ -11,6 +11,7 @@ import Signup from "@/pages/Signup";
 import BuyerSignup from "@/components/Authentication/BuyerSignup";
 import OverViewBanner from "@/components/ReUseable/OverViewBanner";
 import SellerRegistration from "@/components/Authentication/seller/SellerRegistration";
+import Seller from "@/components/Seller/Seller";
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -27,6 +28,10 @@ const routes = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact />,
+      },
+      {
+        path: "seller",
+        element: <Seller />,
       },
       // --------------
       // extra add
@@ -56,6 +61,7 @@ const routes = createBrowserRouter([
     path: "signup-buyer",
     element: <BuyerSignup />,
   },
+
   {
     path: "signup-seller",
     element: <SellerRegistration />,
