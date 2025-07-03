@@ -12,6 +12,7 @@ import BuyerSignup from "@/components/Authentication/BuyerSignup";
 import OverViewBanner from "@/components/ReUseable/OverViewBanner";
 import SellerRegistration from "@/components/Authentication/seller/SellerRegistration";
 import Seller from "@/components/Seller/Seller";
+import SellerDashboardPage from "@/pages/SellerDashboard/SellerDashboardPage";
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -32,6 +33,10 @@ const routes = createBrowserRouter([
       {
         path: "seller",
         element: <Seller />,
+      },
+      {
+        path: "sellerdashboard",
+        element: <SellerDashboardPage />,
       },
       // --------------
       // extra add
