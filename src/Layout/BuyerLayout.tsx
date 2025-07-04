@@ -14,7 +14,7 @@ const BuyerLayout = () => {
   return (
     <div className="flex min-h-screen bg-gray-50">
       {/* Desktop Sidebar */}
-      <div className="hidden md:flex md:w-64 md:flex-col">
+      <div className="hidden lg:flex md:w-64 md:flex-col">
         <div className="border-r border-gray-200 h-full">
           <Sidebar />
         </div>
@@ -25,7 +25,6 @@ const BuyerLayout = () => {
         {/* Top Navbar */}
         <DashboardNavbar
           onMobileMenuToggle={handleMobileMenuToggle}
-          title="Buyer Dashboard"
           notificationCount={3}
         />
 
@@ -40,7 +39,7 @@ const BuyerLayout = () => {
         </Sheet>
 
         {/* Page Content */}
-        <main className="flex-1 overflow-auto p-6">
+        <main className="flex-1 overflow-auto p-6 md:p-10">
           <Outlet />
         </main>
       </div>

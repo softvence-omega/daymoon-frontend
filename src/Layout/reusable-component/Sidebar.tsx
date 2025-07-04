@@ -60,13 +60,13 @@ const Sidebar: React.FC<SidebarProps> = ({ items = defaultSidebarItems }) => {
       style={{ boxShadow: "3px 4px 42.3px 0px #0000001A" }}
     >
       {/* Logo */}
-      <div className="flex items-center justify-center p-2 sm:p-3 border-b">
+      <div className="flex items-center justify-center p-2 sm:p-3 border-b border-[#E5E5E5]">
         <img src={logo} className="w-30 md:w-32" alt="Logo" />
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 p-8">
-        <div className="space-y-6">
+      <nav className="flex-1 p-4 md:p-8">
+        <div className="space-y-4 md:space-y-6">
           {items.map((item) => {
             const isActive = location.pathname === item.href;
             return (
@@ -79,7 +79,7 @@ const Sidebar: React.FC<SidebarProps> = ({ items = defaultSidebarItems }) => {
                     : "text-[#666666] border-transparent hover:text-[#F46A39] hover:border-[#F46A39]"
                 }`}
               >
-                <div className="flex items-center space-x-2 text-lg">
+                <div className="flex items-center space-x-2 md:text-lg">
                   <item.icon
                     className={`w-5 h-5 ${
                       isActive
