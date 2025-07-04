@@ -16,6 +16,7 @@ import BuyerRoute from "./BuyerRoute";
 import BuyerLayout from "@/Layout/BuyerLayout";
 import BuyerDashboardDemo from "@/pages/BuyerDashboard/BuyerDashboardDemo";
 import BuyerSettings from '@/pages/BuyerDashboard/BuyerSettings/BuyerSettings';
+
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -37,6 +38,7 @@ const routes = createBrowserRouter([
         path: "seller",
         element: <Seller />,
       },
+      
       {
         path: "/buyer",
         element: <BuyerRoute />,
@@ -57,7 +59,6 @@ const routes = createBrowserRouter([
           },
         ],
       },
-
       {
         path: "overview",
         element: <OverViewBanner />,
