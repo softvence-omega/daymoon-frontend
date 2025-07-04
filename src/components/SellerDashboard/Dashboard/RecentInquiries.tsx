@@ -20,7 +20,7 @@ function InquiryCard({
   message,
 }: InquiryCardProps) {
   return (
-    <div className="flex flex-col w-full max-w-[716px] p-4 border border-[#E5E5E5] rounded-xl bg-[#FCFCFC] space-y-4">
+    <div className="flex flex-col w-full p-4 border border-[#E5E5E5] rounded-xl bg-[#FCFCFC] space-y-2">
       {/* Title & Status */}
       <div className="flex justify-between items-center">
         <h2 className="text-[20px] font-medium leading-[130%] text-[#333]">
@@ -50,7 +50,7 @@ function InquiryCard({
       </div>
 
       {/* Actions */}
-      <div className="flex flex-wrap gap-2 pt-2">
+      <div className="flex flex-wrap gap-2 ">
         {status === "Pending" ? (
           <>
             <Button className="h-12 px-10 rounded-xl bg-[#192D4E] text-white text-base font-medium hover:bg-[#14233a] transition">
@@ -107,7 +107,7 @@ const inquiries: InquiryCardProps[] = [
 // Main Component
 export function RecentInquiries() {
   return (
-    <div className="w-full max-w-[748px] border border-[#E5E5E5] rounded-2xl shadow-sm p-6 space-y-6 overflow-x-auto bg-white">
+    <div className="border border-[#E5E5E5] rounded-2xl shadow-sm p-4 overflow-x-auto space-y-6">
       {/* Header */}
       <div className="flex justify-between items-center">
         <h1 className="text-[24px] font-medium leading-[130%] text-[#484848]">
