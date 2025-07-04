@@ -42,7 +42,7 @@ interface Props {
 
 // Single Testimonial Card
 const TestimonialCard: React.FC<Props> = ({ name, company, message }) => (
-  <div className="flex flex-col w-full max-w-[716px] p-4 border border-[#E5E5E5] rounded-xl bg-[#FCFCFC] space-y-4">
+  <div className="flex flex-col w-full p-4 border border-[#E5E5E5] rounded-xl bg-[#FCFCFC] space-y-4">
     {/* Header */}
     <div className="flex justify-between items-start">
       <div className="flex items-center gap-4">
@@ -65,7 +65,7 @@ const TestimonialCard: React.FC<Props> = ({ name, company, message }) => (
 // Main CustomersReview component
 export function CustomersReview() {
   return (
-    <div className="w-full max-w-[748px] border border-[#E5E5E5] rounded-2xl shadow-sm p-6 space-y-6 overflow-x-auto bg-white">
+    <div className="border border-[#E5E5E5] rounded-2xl shadow-sm p-4 overflow-x-auto space-y-6">
       {/* Header */}
       <div className="flex justify-between items-center">
         <h1 className="text-2xl font-medium text-[#484848] leading-tight">

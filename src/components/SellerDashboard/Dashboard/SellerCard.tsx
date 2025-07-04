@@ -7,7 +7,7 @@ import Card from "./Card";
 
 const SellerCard = () => {
   return (
-    <div className="w-full px-4 sm:px-6 lg:px-8">
+    <div className="w-full ">
       {/* Top Section: Title + Action Buttons */}
       <div className="flex flex-col lg:flex-row justify-between gap-6 lg:gap-8 items-start lg:items-center mb-10 w-full">
         {/* Title */}
