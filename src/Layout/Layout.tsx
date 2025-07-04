@@ -6,11 +6,11 @@ import Navbar from "./Navbar";
 const Layout: React.FC = () => {
   return (
     <div>
-      <Navbar />
+      {/* <Navbar /> */}
       <main>
         <Outlet />
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

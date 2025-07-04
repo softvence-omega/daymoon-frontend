@@ -11,7 +11,7 @@ export const testimonials = [
     name: "Leslie Alexander",
     company: "InnovateX Solutions",
     message:
-      "TechWave’s Bluetooth headsets have changed my workflow. Crisp sound and a long battery life. Highly recommend!",
+      "TechWave’ss Bluetooth headsets have changed my workflow. Crisp sound and a long battery life. Highly recommend!",
   },
   {
     id: 3,

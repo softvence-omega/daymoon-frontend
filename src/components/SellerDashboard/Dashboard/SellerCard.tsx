@@ -18,9 +18,7 @@ const SellerCard = () => {
           />
         </div>
 
-        {/* Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 w-full lg:w-auto">
-          {/* Export Button */}
           <Button
             asChild
             className="h-[60px] w-full sm:w-auto px-6 bg-white text-black  rounded-[20px] flex items-center justify-center text-[16px] md:text-[18px] font-medium font-poppins leading-[130%] transition shadow-none"
