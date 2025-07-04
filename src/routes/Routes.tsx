@@ -15,7 +15,7 @@ import Seller from "@/components/Seller/Seller";
 import BuyerRoute from "./BuyerRoute";
 import BuyerLayout from "@/Layout/BuyerLayout";
 import BuyerDashboardDemo from "@/pages/BuyerDashboard/BuyerDashboardDemo";
-import BuyerSettings from '@/pages/BuyerDashboard/BuyerSettings/BuyerSettings';
+import BuyerSettings from '@/pages/BuyerDashboard/BuyerSettings';
 
 const routes = createBrowserRouter([
   {

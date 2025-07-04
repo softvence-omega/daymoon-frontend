@@ -1,11 +1,10 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from "@/components/ui/separator";
-// import { Button } from "@/components/ui/button";
-import PersonalInformation from "./PersonalInformation";
-import BusinessInformation from "./BusinessInformation";
-import ShippingAddress from "./ShippingAddress";
-import AccountSettings from "./AccountSettings";
-import PaymentMethods from "./PaymentMethods";
+import PersonalInformation from "@/components/BuyerDashboard/BuyerSettings/PersonalInformation";
+import BusinessInformation from "@/components/BuyerDashboard/BuyerSettings/BusinessInformation";
+import ShippingAddress from "@/components/BuyerDashboard/BuyerSettings/ShippingAddress";
+import AccountSettings from "@/components/BuyerDashboard/BuyerSettings/AccountSettings";
+import PaymentMethods from "@/components/BuyerDashboard/BuyerSettings/PaymentMethods";
 
 const BuyerSettings = () => {
   return (
@@ -24,7 +23,7 @@ const BuyerSettings = () => {
       <Separator />
 
       <Tabs defaultValue="personal-information" className="space-y-4 ">
-        <TabsList className="grid w-full lg:grid-cols-5 gap-4">
+        <TabsList className="grid w-full gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
           <TabsTrigger
             value="personal-information"
             className="md:text-2xl font-normal border-b-2 border-transparent hover:border-gray-300 focus:border-gray-300"
