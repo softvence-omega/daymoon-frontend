@@ -34,47 +34,47 @@ const defaultSidebarItems: SidebarItem[] = [
   {
     icon: FaTruck,
     label: "Products",
-    href: "/sellerdashboard/dashboard/products",
+    href: "/sellerdashboard/products",
   },
   {
     icon: MdOutlineMessage,
     label: "Orders",
-    href: "/sellerdashboard/dashboard/orders",
+    href: "/sellerdashboard/orders",
   },
   {
     icon: MdOutlineCreditCard,
     label: "Inquiries",
-    href: "/sellerdashboard/dashboard/inquiries",
+    href: "/sellerdashboard/inquiries",
   },
   {
     icon: FaRegHeart,
     label: "Payments",
-    href: "/sellerdashboard/dashboard/payments",
+    href: "/sellerdashboard/payments",
   },
   {
     icon: MdOutlineRateReview,
     label: "Analytics",
-    href: "/sellerdashboard/dashboard/analytics",
+    href: "/sellerdashboard/analytics",
   },
   {
     icon: IoMdSettings,
     label: "Promotions",
-    href: "/sellerdashboard/dashboard/promotions",
+    href: "/sellerdashboard/promotions",
   },
   {
     icon: IoMdSettings,
     label: "Reviews",
-    href: "/sellerdashboard/dashboard/reviews",
+    href: "/sellerdashboard/reviews",
   },
   {
     icon: IoMdSettings,
     label: "Settings",
-    href: "/sellerdashboard/dashboard/settings",
+    href: "/sellerdashboard/settings",
   },
   {
     icon: IoMdSettings,
     label: "Help",
-    href: "/sellerdashboard/dashboard/help",
+    href: "/sellerdashboard/help",
   },
 ];
 

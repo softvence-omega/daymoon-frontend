@@ -14,6 +14,7 @@ import SellerRegistration from "@/components/Authentication/seller/SellerRegistr
 import Seller from "@/components/Seller/Seller";
 import SellerLayout from "@/Layout/SellerLayout";
 import SellerDashboardPage from "@/pages/SellerDashboard/SellerDashboardPage";
+import SellerProducts from "@/pages/SellerDashboard/SellerProducts";
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -72,13 +73,15 @@ const routes = createBrowserRouter([
     path: "*",
     element: <NotFound />,
   },
+  /* Seller */
 
   {
     path: "/sellerdashboard",
     element: <SellerLayout />,
     children: [
-      { path: "", element: <SellerLayout /> },
+      { index: true, element: <SellerDashboardPage /> },
       { path: "dashboard", element: <SellerDashboardPage /> },
+      { path: "products", element: <SellerProducts /> },
     ],
   },
 ]);
