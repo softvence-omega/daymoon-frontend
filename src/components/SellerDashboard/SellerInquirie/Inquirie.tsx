@@ -1,6 +1,7 @@
 import EnquiriesByStatus from "./EnquiriesByStatus";
 import InquirieCard from "./InquirieCard";
 import InquiriesTrend from "./InquiriesTrend";
+import { InquirieTable } from "./InquirieTable";
 
 const Inquirie = () => {
   return (
@@ -14,6 +15,9 @@ const Inquirie = () => {
         <div className="w-full lg:w-1/2">
           <InquiriesTrend />
         </div>
+      </div>
+      <div>
+        <InquirieTable />
       </div>
     </div>
   );
