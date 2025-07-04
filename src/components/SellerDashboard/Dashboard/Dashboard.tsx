@@ -1,7 +1,7 @@
 import Wrapper from "../Shared/Wrapper";
-import CustomersReview from "./CustomersReview";
+import { CustomersReview } from "./CustomersReview";
 import OrderStatus from "./OrderStatus";
-import RecentInquiries from "./RecentInquiries";
+import { RecentInquiries } from "./RecentInquiries";
 import { RecentOrders } from "./RecentOrders";
 
 import RevenueOverview from "./RevenueOverview";
