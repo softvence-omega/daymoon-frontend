@@ -12,10 +12,10 @@ const BuyerLayout = () => {
   };
 
   return (
-    <div className="flex h-screen bg-gray-50">
+    <div className="flex min-h-screen bg-gray-50">
       {/* Desktop Sidebar */}
       <div className="hidden md:flex md:w-64 md:flex-col">
-        <div className="border-r border-gray-200">
+        <div className="border-r border-gray-200 h-full">
           <Sidebar />
         </div>
       </div>
