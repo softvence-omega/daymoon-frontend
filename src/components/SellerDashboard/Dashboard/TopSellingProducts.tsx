@@ -8,7 +8,9 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-const orderData = [
+import photo from "@/assets/image/product.png";
+
+const productData = [
   {
     id: "10001",
     orderId: "ORD-2025-347",
@@ -16,6 +18,7 @@ const orderData = [
     price: "$250.00",
     sold: "34",
     revenue: "$350.00",
+    image: photo, // Sample placeholder
   },
   {
     id: "10002",
@@ -24,6 +27,7 @@ const orderData = [
     price: "$150.00",
     sold: "34",
     revenue: "$350.00",
+    image: photo,
   },
   {
     id: "10003",
@@ -32,6 +36,7 @@ const orderData = [
     price: "$350.00",
     sold: "34",
     revenue: "$350.00",
+    image: photo,
   },
   {
     id: "10004",
@@ -40,6 +45,7 @@ const orderData = [
     price: "$450.00",
     sold: "34",
     revenue: "$350.00",
+    image: photo,
   },
   {
     id: "10005",
@@ -48,6 +54,7 @@ const orderData = [
     price: "$550.00",
     sold: "34",
     revenue: "$350.00",
+    image: photo,
   },
 ];
 
@@ -63,7 +70,7 @@ export function TopSellingProducts() {
         </div>
         {/* Filter Dropdown */}
         <div>
-          <button className="underline text-[#F04436] text-base font-sans font-medium">
+          <button className="underline text-[#F04436] text-base font-sans font-medium cursor-pointer">
             View All
           </button>
         </div>
@@ -79,15 +86,16 @@ export function TopSellingProducts() {
           </TableRow>
         </TableHeader>
         <TableBody className="text-[#1A1A1A]">
-          {orderData.map((order) => (
-            <TableRow key={order.id}>
-              <TableCell className="font-medium px-4 py-4">
-                {order.name}
+          {productData.map((product) => (
+            <TableRow key={product.id}>
+              <TableCell className="font-medium px-4 py-3 flex justify-start items-center gap-3">
+                <img src={product.image} alt="" height={24} width={24} />
+                {product.name}
               </TableCell>
-              <TableCell className="pl-32 py-4">{order.price}</TableCell>
-              <TableCell className="px-4 py-4">{order.sold}</TableCell>
+              <TableCell className="pl-32 py-4">{product.price}</TableCell>
+              <TableCell className="px-4 py-4">{product.sold}</TableCell>
               <TableCell className="text-right pr-8 py-4">
-                {order.revenue}
+                {product.revenue}
               </TableCell>
             </TableRow>
           ))}
