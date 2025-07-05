@@ -12,7 +12,7 @@ import {
 
 const Reviews = () => {
   const [sortOption, setSortOption] = useState("latest");
-  const [visibleReviews, setVisibleReviews] = useState(9);
+  const [visibleReviews, setVisibleReviews] = useState(9); // ✅ fixed here
 
   // Sort reviews based on selected option
   const sortedReviews = [...reviews].sort((a, b) => {
@@ -31,7 +31,7 @@ const Reviews = () => {
   };
 
   return (
-    <section className="mt-[40px]">
+    <section className="mt-[48px]">
       {/* Header */}
       <div className="flex flex-wrap items-center justify-between mb-6">
         <h2 className="text-[32px] font-semibold text-[#1A1A1A] leading-[120%] uppercase">
@@ -80,6 +80,7 @@ const Reviews = () => {
         ))}
       </div>
 
+      {/* Load More */}
       {visibleReviews < sortedReviews.length && (
         <div className="flex justify-center mt-8">
           <button

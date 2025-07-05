@@ -6,11 +6,11 @@ import CommonWrapper from "@/common/CommonWrapper";
 const OverViewTab = () => {
   return (
     <CommonWrapper>
-      <div >
-        <Tabs defaultValue="product" className="w-full mt-12 ">
+      <div>
+        <Tabs defaultValue="product" className="w-full mt-12">
           {/* Tabs Header */}
           <TabsList
-            className="w-full flex flex-wrap justify-between sm:justify-start sm:gap-10 border-b border-[#E5E5E5] bg-transparent p-0 "
+            className="w-full flex flex-wrap justify-between sm:justify-start sm:gap-10 border-b border-[#E5E5E5] bg-transparent p-0"
           >
             <TabsTrigger
               value="product"
@@ -20,9 +20,9 @@ const OverViewTab = () => {
               data-[state=active]:after:left-0 data-[state=active]:after:bottom-[-1px]
               data-[state=active]:after:h-[2px] data-[state=active]:after:w-full
               data-[state=active]:after:bg-[#FCAB3F] rounded-none bg-transparent
-              border-none shadow-none text-center cursor-pointer "
+              border-none shadow-none text-center"
             >
-              Products
+              Product
             </TabsTrigger>
 
             <TabsTrigger
@@ -33,7 +33,7 @@ const OverViewTab = () => {
               data-[state=active]:after:left-0 data-[state=active]:after:bottom-[-1px]
               data-[state=active]:after:h-[2px] data-[state=active]:after:w-full
               data-[state=active]:after:bg-[#FCAB3F] rounded-none bg-transparent
-              border-none shadow-none text-center cursor-pointer"
+              border-none shadow-none text-center"
             >
               Rating & Reviews
             </TabsTrigger>
