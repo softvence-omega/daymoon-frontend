@@ -83,7 +83,7 @@ const OverViewBanner = () => {
                   key={index}
                   className="text-center px-6" // padding for spacing between divided items
                 >
-                  <div className="text-[48px] text-[#192D4E] font-semibold leading-[120%] tracking-[-0.06em] uppercase">
+                  <div className=" text-[24px] lg:text-[48px] text-[#192D4E] font-semibold lg:leading-[120%] lg:tracking-[-0.06em] uppercase">
                     {stat.value}
                   </div>
                   <div className="text-[14px] text-jet-black">{stat.label}</div>
