@@ -22,7 +22,8 @@ import SellerAnalyticsPage from "@/pages/SellerDashboard/SellerAnalyticsPage";
 import SellerPromotionPage from "@/pages/SellerDashboard/SellerPromotionPage";
 import SellerRewiewPage from "@/pages/SellerDashboard/SellerRewiewPage";
 import SellerSettingsPage from "@/pages/SellerDashboard/SellerSettingsPage";
-import SellerHelpPage from "@/pages/SellerDashboard/SellerHelpPage";
+// import SellerHelpPage from "@/pages/SellerDashboard/SellerHelpPage";
+import SellerInquiriesDetails from "@/pages/SellerDashboard/SellerInquiriesDetails";
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -97,7 +98,8 @@ const routes = createBrowserRouter([
       { path: "promotions", element: <SellerPromotionPage /> },
       { path: "reviews", element: <SellerRewiewPage /> },
       { path: "settings", element: <SellerSettingsPage /> },
-      { path: "help", element: <SellerHelpPage /> },
+      // { path: "help", element: <SellerHelpPage /> },
+      { path: "help", element: <SellerInquiriesDetails /> },
     ],
   },
 ]);
