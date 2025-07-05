@@ -7,6 +7,7 @@ import {
   ColumnDef,
   SortingState,
   VisibilityState,
+  PaginationState,
   flexRender,
   getCoreRowModel,
   getSortedRowModel,
@@ -24,7 +25,7 @@ import {
 } from "@/components/ui/table";
 import samplePhoto from "@/assets/image/product.png";
 
-// Data Type
+// Type
 type Inquiry = {
   id: string;
   inquiryId: string;
@@ -37,8 +38,9 @@ type Inquiry = {
   status: "new" | "resolved" | "closed";
 };
 
-// Sample Data
+// Data
 const data: Inquiry[] = [
+  // Add more if needed for multiple pages
   {
     id: "1",
     inquiryId: "INQ-235345",
@@ -149,24 +151,34 @@ const data: Inquiry[] = [
     date: "24/06/2025",
     status: "new",
   },
+  {
+    id: "11",
+    inquiryId: "INQ-999999",
+    productName: "Webcam",
+    sku: "WC-HD1080P",
+    photo: samplePhoto,
+    buyerName: "Anna Smith",
+    buyerCompany: "ZoomTech",
+    date: "25/06/2025",
+    status: "new",
+  },
 ];
 
-// Status labels
+// Configs
 const statusLabels = {
   new: "New",
   resolved: "Resolved",
   closed: "Closed",
 };
 
-// Status badge classnames mapping
 const statusClassNames = {
-  new: "bg-red-100 text-red-700",
-  resolved: "bg-green-100 text-green-700",
-  closed: "bg-gray-200 text-gray-600",
+  new: "bg-[#F7D3D4] text-[#D9222A]",
+  resolved: "bg-[#CFF1E6] text-[#0FB981]",
+  closed: "bg-[#B3B3B3] text-[#666666]",
 };
 
-// Table Columns
-export const columns: ColumnDef<Inquiry>[] = [
+// Columns
+const columns: ColumnDef<Inquiry>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -235,7 +247,7 @@ export const columns: ColumnDef<Inquiry>[] = [
       const status = row.original.status;
       return (
         <span
-          className={`flex h-8 px-5 justify-center items-center gap-1 rounded-full font-semibold text-xs select-none capitalize ${statusClassNames[status]}`}
+          className={`flex h-8 px-5 justify-center items-center gap-1 rounded-full font-semibold text-sm capitalize ${statusClassNames[status]}`}
         >
           {statusLabels[status]}
         </span>
@@ -248,14 +260,13 @@ export const columns: ColumnDef<Inquiry>[] = [
     cell: ({ row }) => {
       const status = row.original.status;
       const isRespond = status === "new" || status === "resolved";
-
       return (
         <div className="flex items-center justify-center">
           <button
             className={`text-sm px-3 py-1 rounded-md transition ${
               isRespond
-                ? "bg-[#192D4E] text-white hover:bg-[#14325f]"
-                : "border border-[#192D4E] text-[#192D4E] hover:bg-[#f3f6fa]"
+                ? "text-red-500 hover:text-[#14325f]"
+                : "text-red-500 hover:text-[#14325f] hover:bg-[#f3f6fa]"
             }`}
           >
             {isRespond ? "Respond" : "View"}
@@ -266,12 +277,16 @@ export const columns: ColumnDef<Inquiry>[] = [
   },
 ];
 
-// Component
+// Table Component
 export function InquirieTable() {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
+  const [pagination, setPagination] = React.useState<PaginationState>({
+    pageIndex: 0,
+    pageSize: 5,
+  });
 
   const table = useReactTable({
     data,
@@ -280,36 +295,40 @@ export function InquirieTable() {
       sorting,
       columnVisibility,
       rowSelection,
+      pagination,
     },
     onSortingChange: setSorting,
+    onPaginationChange: setPagination,
     onColumnVisibilityChange: setColumnVisibility,
     onRowSelectionChange: setRowSelection,
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
+    manualPagination: false,
   });
 
   return (
     <div>
       {/* Action Buttons */}
-      <div className="flex justify-end gap-3 mb-4">
-        <button className="flex h-12 px-6 py-[10px] items-center gap-2 rounded-[16px] bg-[#192D4E] text-white text-lg font-medium hover:bg-[#14325f] transition">
+      <div className="flex flex-col md:flex-row md:justify-end gap-3 mb-4 w-full">
+        <button className="w-full md:w-auto flex h-12 px-6 py-[10px] items-center justify-center gap-2 rounded-[16px] bg-[#192D4E] text-white text-lg font-medium hover:bg-[#14325f] transition cursor-pointer">
           <IoIosCheckmarkCircleOutline />
           Mark As Resolved
         </button>
-        <button className="flex h-12 px-6 py-[10px] items-center gap-2 rounded-[16px] border border-[#192D4E] text-[#192D4E] text-lg bg-transparent hover:bg-[#e7edf6] transition">
+        <button className="w-full md:w-auto flex h-12 px-6 py-[10px] items-center justify-center gap-2 rounded-[16px] border border-[#192D4E] text-[#192D4E] text-lg bg-transparent hover:bg-[#e7edf6] transition cursor-pointer">
           <MdDeleteOutline />
           Delete
         </button>
       </div>
-      <div className="w-full bg-white rounded-lg shadow-md p-2">
-        {/* Table */}
+
+      {/* Table */}
+      <div className="w-full bg-white rounded-xl shadow-md p-2">
         <Table>
           <TableHeader className="h-[56px]">
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow
                 key={headerGroup.id}
-                className="bg-[#E5E5E5] text-[#666666] text-sm rounded-2xl"
+                className="bg-[#E5E5E5] text-[#666666] text-sm"
               >
                 {headerGroup.headers.map((header) => (
                   <TableHead key={header.id}>
@@ -350,6 +369,47 @@ export function InquirieTable() {
             )}
           </TableBody>
         </Table>
+      </div>
+
+      {/* Pagination Footer */}
+      <div className="flex flex-col sm:flex-row items-center justify-between mt-4 px-2">
+        <div className="text-sm text-gray-600 mb-2 sm:mb-0">
+          Showing {pagination.pageIndex * pagination.pageSize + 1} to{" "}
+          {Math.min(
+            (pagination.pageIndex + 1) * pagination.pageSize,
+            data.length
+          )}{" "}
+          of {data.length} orders
+        </div>
+        <div className="flex gap-1">
+          <button
+            className="px-3 py-1 rounded border text-sm hover:bg-gray-200 disabled:opacity-40"
+            onClick={() => table.previousPage()}
+            disabled={!table.getCanPreviousPage()}
+          >
+            Previous
+          </button>
+          {Array.from({ length: table.getPageCount() }).map((_, index) => (
+            <button
+              key={index}
+              onClick={() => table.setPageIndex(index)}
+              className={`px-3 py-1 rounded border text-sm ${
+                table.getState().pagination.pageIndex === index
+                  ? "bg-[#192D4E] text-white"
+                  : "hover:bg-gray-100"
+              }`}
+            >
+              {index + 1}
+            </button>
+          ))}
+          <button
+            className="px-3 py-1 rounded border text-sm hover:bg-gray-200 disabled:opacity-40"
+            onClick={() => table.nextPage()}
+            disabled={!table.getCanNextPage()}
+          >
+            Next
+          </button>
+        </div>
       </div>
     </div>
   );
