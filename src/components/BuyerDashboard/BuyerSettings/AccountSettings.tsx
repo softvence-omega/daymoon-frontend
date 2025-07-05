@@ -394,7 +394,7 @@ const AccountSettings = () => {
         <h3 className="text-base md:text-lg font-medium text-[#484848]">
           Language and Currency
         </h3>
-        <div className="grid grid-cols-2 md:grid-cols-2 gap-4 md:gap-6 mt-4 md:mt-6 lg:mt-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mt-4 md:mt-6 lg:mt-8">
           <div className="space-y-2">
             <Label
               htmlFor="language"

@@ -1,9 +1,6 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { ImPencil } from "react-icons/im";
-import {
-  Card,
-} from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -13,50 +10,212 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useState } from "react";
-import PageHeader from "@//components/BuyerDashboard/BuyerSettings/PageHeader";
+import { useState, useCallback } from "react";
+import { ImPencil } from "react-icons/im";
+import PageHeader from "@/components/BuyerDashboard/BuyerSettings/PageHeader";
 
-const countryOptions = [
+// Types
+interface FormData {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  country: string;
+  language: string;
+  role: string;
+  id: string;
+}
+
+interface SelectOption {
+  value: string;
+  label: string;
+}
+
+// Constants
+const COUNTRY_OPTIONS: SelectOption[] = [
   { value: "usa", label: "United States" },
   { value: "canada", label: "Canada" },
   { value: "uk", label: "United Kingdom" },
 ];
 
-const languageOptions = [
+const LANGUAGE_OPTIONS: SelectOption[] = [
   { value: "english", label: "English" },
   { value: "spanish", label: "Spanish" },
   { value: "french", label: "French" },
 ];
 
 const PersonalInformation = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     firstName: "John",
     lastName: "Doe",
     email: "john@example.com",
     phone: "+1 (555) 123-4567",
     country: "",
     language: "",
-    role: "Buyer", // Added role
-    id: "ID: 123456", // Added ID
+    role: "Buyer",
+    id: "ID: 123456",
   });
 
-  const handleInputChange = (field: string, value: string) => {
+  const handleInputChange = useCallback((field: string, value: string) => {
     setFormData((prev) => ({
       ...prev,
       [field]: value,
     }));
-  };
+  }, []);
 
-  const handleSubmit = () => {
-    // Send formData to the backend
+  const handleSubmit = useCallback(() => {
     console.log("Submitting data:", formData);
-    // Example: Use fetch or axios to send data
-    // fetch('/api/personal-information', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify(formData),
-    // });
-  };
+  }, [formData]);
+
+  // Reusable components
+  const FormField = ({ 
+    id, 
+    label, 
+    value, 
+    onChange, 
+    type = "text",
+    className = ""
+  }: {
+    id: string;
+    label: string;
+    value: string;
+    onChange: (value: string) => void;
+    type?: string;
+    className?: string;
+  }) => (
+    <div className={`space-y-2 ${className}`}>
+      <Label htmlFor={id} className="text-[#666666] text-sm font-normal">
+        {label}
+      </Label>
+      <Input
+        id={id}
+        type={type}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="border border-[#B3B3B3] rounded-xl px-4 py-3 md:text-lg h-auto"
+      />
+    </div>
+  );
+
+  const SelectField = ({ 
+    id, 
+    label, 
+    value, 
+    onChange, 
+    options,
+    placeholder,
+    className = ""
+  }: {
+    id: string;
+    label: string;
+    value: string;
+    onChange: (value: string) => void;
+    options: SelectOption[];
+    placeholder: string;
+    className?: string;
+  }) => (
+    <div className={`space-y-2 ${className}`}>
+      <Label htmlFor={id} className="text-[#666666] text-sm font-normal">
+        {label}
+      </Label>
+      <Select onValueChange={onChange}>
+        <SelectTrigger
+          id={id}
+          className="w-full border border-[#B3B3B3] rounded-xl px-4 py-3 md:text-lg h-auto data-[size=default]:h-auto"
+        >
+          <SelectValue placeholder={value || placeholder} />
+        </SelectTrigger>
+        <SelectContent className="bg-white">
+          {options.map((option) => (
+            <SelectItem key={option.value} value={option.value}>
+              {option.label}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+    </div>
+  );
+
+  const MobileFormField = ({ 
+    id, 
+    label, 
+    value, 
+    onChange, 
+    type = "text",
+    showEdit = true
+  }: {
+    id: string;
+    label: string;
+    value: string;
+    onChange: (value: string) => void;
+    type?: string;
+    showEdit?: boolean;
+  }) => (
+    <div className="flex items-center justify-between bg-white border border-[#B3B3B3] rounded-xl px-4 py-3 h-auto">
+      <div className="flex-1">
+        <Label htmlFor={id} className="text-[#666666] text-sm font-normal block mb-1">
+          {label}
+        </Label>
+        <Input
+          id={id}
+          type={type}
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          className="border-none bg-transparent shadow-none p-0 h-auto focus-visible:ring-0 focus-visible:ring-offset-0 text-[#1A1A1A] font-medium text-base"
+        />
+      </div>
+      {showEdit && (
+        <Button
+          size="sm"
+          className="text-[#F04436] bg-transparent shadow-none p-0 w-6 h-6"
+        >
+          <ImPencil className="w-4 h-4" />
+        </Button>
+      )}
+    </div>
+  );
+
+  const MobileSelectField = ({ 
+    id, 
+    label, 
+    value, 
+    onChange, 
+    options,
+    placeholder
+  }: {
+    id: string;
+    label: string;
+    value: string;
+    onChange: (value: string) => void;
+    options: SelectOption[];
+    placeholder: string;
+  }) => (
+    <div className="flex items-center justify-between bg-white border border-[#B3B3B3] rounded-xl px-4 py-3 h-auto">
+      <div className="flex-1">
+        <Label htmlFor={id} className="text-[#666666] text-sm font-normal block mb-1">
+          {label}
+        </Label>
+        <Select onValueChange={onChange}>
+          <SelectTrigger
+            id={id}
+            className="w-full border-none bg-transparent shadow-none p-0 h-auto focus-visible:ring-0 focus-visible:ring-offset-0"
+          >
+            <SelectValue
+              placeholder={value || placeholder}
+              className="text-[#1A1A1A] font-medium text-base"
+            />
+          </SelectTrigger>
+          <SelectContent className="bg-white">
+            {options.map((option) => (
+              <SelectItem key={option.value} value={option.value}>
+                {option.label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+    </div>
+  );
 
   return (
     <Card className="mx-auto mt-4 md:mt-8 p-4 md:p-10 bg-[#FFFFFF] border border-[#E5E5E5] rounded-[20px] ">
@@ -95,7 +254,7 @@ const PersonalInformation = () => {
         {/* Desktop Layout */}
         <div className="hidden lg:grid lg:grid-cols-12 gap-6">
           {/* Left Side - Desktop */}
-          <div className="space-y-4 flex items-center flex-col justify-center lg:col-span-4">
+          <div className="space-y-4 flex items-center flex-col justify-center lg:col-span-5 xl:col-span-4">
             <div className="flex flex-col items-center">
               <Avatar className="w-36 h-36 rounded-full bg-[#D9D9D9]">
                 <AvatarImage src="/placeholder-avatar.jpg" alt="Profile" />
@@ -122,7 +281,7 @@ const PersonalInformation = () => {
           </div>
 
           {/* Right Side - Desktop */}
-          <div className="space-y-6 lg:col-span-8">
+          <div className="space-y-6 lg:col-span-7 xl:col-span-8">
             <div className="hidden md:block">
               <PageHeader
               title="Personal Details"
@@ -133,321 +292,96 @@ const PersonalInformation = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {/* Phone Number - Mobile */}
-              <div className="flex items-center justify-between bg-white border border-[#E5E5E5] rounded-xl p-3 h-auto md:hidden">
-                <div className="flex-1">
-                  <Label
-                    htmlFor="phone-mobile"
-                    className="text-[#666666] text-sm font-normal block mb-1"
-                  >
-                    Phone
-                  </Label>
-                  <Input
-                    id="phone-mobile"
-                    value={formData.phone}
-                    onChange={(e) => handleInputChange("phone", e.target.value)}
-                    className="border-none bg-transparent shadow-none p-0 h-auto focus-visible:ring-0 focus-visible:ring-offset-0 text-[#1A1A1A] font-medium text-base"
-                  />
-                </div>
-                <Button
-
-                  className="text-[#F04436] bg-transparent shadow-none p-0 w-6 h-6"
-                >
-                  <ImPencil className="w-full " />
-                </Button>
-              </div>
-              {/* First Name */}
-              <div className="space-y-2">
-                <Label
-                  htmlFor="firstName"
-                  className="text-[#666666] text-sm font-normal"
-                >
-                  First Name
-                </Label>
-                <Input
-                  id="firstName"
-                  value={formData.firstName}
-                  onChange={(e) =>
-                    handleInputChange("firstName", e.target.value)
-                  }
-                  className="border border-[#B3B3B3] rounded-xl px-4 py-3 md:text-lg h-auto"
-                />
-              </div>
-              {/* Last Name */}
-              <div className="space-y-2">
-                <Label
-                  htmlFor="lastName"
-                  className="text-[#666666] text-sm font-normal"
-                >
-                  Last Name
-                </Label>
-                <Input
-                  id="lastName"
-                  value={formData.lastName}
-                  onChange={(e) =>
-                    handleInputChange("lastName", e.target.value)
-                  }
-                  className="border border-[#B3B3B3] rounded-xl px-4 py-3 md:text-lg h-auto"
-                />
-              </div>
-              {/* Email */}
-              <div className="space-y-2">
-                <Label
-                  htmlFor="email"
-                  className="text-[#666666] text-sm font-normal"
-                >
-                  Email
-                </Label>
-                <Input
-                  id="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={(e) => handleInputChange("email", e.target.value)}
-                  className="border border-[#B3B3B3] rounded-xl px-4 py-3 md:text-lg h-auto"
-                />
-              </div>
-              {/* Phone Number */}
-              <div className="space-y-2">
-                <Label
-                  htmlFor="phone"
-                  className="text-[#666666] text-sm font-normal"
-                >
-                  Phone
-                </Label>
-                <Input
-                  id="phone"
-                  value={formData.phone}
-                  onChange={(e) => handleInputChange("phone", e.target.value)}
-                  className="border border-[#B3B3B3] rounded-xl px-4 py-3 md:text-lg h-auto"
-                />
-              </div>
-              {/* Country Select */}
-              <div className="space-y-2">
-                <Label
-                  htmlFor="country"
-                  className="text-[#666666] text-sm font-normal"
-                >
-                  Country
-                </Label>
-                <Select
-                  onValueChange={(value) => handleInputChange("country", value)}
-                >
-                  <SelectTrigger
-                    id="country"
-                    className="w-full border border-[#B3B3B3] rounded-xl px-4 py-3 md:text-lg data-[size=default]:h-auto"
-                  >
-                    <SelectValue
-                      placeholder={formData.country || "Select Country"}
-                    />
-                  </SelectTrigger>
-                  <SelectContent className="bg-white">
-                    {countryOptions.map((option) => (
-                      <SelectItem key={option.value} value={option.value}>
-                        {option.label}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-
-              {/* Language Select */}
-              <div className="space-y-2">
-                <Label
-                  htmlFor="language"
-                  className="text-[#666666] text-sm font-normal"
-                >
-                  Language
-                </Label>
-                <Select
-                  onValueChange={(value) =>
-                    handleInputChange("language", value)
-                  }
-                >
-                  <SelectTrigger
-                    id="language"
-                    className="w-full border border-[#B3B3B3] rounded-xl px-4 py-3 md:text-lg h-auto data-[size=default]:h-auto [&_svg:not([class*='text-'])]:text-[#F04436] [&_svg]:text-[##F04436]"
-                  >
-                    <SelectValue
-                      placeholder={formData.language || "Select Language"}
-                    />
-                  </SelectTrigger>
-                  <SelectContent className="bg-white">
-                    {languageOptions.map((option) => (
-                      <SelectItem key={option.value} value={option.value}>
-                        {option.label}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
+              <FormField
+                id="firstName"
+                label="First Name"
+                value={formData.firstName}
+                onChange={(value) => handleInputChange("firstName", value)}
+              />
+              <FormField
+                id="lastName"
+                label="Last Name"
+                value={formData.lastName}
+                onChange={(value) => handleInputChange("lastName", value)}
+              />
+              <FormField
+                id="email"
+                label="Email"
+                type="email"
+                value={formData.email}
+                onChange={(value) => handleInputChange("email", value)}
+              />
+              <FormField
+                id="phone"
+                label="Phone"
+                value={formData.phone}
+                onChange={(value) => handleInputChange("phone", value)}
+              />
+              <SelectField
+                id="country"
+                label="Country"
+                value={formData.country}
+                onChange={(value) => handleInputChange("country", value)}
+                options={COUNTRY_OPTIONS}
+                placeholder="Select Country"
+              />
+              <SelectField
+                id="language"
+                label="Language"
+                value={formData.language}
+                onChange={(value) => handleInputChange("language", value)}
+                options={LANGUAGE_OPTIONS}
+                placeholder="Select Language"
+                className="[&_svg:not([class*='text-'])]:text-[#F04436]"
+              />
             </div>
           </div>
         </div>
 
         {/* Mobile Form Section */}
         <div className="lg:hidden">
-
           <div className="grid grid-cols-1 gap-4 mt-6">
-            {/* First Name */}
-            <div className="flex items-center justify-between bg-white border border-[#B3B3B3] rounded-xl px-4 py-3 h-auto">
-              <div className="flex-1">
-                <Label
-                  htmlFor="firstName-mobile"
-                  className="text-[#666666] text-sm font-normal block mb-1"
-                >
-                  First Name
-                </Label>
-                <Input
-                  id="firstName-mobile"
-                  value={formData.firstName}
-                  onChange={(e) => handleInputChange("firstName", e.target.value)}
-                  className="border-none bg-transparent shadow-none p-0 h-auto focus-visible:ring-0 focus-visible:ring-offset-0 text-[#1A1A1A] font-medium text-base"
-                />
-              </div>
-              <Button
-                size="sm"
-                className="text-[#F04436] bg-transparent shadow-none p-0 w-6 h-6"
-              >
-                <ImPencil className="w-4 h-4" />
-              </Button>
-            </div>
-
-            {/* Last Name */}
-            <div className="flex items-center justify-between bg-white border border-[#B3B3B3] rounded-xl px-4 py-3 h-auto">
-              <div className="flex-1">
-                <Label
-                  htmlFor="lastName-mobile"
-                  className="text-[#666666] text-sm font-normal block mb-1"
-                >
-                  Last Name
-                </Label>
-                <Input
-                  id="lastName-mobile"
-                  value={formData.lastName}
-                  onChange={(e) => handleInputChange("lastName", e.target.value)}
-                  className="border-none bg-transparent shadow-none p-0 h-auto focus-visible:ring-0 focus-visible:ring-offset-0 text-[#1A1A1A] font-medium text-base"
-                />
-              </div>
-              <Button
-                size="sm"
-                className="text-[#F04436] bg-transparent shadow-none p-0 w-6 h-6"
-              >
-                <ImPencil className="w-4 h-4" />
-              </Button>
-            </div>
-
-            {/* Email */}
-            <div className="flex items-center justify-between bg-white border border-[#B3B3B3] rounded-xl px-4 py-3 h-auto">
-              <div className="flex-1">
-                <Label
-                  htmlFor="email-mobile"
-                  className="text-[#666666] text-sm font-normal block mb-1"
-                >
-                  Email
-                </Label>
-                <Input
-                  id="email-mobile"
-                  type="email"
-                  value={formData.email}
-                  onChange={(e) => handleInputChange("email", e.target.value)}
-                  className="border-none bg-transparent shadow-none p-0 h-auto focus-visible:ring-0 focus-visible:ring-offset-0 text-[#1A1A1A] font-medium text-base"
-                />
-              </div>
-              <Button
-                size="sm"
-                className="text-[#F04436] bg-transparent shadow-none p-0 w-6 h-6"
-              >
-                <ImPencil className="w-4 h-4" />
-              </Button>
-            </div>
-
-            {/* Phone Number */}
-            <div className="flex items-center justify-between bg-white border border-[#B3B3B3] rounded-xl px-4 py-3 h-auto">
-              <div className="flex-1">
-                <Label
-                  htmlFor="phone-mobile-form"
-                  className="text-[#666666] text-sm font-normal block mb-1"
-                >
-                  Phone
-                </Label>
-                <Input
-                  id="phone-mobile-form"
-                  value={formData.phone}
-                  onChange={(e) => handleInputChange("phone", e.target.value)}
-                  className="border-none bg-transparent shadow-none p-0 h-auto focus-visible:ring-0 focus-visible:ring-offset-0 text-[#1A1A1A] font-medium text-base"
-                />
-              </div>
-              <Button
-                size="sm"
-                className="text-[#F04436] bg-transparent shadow-none p-0 w-6 h-6"
-              >
-                <ImPencil className="w-4 h-4" />
-              </Button>
-            </div>
-
-            {/* Country Select */}
-            <div className="flex items-center justify-between bg-white border border-[#B3B3B3] rounded-xl px-4 py-3 h-auto">
-              <div className="flex-1">
-                <Label
-                  htmlFor="country-mobile"
-                  className="text-[#666666] text-sm font-normal block mb-1"
-                >
-                  Country
-                </Label>
-                <Select
-                  onValueChange={(value) => handleInputChange("country", value)}
-                >
-                  <SelectTrigger
-                    id="country-mobile"
-                    className="w-full border-none bg-transparent shadow-none p-0 h-auto focus-visible:ring-0 focus-visible:ring-offset-0"
-                  >
-                    <SelectValue
-                      placeholder={formData.country || "Select Country"}
-                      className="text-[#1A1A1A] font-medium text-base"
-                    />
-                  </SelectTrigger>
-                  <SelectContent className="bg-white">
-                    {countryOptions.map((option) => (
-                      <SelectItem key={option.value} value={option.value}>
-                        {option.label}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-            </div>
-
-            {/* Language Select */}
-            <div className="flex items-center justify-between bg-white border border-[#B3B3B3] rounded-xl px-4 py-3 h-auto">
-              <div className="flex-1">
-                <Label
-                  htmlFor="language-mobile"
-                  className="text-[#666666] text-sm font-normal block mb-1"
-                >
-                  Language
-                </Label>
-                <Select
-                  onValueChange={(value) => handleInputChange("language", value)}
-                >
-                  <SelectTrigger
-                    id="language-mobile"
-                    className="w-full border-none bg-transparent shadow-none p-0 h-auto focus-visible:ring-0 focus-visible:ring-offset-0"
-                  >
-                    <SelectValue
-                      placeholder={formData.language || "Select Language"}
-                      className="text-[#1A1A1A] font-medium text-base"
-                    />
-                  </SelectTrigger>
-                  <SelectContent className="bg-white">
-                    {languageOptions.map((option) => (
-                      <SelectItem key={option.value} value={option.value}>
-                        {option.label}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-            </div>
+            <MobileFormField
+              id="firstName-mobile"
+              label="First Name"
+              value={formData.firstName}
+              onChange={(value) => handleInputChange("firstName", value)}
+            />
+            <MobileFormField
+              id="lastName-mobile"
+              label="Last Name"
+              value={formData.lastName}
+              onChange={(value) => handleInputChange("lastName", value)}
+            />
+            <MobileFormField
+              id="email-mobile"
+              label="Email"
+              type="email"
+              value={formData.email}
+              onChange={(value) => handleInputChange("email", value)}
+            />
+            <MobileFormField
+              id="phone-mobile-form"
+              label="Phone"
+              value={formData.phone}
+              onChange={(value) => handleInputChange("phone", value)}
+            />
+            <MobileSelectField
+              id="country-mobile"
+              label="Country"
+              value={formData.country}
+              onChange={(value) => handleInputChange("country", value)}
+              options={COUNTRY_OPTIONS}
+              placeholder="Select Country"
+            />
+            <MobileSelectField
+              id="language-mobile"
+              label="Language"
+              value={formData.language}
+              onChange={(value) => handleInputChange("language", value)}
+              options={LANGUAGE_OPTIONS}
+              placeholder="Select Language"
+            />
           </div>
         </div>
       </div>

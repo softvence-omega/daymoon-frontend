@@ -32,7 +32,7 @@ const DashboardNavbar: React.FC<NavbarProps> = ({
           <Button
             variant="ghost"
             size="icon"
-            className="lg:hidden"
+            className="md:hidden"
             onClick={onMobileMenuToggle}
           >
             <Menu className="w-5 h-5" />
