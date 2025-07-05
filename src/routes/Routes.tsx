@@ -27,6 +27,8 @@ import AdminRoute from "./AdminRoutes";
 import BuyerRoute from "./BuyerRoute";
 // import BuyerOrdersPage from "@/pages/BuyerDashboard/BuyerOrdersPage";
 
+import SellerHelpPage from "@/pages/SellerDashboard/SellerHelpPage";
+import AddProductForm from "@/components/SellerDashboard/SellerProducts/AddProductForm";
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -126,10 +128,6 @@ const routes = createBrowserRouter([
       },
       { path: "add-product", element: <AddProductForm /> },
       { path: "orders", element: <SellerOrdersPage /> },
-
-      { path: "products", element: <SellerProductsPage /> },
-      { path: "orders", element: <SellerOrdersPage /> },
-
       { path: "inquiries", element: <SellerInquiriesPage /> },
       { path: "payments", element: <SellerPaymentPage /> },
       { path: "analytics", element: <SellerAnalyticsPage /> },
