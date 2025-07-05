@@ -41,7 +41,7 @@ const ShippingAddress = () => {
   };
 
   return (
-    <Card className="mx-auto mt-8 p-10 bg-[#FFFFFF] border border-[#E5E5E5] rounded-[20px] ">
+    <Card className="mx-auto mt-8 p-6 md:p-10 bg-[#FFFFFF] border border-[#E5E5E5] rounded-[20px] ">
       <div className="space-y-6 lg:col-span-8">
         <PageHeader
           title="Shipping Addresses"
@@ -78,7 +78,7 @@ const ShippingAddress = () => {
                   </Button>
                 </div>
             </div>
-            <p className="text-[#484848] text-base mt-4 max-w-sm">
+            <p className="text-[#484848] text-sm md:text-base mt-4 max-w-42 md:max-w-sm">
               {address.address}
             </p>
             {address.isDefault && (

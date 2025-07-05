@@ -106,9 +106,7 @@ const AccountSettings = () => {
             type="password"
             placeholder="*********"
             value={formData.newPassword}
-            onChange={(e) =>
-              handleInputChange("newPassword", e.target.value)
-            }
+            onChange={(e) => handleInputChange("newPassword", e.target.value)}
             className="border border-[#B3B3B3] rounded-xl px-4 py-3 md:text-lg h-auto w-full sm:w-1/2"
           />
         </div>
@@ -131,7 +129,7 @@ const AccountSettings = () => {
           />
         </div>
         <Button
-          className="text-sm px-10 py-4 border-[#192D4E] text-white bg-[#192D4E] rounded-[20px] h-auto w-auto"
+          className="text-lg px-10 py-4 border-[#192D4E] text-white bg-[#192D4E] rounded-[20px] h-auto w-auto"
           onClick={handleSubmit}
         >
           Update Password
@@ -148,7 +146,7 @@ const AccountSettings = () => {
           your phone when you log in.
         </p>
         <Button
-          className="text-sm px-10 py-4 border-[#192D4E] text-white bg-[#192D4E] rounded-[20px] h-auto w-auto"
+          className="text-lg px-10 py-4 border-[#192D4E] text-white bg-[#192D4E] rounded-[20px] h-auto w-auto"
           onClick={() => handleInputChange("twoFactorEnabled", true)}
         >
           Enable Two-Factor Authentication
@@ -274,10 +272,20 @@ const AccountSettings = () => {
           certain.
         </p>
         <Button
-          className="text-sm px-10 py-4 border-[#D30009] text-white bg-[#D30009] rounded-[20px] h-auto w-auto"
+          className="text-lg px-10 py-4 border-[#D30009] text-white bg-[#D30009] rounded-[20px] h-auto w-auto"
           onClick={() => alert("Account deleted successfully!")}
         >
           Delete Account
+        </Button>
+      </div>
+
+      {/* Save Changes Button */}
+      <div className="mt-20 flex justify-end">
+        <Button
+          className="text-lg px-10 py-4 border-[#F04436] text-white bg-[#F04436] rounded-[20px] h-auto w-auto"
+          onClick={() => alert("Account deleted successfully!")}
+        >
+          Save Changes
         </Button>
       </div>
     </Card>

@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 
 import visa from "@/assets/dashboard/buyer-dashboard/visa.png";
 import mastercard from "@/assets/dashboard/buyer-dashboard/mastercard.png";
-import paypal from "@/assets/dashboard/buyer-dashboard/paypal.png";
 import { Badge } from "@/components/ui/badge";
 
 const cardDetails = [
@@ -23,9 +22,9 @@ const cardDetails = [
 		isDefault: false,
 	},
 	{
-		image: paypal,
-		name: "PayPal",
-		details: "Linked to john.doe@example.com",
+		image: mastercard,
+		name: "MasterCard",
+		details: "Expires 08/2027",
 		isDefault: false,
 	},
 ];
@@ -54,7 +53,7 @@ const PaymentMethods = () => {
 				Payment Methods
 			</h2>
 			<Card className="mx-auto mt-6 sm:mt-8 p-6 sm:p-10 bg-[#FFFFFF] border border-[#B3B3B3] rounded-[20px] ">
-				<div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+				<div className="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-6">
 					{cardDetails.map((card, index) => (
 						<div
 							key={index}
@@ -64,7 +63,7 @@ const PaymentMethods = () => {
 								<img src={card.image} alt="" className="w-6 sm:w-8" />
 							</div>
 							<div className="flex-1">
-								<h1 className="text-lg sm:text-xl font-medium">
+								<h1 className="text-base md:text-lg lg:text-xl font-medium">
 									{card.name}
 								</h1>
 								<p className="text-[#484848] text-sm sm:text-base mt-1 sm:mt-2 max-w-sm">

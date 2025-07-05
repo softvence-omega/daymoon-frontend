@@ -26,6 +26,7 @@ export interface SidebarProps {
   userEmail?: string;
   userAvatar?: string;
   userInitials?: string;
+  mobileView?: boolean;
 }
 
 // Updated sidebar items to match your route structure
@@ -51,55 +52,122 @@ const defaultSidebarItems: SidebarItem[] = [
   { icon: IoMdSettings, label: "Settings", href: "/buyer/dashboard/settings" },
 ];
 
-const Sidebar: React.FC<SidebarProps> = ({ items = defaultSidebarItems }) => {
+const Sidebar: React.FC<SidebarProps> = ({
+  items = defaultSidebarItems,
+  mobileView = false,
+}) => {
   const location = useLocation();
 
-  return (
-    <div
-      className="flex flex-col h-full bg-white"
-      style={{ boxShadow: "3px 4px 42.3px 0px #0000001A" }}
-    >
-      {/* Logo */}
-      <div className="flex items-center justify-center p-2 sm:p-3 border-b border-[#E5E5E5]">
-        <img src={logo} className="w-30 md:w-32" alt="Logo" />
-      </div>
-
-      {/* Navigation */}
-      <nav className="flex-1 p-4 md:p-8">
-        <div className="space-y-4 md:space-y-6">
+  // If mobile view is true, render only the mobile dock with inline items
+  if (mobileView) {
+    return (
+      <div className="bg-white border-t border-gray-200 py-3 px-2">
+        <div className="flex justify-around items-center">
           {items.map((item) => {
             const isActive = location.pathname === item.href;
             return (
               <Link
                 key={item.label}
                 to={item.href}
-                className={`flex items-center justify-between w-full px-3 py-2 text-sm font-normal rounded-none transition-colors border-b-2 ${
+                className={`flex items-center justify-center ${
                   isActive
-                    ? "text-[#F7813B] border-[#F7813B]"
-                    : "text-[#666666] border-transparent hover:text-[#F46A39] hover:border-[#F46A39]"
+                    ? "text-[#F7813B]"
+                    : "text-[#666666] hover:text-[#F46A39]"
                 }`}
               >
-                <div className="flex items-center space-x-2 md:text-lg">
-                  <item.icon
-                    className={`w-5 h-5 ${
-                      isActive
-                        ? "text-[#F7813B]"
-                        : "text-[#666666] hover:text-[#F46A39]"
-                    }`}
-                  />
-                  <span>{item.label}</span>
-                </div>
-                {item.badge && (
-                  <Badge variant="secondary" className="text-xs">
-                    {item.badge}
-                  </Badge>
-                )}
+                <item.icon
+                  className={`w-6 h-6 ${
+                    isActive
+                      ? "text-[#F7813B]"
+                      : "text-[#666666] hover:text-[#F46A39]"
+                  }`}
+                />
               </Link>
             );
           })}
         </div>
-      </nav>
-    </div>
+      </div>
+    );
+  }
+
+  return (
+    <>
+      {/* Desktop Sidebar */}
+      <div
+        className="hidden md:flex flex-col h-full bg-white"
+        style={{ boxShadow: "3px 4px 42.3px 0px #0000001A" }}
+      >
+        {/* Logo */}
+        <div className="flex items-center justify-center p-2 sm:p-3 border-b border-[#E5E5E5]">
+          <img src={logo} className="w-30 md:w-32" alt="Logo" />
+        </div>
+
+        {/* Navigation */}
+        <nav className="flex-1 p-4 md:p-8">
+          <div className="space-y-4 md:space-y-6">
+            {items.map((item) => {
+              const isActive = location.pathname === item.href;
+              return (
+                <Link
+                  key={item.label}
+                  to={item.href}
+                  className={`flex items-center justify-between w-full px-3 py-2 text-sm font-normal rounded-none transition-colors border-b-2 ${
+                    isActive
+                      ? "text-[#F7813B] border-[#F7813B]"
+                      : "text-[#666666] border-transparent hover:text-[#F46A39] hover:border-[#F46A39]"
+                  }`}
+                >
+                  <div className="flex items-center space-x-2 md:text-lg">
+                    <item.icon
+                      className={`w-5 h-5 ${
+                        isActive
+                          ? "text-[#F7813B]"
+                          : "text-[#666666] hover:text-[#F46A39]"
+                      }`}
+                    />
+                    <span>{item.label}</span>
+                  </div>
+                  {item.badge && (
+                    <Badge variant="secondary" className="text-xs">
+                      {item.badge}
+                    </Badge>
+                  )}
+                </Link>
+              );
+            })}
+          </div>
+        </nav>
+      </div>
+
+      {/* Mobile Dock */}
+      {!mobileView && (
+        <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 flex justify-around items-center p-2 md:hidden">
+          {items.map((item) => {
+            const isActive = location.pathname === item.href;
+            return (
+              <Link
+                key={item.label}
+                to={item.href}
+                className={`flex flex-col items-center text-xs ${
+                  isActive
+                    ? "text-[#F7813B]"
+                    : "text-[#666666] hover:text-[#F46A39]"
+                }`}
+              >
+                <item.icon
+                  className={`w-6 h-6 ${
+                    isActive
+                      ? "text-[#F7813B]"
+                      : "text-[#666666] hover:text-[#F46A39]"
+                  }`}
+                />
+                <span>{item.label}</span>
+              </Link>
+            );
+          })}
+        </div>
+      )}
+    </>
   );
 };
 
