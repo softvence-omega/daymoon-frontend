@@ -76,6 +76,7 @@ const OverViewBanner = () => {
                 </div>
               </div>
               {/* Middle: Stats */}
+
               <div className="flex flex-wrap justify-center gap-4 md:gap-8 px-0 md:px-6 min-w-0 w-full md:w-auto md:flex-1 md:divide-x divide-[#666] my-6 md:my-0">
                 {[
                   { value: "12", label: "Years" },
