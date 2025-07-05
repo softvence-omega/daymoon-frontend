@@ -67,9 +67,9 @@ const BuyerSettings = () => {
       <Separator />
 
       {/* Tabs for larger screens */}
-      <div className="hidden sm:block">
+      <div className="hidden md:block">
         <Tabs defaultValue="personal-information" className="space-y-4">
-          <TabsList className="grid w-full gap-4 sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-5 h-auto">
+          <TabsList className="grid w-full gap-4 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 h-auto">
             {tabsData.map((tab) => (
               <TabsTrigger
                 key={tab.value}
@@ -90,7 +90,7 @@ const BuyerSettings = () => {
       </div>
 
       {/* All data for mobile screens */}
-      <div className="block sm:hidden space-y-6">
+      <div className="block md:hidden space-y-6">
         {tabsData.map((tab) => (
           <div key={tab.value}>{tab.component}</div>
         ))}
