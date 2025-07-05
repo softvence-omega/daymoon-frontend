@@ -22,7 +22,7 @@ const OverViewTab = () => {
               data-[state=active]:after:bg-[#FCAB3F] rounded-none bg-transparent
               border-none shadow-none text-center cursor-pointer "
             >
-              Product
+              Products
             </TabsTrigger>
 
             <TabsTrigger
