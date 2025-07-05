@@ -1,13 +1,11 @@
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import ProductsComponent from "./ProductsComponent";
 import Reviews from "./Reviews";
-import CommonWrapper from "@/common/CommonWrapper";
 
 const OverViewTab = () => {
   return (
-    <CommonWrapper>
-      <div>
-        <Tabs defaultValue="product" className="w-full mt-12">
+      <div >
+        <Tabs defaultValue="product" className="w-full mt-12 ">
           {/* Tabs Header */}
           <TabsList
             className="w-full flex flex-wrap justify-between sm:justify-start sm:gap-10 border-b border-[#E5E5E5] bg-transparent p-0"
@@ -49,7 +47,6 @@ const OverViewTab = () => {
           </TabsContent>
         </Tabs>
       </div>
-    </CommonWrapper>
   );
 };
 
