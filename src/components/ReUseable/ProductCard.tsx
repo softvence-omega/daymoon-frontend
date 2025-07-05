@@ -59,7 +59,7 @@ const ProductCard = ({
             e.stopPropagation();
             instanceRef.current?.prev();
           }}
-          className="absolute left-3 top-1/2 -translate-y-1/2 bg-white border border-[#E4E7EC] p-2 rounded-full shadow hover:bg-sunset-orange hover:text-white text-sunset-orange transition"
+          className="absolute left-3 top-1/2 -translate-y-1/2 bg-white border border-[#E4E7EC] p-2 rounded-full shadow hover:bg-sunset-orange hover:text-white text-sunset-orange transition cursor-pointer"
         >
           <ChevronLeft className="w-4 h-4" />
         </button>
@@ -68,7 +68,7 @@ const ProductCard = ({
             e.stopPropagation();
             instanceRef.current?.next();
           }}
-          className="absolute right-3 top-1/2 -translate-y-1/2 bg-white border border-[#E4E7EC] p-2 rounded-full shadow hover:bg-sunset-orange hover:text-white text-sunset-orange transition"
+          className="absolute right-3 top-1/2 -translate-y-1/2 bg-white border border-[#E4E7EC] p-2 rounded-full shadow hover:bg-sunset-orange hover:text-white text-sunset-orange transition cursor-pointer"
         >
           <ChevronRight className="w-4 h-4" />
         </button>

@@ -1,7 +1,6 @@
-import { useState, useMemo } from "react";
+import { useState, useEffect } from "react";
 import ProductCard from "./ProductCard";
 import { FaArrowRightLong } from "react-icons/fa6";
-
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -16,55 +15,46 @@ const ProductsComponent = () => {
   const [showAll, setShowAll] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [selectedPrice, setSelectedPrice] = useState("All");
+  const [isMobile, setIsMobile] = useState(false);
 
-  const visibleCount = 6;
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
-  const categories = useMemo(() => {
-    const setCategories = new Set<string>();
-    products.forEach((p) => {
-      if (p.category) setCategories.add(p.category);
-    });
-    return ["All", ...Array.from(setCategories)];
-  }, [products]);
+  const visibleCount = isMobile ? 4 : 6;
 
-  const prices = useMemo(() => {
-    const setPrices = new Set<string>();
-    products.forEach((p) => {
-      if (p.priceRange) setPrices.add(p.priceRange);
-    });
-    return ["All", ...Array.from(setPrices).sort()];
-  }, [products]);
+  const categories = ["All", ...Array.from(new Set(products.map((p) => p.category).filter(Boolean)))];
+  const prices = ["All", ...Array.from(new Set(products.map((p) => p.priceRange).filter(Boolean))).sort()];
 
   const filteredProducts = products.filter((product) => {
-    const categoryMatch =
-      selectedCategory === "All" || product.category === selectedCategory;
-
-    const priceMatch =
-      selectedPrice === "All" || product.priceRange === selectedPrice;
-
+    const categoryMatch = selectedCategory === "All" || product.category === selectedCategory;
+    const priceMatch = selectedPrice === "All" || product.priceRange === selectedPrice;
     return categoryMatch && priceMatch;
   });
 
-  const visibleProducts = showAll
-    ? filteredProducts
-    : filteredProducts.slice(0, visibleCount);
+  const visibleProducts = showAll ? filteredProducts : filteredProducts.slice(0, visibleCount);
 
   return (
-    <div className="container mx-auto mt-12 px-4 sm:px-6 lg:px-8">
+    <div className="container mx-auto mt-8 md:mt-12 px-4 sm:px-6 lg:px-8">
       {/* Filter Dropdowns */}
-      <div className="flex flex-col sm:flex-row sm:justify-end gap-4 mb-12">
+      <div className={`flex ${isMobile ? 'flex-col' : 'flex-row justify-end'} gap-3 md:gap-4 mb-8 md:mb-12`}>
         {/* Category Filter */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button
               variant="outline"
-              className="rounded-lg text-jet-black font-medium min-w-[180px] flex justify-between items-center"
+              className={`rounded-lg text-jet-black font-medium ${isMobile ? 'w-full' : 'w-[180px] md:w-[200px]'} flex justify-between items-center truncate cursor-pointer py-2 h-auto`}
             >
               {selectedCategory === "All" ? "All Categories" : selectedCategory}
-              <ChevronDown className="ml-2 h-5 w-5 text-sunset-orange" />
+              <ChevronDown className="ml-2 h-4 w-4 md:h-5 md:w-5 text-sunset-orange" />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="bg-white">
+          <DropdownMenuContent className="bg-white max-h-[60vh] overflow-y-auto">
             {categories.map((cat) => (
               <DropdownMenuItem
                 key={cat}
@@ -72,6 +62,7 @@ const ProductsComponent = () => {
                   setSelectedCategory(cat);
                   setShowAll(false);
                 }}
+                className="cursor-pointer text-sm md:text-base"
               >
                 {cat}
               </DropdownMenuItem>
@@ -84,13 +75,13 @@ const ProductsComponent = () => {
           <DropdownMenuTrigger asChild>
             <Button
               variant="outline"
-              className="rounded-lg text-jet-black font-medium min-w-[140px] flex justify-between items-center"
+              className={`rounded-lg text-jet-black font-medium ${isMobile ? 'w-full' : 'w-[150px] md:w-[160px]'} flex justify-between items-center truncate cursor-pointer py-2 h-auto`}
             >
               Price: {selectedPrice}
-              <ChevronDown className="ml-2 h-5 w-5 text-sunset-orange" />
+              <ChevronDown className="ml-2 h-4 w-4 md:h-5 md:w-5 text-sunset-orange" />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="bg-white">
+          <DropdownMenuContent className="bg-white max-h-[60vh] overflow-y-auto">
             {prices.map((price) => (
               <DropdownMenuItem
                 key={price}
@@ -98,6 +89,7 @@ const ProductsComponent = () => {
                   setSelectedPrice(price);
                   setShowAll(false);
                 }}
+                className="cursor-pointer text-sm md:text-base"
               >
                 {price}
               </DropdownMenuItem>
@@ -107,7 +99,7 @@ const ProductsComponent = () => {
       </div>
 
       {/* Product Cards Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className={`grid ${isMobile ? 'grid-cols-1 gap-4' : 'grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8'}`}>
         {visibleProducts.map((product) => (
           <ProductCard
             key={product.id}
@@ -122,12 +114,12 @@ const ProductsComponent = () => {
 
       {/* View All Button */}
       {!showAll && filteredProducts.length > visibleCount && (
-        <div className="flex items-center justify-center mt-12">
+        <div className="flex items-center justify-center mt-8 md:mt-12">
           <button
-            className="bg-white shadow-md rounded-xl px-5 text-sunset-orange font-semibold text-lg hover:shadow-lg transition flex items-center gap-3 py-3"
+            className="bg-white shadow-md rounded-lg md:rounded-xl px-4 md:px-5 text-sunset-orange font-medium md:font-semibold text-base md:text-lg hover:shadow-lg transition flex items-center gap-2 md:gap-3 py-2 md:py-3 cursor-pointer"
             onClick={() => setShowAll(true)}
           >
-            View All ({filteredProducts.length}) Products <FaArrowRightLong />
+            View All ({filteredProducts.length}) Products <FaArrowRightLong className="text-sm md:text-base" />
           </button>
         </div>
       )}

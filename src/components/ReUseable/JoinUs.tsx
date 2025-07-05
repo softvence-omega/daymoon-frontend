@@ -12,7 +12,7 @@ const JoinUs = () => {
           Start your journey with Us and experience a platform designed for
           trust, quality, and convenience.
         </p>
-        <button className="px-6 md:px-8 lg:px-[40px] py-2 md:py-[8px] lg:py-[10px] rounded-full md:rounded-[20px] bg-catalien-blue text-white font-medium hover:opacity-90 transition text-sm md:text-base">
+        <button className="px-6 md:px-8 lg:px-[40px] py-2 md:py-[8px] lg:py-[10px] rounded-full md:rounded-[20px] bg-catalien-blue text-white font-medium hover:opacity-90 transition text-sm md:text-base cursor-pointer">
           Sign Up Now
         </button>
       </div>
