@@ -86,7 +86,7 @@ export const reviews: ProductType[] = [
   {
     id: 12,
     name: "Daniel S.",
-    rating: 5,
+    rating: 3,
     review:
       "Solid performance and great value. Could improve the noise isolation slightly.",
   },

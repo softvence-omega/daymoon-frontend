@@ -20,7 +20,7 @@ const OverViewTab = () => {
               data-[state=active]:after:left-0 data-[state=active]:after:bottom-[-1px]
               data-[state=active]:after:h-[2px] data-[state=active]:after:w-full
               data-[state=active]:after:bg-[#FCAB3F] rounded-none bg-transparent
-              border-none shadow-none text-center"
+              border-none shadow-none text-center cursor-pointer "
             >
               Product
             </TabsTrigger>
@@ -33,7 +33,7 @@ const OverViewTab = () => {
               data-[state=active]:after:left-0 data-[state=active]:after:bottom-[-1px]
               data-[state=active]:after:h-[2px] data-[state=active]:after:w-full
               data-[state=active]:after:bg-[#FCAB3F] rounded-none bg-transparent
-              border-none shadow-none text-center"
+              border-none shadow-none text-center cursor-pointer"
             >
               Rating & Reviews
             </TabsTrigger>
