@@ -23,6 +23,7 @@ import SellerPromotionPage from "@/pages/SellerDashboard/SellerPromotionPage";
 import SellerRewiewPage from "@/pages/SellerDashboard/SellerRewiewPage";
 import SellerSettingsPage from "@/pages/SellerDashboard/SellerSettingsPage";
 import SellerHelpPage from "@/pages/SellerDashboard/SellerHelpPage";
+import AddProductForm from "@/components/SellerDashboard/SellerProducts/AddProductForm";
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -89,7 +90,11 @@ const routes = createBrowserRouter([
     children: [
       { index: true, element: <SellerDashboardPage /> },
       { path: "dashboard", element: <SellerDashboardPage /> },
-      { path: "products", element: <SellerProductsPage /> },
+      {
+        path: "products",
+        element: <SellerProductsPage />,
+      },
+      { path: "add-product", element: <AddProductForm /> },
       { path: "orders", element: <SellerOrdersPage /> },
       { path: "inquiries", element: <SellerInquiriesPage /> },
       { path: "payments", element: <SellerPaymentPage /> },
