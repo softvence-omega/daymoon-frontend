@@ -1,10 +1,10 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from "@/components/ui/separator";
-import PersonalInformation from "@/pages/BuyerDashboard/BuyerSettings/PersonalInformation";
-import BusinessInformation from "@/pages/BuyerDashboard/BuyerSettings/BusinessInformation";
-import ShippingAddress from "@/pages/BuyerDashboard/BuyerSettings/ShippingAddress";
-import AccountSettings from "@/pages/BuyerDashboard/BuyerSettings/AccountSettings";
-import PaymentMethods from "@/pages/BuyerDashboard/BuyerSettings/PaymentMethods";
+import PersonalInformation from "@/components/BuyerDashboard/BuyerSettings/PersonalInformation";
+import BusinessInformation from "@/components/BuyerDashboard/BuyerSettings/BusinessInformation";
+import ShippingAddress from "@/components/BuyerDashboard/BuyerSettings/ShippingAddress";
+import AccountSettings from "@/components/BuyerDashboard/BuyerSettings/AccountSettings";
+import PaymentMethods from "@/components/BuyerDashboard/BuyerSettings/PaymentMethods";
 
 const Settings = () => {
   return (

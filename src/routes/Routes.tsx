@@ -12,12 +12,6 @@ import BuyerSignup from "@/components/Authentication/BuyerSignup";
 import OverViewBanner from "@/components/ReUseable/OverViewBanner";
 import SellerRegistration from "@/components/Authentication/seller/SellerRegistration";
 import Seller from "@/components/Seller/Seller";
-
-import BuyerRoute from "./BuyerRoute";
-import BuyerLayout from "@/Layout/BuyerLayout";
-import BuyerDashboardDemo from "@/pages/BuyerDashboard/BuyerDashboardDemo";
-import BuyerSettings from '@/pages/BuyerDashboard/BuyerSettings';
-
 import SellerLayout from "@/Layout/SellerLayout";
 import SellerDashboardPage from "@/pages/SellerDashboard/SellerDashboardPage";
 import SellerProductsPage from "@/pages/SellerDashboard/SellerProductsPage";
@@ -28,8 +22,8 @@ import SellerAnalyticsPage from "@/pages/SellerDashboard/SellerAnalyticsPage";
 import SellerPromotionPage from "@/pages/SellerDashboard/SellerPromotionPage";
 import SellerRewiewPage from "@/pages/SellerDashboard/SellerRewiewPage";
 import SellerSettingsPage from "@/pages/SellerDashboard/SellerSettingsPage";
-import SellerHelpPage from "@/pages/SellerDashboard/SellerHelpPage";
-
+// import SellerHelpPage from "@/pages/SellerDashboard/SellerHelpPage";
+import SellerInquiriesDetails from "@/pages/SellerDashboard/SellerInquiriesDetails";
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -104,7 +98,8 @@ const routes = createBrowserRouter([
       { path: "promotions", element: <SellerPromotionPage /> },
       { path: "reviews", element: <SellerRewiewPage /> },
       { path: "settings", element: <SellerSettingsPage /> },
-      { path: "help", element: <SellerHelpPage /> },
+      // { path: "help", element: <SellerHelpPage /> },
+      { path: "help", element: <SellerInquiriesDetails /> },
     ],
   },
 ]);
