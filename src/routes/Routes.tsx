@@ -22,13 +22,8 @@ import SellerAnalyticsPage from "@/pages/SellerDashboard/SellerAnalyticsPage";
 import SellerPromotionPage from "@/pages/SellerDashboard/SellerPromotionPage";
 import SellerRewiewPage from "@/pages/SellerDashboard/SellerRewiewPage";
 import SellerSettingsPage from "@/pages/SellerDashboard/SellerSettingsPage";
-// import SellerHelpPage from "@/pages/SellerDashboard/SellerHelpPage";
-import SellerInquiriesDetails from "@/pages/SellerDashboard/SellerInquiriesDetails";
-import BuyerRoute from "./BuyerRoute";
-import BuyerLayout from "../Layout/BuyerLayout";
-import BuyerDashboardDemo from "../pages/BuyerDashboard/BuyerDashboardDemo";
-import BuyerSettings from "../pages/BuyerDashboard/BuyerSettings";
-import BuyerOrdersPage from "@/pages/BuyerDashboard/BuyerOrdersPage";
+import SellerHelpPage from "@/pages/SellerDashboard/SellerHelpPage";
+import AddProductForm from "@/components/SellerDashboard/SellerProducts/AddProductForm";
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -117,8 +112,12 @@ const routes = createBrowserRouter([
     children: [
       { index: true, element: <SellerDashboardPage /> },
       { path: "dashboard", element: <SellerDashboardPage /> },
-      { path: "products", element: <SellerProductsPage /> },
-      // { path: "orders", element: <SellerOrdersPage /> },
+      {
+        path: "products",
+        element: <SellerProductsPage />,
+      },
+      { path: "add-product", element: <AddProductForm /> },
+      { path: "orders", element: <SellerOrdersPage /> },
       { path: "inquiries", element: <SellerInquiriesPage /> },
       { path: "payments", element: <SellerPaymentPage /> },
       { path: "analytics", element: <SellerAnalyticsPage /> },
