@@ -1,45 +1,38 @@
-import { AiFillDollarCircle } from "react-icons/ai";
-import { BiMessageDetail } from "react-icons/bi";
-import { FaBorderAll, FaArrowUp } from "react-icons/fa";
-import { MdOutlineOutbox } from "react-icons/md";
+import { FaArrowUp } from "react-icons/fa";
+import icon1 from "@/assets/Icon/enquiries.svg";
+import icon2 from "@/assets/Icon/ResponseTime.png";
+import icon3 from "@/assets/Icon/rate.png";
 
 const Card = () => {
   const statusData = [
     {
-      title: "Total Revenue",
-      amount: "23,8543",
+      title: "Total Enquiries",
+      amount: "48",
       change: "↓ 12%",
       unit: "for this month",
-      icon: <AiFillDollarCircle />,
+      icon: icon1,
     },
     {
-      title: "Total Orders",
-      amount: "154",
+      title: "Avr. Response Time",
+      amount: "2.5 H",
       change: "↓ 12%",
       unit: "for this month",
-      icon: <FaBorderAll />,
+      icon: icon2,
     },
     {
-      title: "Active Listing",
-      amount: "42",
+      title: "Conversion Rate ",
+      amount: "18.5%",
       change: "↓ 12%",
       unit: "for this month",
-      icon: <MdOutlineOutbox />,
-    },
-    {
-      title: "Inquiries",
-      amount: "23",
-      change: "↓ -8%",
-      unit: "for this month",
-      icon: <BiMessageDetail />,
+      icon: icon3,
     },
   ];
 
-  const colors = ["#FFA600", "#9747FF", "#12CC1E", "#009CDE"];
-  const bgColors = ["#FFA6001A", "#9747FF1A", "#12CC1E1A", "#009CDE1A"]; // 10% opacity in hex
+  const colors = ["#9747FF", "#2F7EEF", "#F2BC3C"];
+  const bgColors = ["#9747FF1A", "#EAF2FD", "#F2BC3C1A"]; // 10% opacity hex
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  gap-5">
       {statusData.map((single, index) => {
         const isNegative = single.change.includes("-");
         const changeColor = isNegative ? "#E35A5F" : "#12CC1E";
@@ -48,20 +41,19 @@ const Card = () => {
         return (
           <div
             key={single.title}
-            className="w-full max-w-[358px] h-[187px] p-5 sm:p-6 bg-white rounded-[16px] border border-[#E0E0E0] flex flex-col justify-between mx-auto"
+            className="w-full  lg:max-w-none lg:w-full h-[187px] p-5 sm:p-6 bg-white rounded-[16px] border border-[#E0E0E0] flex flex-col justify-between mx-auto"
           >
             {/* Top Row */}
             <div className="flex items-center justify-start gap-5">
               <div
-                className="w-[48px] h-[48px] rounded-[12px] p-[12px] flex items-center justify-center"
+                className="relative w-[48px] h-[48px] rounded-[12px] p-[12px] flex items-center justify-center"
                 style={{ backgroundColor: bgColors[index] }}
               >
-                <span
-                  className="w-6 h-6 text-[24px] flex items-center justify-center"
-                  style={{ color: colors[index] }}
-                >
-                  {single.icon}
-                </span>
+                <img
+                  src={single.icon}
+                  alt=""
+                  className="w-6 h-6 object-contain"
+                />
               </div>
 
               <h1 className="text-[#484848] text-[18px] leading-[160%] font-[400] font-poppins">
@@ -72,7 +64,7 @@ const Card = () => {
             {/* Centered Amount */}
             <div className="flex-1 flex flex-col items-center justify-center">
               <h2
-                className="text-xl sm:text-2xl md:text-3xl font-semibold font-Robot tracking-[-0.68px]"
+                className="text-3xl sm:text-3xl md:text-3xl font-semibold font-Robot tracking-[-0.68px]"
                 style={{ color: colors[index] }}
               >
                 {single.amount}

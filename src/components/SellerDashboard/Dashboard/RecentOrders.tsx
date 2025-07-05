@@ -58,7 +58,7 @@ export function RecentOrders() {
         </div>
         {/* Filter Dropdown */}
         <div>
-          <button className="underline text-[#F04436] text-base font-sans font-medium">
+          <button className="underline text-[#F04436] text-base font-sans font-medium cursor-pointer">
             View All
           </button>
         </div>

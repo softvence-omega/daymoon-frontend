@@ -3,9 +3,9 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Plus } from "lucide-react";
 import { TfiImport } from "react-icons/tfi";
-import Card from "./Card";
+import Card from "../Dashboard/Card";
 
-const SellerCard = () => {
+const ProductCard = () => {
   return (
     <div className="w-full ">
       {/* Top Section: Title + Action Buttons */}
@@ -13,8 +13,8 @@ const SellerCard = () => {
         {/* Title */}
         <div className="w-full lg:flex-1">
           <Title
-            title="Welcome back, Savannah!"
-            subTitle="Lorem ipsum dolor sit amet consectetur. Urna tempor morbi egestas cras arcu pellentesque."
+            title="Manage your Products!"
+            subTitle="View, Edit, Add, and Delete your product listings.."
           />
         </div>
 
@@ -47,4 +47,4 @@ const SellerCard = () => {
   );
 };
 
-export default SellerCard;
+export default ProductCard;
