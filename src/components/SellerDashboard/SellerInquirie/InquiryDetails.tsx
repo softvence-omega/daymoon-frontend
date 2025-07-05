@@ -39,7 +39,10 @@ const InquiryDetails = () => {
             asChild
             className="flex items-center justify-center gap-2 h-[48px] px-6 py-[10px] rounded-[16px] bg-[#F04436] text-white text-[16px] md:text-[18px] font-sans leading-[130%] shadow-md hover:shadow-lg transition w-full sm:w-auto"
           >
-            <Link to="" className="flex items-center gap-2">
+            <Link
+              to="/sellerdashboard/invoice-form"
+              className="flex items-center gap-2"
+            >
               <img src={invoice} alt="" className="w-5 h-5" />
               Generate Invoice
             </Link>
@@ -64,7 +67,7 @@ const InquiryDetails = () => {
                     <p className="text-sm text-gray-500">XYZ Company</p>
                   </div>
                 </div>
-                <button className="flex items-center gap-2 text-sm font-medium px-4 py-2 h-[42px] rounded-[12px] bg-[#192D4E] text-white hover:bg-[#14325f] transition">
+                <button className="flex items-center gap-2 text-sm font-medium px-4 py-2 h-[42px] rounded-[12px] bg-[#192D4E] text-white hover:bg-[#14325f] transition cursor-pointer">
                   <RiMessage2Line className="h-6 w-6" />
                   Message
                 </button>
@@ -129,7 +132,7 @@ const InquiryDetails = () => {
               {/* Select Dropdown */}
               <div className="relative mt-3 w-full">
                 <Select>
-                  <SelectTrigger className="w-full bg-[#E5E5E5] border border-gray-300 text-sm rounded-md px-4 py-2 text-gray-800 shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none pr-10 appearance-none">
+                  <SelectTrigger className="w-full bg-[#E5E5E5] border border-gray-300 text-sm rounded-md px-4 py-2 text-gray-800 shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none pr-10 appearance-none cursor-pointer">
                     <SelectValue placeholder="Update Status" />
                   </SelectTrigger>
                   <SelectContent className="bg-white border border-gray-200 rounded-md shadow-md">
@@ -203,7 +206,7 @@ const InquiryDetails = () => {
                 </div>
 
                 <div className="flex justify-end">
-                  <button className="flex gap-3 w-full md:w-auto mt-4 px-6 py-3 bg-[#192D4E] text-white font-semibold rounded-lg hover:bg-[#14325f]">
+                  <button className="flex gap-3 w-full md:w-auto mt-4 px-6 py-3 bg-[#192D4E] text-white font-semibold rounded-lg hover:bg-[#14325f] cursor-pointer">
                     <IoIosSend className="h-6 w-6 text-white " />
                     Send Response
                   </button>
