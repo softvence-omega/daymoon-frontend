@@ -1,7 +1,6 @@
 import Title from "../Shared/Title";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Plus } from "lucide-react";
 import invoice from "@/assets/Icon/invoice.png";
 
 const InquiryDetails = () => {
