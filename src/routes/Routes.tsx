@@ -25,6 +25,10 @@ import SellerRewiewPage from "@/pages/SellerDashboard/SellerRewiewPage";
 import SellerSettingsPage from "@/pages/SellerDashboard/SellerSettingsPage";
 // import SellerHelpPage from "@/pages/SellerDashboard/SellerHelpPage";
 import SellerInquiriesDetails from "@/pages/SellerDashboard/SellerInquiriesDetails";
+import BuyerRoute from './BuyerRoute';
+import BuyerLayout from '@/Layout/BuyerLayout';
+import BuyerDashboardDemo from '@/pages/BuyerDashboard/BuyerDashboardDemo';
+import BuyerSettings from '@/pages/BuyerDashboard/BuyerSettings';
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -46,8 +50,26 @@ const routes = createBrowserRouter([
         path: "seller",
         element: <Seller />,
       },
-      // --------------
-      // extra add
+      {
+        path: "/buyer",
+        element: <BuyerRoute />,
+        children: [
+          {
+            path: "dashboard",
+            element: <BuyerLayout />,
+            children: [
+              {
+                path: "",
+                element: <BuyerDashboardDemo />,
+              },
+              {
+                path: "settings",
+                element: <BuyerSettings />,
+              },
+            ],
+          },
+        ],
+      },
       {
         path: "overview",
         element: <OverViewBanner />,
