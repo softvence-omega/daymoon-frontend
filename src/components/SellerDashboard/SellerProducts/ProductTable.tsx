@@ -2,7 +2,6 @@ import image from "../../../assets/image/product.png";
 import image1 from "../../../assets/landing/image1.png";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { LuFileText } from "react-icons/lu";
-import { Link } from "react-router-dom";
 
 type Product = {
   id: number;
@@ -67,6 +66,18 @@ const products: Product[] = [
     img: image1,
   },
   {
+    id: 4,
+    name: "Crystal Clear Monitor",
+    category: "Toys & Games",
+    price: "$69.99",
+    status: "Out Of Stock",
+    stock: 0,
+    views: 3473,
+    inquiries: 67,
+    date: "03/05/2025",
+    img: image1,
+  },
+  {
     id: 5,
     name: "Crystal Clear Monitor",
     category: "Toys & Games",
@@ -92,18 +103,6 @@ const products: Product[] = [
   },
   {
     id: 7,
-    name: "Crystal Clear Monitor",
-    category: "Toys & Games",
-    price: "$69.99",
-    status: "Out Of Stock",
-    stock: 0,
-    views: 3473,
-    inquiries: 67,
-    date: "03/05/2025",
-    img: image1,
-  },
-  {
-    id: 8,
     name: "4K Gaming Monitor",
     category: "Fashion & Accessories",
     price: "$79.99",
@@ -120,14 +119,6 @@ const statusColor = {
   Active: "bg-green-100 text-green-800",
   "Low Stock": "bg-yellow-100 text-yellow-800",
   "Out Of Stock": "bg-red-100 text-red-800",
-};
-
-const slugify = (text: string) => {
-  return text
-    .toLowerCase()
-    .replace(/[^\w\s-]/g, "")
-    .trim()
-    .replace(/\s+/g, "-");
 };
 
 export const ProductTable = () => {
@@ -229,14 +220,9 @@ export const ProductTable = () => {
               </td>
               <td className="p-3 text-gray-700">{p.date}</td>
               <td className="p-3">
-                <Link
-                  to={`/seller-dashboard/all-products/slugify${slugify(
-                    p.name
-                  )}`}
-                  className=" text-sunset-orange cursor-pointer"
-                >
+                <button className=" text-sunset-orange cursor-pointer">
                   View
-                </Link>
+                </button>
               </td>
             </tr>
           ))}

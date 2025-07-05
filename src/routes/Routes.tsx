@@ -24,15 +24,25 @@ import Contact from "../pages/Contact";
 import Home from "../pages/Home";
 import NotFound from "../pages/NotFound";
 import AdminRoute from "./AdminRoutes";
-import BuyerRoute from "./BuyerRoute";
-// import BuyerOrdersPage from "@/pages/BuyerDashboard/BuyerOrdersPage";
-import BuyerLayout from '../Layout/BuyerLayout';
-import BuyerDashboardDemo from '../pages/BuyerDashboard/BuyerDashboardDemo';
-import BuyerSettings from '../pages/BuyerDashboard/BuyerSettings';
-import SellerPromotionPage from '@/pages/SellerDashboard/SellerPromotionPage';
-import SellerRewiewPage from '@/pages/SellerDashboard/SellerRewiewPage';
-import SellerSettingsPage from '@/pages/SellerDashboard/SellerSettingsPage';
-
+import AdminDashboard from "@/pages/Admin/AdminDashboard";
+import Login from "@/pages/Login";
+import Signup from "@/pages/Signup";
+import BuyerSignup from "@/components/Authentication/BuyerSignup";
+import OverViewBanner from "@/components/ReUseable/OverViewBanner";
+import SellerRegistration from "@/components/Authentication/seller/SellerRegistration";
+import Seller from "@/components/Seller/Seller";
+import SellerLayout from "@/Layout/SellerLayout";
+import SellerDashboardPage from "@/pages/SellerDashboard/SellerDashboardPage";
+import SellerProductsPage from "@/pages/SellerDashboard/SellerProductsPage";
+import SellerOrdersPage from "@/pages/SellerDashboard/SellerOrdersPage";
+import SellerInquiriesPage from "@/pages/SellerDashboard/SellerInquiriesPage";
+import SellerPaymentPage from "@/pages/SellerDashboard/SellerPaymentPage";
+import SellerAnalyticsPage from "@/pages/SellerDashboard/SellerAnalyticsPage";
+import SellerPromotionPage from "@/pages/SellerDashboard/SellerPromotionPage";
+import SellerRewiewPage from "@/pages/SellerDashboard/SellerRewiewPage";
+import SellerSettingsPage from "@/pages/SellerDashboard/SellerSettingsPage";
+import SellerHelpPage from "@/pages/SellerDashboard/SellerHelpPage";
+import AddProductForm from "@/components/SellerDashboard/SellerProducts/AddProductForm";
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -131,9 +141,6 @@ const routes = createBrowserRouter([
         element: <SellerProductsPage />,
       },
       { path: "add-product", element: <AddProductForm /> },
-      // { path: "orders", element: <SellerOrdersPage /> },
-
-      { path: "products", element: <SellerProductsPage /> },
       { path: "orders", element: <SellerOrdersPage /> },
 
       { path: "inquiries", element: <SellerInquiriesPage /> },

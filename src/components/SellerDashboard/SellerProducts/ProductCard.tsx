@@ -34,7 +34,7 @@ const ProductCard = () => {
             className="h-[60px] w-full sm:w-auto px-6 md:px-10 py-[10px] gap-2 rounded-[20px] bg-[var(--color-sunset-orange)] text-white flex items-center justify-center text-[16px] md:text-[18px] font-medium font-poppins leading-[130%] shadow-md hover:shadow-lg transition"
           >
             <Link
-              to="/seller-dashboard/add-product"
+              to="/sellerdashboard/add-product"
               className="flex items-center gap-2"
             >
               <Plus className="w-5 h-5" />

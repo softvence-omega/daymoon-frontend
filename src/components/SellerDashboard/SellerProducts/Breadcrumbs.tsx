@@ -1,15 +1,11 @@
-import { FC } from "react";
-interface BreadcrumbsProps {
-  title: string;
-  subtitle: string;
-}
-
-const Breadcrumbs: FC<BreadcrumbsProps> = ({ title, subtitle }) => (
-  <div>
-    <p className="text-base text-black">
-      <span className="text-black/80">{title}</span> &gt; {subtitle}
-    </p>
-  </div>
-);
+const Breadcrumbs = () => {
+  return (
+    <div>
+      <p className="text-base text-black">
+        <span className=" text-black/80"> Products </span> &gt; Add New Product
+      </p>
+    </div>
+  );
+};
 
 export default Breadcrumbs;

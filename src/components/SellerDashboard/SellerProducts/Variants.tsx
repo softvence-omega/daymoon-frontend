@@ -1,4 +1,3 @@
-import SubHeader from "@/common/SubHeader";
 import React, { useState } from "react";
 
 interface ImageItem {
@@ -13,9 +12,9 @@ const Variants: React.FC<VariantsProps> = ({ imageList }) => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   return (
-    <div>
-      <SubHeader className="!pb-5">Variants</SubHeader>
-      <div className="flex items-center flex-wrap gap-6">
+    <>
+      <h2 className="text-black/60 text-base">Variants</h2>
+      <div className="flex items-center gap-6">
         {imageList.map((item, idx) => {
           const isActive = idx === activeIndex;
           return (
@@ -25,7 +24,7 @@ const Variants: React.FC<VariantsProps> = ({ imageList }) => {
               alt={`variant-${idx}`}
               onClick={() => setActiveIndex(idx)}
               className={`
-                max-w-[97px] h-[88px] rounded-2xl border-1 last:border-dashed last:w-full
+                max-w-[97px] h-[88px] rounded-2xl border-1 last:border-dashed
                 ${isActive ? "border-red-500" : "border-foundation-white "}
                 object-cover cursor-pointer transition-shadow
                 ${isActive ? "shadow-lg" : "hover:shadow-md"}
@@ -34,7 +33,7 @@ const Variants: React.FC<VariantsProps> = ({ imageList }) => {
           );
         })}
       </div>
-    </div>
+    </>
   );
 };
 

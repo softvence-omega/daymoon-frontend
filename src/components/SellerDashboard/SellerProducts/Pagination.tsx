@@ -1,7 +1,6 @@
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { IoIosArrowForward } from "react-icons/io";
 import { IoIosArrowBack } from "react-icons/io";
-import { Link } from "react-router-dom";
 
 const Pagination = () => {
   return (
@@ -9,15 +8,12 @@ const Pagination = () => {
       <div>
         <p>Showing 1 to 10 of 24 orders</p>
       </div>
-      <Link
-        to="/seller-dashboard/all-products"
-        className=" flex text-sunset-orange items-center   underline text-lg cursor-pointer gap-1"
-      >
+      <div className=" flex text-sunset-orange items-center   underline text-lg cursor-pointer gap-1">
         <p>All Products</p>
         <p>
           <FaLongArrowAltRight />
         </p>
-      </Link>
+      </div>
       <div>
         <ul className="flex items-center  border border-foundation-white rounded-xl">
           <li className="border-r  border-foundation-white text-sunset-orange p-4 text-2xl cursor-pointer">
