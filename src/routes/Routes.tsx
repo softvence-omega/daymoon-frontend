@@ -31,7 +31,7 @@ const routes = createBrowserRouter([
       // --------------
       // extra add
       {
-        path: "overview",
+        path: "/overview",
         element: <OverViewBanner />,
       },
       // -------------------
