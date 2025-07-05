@@ -38,7 +38,7 @@ const tabsData = [
 
 const BuyerSettings = () => {
   return (
-    <div className=" space-y-4 md:space-y-6">
+    <div className="space-y-4 md:space-y-6">
       {/* Header */}
       <div className="hidden md:block space-y-2 md:space-y-4">
         <h1 className="text-2xl md:text-3xl font-medium text-[#1A1A1A] tracking-tight">
@@ -49,9 +49,11 @@ const BuyerSettings = () => {
           account settings
         </p>
       </div>
+      
+      {/* Mobile Header */}
       <div className="flex justify-between items-center md:hidden">
         <Button
-          className="text-sm text-[#F04436] rounded-full w-8 h-8"
+          className="text-sm text-[#F04436] rounded-full w-8 h-8 p-0"
           style={{ boxShadow: "5px 4px 19.4px 0px #0000001A" }}
         >
           <IoIosArrowBack />
@@ -89,11 +91,15 @@ const BuyerSettings = () => {
         </Tabs>
       </div>
 
-      {/* All data for mobile screens */}
-      <div className="block md:hidden space-y-6">
-        {tabsData.map((tab) => (
-          <div key={tab.value}>{tab.component}</div>
-        ))}
+      {/* Mobile View - Optimized for performance */}
+      <div className="block md:hidden">
+        <div className="space-y-4 will-change-scroll" style={{ scrollBehavior: 'smooth' }}>
+          {tabsData.map((tab) => (
+            <div key={tab.value} className="transform-gpu">
+              {tab.component}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

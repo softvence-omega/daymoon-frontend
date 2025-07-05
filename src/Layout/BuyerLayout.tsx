@@ -15,8 +15,8 @@ const BuyerLayout = () => {
           {/* Top Navbar */}
           <DashboardNavbar notificationCount={3} />
 
-          {/* Page Content */}
-          <main className="flex-1 overflow-auto p-6 md:p-10">
+          {/* Page Content - Optimized for mobile scrolling */}
+          <main className="flex-1 overflow-auto p-6 md:p-10 -webkit-overflow-scrolling-touch">
             <Outlet />
           </main>
         </SidebarInset>

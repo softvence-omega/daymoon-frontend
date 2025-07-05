@@ -23,7 +23,7 @@ const DashboardNavbar: React.FC<NavbarProps> = ({
   userInitials = "JD",
 }) => {
   return (
-    <header className="bg-white border-b border-gray-200 px-4 md:px-10 py-3 sticky top-0 z-50 shadow-sm">
+    <header className="bg-white border-b border-gray-200 px-4 md:px-10 py-3 shadow-sm">
       <div className="flex items-center justify-between">
         {/* Left Side - Mobile Menu & Title */}
         <div className="flex items-center space-x-2 sm:space-x-4">
