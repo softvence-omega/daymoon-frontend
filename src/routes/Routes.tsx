@@ -22,12 +22,13 @@ import SellerAnalyticsPage from "@/pages/SellerDashboard/SellerAnalyticsPage";
 import SellerPromotionPage from "@/pages/SellerDashboard/SellerPromotionPage";
 import SellerRewiewPage from "@/pages/SellerDashboard/SellerRewiewPage";
 import SellerSettingsPage from "@/pages/SellerDashboard/SellerSettingsPage";
-// import SellerHelpPage from "@/pages/SellerDashboard/SellerHelpPage";
+import SellerHelpPage from "@/pages/SellerDashboard/SellerHelpPage";
 import SellerInquiriesDetails from "@/pages/SellerDashboard/SellerInquiriesDetails";
 import BuyerRoute from "./BuyerRoute";
 import BuyerLayout from "../Layout/BuyerLayout";
 import BuyerDashboardDemo from "../pages/BuyerDashboard/BuyerDashboardDemo";
 import BuyerSettings from "../pages/BuyerDashboard/BuyerSettings";
+import SellerInvoiceFormPage from "@/pages/SellerDashboard/SellerInvoiceFormPage";
 import BuyerOrdersPage from "@/pages/BuyerDashboard/BuyerOrdersPage";
 const routes = createBrowserRouter([
   {
@@ -125,8 +126,9 @@ const routes = createBrowserRouter([
       { path: "promotions", element: <SellerPromotionPage /> },
       { path: "reviews", element: <SellerRewiewPage /> },
       { path: "settings", element: <SellerSettingsPage /> },
-      // { path: "help", element: <SellerHelpPage /> },
-      { path: "help", element: <SellerInquiriesDetails /> },
+      { path: "help", element: <SellerHelpPage /> },
+      { path: "inquiries-details", element: <SellerInquiriesDetails /> },
+      { path: "invoice-form", element: <SellerInvoiceFormPage /> },
     ],
   },
 ]);

@@ -24,6 +24,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import samplePhoto from "@/assets/image/product.png";
+import { Link } from "react-router-dom";
 
 // Type
 type Inquiry = {
@@ -311,10 +312,12 @@ export function InquirieTable() {
     <div>
       {/* Action Buttons */}
       <div className="flex flex-col md:flex-row md:justify-end gap-3 mb-4 w-full">
-        <button className="w-full md:w-auto flex h-12 px-6 py-[10px] items-center justify-center gap-2 rounded-[16px] bg-[#192D4E] text-white text-lg font-medium hover:bg-[#14325f] transition cursor-pointer">
-          <IoIosCheckmarkCircleOutline />
-          Mark As Resolved
-        </button>
+        <Link to="/sellerdashboard/inquiries-details">
+          <button className="w-full md:w-auto flex h-12 px-6 py-[10px] items-center justify-center gap-2 rounded-[16px] bg-[#192D4E] text-white text-lg font-medium hover:bg-[#14325f] transition cursor-pointer">
+            <IoIosCheckmarkCircleOutline />
+            Mark As Resolved
+          </button>
+        </Link>
         <button className="w-full md:w-auto flex h-12 px-6 py-[10px] items-center justify-center gap-2 rounded-[16px] border border-[#192D4E] text-[#192D4E] text-lg bg-transparent hover:bg-[#e7edf6] transition cursor-pointer">
           <MdDeleteOutline />
           Delete
