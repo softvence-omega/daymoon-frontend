@@ -1,4 +1,3 @@
-import { Card } from "@/components/ui/card";
 import { FaPlus } from "react-icons/fa";
 import PageHeader from "@/components/BuyerDashboard/BuyerSettings/PageHeader";
 import { ImPencil } from "react-icons/im";

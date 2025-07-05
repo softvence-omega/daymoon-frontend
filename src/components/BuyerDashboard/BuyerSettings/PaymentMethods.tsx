@@ -1,4 +1,3 @@
-import { Card } from "@/components/ui/card";
 import { ImPencil } from "react-icons/im";
 import { FaPlus } from "react-icons/fa";
 import { MdOutlineDelete } from "react-icons/md";
