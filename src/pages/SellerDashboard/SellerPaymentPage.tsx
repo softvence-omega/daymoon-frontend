@@ -1,7 +1,9 @@
+import Payment from "@/components/SellerDashboard/SellPayment/Payment";
+
 const SellerPaymentPage = () => {
   return (
     <div>
-      <h1>SellerPaymentPage</h1>
+      <Payment />
     </div>
   );
 };
