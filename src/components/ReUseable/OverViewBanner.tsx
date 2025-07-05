@@ -20,31 +20,15 @@ const OverViewBanner = () => {
         className="w-full h-[600px] object-cover"
       />
 
-      {/* Overlapping Card */}
-      <div className="absolute top-[400px] left-0 w-full z-10">
-        <CommonWrapper>
-          <div className="bg-white rounded-[20px] shadow-xl p-[40px] flex flex-col md:flex-row items-center justify-between gap-6 h-[450px] ">
-            {/* Left: Company Info */}
-            <div>
-              {/* Logo */}
-              <div className="w-[164px] h-[164px] rounded-full flex items-center justify-center overflow-hidden">
-                <img src={icon} alt="Logo" className=" object-contain" />
-              </div>
-              {/* Text Info */}
-              <div className="mt-[16px]">
-                <h2 className="text-[24px] font-semibold leading-[120%]">
-                  TechCraft Industries
-                </h2>
-                <p className="text-[14px] font-normal leading-[160%] py-[12px] ">
-                  Manufacturer
-                </p>
-                <div className="mb-2">
-                  <span
-                    className="bg-[rgba(8,173,54,0.10)] text-[#08AD36] text-xs font-medium 
-                  px-[10px] py-[10px] rounded-[12px]"
-                  >
-                    Verified Supplier
-                  </span>
+        {/* Overlapping Card */}
+        <div className="absolute top-[120px] md:top-[350px] lg:top-[400px] left-0 w-full">
+          <CommonWrapper>
+            <div className="bg-white rounded-[20px] lg:shadow-xl md:shadow-md shadow p-6 md:p-[40px] flex flex-col md:flex-row items-center justify-between gap-6 h-auto md:h-[450px]">
+              {/* Left: Company Info */}
+              <div className="flex flex-col items-center md:items-start w-full md:w-auto">
+                {/* Logo */}
+                <div className="w-[100px] h-[100px] md:w-[120px] md:h-[120px] lg:w-[164px] lg:h-[164px] rounded-full flex items-center justify-center overflow-hidden">
+                  <img src={icon} alt="Logo" className="object-contain" />
                 </div>
                 <div className="flex items-center justify-center gap-[6.50px] text-sm py-[12px]">
                   {[...Array(5)].map((_, i) => (
