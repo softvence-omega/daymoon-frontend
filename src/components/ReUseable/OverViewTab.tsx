@@ -1,11 +1,9 @@
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import ProductsComponent from "./ProductsComponent";
 import Reviews from "./Reviews";
-import CommonWrapper from "@/common/CommonWrapper";
 
 const OverViewTab = () => {
   return (
-    <CommonWrapper>
       <div >
         <Tabs defaultValue="product" className="w-full mt-12 ">
           {/* Tabs Header */}
@@ -49,7 +47,6 @@ const OverViewTab = () => {
           </TabsContent>
         </Tabs>
       </div>
-    </CommonWrapper>
   );
 };
 

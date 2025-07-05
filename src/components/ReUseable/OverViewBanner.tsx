@@ -21,7 +21,7 @@ const OverViewBanner = () => {
         />
 
         {/* Overlapping Card */}
-        <div className="absolute top-[120px] md:top-[350px] lg:top-[400px] left-0 w-full px-4 sm:px-6">
+        <div className="absolute top-[120px] md:top-[350px] lg:top-[400px] left-0 w-full">
           <CommonWrapper>
             <div className="bg-white rounded-[20px] lg:shadow-xl md:shadow-md shadow p-6 md:p-[40px] flex flex-col md:flex-row items-center justify-between gap-6 h-auto md:h-[450px]">
               {/* Left: Company Info */}
