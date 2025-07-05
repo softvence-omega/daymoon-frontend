@@ -90,4 +90,18 @@ export const reviews: ProductType[] = [
     review:
       "Solid performance and great value. Could improve the noise isolation slightly.",
   },
+  {
+    id: 13,
+    name: "Daniel S.",
+    rating: 2,
+    review:
+      "Solid performance and great value. Could improve the noise isolation slightly.",
+  },
+  {
+    id: 14,
+    name: "Daniel S.",
+    rating: 2.5,
+    review:
+      "Solid performance and great value. Could improve the noise isolation slightly.",
+  },
 ];
