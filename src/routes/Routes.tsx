@@ -70,7 +70,7 @@ const routes = createBrowserRouter([
         ],
       },
       {
-        path: "overview",
+        path: "/overview",
         element: <OverViewBanner />,
       },
       // -------------------
