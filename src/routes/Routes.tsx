@@ -15,7 +15,7 @@ import Seller from "@/components/Seller/Seller";
 import SellerLayout from "@/Layout/SellerLayout";
 import SellerDashboardPage from "@/pages/SellerDashboard/SellerDashboardPage";
 import SellerProductsPage from "@/pages/SellerDashboard/SellerProductsPage";
-import SellerOrdersPage from "@/pages/SellerDashboard/SellerOrdersPage";
+// import SellerOrdersPage from "@/pages/SellerDashboard/SellerOrder/SellerOrdersPage";
 import SellerInquiriesPage from "@/pages/SellerDashboard/SellerInquiriesPage";
 import SellerPaymentPage from "@/pages/SellerDashboard/SellerPaymentPage";
 import SellerAnalyticsPage from "@/pages/SellerDashboard/SellerAnalyticsPage";
@@ -29,6 +29,7 @@ import BuyerLayout from "../Layout/BuyerLayout";
 import BuyerDashboardDemo from "../pages/BuyerDashboard/BuyerDashboardDemo";
 import BuyerSettings from "../pages/BuyerDashboard/BuyerSettings";
 import SellerInvoiceFormPage from "@/pages/SellerDashboard/SellerInvoiceFormPage";
+import BuyerOrdersPage from "@/pages/BuyerDashboard/BuyerOrdersPage";
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -63,6 +64,10 @@ const routes = createBrowserRouter([
                 element: <BuyerDashboardDemo />,
               },
               {
+                path: "orders",
+                element: <BuyerOrdersPage />,
+              },
+              {
                 path: "settings",
                 element: <BuyerSettings />,
               },
@@ -71,7 +76,7 @@ const routes = createBrowserRouter([
         ],
       },
       {
-        path: "overview",
+        path: "/overview",
         element: <OverViewBanner />,
       },
       // -------------------
@@ -114,7 +119,7 @@ const routes = createBrowserRouter([
       { index: true, element: <SellerDashboardPage /> },
       { path: "dashboard", element: <SellerDashboardPage /> },
       { path: "products", element: <SellerProductsPage /> },
-      { path: "orders", element: <SellerOrdersPage /> },
+      // { path: "orders", element: <SellerOrdersPage /> },
       { path: "inquiries", element: <SellerInquiriesPage /> },
       { path: "payments", element: <SellerPaymentPage /> },
       { path: "analytics", element: <SellerAnalyticsPage /> },

@@ -9,7 +9,7 @@ interface PageHeaderProps {
 
 const PageHeader: React.FC<PageHeaderProps> = ({ title, onEdit, icon, buttonTitle }) => {
   return (
-    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+    <div className=" flex-col sm:flex-row justify-between items-start sm:items-center gap-4 hidden md:flex">
       <h2 className="text-xl sm:text-2xl text-[#1A1A1A]">{title}</h2>
       <Button
         variant="outline"
