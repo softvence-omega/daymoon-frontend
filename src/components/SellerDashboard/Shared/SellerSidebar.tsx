@@ -30,51 +30,51 @@ export interface SidebarProps {
 
 // Updated sidebar items to match your route structure
 const defaultSidebarItems: SidebarItem[] = [
-  { icon: MdGridView, label: "Dashboard", href: "/sellerdashboard/dashboard" },
+  { icon: MdGridView, label: "Dashboard", href: "/seller-dashboard/dashboard" },
   {
     icon: FaTruck,
     label: "Products",
-    href: "/sellerdashboard/products",
+    href: "/seller-dashboard/products",
   },
   {
     icon: MdOutlineMessage,
     label: "Orders",
-    href: "/sellerdashboard/orders",
+    href: "/seller-dashboard/orders",
   },
   {
     icon: MdOutlineCreditCard,
     label: "Inquiries",
-    href: "/sellerdashboard/inquiries",
+    href: "/seller-dashboard/inquiries",
   },
   {
     icon: FaRegHeart,
     label: "Payments",
-    href: "/sellerdashboard/payments",
+    href: "/seller-dashboard/payments",
   },
   {
     icon: MdOutlineRateReview,
     label: "Analytics",
-    href: "/sellerdashboard/analytics",
+    href: "/seller-dashboard/analytics",
   },
   {
     icon: IoMdSettings,
     label: "Promotions",
-    href: "/sellerdashboard/promotions",
+    href: "/seller-dashboard/promotions",
   },
   {
     icon: IoMdSettings,
     label: "Reviews",
-    href: "/sellerdashboard/reviews",
+    href: "/seller-dashboard/reviews",
   },
   {
     icon: IoMdSettings,
     label: "Settings",
-    href: "/sellerdashboard/settings",
+    href: "/seller-dashboard/settings",
   },
   {
     icon: IoMdSettings,
     label: "Help",
-    href: "/sellerdashboard/help",
+    href: "/seller-dashboard/help",
   },
 ];
 
