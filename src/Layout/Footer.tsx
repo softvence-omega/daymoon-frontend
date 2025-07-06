@@ -1,117 +1,165 @@
-import React from "react";
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
-const Footer: React.FC = () => {
+import apple from "../assets/footer/apple.svg";
+import facebook from "../assets/footer/facebook.svg";
+import instagram from "../assets/footer/instagram.svg";
+import linkedin from "../assets/footer/linkedin.svg";
+import logo from "../assets/footer/logo.jpg";
+import playstore from "../assets/footer/playstore.svg";
+import tiktok from "../assets/footer/tiktok.svg";
+import twitter from "../assets/footer/twitter.svg";
+import youtube from "../assets/footer/youtube.svg";
+
+export function Footer() {
+  const footerSections = [
+    {
+      title: "Get Support",
+      links: [
+        { label: "Help Center", href: "/help-center" },
+        { label: "Live chat", href: "/live-chat" },
+        { label: "Check order status", href: "/check-order-status" },
+        { label: "Refunds", href: "/refunds" },
+        { label: "Report abuse", href: "/report-abuse" },
+      ],
+    },
+    {
+      title: "Payment and protections",
+      links: [
+        { label: "Safe and easy payments", href: "/safe-and-easy-payments" },
+        { label: "Money-back policy", href: "/money-back-policy" },
+        { label: "On-time shipping", href: "/on-time-shipping" },
+        { label: "After-order protections", href: "/after-order-protections" },
+        {
+          label: "Product monitoring services",
+          href: "/product-monitoring-services",
+        },
+      ],
+    },
+    {
+      title: "Get Support",
+      links: [
+        { label: "Request for Quotation", href: "/request-for-quotation" },
+        { label: "Membership program", href: "/membership-program" },
+        { label: "Forgot.com Logistics", href: "/forgot-logistics" },
+        { label: "Sales tax and VAT", href: "/sales-tax-and-vat" },
+        { label: "Forgot.com Reads", href: "/forgot-reads" },
+      ],
+    },
+    {
+      title: "Get Support",
+      links: [
+        { label: "Start selling", href: "/start-selling" },
+        { label: "Sales Central", href: "/sales-central" },
+        {
+          label: "Become a verified Supplier",
+          href: "/become-verified-supplier",
+        },
+        { label: "Partnership", href: "/partnership" },
+        {
+          label: "Download the app for Suppliers",
+          href: "/download-app-suppliers",
+        },
+      ],
+    },
+  ];
+
+  const socialIcons = [
+    { icon: facebook, href: "#" },
+    { icon: instagram, href: "#" },
+    { icon: linkedin, href: "#" },
+    { icon: youtube, href: "#" },
+    { icon: tiktok, href: "#" },
+    { icon: twitter, href: "#" },
+  ];
+
   return (
-    <footer className="bg-[#212a31] text-white py-8">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* About Section */}
-          <div>
-            <h3 className="text-lg font-bold mb-4">About Us</h3>
-            <p className="text-sm">
-              We are a team of passionate developers building amazing web
-              applications with modern technologies.
-            </p>
-          </div>
-
-          {/* Quick Links Section */}
-          <div>
-            <h3 className="text-lg font-bold mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              <li>
-                <a href="/" className="hover:text-gray-300">
-                  Home
-                </a>
-              </li>
-              <li>
-                <a href="/about" className="hover:text-gray-300">
-                  About
-                </a>
-              </li>
-              <li>
-                <a href="/services" className="hover:text-gray-300">
-                  Services
-                </a>
-              </li>
-              <li>
-                <a href="/contact" className="hover:text-gray-300">
-                  Contact
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Social Media Section */}
-          <div>
-            <h3 className="text-lg font-bold mb-4">Follow Us</h3>
-            <div className="flex space-x-4">
-              <a
-                href="https://facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-gray-300"
-              >
-                <FaFacebook size={24} />
-              </a>
-              <a
-                href="https://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-gray-300"
-              >
-                <FaTwitter size={24} />
-              </a>
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-gray-300"
-              >
-                <FaInstagram size={24} />
-              </a>
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-gray-300"
-              >
-                <FaLinkedin size={24} />
-              </a>
+    <footer className="bg-[#0B1321] pb-20 mt-20 sm:pb-32 text-white py-12 px-6">
+      <div className="max-w-[1520px] pt-12 mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+          {footerSections.map((section, index) => (
+            <div key={index} className="space-y-4">
+              <h3 className="text-2xl font-medium pb-2">{section.title}</h3>
+              <ul className="space-y-4 mt-6">
+                {section.links.map((link, linkIndex) => (
+                  <li key={linkIndex}>
+                    <motion.div
+                      whileHover={{ scale: 1.02 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <Link
+                        to={link.href}
+                        className="text-[#E5E5E5] hover:text-[#FCAB3F] font-medium  transition-colors duration-200 text-md"
+                      >
+                        {link.label}
+                      </Link>
+                    </motion.div>
+                  </li>
+                ))}
+              </ul>
             </div>
-          </div>
+          ))}
+        </div>
 
-          {/* Newsletter Section */}
-          <div>
-            <h3 className="text-lg font-bold mb-4">Newsletter</h3>
-            <p className="text-sm mb-4">
-              Subscribe to our newsletter to get the latest updates.
-            </p>
-            <form className="flex">
-              <input
-                type="email"
-                placeholder="Your email"
-                className="p-2 mr-2 rounded-md border-1 border-white  text-white focus:outline-none"
-              />
-              <button
-                type="submit"
-                className="bg-[#124e66] text-[#d3d9d4] px-4 rounded-md hover:bg-[#124e66]/50"
-              >
-                Subscribe
-              </button>
-            </form>
+        <div className="flex flex-col lg:flex-row justify-between  gap-6 md:pt-20">
+          <div className="flex  justify-start items-center  gap-1 sm:gap-4">
+            <div className="flex gap-3 justify-start">
+              {socialIcons.map((social, index) => (
+                <Link
+                  key={index}
+                  to={social.href}
+                  className="w-10  rounded-full flex items-center justify-start transition-colors duration-200"
+                >
+                  <motion.div
+                    whileHover={{ scale: 1.2 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <img src={social.icon} alt={social.href} />
+                  </motion.div>
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
 
-        {/* Copyright Section */}
-        <div className="border-t border-gray-700 mt-8 pt-8 text-center">
-          <p className="text-sm">
-            &copy; {new Date().getFullYear()} Sazzad Mahim. All rights reserved.
-          </p>
+        <div className="lg:flex justify-between items-center mt-10 w-full">
+          <div className="w-full">
+            <img
+              className="h-[52px] w-[128px] object-cover rounded-md"
+              src={logo}
+              alt="logo"
+            />
+          </div>
+          <div className="sm:flex    gap-5 w-full justify-end relative top-10">
+            <motion.button
+              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.02 }}
+              className="bg-[#0D8EF6] text-white  transition-colors duration-200  text-sm md:text-md  px-10 py-3
+             rounded-4xl flex items-center md:font-semibold gap-2"
+            >
+              Download For iOS
+              <img
+                className="object-cover rounded-md w-6 h-6"
+                src={apple}
+                alt="apple"
+              />
+            </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.95 }}
+              className=" text-[#E5E5E5] mt-4 sm:mt-0 text-md  bg-black hover:text-white px-10  py-3 rounded-4xl flex items-center gap-2 text-sm
+md:text-md md:font-semibold"
+            >
+              Download for Android
+              <img
+                className="object-cover rounded-md w-6 h-6"
+                src={playstore}
+                alt="playstore"
+              />
+            </motion.button>
+          </div>
         </div>
       </div>
     </footer>
   );
-};
-
-export default Footer;
+}
