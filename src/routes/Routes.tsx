@@ -15,7 +15,7 @@ import Seller from "@/components/Seller/Seller";
 import SellerLayout from "@/Layout/SellerLayout";
 import SellerDashboardPage from "@/pages/SellerDashboard/SellerDashboardPage";
 import SellerProductsPage from "@/pages/SellerDashboard/SellerProductsPage";
-// import SellerOrdersPage from "@/pages/SellerDashboard/SellerOrder/SellerOrdersPage";
+import SellerOrdersPage from "@/pages/SellerDashboard/SellerOrder/SellerOrdersPage";
 import SellerInquiriesPage from "@/pages/SellerDashboard/SellerInquiriesPage";
 import SellerPaymentPage from "@/pages/SellerDashboard/SellerPaymentPage";
 import SellerAnalyticsPage from "@/pages/SellerDashboard/SellerAnalyticsPage";
@@ -24,6 +24,14 @@ import SellerRewiewPage from "@/pages/SellerDashboard/SellerRewiewPage";
 import SellerSettingsPage from "@/pages/SellerDashboard/SellerSettingsPage";
 import SellerHelpPage from "@/pages/SellerDashboard/SellerHelpPage";
 import AddProductForm from "@/components/SellerDashboard/SellerProducts/AddProductForm";
+import SellerInquiriesDetails from "@/pages/SellerDashboard/SellerInquiriesDetails";
+import BuyerRoute from "./BuyerRoute";
+import BuyerLayout from "../Layout/BuyerLayout";
+import BuyerDashboardDemo from "../pages/BuyerDashboard/BuyerDashboardDemo";
+import BuyerSettings from "../pages/BuyerDashboard/BuyerSettings";
+import SellerInvoiceFormPage from "@/pages/SellerDashboard/SellerInvoiceFormPage";
+// import BuyerOrdersPage from "@/pages/BuyerDashboard/BuyerOrdersPage";
+
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -57,10 +65,10 @@ const routes = createBrowserRouter([
                 path: "",
                 element: <BuyerDashboardDemo />,
               },
-              {
-                path: "orders",
-                element: <BuyerOrdersPage />,
-              },
+              // {
+              //   path: "orders",
+              //   element: <BuyerOrdersPage />,
+              // },
               {
                 path: "settings",
                 element: <BuyerSettings />,
@@ -107,7 +115,7 @@ const routes = createBrowserRouter([
   /* Seller */
 
   {
-    path: "/sellerdashboard",
+    path: "/seller-dashboard",
     element: <SellerLayout />,
     children: [
       { index: true, element: <SellerDashboardPage /> },
@@ -118,6 +126,10 @@ const routes = createBrowserRouter([
       },
       { path: "add-product", element: <AddProductForm /> },
       { path: "orders", element: <SellerOrdersPage /> },
+
+      { path: "products", element: <SellerProductsPage /> },
+      { path: "orders", element: <SellerOrdersPage /> },
+
       { path: "inquiries", element: <SellerInquiriesPage /> },
       { path: "payments", element: <SellerPaymentPage /> },
       { path: "analytics", element: <SellerAnalyticsPage /> },
