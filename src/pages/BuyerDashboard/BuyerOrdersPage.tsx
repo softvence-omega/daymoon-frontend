@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import { BuyerOrderTable } from "@/lib/Buyer/BuyerOrderTable";
+import { OrdersTableProps } from "@/types/Buyer/BuyerOrderTypes";
 import {
-  Search,
   ChevronDown,
   ExternalLink,
   MessageSquare,
   RotateCcw,
+  Search,
 } from "lucide-react";
-import { OrdersTableProps } from "@/types/Buyer/BuyerOrderTypes";
-import { BuyerOrderTable } from "@/lib/Buyer/BuyerOrderTable";
+import React, { useState } from "react";
 
 const BuyerOrdersPage: React.FC<OrdersTableProps> = () => {
   const [searchTerm, setSearchTerm] = useState("");

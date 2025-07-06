@@ -1,9 +1,12 @@
-import { useState } from "react";
-import { useKeenSlider } from "keen-slider/react";
-import { Heart, ChevronLeft, ChevronRight } from "lucide-react";
 import star from "@/assets/Icon/star_rate.svg";
 import "keen-slider/keen-slider.min.css";
+
+import { useKeenSlider } from "keen-slider/react";
+import { ChevronLeft, ChevronRight, Heart } from "lucide-react";
+import { useState } from "react";
+
 import discImg from "../../assets/Icon/discount.svg";
+
 
 interface ProductProps {
   title: string;
