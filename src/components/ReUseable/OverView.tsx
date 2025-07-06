@@ -3,7 +3,6 @@ import SidebarInfo from "./SidebarInfo";
 import JoinUs from "./JoinUs";
 import OverViewTab from "./OverViewTab";
 import ProductsComponent from "./ProductsComponent";
-import HomeProducts from "./HomeProducts";
 
 const overviewData = [
   {
@@ -86,7 +85,6 @@ const OverView = () => {
             mobileCols={1}
             visibleCount={4}
           />
-          <HomeProducts/>
         </div>
       </CommonWrapper>
     </div>
