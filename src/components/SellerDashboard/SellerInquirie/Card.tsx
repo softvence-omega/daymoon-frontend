@@ -64,7 +64,7 @@ const Card = () => {
             {/* Centered Amount */}
             <div className="flex-1 flex flex-col items-center justify-center">
               <h2
-                className="text-xl sm:text-2xl md:text-3xl font-semibold font-Robot tracking-[-0.68px]"
+                className="text-3xl sm:text-3xl md:text-3xl font-semibold font-Robot tracking-[-0.68px]"
                 style={{ color: colors[index] }}
               >
                 {single.amount}

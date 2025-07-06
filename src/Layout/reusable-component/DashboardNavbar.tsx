@@ -1,11 +1,11 @@
-import { Menu, Bell, ShoppingCart } from "lucide-react";
+import { Bell, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
+import { SidebarTrigger } from "@/components/ui/sidebar";
 
 export interface NavbarProps {
-  onMobileMenuToggle: () => void;
   notificationCount?: number;
   cartItems?: number;
   userName?: string;
@@ -15,7 +15,6 @@ export interface NavbarProps {
 }
 
 const DashboardNavbar: React.FC<NavbarProps> = ({
-  onMobileMenuToggle,
   notificationCount = 20,
   cartItems = 5,
   userRole = "Buyer",
@@ -24,19 +23,12 @@ const DashboardNavbar: React.FC<NavbarProps> = ({
   userInitials = "JD",
 }) => {
   return (
-    <header className="bg-white border-b border-gray-200 px-4 md:px-10 py-3">
+    <header className="bg-white border-b border-gray-200 px-4 md:px-10 py-3 shadow-sm">
       <div className="flex items-center justify-between">
         {/* Left Side - Mobile Menu & Title */}
         <div className="flex items-center space-x-2 sm:space-x-4">
           {/* Mobile Menu Button */}
-          <Button
-            variant="ghost"
-            size="icon"
-            className="lg:hidden"
-            onClick={onMobileMenuToggle}
-          >
-            <Menu className="w-5 h-5" />
-          </Button>
+          <SidebarTrigger className="md:hidden" />
 
           {/* User Info */}
           <div className="flex items-center space-x-2">

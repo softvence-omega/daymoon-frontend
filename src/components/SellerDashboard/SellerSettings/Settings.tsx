@@ -1,10 +1,10 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from "@/components/ui/separator";
-import PersonalInformation from "@/pages/BuyerDashboard/BuyerSettings/PersonalInformation";
-import BusinessInformation from "@/pages/BuyerDashboard/BuyerSettings/BusinessInformation";
-import ShippingAddress from "@/pages/BuyerDashboard/BuyerSettings/ShippingAddress";
-import AccountSettings from "@/pages/BuyerDashboard/BuyerSettings/AccountSettings";
-import PaymentMethods from "@/pages/BuyerDashboard/BuyerSettings/PaymentMethods";
+import SellerPersonalInformation from "./SellerPersonalInformation";
+import SellerStorePreferences from "./SellerStorePreferences";
+import SellerPaymentSettings from "./SellerPaymentSettings";
+import SellerNotifications from "./SellerNotifications";
+import SellerSecurity from "./SellerSecurity";
 
 const Settings = () => {
   return (
@@ -57,19 +57,19 @@ const Settings = () => {
         </TabsList>
 
         <TabsContent value="personal-information">
-          <PersonalInformation />
+          <SellerPersonalInformation />
         </TabsContent>
         <TabsContent value="business-information">
-          <BusinessInformation />
+          <SellerStorePreferences />
         </TabsContent>
         <TabsContent value="shipping-address">
-          <ShippingAddress />
+          <SellerPaymentSettings />
         </TabsContent>
         <TabsContent value="account-settings">
-          <AccountSettings />
+          <SellerNotifications />
         </TabsContent>
         <TabsContent value="payment-methods">
-          <PaymentMethods />
+          <SellerSecurity />
         </TabsContent>
       </Tabs>
     </div>
