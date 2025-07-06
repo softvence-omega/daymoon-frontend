@@ -12,10 +12,7 @@ const Founders = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-[32px]">
         {founders.map((founder, idx) => (
-          <div
-            key={idx}
-            className="flex flex-col rounded-[12px] bg-white"
-          >
+          <div key={idx} className="flex flex-col rounded-[12px] bg-white">
             {/* Image */}
             <img
               src={founder.image}

@@ -1,8 +1,9 @@
-import { useState } from "react";
-import { useKeenSlider } from "keen-slider/react";
-import { Heart, ChevronLeft, ChevronRight } from "lucide-react";
 import star from "@/assets/Icon/star_rate.svg";
 import "keen-slider/keen-slider.min.css";
+import { useKeenSlider } from "keen-slider/react";
+import { ChevronLeft, ChevronRight, Heart } from "lucide-react";
+import { useState } from "react";
+import discImg from "../../assets/Icon/discount.svg";
 
 interface ProductProps {
   title: string;
@@ -10,6 +11,7 @@ interface ProductProps {
   priceRange: string;
   rating: number;
   moq: string;
+  discount: number;
 }
 
 const ProductCard = ({
@@ -18,6 +20,7 @@ const ProductCard = ({
   priceRange,
   rating,
   moq,
+  discount,
 }: ProductProps) => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -31,9 +34,21 @@ const ProductCard = ({
 
   return (
     <div className="bg-white shadow-[2px_4px_14.1px_rgba(0,0,0,0.08)] rounded-lg hover:shadow-lg transition-shadow duration-300 overflow-hidden relative flex flex-col min-h-[428px]">
-      {/* Favorite Button */}
-      <button className="absolute top-4 right-4 z-10 bg-[rgba(0,0,0,0.4)] h-9 w-9 flex items-center justify-center shadow rounded-[12px] hover:bg-sunset-orange ">
-        <Heart className="h-5 w-5 text-white" />
+      {/* Discount Badge & Favorite Button */}
+      <div className="absolute top-4 left-0 w-full px-4 flex items-center justify-between z-10">
+        {discount > 0 ? (
+          <div className="relative flex items-center">
+            <img src={discImg} alt="discount" className="w-12 h-12" />
+            <span className="absolute inset-0 flex items-center justify-center text-white text-xs font-bold">
+              {discount}%
+            </span>
+          </div>
+        ) : (
+          <div /> // keeps spacing if no discount
+        )}
+      </div>
+      <button className="absolute top-4 right-4 z-10 h-10 w-10 flex items-center justify-center rounded-[12px] bg-[rgba(26,26,26,0.5)] backdrop-blur-[10.65px] hover:bg-sunset-orange cursor-pointer">
+        <Heart className="h-6 w-6 text-white" />
       </button>
 
       {/* Image Slider */}
@@ -103,7 +118,9 @@ const ProductCard = ({
         </div>
 
         <div className="flex items-center gap-2 pb-[12px]">
-          <span className="text-[15px] font-semibold text-[#FCAB3F]">{priceRange}</span>
+          <span className="text-[15px] font-semibold text-[#FCAB3F]">
+            {priceRange}
+          </span>
           <span className="text-[#484848] text-[15px]">•</span>
           <span className="text-[13px] text-[#484848]">MOQ: {moq}</span>
         </div>

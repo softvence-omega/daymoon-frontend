@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 
 // Define the props interface
 interface CommonWrapperProps {
@@ -12,7 +12,7 @@ const CommonWrapper: React.FC<CommonWrapperProps> = ({
   className = "",
 }) => {
   return (
-    <div className={`max-w-[1400px] mx-auto my-auto px-4 md:px-4 lg:px-2 ${className}`}>
+    <div className={`max-w-[1400px] mx-auto my-auto px-4 lg:px-0 ${className}`}>
       {children}
     </div>
   );
