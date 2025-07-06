@@ -2,10 +2,14 @@ import BuyerSignup from "@/components/Authentication/BuyerSignup";
 import SellerRegistration from "@/components/Authentication/seller/SellerRegistration";
 import OverViewBanner from "@/components/ReUseable/OverViewBanner";
 import Seller from "@/components/Seller/Seller";
+import AddProductForm from "@/components/SellerDashboard/SellerProducts/AddProductForm";
 import SellerLayout from "@/Layout/SellerLayout";
 import AdminDashboard from "@/pages/Admin/AdminDashboard";
 import Login from "@/pages/Login";
+import SellerAnalyticsPage from "@/pages/SellerDashboard/SellerAnalyticsPage";
 import SellerDashboardPage from "@/pages/SellerDashboard/SellerDashboardPage";
+import SellerHelpPage from "@/pages/SellerDashboard/SellerHelpPage";
+import SellerInquiriesDetails from "@/pages/SellerDashboard/SellerInquiriesDetails";
 import SellerInquiriesPage from "@/pages/SellerDashboard/SellerInquiriesPage";
 import SellerInvoiceFormPage from "@/pages/SellerDashboard/SellerInvoiceFormPage";
 import SellerOrdersPage from "@/pages/SellerDashboard/SellerOrder/SellerOrdersPage";
@@ -25,6 +29,7 @@ import Contact from "../pages/Contact";
 import Home from "../pages/Home";
 import NotFound from "../pages/NotFound";
 import AdminRoute from "./AdminRoutes";
+import BuyerRoute from "./BuyerRoute";
 // import BuyerOrdersPage from "@/pages/BuyerDashboard/BuyerOrdersPage";
 
 const routes = createBrowserRouter([
