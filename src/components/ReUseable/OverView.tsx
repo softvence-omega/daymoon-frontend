@@ -2,6 +2,8 @@ import CommonWrapper from "@/common/CommonWrapper";
 import SidebarInfo from "./SidebarInfo";
 import JoinUs from "./JoinUs";
 import OverViewTab from "./OverViewTab";
+import ProductsComponent from "./ProductsComponent";
+import HomeProducts from "./HomeProducts";
 
 const overviewData = [
   {
@@ -77,6 +79,14 @@ const OverView = () => {
 
         <div className="mt-10">
           <JoinUs />
+          <ProductsComponent
+            selectedCategory="All"
+            selectedPrice="All"
+            gridCols="4"
+            mobileCols={1}
+            visibleCount={4}
+          />
+          <HomeProducts/>
         </div>
       </CommonWrapper>
     </div>
