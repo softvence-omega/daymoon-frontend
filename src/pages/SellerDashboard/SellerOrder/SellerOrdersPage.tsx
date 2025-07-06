@@ -1,9 +1,5 @@
 const SellerOrdersPage = () => {
-  return (
-    <div>
-      <h1>SellerOrdersPage</h1>
-    </div>
-  );
+  return <div>SellerOrdersPage</div>;
 };
 
 export default SellerOrdersPage;

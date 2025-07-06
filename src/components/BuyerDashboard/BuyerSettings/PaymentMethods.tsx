@@ -1,4 +1,3 @@
-import { Card } from "@/components/ui/card";
 import { ImPencil } from "react-icons/im";
 import { FaPlus } from "react-icons/fa";
 import { MdOutlineDelete } from "react-icons/md";
@@ -48,11 +47,11 @@ const PaymentMethods = () => {
 	};
 
 	return (
-		<div className="px-4 sm:px-6 lg:px-8">
+		<div className="">
 			<h2 className="text-2xl sm:text-3xl font-medium text-[#1A1A1A] mt-6 sm:mt-10 mb-4 sm:mb-6">
 				Payment Methods
 			</h2>
-			<Card className="mx-auto mt-6 sm:mt-8 p-6 sm:p-10 bg-[#FFFFFF] border border-[#B3B3B3] rounded-[20px] ">
+			<div className="mx-auto mt-6 sm:mt-8 md:p-6 sm:p-10 bg-[#FFFFFF] md:border border-[#B3B3B3] rounded-[20px] ">
 				<div className="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-6">
 					{cardDetails.map((card, index) => (
 						<div
@@ -113,7 +112,7 @@ const PaymentMethods = () => {
 						</p>
 					</div>
 				</div>
-			</Card>
+			</div>
 		</div>
 	);
 };
