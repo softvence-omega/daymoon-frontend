@@ -7,6 +7,7 @@ import CommonHeader from "@/common/CommonHeader";
 
 import { IoIosArrowForward } from "react-icons/io";
 import Variants from "./Variants";
+import SubHeader from "@/common/SubHeader";
 
 const imageList = [{ img: p1 }, { img: p2 }, { img: product }];
 type PriceTier = {
@@ -28,12 +29,12 @@ const ProductImage: React.FC<ProductProps> = ({
   samplePrice,
 }) => {
   return (
-    <div className=" flex flex-col gap-6 rounded-xl max-w-[615px] p-6 border border-foundation-white ">
+    <div className="w-full flex flex-col gap-6 rounded-xl  lg:p-6 lg:border lg:border-foundation-white ">
       <img className=" w-full max-h-[400px] rounded-2xl" src={product} alt="" />
       <CommonHeader>{title}</CommonHeader>
 
       <div className=" pt-2">
-        <p className="text-sm text-gray-500 mb-1">Minimum Order Quantity</p>
+        <SubHeader>Minimum Order Quantity</SubHeader>
         <CommonHeader>{minOrderQuantity}</CommonHeader>
       </div>
 
@@ -42,24 +43,24 @@ const ProductImage: React.FC<ProductProps> = ({
         <div className="grid grid-cols-2 md:grid-cols-4 gap-1 ">
           {priceTiers.map((tier, index) => (
             <div key={index} className=" ">
-              <p className="text-sm text-foundation-gray">{tier.range}</p>
+              <SubHeader>{tier.range}</SubHeader>
               <CommonHeader className="!text-lg">{tier.price}</CommonHeader>
             </div>
           ))}
         </div>
       </div>
 
-      <div className="flex items-center justify-between flex-wrap gap-4 bg-[#FCFCFC] border border-foundation-white rounded-xl px-4 py-3">
+      <div className="flex items-center justify-between flex-wrap gap-1 lg:gap-4 bg-[#FCFCFC] border border-foundation-white rounded-xl px-4 py-3">
         <div className="flex gap-1 items-center">
           <img src={box} alt="" />
-          <CommonHeader className=" !text-lg !text-black">
+          <CommonHeader className=" !text-sm xl:!text-lg !text-black">
             Get Your Sample
-            <span className=" text-sunset-orange">({samplePrice})</span>
+            <span className=" text-sunset-orange ">({samplePrice})</span>
           </CommonHeader>
         </div>
 
         <div className=" bg-[#FEECEB] p-2 rounded-full">
-          <span className="text-2xl text-sunset-orange">
+          <span className="text-xl xl:text-2xl text-sunset-orange">
             <IoIosArrowForward />
           </span>
         </div>

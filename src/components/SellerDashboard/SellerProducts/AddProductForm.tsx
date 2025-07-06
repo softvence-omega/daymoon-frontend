@@ -18,12 +18,17 @@ const AddProductForm = () => {
 
   return (
     <div className="  ">
-      <div className="py-6">
-        <Breadcrumbs />
+      <div className="pb-6">
+        <Breadcrumbs title="Products" subtitle="Add New Product" />
       </div>
-      <div className="flex items-start gap-6">
-        <ProductImage {...productData} />
-        <ProductInformation />
+      <div className="flex flex-col lg:flex-row gap-6">
+        <div className="w-full lg:w-1/3">
+          <ProductImage {...productData} />
+        </div>
+
+        <div className="w-full lg:w-2/3">
+          <ProductInformation />
+        </div>
       </div>
     </div>
   );

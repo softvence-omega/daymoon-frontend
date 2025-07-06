@@ -39,7 +39,7 @@ const Card = () => {
   const bgColors = ["#FFA6001A", "#9747FF1A", "#12CC1E1A", "#009CDE1A"]; // 10% opacity in hex
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 place-items-start w-full ">
       {statusData.map((single, index) => {
         const isNegative = single.change.includes("-");
         const changeColor = isNegative ? "#E35A5F" : "#12CC1E";
@@ -48,7 +48,7 @@ const Card = () => {
         return (
           <div
             key={single.title}
-            className="w-full max-w-[358px] h-[187px] p-5 sm:p-6 bg-white rounded-[16px] border border-[#E0E0E0] flex flex-col justify-between mx-auto"
+            className="w-full max-w-[358px] h-[187px]  p-5 sm:p-6 bg-white rounded-[16px] border border-[#E0E0E0] flex flex-col justify-between mx-auto"
           >
             {/* Top Row */}
             <div className="flex items-center justify-start gap-5">
