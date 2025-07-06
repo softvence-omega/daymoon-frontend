@@ -7,9 +7,6 @@ import product from "../../assets/Home/products.png";
 import Categories from "../Shop/ShopCategories";
 import TopRatedManufacturers from "../Shop/TopManufacturer";
 import GlobalSearchBar from "./SearchBar";
-import HomeProducts from "../ReUseable/HomeProducts";
-import { NewArrivalBanner } from "../Shop/NewArrival";
-import ChoosePlan from "../ReUseable/ChoosePlan";
 
 const contentVariants = {
   initial: { opacity: 0, x: 20 },
@@ -65,11 +62,7 @@ const HomeTabs = () => {
                 transition={{ duration: 0.3 }}
                 className=""
               >
-                <GlobalSearchBar />
-                <Categories number={8} />
-                <NewArrivalBanner />
-                <HomeProducts />
-                <ChoosePlan />
+                all product pages
               </motion.div>
             )}
 
@@ -83,8 +76,8 @@ const HomeTabs = () => {
                 transition={{ duration: 0.3 }}
                 className=""
               >
-                <GlobalSearchBar/>
-                <Categories number={8}/>
+                <GlobalSearchBar />
+                <Categories number={8} />
                 <TopRatedManufacturers />
               </motion.div>
             )}
