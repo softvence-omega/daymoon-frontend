@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 
 // Define the props interface
 interface CommonWrapperProps {
