@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
-import CommonWrapper from "@/common/CommonWrapper";
 import apple from "../assets/footer/apple.svg";
 import facebook from "../assets/footer/facebook.svg";
 import instagram from "../assets/footer/instagram.svg";
@@ -76,7 +75,7 @@ export function Footer() {
 
   return (
     <footer className="bg-[#0B1321] pb-20 mt-20 sm:pb-32 text-white py-12 px-6">
-      <CommonWrapper>
+      <div className="max-w-[1520px] pt-12 mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {footerSections.map((section, index) => (
             <div key={index} className="space-y-4">
@@ -160,7 +159,7 @@ md:text-md md:font-semibold"
             </motion.button>
           </div>
         </div>
-      </CommonWrapper>
+      </div>
     </footer>
   );
 }

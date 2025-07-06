@@ -1,10 +1,10 @@
-import HomeTabs from "@/components/HomePage/HomeTabs";
+import GlobalSearchBar from "@/components/HomePage/SearchBar";
 import CommonWrapper from "../common/CommonWrapper";
 
 const Home = () => {
   return (
     <CommonWrapper>
-      <div className="h-screen text-sunset-orange">Home</div>
+      <GlobalSearchBar />
     </CommonWrapper>
   );
 };

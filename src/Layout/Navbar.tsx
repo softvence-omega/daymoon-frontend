@@ -46,14 +46,18 @@ const Navbar = () => {
 
   return (
     <nav className="w-full text-[#1A1A1A)]  bg-white shadow  py-7">
-      <CommonWrapper>
+      <CommonWrapper className="flex  justify-between items-center">
         <div className="flex items-center space-x-[58px]">
-          <div className="flex items-center space-x-2">
-            <img alt="logo" src={logo} className="w-[124px] h-[45px]" />
+          <div className="flex  w-[124px] h-[45px] items-center space-x-2">
+            <img
+              alt="logo "
+              src={logo}
+              className="object-cover w-full h-full "
+            />
           </div>
 
           <DropdownMenu>
-            <DropdownMenuTrigger className="relative p-2 " asChild>
+            <DropdownMenuTrigger className="relative border-none p-2 " asChild>
               <motion.div
                 whileHover={{ scale: 1.01 }}
                 whileTap={{ scale: 0.8, transition: { duration: 0.1 } }}
@@ -63,17 +67,20 @@ const Navbar = () => {
                 <ChevronDown className="h-4 w-4" />
               </motion.div>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="start" className="w-48">
+            <DropdownMenuContent
+              align="start"
+              className="w-52 bg-white border-0"
+            >
               {categories.map((category, idx) => (
                 <motion.div
                   whileHover={{ scale: 1.01 }}
                   whileTap={{ scale: 0.8, transition: { duration: 0.1 } }}
                   key={idx}
                 >
-                  <DropdownMenuItem className="text-lg px-4 py-2 rounded-md hover:bg-gray-100 cursor-pointer text-[#1A1A1A] ">
+                  <DropdownMenuItem className="text-lg px-4 py-2 rounded-md hover:bg-gray-100 cursor-pointer text-[#1A1A1A] text-nowrap ">
                     {category}
                   </DropdownMenuItem>
-                  <div className="border-t my-1" />
+                  <div className="border-t border-[#E5E5E5] my-1" />
                 </motion.div>
               ))}
             </DropdownMenuContent>
@@ -146,7 +153,10 @@ const Navbar = () => {
 
             <div>
               <DropdownMenu>
-                <DropdownMenuTrigger className="relative p-2" asChild>
+                <DropdownMenuTrigger
+                  className="relative p-2 border-none"
+                  asChild
+                >
                   <motion.div
                     whileHover={{ scale: 1.01 }}
                     whileTap={{ scale: 0.5, transition: { duration: 0.1 } }}
@@ -157,7 +167,7 @@ const Navbar = () => {
 
                 <DropdownMenuContent
                   align="start"
-                  className="w-56 rounded-xl shadow-md bg-white p-2 space-y-1"
+                  className="w-56 bg-white border-0 rounded-xl shadow-md  p-2 space-y-1"
                 >
                   {menuItems.map((category, idx) => (
                     <motion.div
@@ -168,7 +178,7 @@ const Navbar = () => {
                       <DropdownMenuItem className="text-lg px-4 py-2 rounded-md hover:bg-gray-100 cursor-pointer text-[#1A1A1A] ">
                         {category}
                       </DropdownMenuItem>
-                      <div className="border-t my-1" />
+                      <div className="border-t border-[#E5E5E5] my-1" />
                     </motion.div>
                   ))}
                 </DropdownMenuContent>
