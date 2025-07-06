@@ -18,6 +18,7 @@ const Shop = () => {
       </div>
       <CommonWrapper>
         <ShopCategories number={8} />
+
         <TopRatedManufacturers />
         <JoinUs />
       </CommonWrapper>
