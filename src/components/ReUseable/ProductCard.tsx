@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { useKeenSlider } from "keen-slider/react";
-import { Heart, ChevronLeft, ChevronRight } from "lucide-react";
 import star from "@/assets/Icon/star_rate.svg";
 import "keen-slider/keen-slider.min.css";
+import { useKeenSlider } from "keen-slider/react";
+import { ChevronLeft, ChevronRight, Heart } from "lucide-react";
+import { useState } from "react";
 
 interface ProductProps {
   title: string;
@@ -103,7 +103,9 @@ const ProductCard = ({
         </div>
 
         <div className="flex items-center gap-2 pb-[12px]">
-          <span className="text-[15px] font-semibold text-[#FCAB3F]">{priceRange}</span>
+          <span className="text-[15px] font-semibold text-[#FCAB3F]">
+            {priceRange}
+          </span>
           <span className="text-[#484848] text-[15px]">•</span>
           <span className="text-[13px] text-[#484848]">MOQ: {moq}</span>
         </div>
