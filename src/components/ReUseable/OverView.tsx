@@ -2,6 +2,7 @@ import CommonWrapper from "@/common/CommonWrapper";
 import SidebarInfo from "./SidebarInfo";
 import JoinUs from "./JoinUs";
 import OverViewTab from "./OverViewTab";
+import ChoosePlan from "./ChoosePlan";
 
 const overviewData = [
   {
@@ -77,6 +78,7 @@ const OverView = () => {
 
         <div className="mt-10">
           <JoinUs />
+          <ChoosePlan/>
         </div>
       </CommonWrapper>
     </div>
