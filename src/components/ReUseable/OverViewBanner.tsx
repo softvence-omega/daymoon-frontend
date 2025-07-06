@@ -21,7 +21,7 @@ const OverViewBanner = () => {
         />
 
         {/* Overlapping Card */}
-        <div className="absolute top-[120px] md:top-[350px] lg:top-[400px] left-0 w-full px-4 sm:px-6">
+        <div className="absolute top-[120px] md:top-[350px] lg:top-[400px] left-0 w-full">
           <CommonWrapper>
             <div className="bg-white rounded-[20px] lg:shadow-xl md:shadow-md shadow p-6 md:p-[40px] flex flex-col md:flex-row items-center justify-between gap-6 h-auto md:h-[450px]">
               {/* Left: Company Info */}
@@ -51,18 +51,21 @@ const OverViewBanner = () => {
                       {[...Array(5)].map((_, i) => (
                         <FaStar
                           key={i}
-                          className="text-[#FFC633] text-base w-[18px] h-[18px] md:w-[22px] md:h-[22px]"
+                          className="text-[#FFC633] w-[18px] h-[18px] md:w-[22px] md:h-[22px]"
                         />
                       ))}
-                      <div className="flex items-center ml-4">
-                        <span className="text-jet-black font-[500] text-[14px] md:text-[16px]">
+
+                      {/* Group numbers properly aligned */}
+                      <div className="flex items-center ml-4 gap-1">
+                        <span className="text-jet-black font-medium text-[14px] md:text-[16px] leading-[1] flex items-center">
                           4.5
                         </span>
-                        <span className="text-[14px] md:text-[16px] text-[#666] ml-1 font-[400]">
+                        <span className="text-[#666] font-normal text-[14px] md:text-[16px] leading-[1] flex items-center">
                           (234)
                         </span>
                       </div>
                     </div>
+
                     <div className="flex items-center text-sm text-[#484848] gap-1">
                       <MdLocationOn className="h-[20px] w-[20px] md:h-[24px] md:w-[24px]" />
                       <p className="text-sm font-normal leading-[1.6]">
