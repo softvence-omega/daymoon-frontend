@@ -1,7 +1,10 @@
+import HomeTabs from "@/components/HomePage/HomeTabs";
 import CommonWrapper from "../common/CommonWrapper";
 
 const Home = () => {
-  return <CommonWrapper>home sweet home</CommonWrapper>;
+  return <CommonWrapper>
+    <HomeTabs/>
+  </CommonWrapper>;
 };
 
 export default Home;

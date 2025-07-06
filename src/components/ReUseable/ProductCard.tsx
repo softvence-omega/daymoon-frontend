@@ -7,7 +7,6 @@ import { useState } from "react";
 
 import discImg from "../../assets/Icon/discount.svg";
 
-
 interface ProductProps {
   title: string;
   images: string[];
@@ -65,7 +64,7 @@ const ProductCard = ({
               <img
                 src={src}
                 alt={`product-slide-${i}`}
-                className="object-contain max-w-full"
+                className="max-w-full"
               />
             </div>
           ))}
