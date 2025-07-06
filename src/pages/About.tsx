@@ -4,6 +4,7 @@ import Core from "@/components/About/Core";
 import Facts from "@/components/About/Facts";
 import Founders from "@/components/About/Founders";
 import Story from "@/components/About/Story";
+
 import JoinUs from "@/components/ReUseable/JoinUs";
 
 const About = () => {
