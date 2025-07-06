@@ -1,4 +1,3 @@
-import CommonWrapper from "@/common/CommonWrapper";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -51,16 +50,16 @@ const Navbar = () => {
 
   return (
     <nav className="w-full hidden md:block text-[#1A1A1A] bg-white shadow py-7">
-      <CommonWrapper className="flex justify-center items-center">
-        {/* Left: Logo */}
-        <div className="flex items-center">
-          <div className="flex w-[124px] h-[45px] items-center space-x-2">
-            <img alt="logo" src={logo} className="object-cover w-full h-full" />
+      {/* Left: Logo */}
+      <div className="flex justify-between items-center max-w-[1400px] mx-auto my-auto px-4 lg:px-0">
+        <div className="flex items-center ">
+          <div className="flex w-[124px] h-[45px]  items-center ">
+            <img alt="logo" src={logo} />
           </div>
         </div>
 
         {/* Center: Links */}
-        <section className="flex flex-1 items-center justify-center gap-7 xl:ml-52">
+        <section className="flex items-center justify-center gap-7  xl:ml-52">
           <DropdownMenu>
             <DropdownMenuTrigger className="relative border-none p-2" asChild>
               <motion.div
@@ -217,7 +216,8 @@ const Navbar = () => {
             </DropdownMenu>
           </div>
         </div>
-      </CommonWrapper>
+      </div>
+      {/* </CommonWrapper> */}
     </nav>
   );
 };
