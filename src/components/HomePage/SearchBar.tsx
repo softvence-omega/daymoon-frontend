@@ -12,8 +12,8 @@ import fileSearch from "../../assets/Icon/fileSearch.svg";
 import arrow from "../../assets/Navbar/arrow.svg";
 const GlobalSearchBar = () => {
   return (
-    <div className="w-full max-w-[1140px] mx-auto flex flex-col md:flex-row items-center justify-between gap-4 lg:px-48 py-4 mt-20 ">
-      <div className="w-full flex-1 flex items-center rounded-full shadow-sm sm:px-4   bg-white p-3">
+    <div className="w-full max-w-[1460px] mx-auto hidden lg:flex flex-col md:flex-row items-center justify-between gap-4 lg:px-48 py-4 mt-12 ">
+      <div className="w-full flex-1 flex items-center rounded-full shadow-sm   bg-white px-6 py-4">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button
@@ -52,11 +52,11 @@ const GlobalSearchBar = () => {
           </DropdownMenuContent>
         </DropdownMenu>
 
-        <div className="flex-1 mx-2 relative">
+        <div className="flex-1 mx-2 relative rounded-full overflow-hidden">
           <Input
             type="text"
             placeholder="Search for products..."
-            className="focus-visible:ring-0 shadwo-none  ring-0 focus-visible:ring-offset-0 bg-transparent text-sm md:text-base border-none"
+            className="bg-transparent text-sm md:text-base border-none outline-none focus:outline-none focus:ring-0 focus:border-transparent focus:shadow-none shadow-none"
           />
           <Button
             size="icon"
@@ -71,10 +71,10 @@ const GlobalSearchBar = () => {
      for mobile view query
       </div> */}
 
-      <div className="p-4 flex items-center border border-none rounded-full shadow-md px-4 bg-white w-full md:w-auto">
+      <div className=" px-6 py-4 flex items-center border border-none rounded-full shadow-md bg-white w-full md:w-auto">
         <button className="text-sm whitespace-nowrap flex items-center justify-center w-full md:w-auto">
           <img alt="arrow" src={fileSearch} className="w-fit h-fit mr-2" />
-          <span className="text-[#1A1A1A] text-sm md:text-base font-normal hidden sm:inline">
+          <span className="text-[#1A1A1A] text-sm md:text-base text-nowrap hidden sm:inline">
             Search by Image
           </span>
         </button>

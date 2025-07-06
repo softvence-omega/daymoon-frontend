@@ -3,6 +3,7 @@ import SellerRegistration from "@/components/Authentication/seller/SellerRegistr
 import OverViewBanner from "@/components/ReUseable/OverViewBanner";
 import Seller from "@/components/Seller/Seller";
 import AddProductForm from "@/components/SellerDashboard/SellerProducts/AddProductForm";
+import Shop from "@/components/Shop/Shop";
 import SellerLayout from "@/Layout/SellerLayout";
 import AdminDashboard from "@/pages/Admin/AdminDashboard";
 import Login from "@/pages/Login";
@@ -35,9 +36,14 @@ const routes = createBrowserRouter([
         path: "/",
         element: <Home />,
       },
+
       {
         path: "/about",
         element: <About />,
+      },
+      {
+        path: "/shop",
+        element: <Shop />,
       },
       {
         path: "/contact",

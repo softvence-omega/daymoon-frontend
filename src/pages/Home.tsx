@@ -1,12 +1,7 @@
-import GlobalSearchBar from "@/components/HomePage/SearchBar";
 import CommonWrapper from "../common/CommonWrapper";
 
 const Home = () => {
-  return (
-    <CommonWrapper>
-      <GlobalSearchBar />
-    </CommonWrapper>
-  );
+  return <CommonWrapper>home sweet home</CommonWrapper>;
 };
 
 export default Home;
