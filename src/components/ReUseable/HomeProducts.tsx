@@ -5,8 +5,8 @@ import { Button } from "@/components/ui/button";
 import arrow from "../../assets/Icon/arrow.svg";
 
 const HomeProducts = () => {
-  const [visibleCount, setVisibleCount] = useState(30); // desktop default
-  const [mobileIndex, setMobileIndex] = useState(1); // mobile pagination
+  const [visibleCount, setVisibleCount] = useState(30); // large device cards count
+  const [mobileIndex, setMobileIndex] = useState(1); // for mobile paging (4 cards per page)
   const [isMobile, setIsMobile] = useState(false);
 
   // Detect screen width
@@ -19,12 +19,12 @@ const HomeProducts = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Products to show
+  // Calculate displayed products
   const displayedProducts = isMobile
-    ? products.slice(0, mobileIndex * 4)
-    : products.slice(0, visibleCount);
+    ? products.slice(0, mobileIndex * 4) // mobile: 4 cards per page (2 cols x 2 rows)
+    : products.slice(0, visibleCount); // desktop: visibleCount cards (30 by default)
 
-  // Handle explore more
+  // Explore more click handler
   const handleExploreMore = () => {
     if (isMobile) {
       setMobileIndex((prev) => prev + 1);
@@ -33,19 +33,17 @@ const HomeProducts = () => {
     }
   };
 
-  // Whether there are more products to show
+  // Check if more products available
   const hasMore = isMobile
     ? mobileIndex * 4 < products.length
     : visibleCount < products.length;
 
   return (
-    <div className="mt-[80px]">
+    <div>
       {/* Grid */}
       <div
         className={`grid gap-8 ${
-          isMobile
-            ? `grid-cols-2 ${displayedProducts.length > 2 ? "grid-rows-2" : ""}`
-            : "grid-cols-6"
+          isMobile ? "grid-cols-2 grid-rows-2" : "grid-cols-6 grid-rows-5"
         }`}
       >
         {displayedProducts.map((product, idx) => (
@@ -54,13 +52,14 @@ const HomeProducts = () => {
       </div>
 
       {/* Explore More Button */}
+      {/* Explore More Button */}
       {hasMore && (
         <div className="text-center mt-6">
           <Button
             onClick={handleExploreMore}
-            className="inline-flex items-center gap-2 px-5 py-2 rounded-[20px] 
-              text-sunset-orange font-medium md:font-semibold text-base md:text-[18px] 
-              hover:shadow-lg transition-shadow cursor-pointer"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg md:rounded-xl 
+                 text-sunset-orange font-medium md:font-semibold text-base md:text-lg 
+                 hover:shadow-lg transition-shadow cursor-pointer"
           >
             Explore More
             <img src={arrow} alt="arrow icon" className="w-4 h-4" />

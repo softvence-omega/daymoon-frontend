@@ -58,10 +58,10 @@ const Reviews = () => {
   };
 
   return (
-    <section className="mt-8 md:mt-[48px]">
+    <section className="mt-8 md:mt-[24px]">
       {/* Header */}
-      <div className="flex flex-wrap items-center justify-between mb-6">
-        <h2 className="text-[32px] font-semibold text-[#1A1A1A] leading-[120%] uppercase">
+      <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between mb-10 gap-4">
+        <h2 className="text-2xl sm:text-3xl font-semibold text-[#1A1A1A] leading-[120%] uppercase">
           ALL REVIEWS{" "}
           <span className="text-jet-black text-base font-normal leading-[160%]">
             ({reviews.length})
