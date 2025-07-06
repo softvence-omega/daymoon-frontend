@@ -85,7 +85,7 @@ const ChoosePlan = () => {
                 ))}
               </ul>
             </div>
-            <button className="mt-6 bg-[#F46A39] hover:bg-red-600 text-white py-2.5 px-6 md:py-[10px] md:px-[40px] rounded-[20px] text-sm md:text-[18px] font-medium w-full transition">
+            <button className="mt-6 bg-[#F46A39] hover:bg-red-600 text-white py-2.5 px-6 md:py-[10px] md:px-[40px] rounded-[20px] text-sm md:text-[18px] font-medium w-full transition cursor-pointer">
               Get Started
             </button>
           </div>
