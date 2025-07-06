@@ -6,6 +6,7 @@ import { FlashSaleBanner } from "./FlashSale";
 import { NewArrivalBanner } from "./NewArrival";
 import ShopCategories from "./ShopCategories";
 import TopRatedManufacturers from "./TopManufacturer";
+import ProductsComponent from "../ReUseable/ProductsComponent";
 
 const Shop = () => {
   return (
@@ -18,6 +19,15 @@ const Shop = () => {
       </div>
       <CommonWrapper>
         <ShopCategories number={8} />
+        <div className="mt-20">
+          <ProductsComponent
+            selectedCategory="All"
+            selectedPrice="All"
+            gridCols="4"
+            mobileCols={2}
+            visibleCount={16}
+          />
+        </div>
         <TopRatedManufacturers />
         <JoinUs />
       </CommonWrapper>

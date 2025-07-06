@@ -28,7 +28,7 @@ const ProductsComponent: React.FC<ProductsComponentProps> = ({
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // gridCols জন্য switch দিয়ে desktop ক্লাস নির্ধারণ
+ 
   let desktopGridClass = "grid-cols-2 lg:grid-cols-3"; // default
   switch (gridCols) {
     case "2":
@@ -45,7 +45,7 @@ const ProductsComponent: React.FC<ProductsComponentProps> = ({
       break;
   }
 
-  // mobileCols জন্য switch দিয়ে mobile ক্লাস নির্ধারণ
+  // mobileCols 
   let mobileGridClass = "grid-cols-1"; // default
   switch (mobileCols) {
     case 1:
