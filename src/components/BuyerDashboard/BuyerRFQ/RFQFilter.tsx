@@ -134,7 +134,7 @@ const RFQFilter = ({ onFilterChange = () => {} }: RFQFilterProps) => {
   };
 
   return (
-    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 p-4 border border-[#E5E5E5] rounded-full max-w-7xl mx-auto bg-transparent">
+    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 p-4 lg:border lg:border-[#E5E5E5] rounded-full max-w-7xl mx-auto bg-transparent">
       {filterConfigs.map((config) => (
         <FilterSelect
           key={config.label}
