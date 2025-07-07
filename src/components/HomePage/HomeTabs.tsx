@@ -83,6 +83,8 @@ const HomeTabs = () => {
                 transition={{ duration: 0.3 }}
                 className=""
               >
+                <GlobalSearchBar/>
+                <Categories number={8}/>
                 <TopRatedManufacturers />
               </motion.div>
             )}
