@@ -5,11 +5,8 @@ import manu from "../../assets/Home/manu.png";
 import product from "../../assets/Home/products.png";
 import Categories from "../Shop/ShopCategories";
 import TopRatedManufacturers from "../Shop/TopManufacturer";
-
-import ChoosePlan from "../ReUseable/ChoosePlan";
 import GlobalSearchBar from "../ReUseable/GlobalSearchBar";
 import HomeProducts from "../ReUseable/HomeProducts";
-import { NewArrivalBanner } from "../Shop/NewArrival";
 
 const contentVariants = {
   initial: { opacity: 0, x: 20 },
@@ -65,13 +62,10 @@ const HomeTabs = () => {
                 className=""
               >
                 <GlobalSearchBar />
-                <Categories number={8} />
-                <NewArrivalBanner />
                 <HomeProducts
                   cols={{ mobile: 2, md: 4, lg: 6 }}
                   rows={{ mobile: 2, md: 3, lg: 5 }}
                 />
-                <ChoosePlan />
               </motion.div>
             )}
 

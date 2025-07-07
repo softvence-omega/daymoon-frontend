@@ -460,7 +460,7 @@ const features = [
 
 export default function WhyChooseUs() {
   return (
-    <section className=" mx-auto mt-32">
+    <section className=" mx-auto mt-[120px]">
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
