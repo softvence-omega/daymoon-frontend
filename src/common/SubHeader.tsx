@@ -6,7 +6,7 @@ interface SubHeader {
 }
 
 const SubHeader: React.FC<SubHeader> = ({ children, className }) => {
-  return <h2 className={`test-sm text-black/60  ${className}`}>{children}</h2>;
+  return <h2 className={`text-sm text-black/60  ${className}`}>{children}</h2>;
 };
 
 export default SubHeader;

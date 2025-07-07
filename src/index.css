@@ -12,6 +12,9 @@
   --color-catalien-blue: #192d4e;
   --color-catalien-blue-dark: #0b1321;
   --color-jet-black: #1a1a1a;
+  --color-ghost: #FCFCFC;
+  --color-header: #484848;
+  
   --background-image-my-gradient: linear-gradient(
     270deg,
     #f7813b 0%,
