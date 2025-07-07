@@ -136,7 +136,7 @@ const RFQModal: React.FC<RFQModalProps> = ({ isOpen, onClose }) => {
   };
 
   return (
-      <Dialog open={isOpen} onOpenChange={onClose} className="w-full lg:data-[state=open]:max-w-5xl data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0">
+      <Dialog open={isOpen} onOpenChange={onClose}>
         <DialogContent className=" w-full max-h-[90vh] overflow-y-auto bg-white">
           <DialogHeader>
             <DialogTitle className="text-2xl font-semibold text-gray-900">

@@ -40,7 +40,6 @@ const FilterSelect = ({
     <Select
       defaultValue={defaultValue}
       onValueChange={onValueChange}
-      className=""
     >
       <SelectTrigger className="w-full rounded-full border border-[#E5E5E5] bg-white text-[#1A1A1A] placeholder:text-[#1A1A1A] px-5 py-3 data-[size=default]:h-auto text-base [&_svg:not([class*='text-'])]:text-[#F04436]">
         <SelectValue placeholder={placeholder} />

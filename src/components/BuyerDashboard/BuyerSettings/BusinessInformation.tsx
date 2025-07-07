@@ -255,7 +255,6 @@ const BusinessInformation = () => {
           <Drawer>
             <DrawerTrigger asChild>
               <Button
-                variant=""
                 className="w-full border border-[#E5E5E5] bg-white rounded-xl text-base p-3 font-medium flex justify-between items-center shadow-none h-auto"
               >
                 <div className="flex items-center text-[#484848]">
