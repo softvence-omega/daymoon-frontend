@@ -2,7 +2,7 @@ import React from "react";
 import ReactApexChart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
 
-const EnquiriesByStatus: React.FC = () => {
+const EnquiriesByCategories: React.FC = () => {
   const series = [44, 55, 13, 33];
 
   const options: ApexOptions = {
@@ -11,7 +11,7 @@ const EnquiriesByStatus: React.FC = () => {
       height: 393,
       type: "donut",
     },
-    labels: ["Delivered", "Shipped", "Processing", "Cancelled"],
+    labels: ["Clothing", "Electronics", "Home Goods", "Others"],
     dataLabels: {
       enabled: false,
     },
@@ -59,7 +59,7 @@ const EnquiriesByStatus: React.FC = () => {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
         {/* Title */}
         <h1 className="text-[24px] leading-[130%]  text-[#484848]">
-          Enquiries By Status
+          Enquiries By Catagories
         </h1>
 
         {/* Dropdown */}
@@ -79,4 +79,4 @@ const EnquiriesByStatus: React.FC = () => {
   );
 };
 
-export default EnquiriesByStatus;
+export default EnquiriesByCategories;
