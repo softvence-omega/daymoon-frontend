@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
-import HomeProductCard from "./HomeProductCard";
+import SharedButton from "@/common/CommonHomepageButton";
 import { products } from "@/lib/productCard/cardData";
-import { Button } from "@/components/ui/button";
-import arrow from "../../assets/Icon/arrow.svg";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import HomeProductCard from "./HomeProductCard";
 
 const HomeProducts = () => {
   const [visibleCount, setVisibleCount] = useState(30); // desktop default
@@ -39,7 +39,7 @@ const HomeProducts = () => {
     : visibleCount < products.length;
 
   return (
-    <div className="mt-[80px]">
+    <div className="my-[80px]">
       {/* Grid */}
       <div
         className={`grid gap-8 ${
@@ -55,17 +55,11 @@ const HomeProducts = () => {
 
       {/* Explore More Button */}
       {hasMore && (
-        <div className="text-center mt-6">
-          <Button
-            onClick={handleExploreMore}
-            className="inline-flex items-center gap-2 px-5 py-2 rounded-[20px] 
-              text-sunset-orange font-medium md:font-semibold text-base md:text-[18px] 
-              hover:shadow-lg transition-shadow cursor-pointer"
-          >
-            Explore More
-            <img src={arrow} alt="arrow icon" className="w-4 h-4" />
-          </Button>
-        </div>
+        <Link to="/products">
+          <div className="max-w-[1520px] mx-auto flex justify-center mt-12 ">
+            <SharedButton></SharedButton>
+          </div>
+        </Link>
       )}
     </div>
   );

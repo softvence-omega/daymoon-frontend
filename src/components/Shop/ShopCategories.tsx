@@ -69,7 +69,7 @@ const ShopCategories = ({ number }: { number: number }) => {
                   onClick={() => handleCategoryClick(category.name)}
                   className={`relative border-none overflow-hidden m-0 p-0 border-box h-[140px]  rounded-lg cursor-pointer transition-transform group  $`}
                 >
-                  <div className="  w-full h-full">
+                  <div className=" w-full h-full">
                     <img
                       src={category.image}
                       alt={category.name}
