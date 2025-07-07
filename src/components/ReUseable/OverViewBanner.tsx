@@ -13,12 +13,12 @@ const OverViewBanner = () => {
   return (
     <div>
       <div className="relative w-full bg-white min-h-screen">
-      {/* Banner Background */}
-      <img
-        src={banner}
-        alt="Banner"
-        className="w-full h-[600px] object-cover"
-      />
+        {/* Banner Background */}
+        <img
+          src={banner}
+          alt="Banner"
+          className="w-full h-[350px] md:h-[400px] lg:h-[600px] object-cover"
+        />
 
         {/* Overlapping Card */}
         <div className="absolute top-[120px] md:top-[350px] lg:top-[400px] left-0 w-full">
@@ -94,39 +94,52 @@ const OverViewBanner = () => {
                       {stat.label}
                     </div>
                   </div>
-                  <div className="text-[14px] text-jet-black">{stat.label}</div>
-                </div>
-              ))}
-            </div>
-
-            {/* Right: Eight Buttons & Icon Section */}
-            <div className="flex flex-col justify-between gap-3 min-w-[220px] mt-2 md:mt-0 h-full">
-              {/* Eight Buttons */}
-              <div className="flex flex-col gap-4">
-                <button className="bg-[#192D4E] border-[#192D4E] text-white rounded-[20px] px-[40px] py-[10px] text-[18px] font-[500] hover:bg-[#192D4E] transition flex items-center gap-[10px] justify-center ">
-                  <img className="w-[24px] h-[24px] " src={sms} alt="" />{" "}
-                  Contact Supplier
-                </button>
-                <button
-                  className="border border-[#192D4E] text-[#192D4E] rounded-[20px] px-[40px] 
-                py-[10px] text-[18px] font-[500] hover:bg-gray-50 transition flex items-center gap-[10px] justify-center "
-                >
-                  <img className="w-[24px] h-[24px] " src={mail} alt="" /> Send
-                  Inquiry
-                </button>
+                ))}
               </div>
-              {/* Icon Section */}
-              <div className="flex items-center gap-[20px] justify-end">
-                <img src={fav} alt="Favorite" className="w-[24px] h-[24px]" />
-                <img src={share} alt="Share" className="w-[24px] h-[24px]" />
+
+              {/* Right: Eight Buttons & Icon Section */}
+              <div className="flex flex-col justify-between gap-3 w-full md:w-auto md:min-w-[220px] mt-2 md:mt-0 h-full">
+                {/* Eight Buttons */}
+                <div className="flex flex-col gap-3 md:gap-4">
+                  <button className="bg-[#192D4E] border-[#192D4E] text-white rounded-[20px] px-4 py-2 md:px-[40px] md:py-[10px] text-[16px] md:text-[18px] font-[500] hover:bg-[#192D4E] transition flex items-center gap-2 justify-center cursor-pointer">
+                    <img
+                      className="w-[20px] h-[20px] md:w-[24px] md:h-[24px]"
+                      src={sms}
+                      alt=""
+                    />
+                    <span>Contact Supplier</span>
+                  </button>
+                  <button
+                    className="border border-[#192D4E] text-[#192D4E] rounded-[20px] px-4 py-2 md:px-[40px] 
+                    md:py-[10px] text-[16px] md:text-[18px] font-[500] hover:bg-gray-50 transition flex items-center gap-2 justify-center cursor-pointer"
+                  >
+                    <img
+                      className="w-[20px] h-[20px] md:w-[24px] md:h-[24px]"
+                      src={mail}
+                      alt=""
+                    />
+                    <span>Send Inquiry</span>
+                  </button>
+                </div>
+                {/* Icon Section */}
+                <div className="flex items-center gap-4 md:gap-[20px] justify-center md:justify-end mt-4 md:mt-0">
+                  <img
+                    src={fav}
+                    alt="Favorite"
+                    className="w-[20px] h-[20px] md:w-[24px] md:h-[24px] cursor-pointer"
+                  />
+                  <img
+                    src={share}
+                    alt="Share"
+                    className="w-[20px] h-[20px] md:w-[24px] md:h-[24px] cursor-pointer"
+                  />
+                </div>
               </div>
             </div>
           </CommonWrapper>
         </div>
       </div>
-      
-    </div>
-    <OverView/>
+      <OverView />
     </div>
   );
 };
