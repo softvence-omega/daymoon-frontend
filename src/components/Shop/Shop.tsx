@@ -5,7 +5,6 @@ import JoinUs from "../ReUseable/JoinUs";
 import ShopAdvertise from "./Advertise";
 import { BestSellingBanner } from "./BestSale";
 import FashionBanner from "./FashonBanner";
-import FilterSection from "./FilterSection";
 import { FlashSaleBanner } from "./FlashSale";
 import { NewArrivalBanner } from "./NewArrival";
 import ShopCategories from "./ShopCategories";
@@ -27,7 +26,7 @@ const Shop = () => {
 
         <TopRatedManufacturers />
         <JoinUs />
-        <FilterSection />
+        {/* <FilterSection /> */}
       </CommonWrapper>
     </div>
   );

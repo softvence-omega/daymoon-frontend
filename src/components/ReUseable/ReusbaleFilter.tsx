@@ -38,7 +38,7 @@ const ReusableFilter = ({ title, options }: IFilterProps) => {
             <div className="inline-flex items-center justify-center w-8 h-8">
               <Checkbox
                 onClick={() => handleToggle(option)}
-                className="w-5 h-5 data-[state=checked]:border-[#FCAB3F] data-[state=checked]:bg-[#FCAB3F] data-[state=checked]:text-white"
+                className="w-5 border-[#FCAB3F] h-5 data-[state=checked]:border-[#FCAB3F] data-[state=checked]:bg-[#FCAB3F] data-[state=checked]:text-white"
               />
             </div>
           </li>
