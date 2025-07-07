@@ -10,6 +10,7 @@ import { motion } from "framer-motion";
 import { Search } from "lucide-react";
 import fileSearch from "../../assets/Icon/fileSearch.svg";
 import arrow from "../../assets/Navbar/arrow.svg";
+
 const GlobalSearchBar = () => {
   return (
     <div className="w-full max-w-[1460px] mx-auto hidden lg:flex flex-col md:flex-row items-center justify-between gap-4 lg:px-48 py-4 mt-12 ">

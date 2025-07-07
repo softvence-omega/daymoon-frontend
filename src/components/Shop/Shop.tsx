@@ -1,7 +1,11 @@
 import CommonWrapper from "@/common/CommonWrapper";
-import GlobalSearchBar from "../HomePage/SearchBar";
+
+import GlobalSearchBar from "../ReUseable/GlobalSearchBar";
 import JoinUs from "../ReUseable/JoinUs";
+import ShopAdvertise from "./Advertise";
 import { BestSellingBanner } from "./BestSale";
+import FashionBanner from "./FashonBanner";
+import FilterSection from "./FilterSection";
 import { FlashSaleBanner } from "./FlashSale";
 import { NewArrivalBanner } from "./NewArrival";
 import ShopCategories from "./ShopCategories";
@@ -10,6 +14,8 @@ import TopRatedManufacturers from "./TopManufacturer";
 const Shop = () => {
   return (
     <div>
+      <FashionBanner />
+      <ShopAdvertise />
       <GlobalSearchBar />
       <NewArrivalBanner />
       <div className="flex flex-col lg:flex-row  max-w-[1080px] mx-auto justify-center items-center gap-8">
@@ -21,6 +27,7 @@ const Shop = () => {
 
         <TopRatedManufacturers />
         <JoinUs />
+        <FilterSection />
       </CommonWrapper>
     </div>
   );

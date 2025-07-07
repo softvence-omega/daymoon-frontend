@@ -53,15 +53,20 @@ const Navbar = () => {
       {/* Left: Logo */}
       <div className="flex justify-between items-center max-w-[1400px] mx-auto my-auto px-4 lg:px-0">
         <div className="flex items-center ">
-          <div className="flex w-[124px] h-[45px]  items-center ">
-            <img alt="logo" src={logo} />
+          <div className="flex w-[124px] h-[45px] cursor-pointer items-center ">
+            <Link to="/">
+              <img src={logo} alt="logo" />
+            </Link>
           </div>
         </div>
 
         {/* Center: Links */}
         <section className="flex items-center justify-center gap-7  xl:ml-52">
           <DropdownMenu>
-            <DropdownMenuTrigger className="relative border-none p-2" asChild>
+            <DropdownMenuTrigger
+              className="relative border-none p-2  cursor-pointer"
+              asChild
+            >
               <motion.div
                 whileHover={{ scale: 1.01 }}
                 whileTap={{ scale: 0.8 }}
@@ -81,7 +86,7 @@ const Navbar = () => {
                   whileTap={{ scale: 0.8 }}
                   key={idx}
                 >
-                  <DropdownMenuItem className="text-lg px-4 py-2 rounded-md hover:bg-gray-100 cursor-pointer text-[#1A1A1A]">
+                  <DropdownMenuItem className="text-lg  px-4 py-2 rounded-md hover:bg-gray-100 cursor-pointer text-[#1A1A1A]">
                     {category}
                   </DropdownMenuItem>
                   <div className="border-t border-[#E5E5E5] my-1" />
@@ -90,13 +95,14 @@ const Navbar = () => {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          {/* Active links */}
           <Link to="/shop">
             <motion.button
               whileTap={{ scale: 0.75 }}
               whileHover={{ scale: 1.03 }}
               className={`text-lg ${
-                isActive("/shop") ? "text-[#F04436]" : "text-[#666]"
+                isActive("/shop")
+                  ? "text-[#F04436]  cursor-pointer"
+                  : "text-[#666]  cursor-pointer"
               }`}
             >
               Shop
@@ -107,7 +113,9 @@ const Navbar = () => {
               whileTap={{ scale: 0.75 }}
               whileHover={{ scale: 1.03 }}
               className={`text-lg ${
-                isActive("/about") ? "text-[#F04436]" : "text-[#666]"
+                isActive("/about")
+                  ? "text-[#F04436]  cursor-pointer"
+                  : "text-[#666]  cursor-pointer"
               }`}
             >
               About
@@ -118,7 +126,9 @@ const Navbar = () => {
               whileTap={{ scale: 0.75 }}
               whileHover={{ scale: 1.03 }}
               className={`text-lg ${
-                isActive("/contact") ? "text-[#F04436]" : "text-[#666]"
+                isActive("/contact")
+                  ? "text-[#F04436]  cursor-pointer"
+                  : "text-[#666]  cursor-pointer"
               }`}
             >
               Contact
@@ -126,7 +136,6 @@ const Navbar = () => {
           </Link>
         </section>
 
-        {/* Right: Cart, Location, Menu */}
         <div className="flex items-center justify-between space-x-28">
           <div>
             <div className="text-xs mb-1 text-[#666]">Delivered To</div>
@@ -139,7 +148,7 @@ const Navbar = () => {
                 >
                   <Button
                     variant="ghost"
-                    className="flex items-center p-0 h-auto text-md font-medium"
+                    className="flex  cursor-pointer items-center p-0 h-auto text-md font-medium"
                   >
                     <span className="">USA</span>
                     <img alt="flag" src={usa} className="w-4 h-5" />
@@ -170,10 +179,14 @@ const Navbar = () => {
               whileTap={{ scale: 0.5 }}
               className="flex items-center"
             >
-              <Button variant="ghost" size="icon" className="relative">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="relative  cursor-pointer"
+              >
                 <img alt="cart" src={shopping} className="w-6 h-16" />
                 {cartCount > 0 && (
-                  <Badge className="absolute -top-2 -right-2 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs text-white bg-red-500">
+                  <Badge className="absolute  -top-2 -right-2 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs text-white bg-red-500">
                     {cartCount}
                   </Badge>
                 )}
@@ -186,7 +199,11 @@ const Navbar = () => {
               className="flex items-center"
             >
               <Button variant="ghost" size="icon">
-                <img alt="globe" src={world} className="w-6 h-6" />
+                <img
+                  alt="globe"
+                  src={world}
+                  className="w-6 h-6  cursor-pointer"
+                />
               </Button>
             </motion.div>
 
@@ -196,7 +213,11 @@ const Navbar = () => {
                   whileHover={{ scale: 1.01 }}
                   whileTap={{ scale: 0.5 }}
                 >
-                  <img alt="menu" src={menu} className="w-6 h-6" />
+                  <img
+                    alt="menu"
+                    src={menu}
+                    className="w-6 h-6  cursor-pointer"
+                  />
                 </motion.div>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="w-56 bg-white border-0 rounded-xl shadow-md p-2 space-y-1">
@@ -206,7 +227,7 @@ const Navbar = () => {
                     whileTap={{ scale: 0.8 }}
                     key={idx}
                   >
-                    <DropdownMenuItem className="text-lg px-4 py-2 rounded-md hover:bg-gray-100 cursor-pointer text-[#1A1A1A]">
+                    <DropdownMenuItem className="text-lg px-4 py-2   rounded-md hover:bg-gray-100 cursor-pointer text-[#1A1A1A]">
                       {item}
                     </DropdownMenuItem>
                     <div className="border-t border-[#E5E5E5] my-1" />
