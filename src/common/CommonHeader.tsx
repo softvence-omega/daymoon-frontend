@@ -7,7 +7,9 @@ interface CommonHeader {
 
 const CommonHeader: React.FC<CommonHeader> = ({ children, className }) => {
   return (
-    <h2 className={`text-xl text-jet-black font-medium ${className}`}>
+    <h2
+      className={`text-base lg:text-xl text-jet-black font-medium ${className}`}
+    >
       {children}
     </h2>
   );
