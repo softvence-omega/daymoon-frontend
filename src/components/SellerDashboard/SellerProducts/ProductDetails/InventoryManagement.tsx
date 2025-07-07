@@ -1,4 +1,4 @@
-import { Plus, Clock } from "lucide-react";
+import { Plus } from "lucide-react";
 import { GrHistory } from "react-icons/gr";
 
 import { InventoryData, InventoryManagementProps } from "./type/inventory";
