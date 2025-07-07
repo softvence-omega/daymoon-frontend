@@ -18,7 +18,7 @@ const HomeProductCard = ({
   moq,
 }: ProductProps) => {
   return (
-    <div className="bg-white rounded-lg hover:shadow-lg transition-shadow duration-300 overflow-hidden relative flex flex-col">
+    <div className="bg-white rounded-[12px] hover:shadow-md transition-shadow duration-300 overflow-hidden relative flex flex-col">
       {/* Wishlist Button */}
       <button className="absolute top-4 right-4 z-10 h-8 w-8 flex items-center justify-center rounded-[10px] bg-[rgba(26,26,26,0.5)] backdrop-blur-[10.65px] hover:bg-sunset-orange cursor-pointer">
         <Heart className="h-4 w-4 text-white" />
@@ -48,11 +48,11 @@ const HomeProductCard = ({
         </div>
 
         <div className="flex items-center gap-2 pb-[12px]">
-          <span className="text-[14px] font-medium leading-[130%] text-[#FCAB3F]">
+          <span className="text-[12px] lg:text-[14px] font-medium leading-[130%] text-[#FCAB3F]">
             {priceRange}
           </span>
           <img src={elli} alt="" />
-          <span className="text-[14px] font-medium leading-[130%] text-[#484848]">{moq}</span>
+          <span className="text-[12px] lg:text-[14px] font-medium leading-[130%] text-[#484848]">{moq}</span>
         </div>
       </div>
     </div>

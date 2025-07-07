@@ -1,4 +1,3 @@
-import CommonWrapper from "@/common/CommonWrapper";
 import { Tabs, TabsList, TabsTrigger } from "@radix-ui/react-tabs";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
@@ -21,7 +20,6 @@ const HomeTabs = () => {
   const [tabValue, setTabValue] = useState("product");
 
   return (
-    <CommonWrapper>
       <div className="flex justify-center mt-12 items-center">
         <Tabs value={tabValue} onValueChange={setTabValue} className="w-full">
           <TabsList className="flex justify-center gap-10 bg-transparent p-0 border-none">
@@ -68,7 +66,10 @@ const HomeTabs = () => {
                 <GlobalSearchBar />
                 <Categories number={8} />
                 <NewArrivalBanner />
-                <HomeProducts />
+                <HomeProducts
+                  cols={{ mobile: 2, md: 4, lg: 6 }}
+                  rows={{ mobile: 2, md: 3, lg: 5 }}
+                />
                 <ChoosePlan />
               </motion.div>
             )}
@@ -83,15 +84,14 @@ const HomeTabs = () => {
                 transition={{ duration: 0.3 }}
                 className=""
               >
-                <GlobalSearchBar/>
-                <Categories number={8}/>
+                <GlobalSearchBar />
+                <Categories number={8} />
                 <TopRatedManufacturers />
               </motion.div>
             )}
           </AnimatePresence>
         </Tabs>
       </div>
-    </CommonWrapper>
   );
 };
 
