@@ -62,7 +62,7 @@ const ProductCard = ({
               <img
                 src={src}
                 alt={`product-slide-${i}`}
-                className="object-contain max-w-full"
+                className="max-w-full"
               />
             </div>
           ))}
