@@ -26,6 +26,12 @@ import NotFound from "../pages/NotFound";
 import AdminRoute from "./AdminRoutes";
 import BuyerRoute from "./BuyerRoute";
 // import BuyerOrdersPage from "@/pages/BuyerDashboard/BuyerOrdersPage";
+import BuyerLayout from '../Layout/BuyerLayout';
+import BuyerDashboardDemo from '../pages/BuyerDashboard/BuyerDashboardDemo';
+import BuyerSettings from '../pages/BuyerDashboard/BuyerSettings';
+import SellerPromotionPage from '@/pages/SellerDashboard/SellerPromotionPage';
+import SellerRewiewPage from '@/pages/SellerDashboard/SellerRewiewPage';
+import SellerSettingsPage from '@/pages/SellerDashboard/SellerSettingsPage';
 
 const routes = createBrowserRouter([
   {

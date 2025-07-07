@@ -6,7 +6,6 @@ import Founders from "@/components/About/Founders";
 import Story from "@/components/About/Story";
 import JoinUs from "@/components/ReUseable/JoinUs";
 
-import JoinUs from "@/components/ReUseable/JoinUs";
 
 import JoinUs from "@/components/ReUseable/JoinUs";
 
