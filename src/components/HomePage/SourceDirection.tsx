@@ -1,4 +1,5 @@
 import CommonWrapper from "@/common/CommonWrapper";
+import { motion } from "framer-motion";
 import img1 from "../../assets/Home/img1.png";
 import img2 from "../../assets/Home/img2.png";
 import img3 from "../../assets/Home/img3.png";
@@ -37,7 +38,10 @@ export default function SourceDirectSection() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {sourceCards.map((card) => (
-              <div
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
                 key={card.title}
                 className="rounded-xl overflow-hidden bg-[#232323] relative group shadow-lg xl:h-[422px] xl:w-[422px]"
               >
@@ -52,7 +56,7 @@ export default function SourceDirectSection() {
                     {card.title}
                   </span>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

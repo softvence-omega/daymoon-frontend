@@ -10,7 +10,6 @@ export default function TradeWithConfidence() {
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        viewport={{ once: true, amount: 0.2 }}
         className="text-[48px] font-semibold mb-12 leading-[57.6px] tracking-[-0.96px]"
       >
         TRADE WITH CONFIDENCE: FROM <br className="hidden md:block" />
@@ -22,7 +21,6 @@ export default function TradeWithConfidence() {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
           className="relative bg-white border-[#192D4E] rounded-xl border-1 lg:h-116 xl:h-102  shadow-orange-100 shadow  flex flex-col items-center text-center  "
         >
           <div className="px-2 py-10">
@@ -47,7 +45,6 @@ export default function TradeWithConfidence() {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
           className="relative bg-white border-[#192D4E] rounded-xl border-1 lg:h-124 xl:h-112  shadow-orange-100 shadow  flex flex-col items-center text-center  "
         >
           <div className="px-2 py-10">
@@ -73,7 +70,6 @@ export default function TradeWithConfidence() {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
           className="relative bg-white border-[#192D4E] rounded-xl border-1 lg:h-116 xl:h-102  shadow-orange-100 shadow  flex flex-col items-center text-center  "
         >
           <div className="px-2 py-10">
