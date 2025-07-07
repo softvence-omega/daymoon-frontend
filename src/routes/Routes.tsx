@@ -18,9 +18,7 @@ import SellerDashboardPage from "@/pages/SellerDashboard/SellerDashboardPage";
 import SellerHelpPage from "@/pages/SellerDashboard/SellerHelpPage";
 import SellerInquiriesDetails from "@/pages/SellerDashboard/SellerInquiriesDetails";
 import SellerInquiriesPage from "@/pages/SellerDashboard/SellerInquiriesPage";
-
 import SellerProductsPage from "@/pages/SellerDashboard/SellerProductsPage";
-
 import SellerOrdersPage from "@/pages/SellerDashboard/SellerOrder/SellerOrdersPage";
 import SellerInquiriesPage from "@/pages/SellerDashboard/SellerInquiriesPage";
 import SellerPaymentPage from "@/pages/SellerDashboard/SellerPaymentPage";
@@ -41,6 +39,7 @@ import ProductDetails from "@/components/SellerDashboard/SellerProducts/ProductD
 import SellerInvoiceFormPage from "@/pages/SellerDashboard/SellerInvoiceFormPage";
 import Shop from "@/components/Shop/Shop";
 // import BuyerOrdersPage from "@/pages/BuyerDashboard/BuyerOrdersPage";
+import BuyerRFQ from "../pages/BuyerDashboard/BuyerRFQ";
 
 const routes = createBrowserRouter([
   {
@@ -67,30 +66,7 @@ const routes = createBrowserRouter([
         path: "seller",
         element: <Seller />,
       },
-      {
-        path: "/buyer",
-        element: <BuyerRoute />,
-        children: [
-          {
-            path: "dashboard",
-            element: <BuyerLayout />,
-            children: [
-              {
-                path: "",
-                element: <BuyerDashboardDemo />,
-              },
-              // {
-              //   path: "orders",
-              //   element: <BuyerOrdersPage />,
-              // },
-              {
-                path: "settings",
-                element: <BuyerSettings />,
-              },
-            ],
-          },
-        ],
-      },
+
       {
         path: "/overview",
         element: <OverViewBanner />,
@@ -126,6 +102,34 @@ const routes = createBrowserRouter([
     path: "*",
     element: <NotFound />,
   },
+  {
+    path: "/buyer",
+    element: <BuyerRoute />,
+    children: [
+      {
+        path: "dashboard",
+        element: <BuyerLayout />,
+        children: [
+          {
+            path: "",
+            element: <BuyerDashboardDemo />,
+          },
+          // {
+          //   path: "orders",
+          //   element: <BuyerOrdersPage />,
+          // },
+          {
+            path: "settings",
+            element: <BuyerSettings />,
+          },
+          {
+            path: "rfq",
+            element: <BuyerRFQ />,
+          },
+        ],
+      },
+    ],
+  },
   /* Seller */
 
   {
@@ -145,6 +149,7 @@ const routes = createBrowserRouter([
       { path: "orders", element: <SellerOrdersPage /> },
 
       // { path: "orders", element: <SellerOrdersPage /> },
+
       { path: "products", element: <SellerProductsPage /> },
       { path: "orders", element: <SellerOrdersPage /> },
 

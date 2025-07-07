@@ -291,7 +291,7 @@ const AccountSettings = () => {
               id="promotions"
               checked={formData.emailPreferences.promotions}
               onCheckedChange={(checked) =>
-                handleEmailPreferenceChange("promotions", checked)
+                handleEmailPreferenceChange("promotions", !!checked)
               }
               className="text-[#F04436] w-4 h-4 md:w-5 md:h-5"
             />
@@ -307,7 +307,7 @@ const AccountSettings = () => {
               id="updates"
               checked={formData.emailPreferences.updates}
               onCheckedChange={(checked) =>
-                handleEmailPreferenceChange("updates", checked)
+                handleEmailPreferenceChange("updates", !!checked)
               }
               className="text-[#F04436] w-4 h-4 md:w-5 md:h-5"
             />
@@ -323,7 +323,7 @@ const AccountSettings = () => {
               id="news"
               checked={formData.emailPreferences.newsletters}
               onCheckedChange={(checked) =>
-                handleEmailPreferenceChange("newsletters", checked)
+                handleEmailPreferenceChange("newsletters", !!checked)
               }
               className="text-[#F04436] w-4 h-4 md:w-5 md:h-5"
             />
