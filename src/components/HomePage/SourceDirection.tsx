@@ -8,7 +8,7 @@ const sourceCards = [
   {
     img: img1,
     alt: "Factory Live Tour",
-    title: "Take a Factory Live Tour",
+    title: "Take a Factory Live Tour etc",
   },
   {
     img: img2,
