@@ -40,7 +40,7 @@ const InquiryDetails = () => {
             className="flex items-center justify-center gap-2 h-[48px] px-6 py-[10px] rounded-[16px] bg-[#F04436] text-white text-[16px] md:text-[18px] font-sans leading-[130%] shadow-md hover:shadow-lg transition w-full sm:w-auto"
           >
             <Link
-              to="/sellerdashboard/invoice-form"
+              to="/seller-dashboard/invoice-form"
               className="flex items-center gap-2"
             >
               <img src={invoice} alt="" className="w-5 h-5" />

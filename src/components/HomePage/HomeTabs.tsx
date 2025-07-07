@@ -1,4 +1,3 @@
-import CommonWrapper from "@/common/CommonWrapper";
 import { Tabs, TabsList, TabsTrigger } from "@radix-ui/react-tabs";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
@@ -6,11 +5,8 @@ import manu from "../../assets/Home/manu.png";
 import product from "../../assets/Home/products.png";
 import Categories from "../Shop/ShopCategories";
 import TopRatedManufacturers from "../Shop/TopManufacturer";
-
-import ChoosePlan from "../ReUseable/ChoosePlan";
 import GlobalSearchBar from "../ReUseable/GlobalSearchBar";
 import HomeProducts from "../ReUseable/HomeProducts";
-import { NewArrivalBanner } from "../Shop/NewArrival";
 
 const contentVariants = {
   initial: { opacity: 0, x: 20 },
@@ -22,7 +18,6 @@ const HomeTabs = () => {
   const [tabValue, setTabValue] = useState("product");
 
   return (
-    <CommonWrapper>
       <div className="flex justify-center mt-12 items-center">
         <Tabs value={tabValue} onValueChange={setTabValue} className="w-full ">
           <TabsList className=" flex justify-between md:justify-center gap-1 md:gap-10 bg-transparent p-0 border-none">
@@ -67,10 +62,10 @@ const HomeTabs = () => {
                 className=""
               >
                 <GlobalSearchBar />
-                <Categories number={8} />
-                <NewArrivalBanner />
-                <HomeProducts />
-                <ChoosePlan />
+                <HomeProducts
+                  cols={{ mobile: 2, md: 4, lg: 6 }}
+                  rows={{ mobile: 2, md: 3, lg: 5 }}
+                />
               </motion.div>
             )}
 
@@ -92,7 +87,6 @@ const HomeTabs = () => {
           </AnimatePresence>
         </Tabs>
       </div>
-    </CommonWrapper>
   );
 };
 

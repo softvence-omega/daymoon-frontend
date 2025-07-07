@@ -45,6 +45,7 @@ import Variants from "./Variants";
 import CommonButton from "@/common/CommonButton";
 import Customization from "./Customization";
 import AddMore from "./AddMore";
+import { Link } from "react-router-dom";
 
 const ProductInformation = () => {
   const [formData, setFormData] = useState<ProductFormData>({
@@ -361,9 +362,12 @@ const ProductInformation = () => {
         <Customization />
       </div>
       <div className="flex flex-col sm:flex-row justify-center sm:justify-end gap-4 ">
-        <button className="px-10 py-2.5 border border-sunset-orange text-sunset-orange rounded-[20px]  hover:bg-gray-50 transition cursor-pointer">
+        <Link
+          to="/seller-dashboard/products"
+          className="px-10 py-2.5 border border-sunset-orange text-sunset-orange rounded-[20px]  hover:bg-gray-50 transition cursor-pointer"
+        >
           Cancel
-        </button>
+        </Link>
         <CommonButton className="transition !px-10 !py-2.5">
           Save Changes
         </CommonButton>

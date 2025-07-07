@@ -27,7 +27,7 @@ const EnquiriesByStatus: React.FC = () => {
     legend: {
       position: "right",
       offsetY: 50, // Push the legend down
-      offsetX: -90, // Slightly to the right if needed
+      offsetX: -80, // Slightly to the right if needed
       fontSize: "16px",
       labels: {
         colors: ["#484848"],

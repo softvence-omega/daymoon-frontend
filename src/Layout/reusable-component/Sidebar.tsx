@@ -49,8 +49,8 @@ const defaultSidebarItems: SidebarItem[] = [
   { icon: FaRegHeart, label: "Favorites", href: "/buyer/dashboard/cart" },
   {
     icon: MdOutlineRateReview,
-    label: "Buying Leads",
-    href: "/buyer/dashboard/wishlist",
+    label: "RFQ",
+    href: "/buyer/dashboard/rfq",
   },
   { icon: IoMdSettings, label: "Settings", href: "/buyer/dashboard/settings" },
 ];

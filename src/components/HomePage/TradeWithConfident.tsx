@@ -5,7 +5,7 @@ import img2 from "../../assets/Home/secure.png";
 
 export default function TradeWithConfidence() {
   return (
-    <section className="mx-auto mt-16 md:mt-32 ">
+    <section className="mx-auto mt-32 ">
       <motion.h2
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
