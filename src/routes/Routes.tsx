@@ -32,6 +32,8 @@ import BuyerSettings from "../pages/BuyerDashboard/BuyerSettings";
 
 import AllProduct from "@/components/SellerDashboard/SellerProducts/AllProduct";
 import ProductDetails from "@/components/SellerDashboard/SellerProducts/ProductDetails/ProductDetails";
+import SellerInvoiceFormPage from "@/pages/SellerDashboard/SellerInvoiceFormPage";
+import Shop from "@/components/Shop/Shop";
 // import BuyerOrdersPage from "@/pages/BuyerDashboard/BuyerOrdersPage";
 
 const routes = createBrowserRouter([
@@ -46,6 +48,10 @@ const routes = createBrowserRouter([
       {
         path: "/about",
         element: <About />,
+      },
+      {
+        path: "/shop",
+        element: <Shop />,
       },
       {
         path: "/contact",
@@ -131,7 +137,6 @@ const routes = createBrowserRouter([
       { path: "all-products", element: <AllProduct /> },
       { path: "all-products/:title", element: <ProductDetails /> },
       { path: "orders", element: <SellerOrdersPage /> },
-
 
       // { path: "orders", element: <SellerOrdersPage /> },
       { path: "products", element: <SellerProductsPage /> },
