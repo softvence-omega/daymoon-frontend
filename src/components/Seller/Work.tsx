@@ -6,6 +6,8 @@ import arrow from "../../assets/landing/arrow.svg";
 import SellWithUsSection from "./SellWithUsSection";
 import ConsultationSection from "./ConsultationSection";
 import ChoosePlan from "@/common/ChoosePlan";
+import SubHeader from "@/common/SubHeader";
+import CommonHeader from "@/common/CommonHeader";
 
 const WorkList = [
   {
@@ -45,7 +47,7 @@ const Work = () => {
         <CommonWrapper>
           <SellerHeader className="text-center">How IT WORKS</SellerHeader>
           <CommonSpace>
-            <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4">
+            <div className=" grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 place-items-center">
               {WorkList.map((work, idx) => {
                 const isLast = idx === WorkList.length - 1;
                 return (
@@ -59,18 +61,16 @@ const Work = () => {
                         </span>
                       </div>
                       <div className="text-center">
-                        <h2 className="text-lg text-jet-black font-medium leading-12 tracking-tight">
+                        <CommonHeader className=" font-semibold leading-12 tracking-tight">
                           {work.title}
-                        </h2>
-                        <p className="text-jet-black opacity-80">
-                          {work.label}
-                        </p>
+                        </CommonHeader>
+                        <SubHeader>{work.label}</SubHeader>
                       </div>
                     </div>
 
                     {/* Conditionally render the arrow */}
                     {!isLast && (
-                      <div className="ml-4">
+                      <div className="ml-4 hidden lg:block">
                         <img src={arrow} alt="" />
                       </div>
                     )}
