@@ -91,7 +91,7 @@ const TopRatedManufacturers = () => {
           </div>
         </Link>
       </section>{" "}
-      {/* <section className="py-10 mt-10 md:mt-20">
+      <section className="py-10 mt-10 md:mt-20">
         <div className="mx-auto  text-center">
           <h2 className="text-2xl md:text-3xl font-semibold mb-6 text-start">
             All Manufacturers
@@ -110,7 +110,7 @@ const TopRatedManufacturers = () => {
             <SharedButton></SharedButton>
           </div>
         </Link>
-      </section> */}
+      </section>
     </div>
   );
 };

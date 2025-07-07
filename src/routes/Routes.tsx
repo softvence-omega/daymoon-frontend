@@ -26,7 +26,7 @@ import BuyerLayout from "../Layout/BuyerLayout";
 import About from "../pages/About";
 import BuyerDashboardDemo from "../pages/BuyerDashboard/BuyerDashboardDemo";
 import BuyerSettings from "../pages/BuyerDashboard/BuyerSettings";
-import SellerInvoiceFormPage from "@/pages/SellerDashboard/SellerInvoiceFormPage";
+
 import AllProduct from "@/components/SellerDashboard/SellerProducts/AllProduct";
 import ProductDetails from "@/components/SellerDashboard/SellerProducts/ProductDetails/ProductDetails";
 import Contact from "../pages/Contact";
@@ -141,7 +141,6 @@ const routes = createBrowserRouter([
       { path: "orders", element: <SellerOrdersPage /> },
 
       // { path: "orders", element: <SellerOrdersPage /> },
-
 
       { path: "products", element: <SellerProductsPage /> },
       { path: "orders", element: <SellerOrdersPage /> },
