@@ -53,7 +53,7 @@ const GlobalSearchBar = () => {
           </DropdownMenuContent>
         </DropdownMenu>
 
-        <div className="flex-1 mx-2 relative rounded-full overflow-hidden">
+        <div className="flex-1 mx-2   relative rounded-full overflow-hidden">
           <Input
             type="text"
             placeholder="Search for products..."
@@ -72,9 +72,9 @@ const GlobalSearchBar = () => {
      for mobile view query
       </div> */}
 
-      <div className=" px-6 py-4 flex items-center border border-none rounded-full shadow-md bg-white w-full md:w-auto">
+      <div className=" px-4 py-6 flex items-center border border-none rounded-full shadow bg-white w-full md:w-auto">
         <button className="text-sm whitespace-nowrap flex items-center justify-center w-full md:w-auto">
-          <img alt="arrow" src={fileSearch} className="w-fit h-fit mr-2" />
+          <img alt="arrow" src={fileSearch} className="w-fit h-fit mr-4" />
           <span className="text-[#1A1A1A] text-sm md:text-base text-nowrap hidden sm:inline">
             Search by Image
           </span>

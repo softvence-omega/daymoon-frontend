@@ -99,7 +99,7 @@ const Navbar = () => {
             <motion.button
               whileTap={{ scale: 0.75 }}
               whileHover={{ scale: 1.03 }}
-              className={`text-lg ${
+              className={`text-lg hover:text-[#F04436] ${
                 isActive("/shop")
                   ? "text-[#F04436]  cursor-pointer"
                   : "text-[#666]  cursor-pointer"
@@ -112,7 +112,7 @@ const Navbar = () => {
             <motion.button
               whileTap={{ scale: 0.75 }}
               whileHover={{ scale: 1.03 }}
-              className={`text-lg ${
+              className={`text-lg hover:text-[#F04436] ${
                 isActive("/about")
                   ? "text-[#F04436]  cursor-pointer"
                   : "text-[#666]  cursor-pointer"
@@ -125,7 +125,7 @@ const Navbar = () => {
             <motion.button
               whileTap={{ scale: 0.75 }}
               whileHover={{ scale: 1.03 }}
-              className={`text-lg ${
+              className={`text-lg hover:text-[#F04436] ${
                 isActive("/contact")
                   ? "text-[#F04436]  cursor-pointer"
                   : "text-[#666]  cursor-pointer"
@@ -227,7 +227,7 @@ const Navbar = () => {
                     whileTap={{ scale: 0.8 }}
                     key={idx}
                   >
-                    <DropdownMenuItem className="text-lg px-4 py-2   rounded-md hover:bg-gray-100 cursor-pointer text-[#1A1A1A]">
+                    <DropdownMenuItem className="text-lg hover:text-[#F04436] px-4 py-2   rounded-md hover:bg-gray-100 cursor-pointer text-[#1A1A1A]">
                       {item}
                     </DropdownMenuItem>
                     <div className="border-t border-[#E5E5E5] my-1" />

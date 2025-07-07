@@ -6,7 +6,11 @@ import manu from "../../assets/Home/manu.png";
 import product from "../../assets/Home/products.png";
 import Categories from "../Shop/ShopCategories";
 import TopRatedManufacturers from "../Shop/TopManufacturer";
-import GlobalSearchBar from "./SearchBar";
+
+import ChoosePlan from "../ReUseable/ChoosePlan";
+import GlobalSearchBar from "../ReUseable/GlobalSearchBar";
+import HomeProducts from "../ReUseable/HomeProducts";
+import { NewArrivalBanner } from "../Shop/NewArrival";
 
 const contentVariants = {
   initial: { opacity: 0, x: 20 },
@@ -62,7 +66,11 @@ const HomeTabs = () => {
                 transition={{ duration: 0.3 }}
                 className=""
               >
-                all product pages
+                <GlobalSearchBar />
+                <Categories number={8} />
+                <NewArrivalBanner />
+                <HomeProducts />
+                <ChoosePlan />
               </motion.div>
             )}
 
