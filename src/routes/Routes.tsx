@@ -43,6 +43,7 @@ import BuyerOrderDetails from "@/pages/BuyerDashboard/BuyerOrderDetails";
 import BuyerPayments from "@/pages/BuyerDashboard/BuyerPayments";
 import BuyerMessages from "@/pages/BuyerDashboard/BuyerMessages";
 import BuyerFavorites from "@/pages/BuyerDashboard/BuyerFavorites";
+import BuyerHome from "@/pages/BuyerLandingPage/BuyerHome";
 
 const routes = createBrowserRouter([
   {
@@ -74,6 +75,12 @@ const routes = createBrowserRouter([
         path: "/overview",
         element: <OverViewBanner />,
       },
+      // rakib demo route 
+      {
+        path: "/buyerHome",
+        element: <BuyerHome />
+      },
+      // -----------
       // -------------------
       {
         path: "/admin",
@@ -83,6 +90,7 @@ const routes = createBrowserRouter([
         ],
       },
     ],
+
   },
   {
     path: "/login",
