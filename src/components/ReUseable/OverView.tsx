@@ -41,7 +41,7 @@ const OverView = () => {
               Company Overview
             </h1>
             <p className="text-[15px] lg:text-[16px] font-normal leading-[160%] text-jet-black mb-8 text-center md:text-left lg:text-left">
-              Lorem ipsum dolor sit amet consectetur. Nulla hac id nec at
+              Lorem ipsum dolors si amet consectetur. Nulla hac id nec at
               pellentesque maecenas faucibus. Nullam blandit tellus sapien donec
               cras leo at urna. In aliquam a in et faucibus elit tristique.
               Habitant pharetra viverra vel aenean a imperdiet. Mauris in urna
