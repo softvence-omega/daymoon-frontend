@@ -26,12 +26,13 @@ import NotFound from "../pages/NotFound";
 import AdminRoute from "./AdminRoutes";
 import BuyerRoute from "./BuyerRoute";
 // import BuyerOrdersPage from "@/pages/BuyerDashboard/BuyerOrdersPage";
-import BuyerLayout from '../Layout/BuyerLayout';
-import BuyerDashboardDemo from '../pages/BuyerDashboard/BuyerDashboardDemo';
-import BuyerSettings from '../pages/BuyerDashboard/BuyerSettings';
-import SellerPromotionPage from '@/pages/SellerDashboard/SellerPromotionPage';
-import SellerRewiewPage from '@/pages/SellerDashboard/SellerRewiewPage';
-import SellerSettingsPage from '@/pages/SellerDashboard/SellerSettingsPage';
+import BuyerLayout from "../Layout/BuyerLayout";
+import BuyerDashboardDemo from "../pages/BuyerDashboard/BuyerDashboardDemo";
+import BuyerSettings from "../pages/BuyerDashboard/BuyerSettings";
+import SellerPromotionPage from "@/pages/SellerDashboard/SellerPromotionPage";
+import SellerRewiewPage from "@/pages/SellerDashboard/SellerRewiewPage";
+import SellerSettingsPage from "@/pages/SellerDashboard/SellerSettingsPage";
+import BuyerRFQ from "../pages/BuyerDashboard/BuyerRFQ";
 
 const routes = createBrowserRouter([
   {
@@ -59,30 +60,7 @@ const routes = createBrowserRouter([
         path: "seller",
         element: <Seller />,
       },
-      {
-        path: "/buyer",
-        element: <BuyerRoute />,
-        children: [
-          {
-            path: "dashboard",
-            element: <BuyerLayout />,
-            children: [
-              {
-                path: "",
-                element: <BuyerDashboardDemo />,
-              },
-              // {
-              //   path: "orders",
-              //   element: <BuyerOrdersPage />,
-              // },
-              {
-                path: "settings",
-                element: <BuyerSettings />,
-              },
-            ],
-          },
-        ],
-      },
+
       {
         path: "/overview",
         element: <OverViewBanner />,
@@ -144,6 +122,34 @@ const routes = createBrowserRouter([
       { path: "settings", element: <SellerSettingsPage /> },
       // { path: "help", element: <SellerHelpPage /> },
       { path: "help", element: <SellerInquiriesDetails /> },
+    ],
+  },
+  {
+    path: "/buyer",
+    element: <BuyerRoute />,
+    children: [
+      {
+        path: "dashboard",
+        element: <BuyerLayout />,
+        children: [
+          {
+            path: "",
+            element: <BuyerDashboardDemo />,
+          },
+          // {
+          //   path: "orders",
+          //   element: <BuyerOrdersPage />,
+          // },
+          {
+            path: "settings",
+            element: <BuyerSettings />,
+          },
+          {
+            path: "rfq",
+            element: <BuyerRFQ />,
+          },
+        ],
+      },
     ],
   },
 ]);
