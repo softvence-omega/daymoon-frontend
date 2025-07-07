@@ -15,11 +15,11 @@ const Confidence = () => {
     <div className=" bg-jet-black">
       <CommonWrapper>
         <div className="py-10">
-          <SellerHeader className="text-white !text-lg md:!text-3xl   pb-10 tracking-normal">
-            Start Selling With <br /> Confidence
+          <SellerHeader className="text-white !text-lg md:!text-3xl pb-10 tracking-normal">
+            Start Selling With <br className=" hidden lg:flex" /> Confidence
           </SellerHeader>
 
-          <div className=" grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 gap-6 ">
+          <div className="w-full place-items-center grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 gap-6 ">
             {imageLists.map((image, idx) => (
               <div
                 key={idx}

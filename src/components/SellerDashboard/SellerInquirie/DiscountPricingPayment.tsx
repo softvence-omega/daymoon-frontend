@@ -1,5 +1,7 @@
 import SubTitle from "../Shared/SubTitle";
 
+import stripe from "@/assets/Icon/stripe.png";
+
 export default function DiscountPricingPayment() {
   return (
     <div className="  space-y-8 ">
@@ -92,11 +94,7 @@ export default function DiscountPricingPayment() {
         <div className="flex items-center gap-4 p-3 border rounded-lg w-fit">
           <input type="radio" checked readOnly />
           <span className="text-sm font-medium">Stripe</span>
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Stripe_Logo%2C_revised_2016.svg/1280px-Stripe_Logo%2C_revised_2016.svg.png"
-            className="h-5"
-            alt="Stripe Logo"
-          />
+          <img src={stripe} className="h-5" alt="Stripe Logo" />
         </div>
       </div>
 
