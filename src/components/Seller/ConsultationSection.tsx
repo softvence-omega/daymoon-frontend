@@ -6,7 +6,7 @@ import SellerHeader from "./SellerHeader";
 
 const ConsultationSection = () => {
   return (
-    <CommonSpace className="">
+    <CommonSpace>
       <div className="flex flex-col md:flex-row items-center gap-10">
         <div className="w-2/3">
           <div className="relative w-fit mx-auto">
