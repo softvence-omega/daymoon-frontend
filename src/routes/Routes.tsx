@@ -127,7 +127,6 @@ const routes = createBrowserRouter([
     ],
   },
   /* Seller */
-
   {
     path: "/seller-dashboard",
     element: <SellerLayout />,
