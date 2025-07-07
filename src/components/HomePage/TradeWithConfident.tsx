@@ -5,23 +5,23 @@ import img2 from "../../assets/Home/secure.png";
 
 export default function TradeWithConfidence() {
   return (
-    <section className="mx-auto mt-32 ">
+    <section className="mx-auto mt-16 md:mt-32 ">
       <motion.h2
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="text-[48px] font-semibold mb-12 leading-[57.6px] tracking-[-0.96px]"
+        className="text-3xl lg:text-[48px] font-semibold  md:leading-[57.6px] md:tracking-[-0.96px]"
       >
         TRADE WITH CONFIDENCE: FROM <br className="hidden md:block" />
         QUALITY TO PROTECTION
       </motion.h2>
 
-      <div className="grid mt-12 grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid mt-6 md:mt-12 grid-cols-1 lg:grid-cols-3 gap-6">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0 }}
-          className="relative bg-white border-[#192D4E] rounded-xl border-1 lg:h-116 xl:h-102  shadow-orange-100 shadow  flex flex-col items-center text-center  "
+          className="relative bg-white border-[#192D4E] rounded-xl border-1 lg:h-116 xl:h-102 hover:scale-103 ease-in-out duration-200  shadow-orange-100 shadow  flex flex-col items-center text-center  "
         >
           <div className="px-2 py-10">
             <div className="w-16 h-16 mx-auto my-10 flex items-center justify-center rounded-full ">
@@ -45,7 +45,7 @@ export default function TradeWithConfidence() {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0 }}
-          className="relative bg-white border-[#192D4E] rounded-xl border-1 lg:h-124 xl:h-112  shadow-orange-100 shadow  flex flex-col items-center text-center  "
+          className="relative bg-white border-[#192D4E] rounded-xl border-1 lg:h-116 xl:h-102 hover:scale-103 ease-in-out duration-200  shadow-orange-100 shadow  flex flex-col items-center text-center  "
         >
           <div className="px-2 py-10">
             <div className="w-16 h-16 mx-auto my-10 flex items-center justify-center rounded-full ">
@@ -70,7 +70,7 @@ export default function TradeWithConfidence() {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0 }}
-          className="relative bg-white border-[#192D4E] rounded-xl border-1 lg:h-116 xl:h-102  shadow-orange-100 shadow  flex flex-col items-center text-center  "
+          className="relative bg-white border-[#192D4E] rounded-xl border-1 lg:h-116 xl:h-102  hover:scale-103 ease-in-out duration-200 shadow-orange-100 shadow  flex flex-col items-center text-center  "
         >
           <div className="px-2 py-10">
             <div className="w-16 h-16 mx-auto my-10 flex items-center justify-center rounded-full ">
