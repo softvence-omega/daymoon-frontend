@@ -1,29 +1,29 @@
-import { Card } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Checkbox } from "@/components/ui/checkbox";
 import { useState } from "react";
 
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+// import { Checkbox } from "@/components/ui/checkbox";
 
-const currencyOptions = [
-  { value: "usd", label: "USD ($)" },
-  { value: "eur", label: "Euro (€)" },
-  { value: "gbp", label: "GBP (£)" },
-];
+// import {
+//   Select,
+//   SelectContent,
+//   SelectItem,
+//   SelectTrigger,
+//   SelectValue,
+// } from "@/components/ui/select";
 
-const languageOptions = [
-  { value: "english", label: "English" },
-  { value: "spanish", label: "Spanish" },
-  { value: "french", label: "French" },
-];
+// const currencyOptions = [
+//   { value: "usd", label: "USD ($)" },
+//   { value: "eur", label: "Euro (€)" },
+//   { value: "gbp", label: "GBP (£)" },
+// ];
+
+// const languageOptions = [
+//   { value: "english", label: "English" },
+//   { value: "spanish", label: "Spanish" },
+//   { value: "french", label: "French" },
+// ];
 
 const SellerSecurity = () => {
   const [formData, setFormData] = useState({
@@ -47,15 +47,15 @@ const SellerSecurity = () => {
     }));
   };
 
-  const handleEmailPreferenceChange = (preference: string, value: boolean) => {
-    setFormData((prev) => ({
-      ...prev,
-      emailPreferences: {
-        ...prev.emailPreferences,
-        [preference]: value,
-      },
-    }));
-  };
+  // const handleEmailPreferenceChange = (preference: string, value: boolean) => {
+  //   setFormData((prev) => ({
+  //     ...prev,
+  //     emailPreferences: {
+  //       ...prev.emailPreferences,
+  //       [preference]: value,
+  //     },
+  //   }));
+  // };
 
   const handleSubmit = () => {
     console.log("Submitting form data:", formData);
@@ -68,9 +68,9 @@ const SellerSecurity = () => {
   };
 
   return (
-    <Card className="mx-auto mt-8 p-10 bg-[#FFFFFF] border border-[#B3B3B3] rounded-[20px]">
+    <div className="mx-auto mt-8 p-10  ">
       <h1 className="text-3xl font-medium text-[#1A1A1A] mb-6">
-        Account Settings
+        Account Security
       </h1>
 
       {/* Change Password Section */}
@@ -136,7 +136,7 @@ const SellerSecurity = () => {
         </Button>
       </div>
 
-      {/* Two Factor Authentication Section */}
+      {/* Two Factor Authentication Section
       <div className="mt-20">
         <h3 className="text-lg font-medium text-[#484848]">
           Two Factor Authentication
@@ -154,7 +154,7 @@ const SellerSecurity = () => {
       </div>
 
       {/* Email Preferences Section */}
-      <div className="mt-20">
+      {/* <div className="mt-20">
         <h3 className="text-lg font-medium text-[#484848]">
           E-mail Preference
         </h3>
@@ -199,10 +199,10 @@ const SellerSecurity = () => {
             </Label>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Language and Currency Section */}
-      <div className="mt-20">
+      {/* <div className="mt-20">
         <h3 className="text-lg font-medium text-[#484848]">
           Language and Currency
         </h3>
@@ -262,10 +262,10 @@ const SellerSecurity = () => {
             </Select>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Delete Account Section */}
-      <div className="mt-20">
+      {/* <div className="mt-20">
         <h3 className="text-lg font-medium text-[#484848]">Delete Account</h3>
         <p className="text-[#484848] text-base w-full sm:w-1/2 mt-4 mb-8">
           Once you delete your account, there is no going back. Please be
@@ -277,18 +277,18 @@ const SellerSecurity = () => {
         >
           Delete Account
         </Button>
-      </div>
+      </div> */}
 
       {/* Save Changes Button */}
-      <div className="mt-20 flex justify-end">
+      {/* <div className="mt-20 flex justify-end">
         <Button
           className="text-lg px-10 py-4 border-[#F04436] text-white bg-[#F04436] rounded-[20px] h-auto w-auto"
           onClick={() => alert("Account deleted successfully!")}
         >
           Save Changes
         </Button>
-      </div>
-    </Card>
+      </div>  */}
+    </div>
   );
 };
 
