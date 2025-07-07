@@ -19,8 +19,8 @@ const HomeTabs = () => {
 
   return (
       <div className="flex justify-center mt-12 items-center">
-        <Tabs value={tabValue} onValueChange={setTabValue} className="w-full">
-          <TabsList className="flex justify-center gap-10 bg-transparent p-0 border-none">
+        <Tabs value={tabValue} onValueChange={setTabValue} className="w-full ">
+          <TabsList className=" flex justify-between md:justify-center gap-1 md:gap-10 bg-transparent p-0 border-none">
             <TabsTrigger
               value="product"
               className="relative px-2 py-2 text-sm sm:text-base font-medium text-muted-foreground
@@ -29,7 +29,7 @@ const HomeTabs = () => {
                 data-[state=active]:after:left-0 data-[state=active]:after:bottom-[-1px]
                 data-[state=active]:after:h-[2px] data-[state=active]:after:w-full
                 data-[state=active]:after:bg-[#FCAB3F] rounded-none bg-transparent
-                border-none shadow-none text-center cursor-pointer flex items-center gap-4"
+                border-none shadow-none text-center cursor-pointer flex flex-col md:flex-row items-center gap-4"
             >
               <img alt="product" src={product} className="w-12 h-12" />
               Products
@@ -43,7 +43,7 @@ const HomeTabs = () => {
                 data-[state=active]:after:left-0 data-[state=active]:after:bottom-[-1px]
                 data-[state=active]:after:h-[2px] data-[state=active]:after:w-full
                 data-[state=active]:after:bg-[#FCAB3F] rounded-none bg-transparent
-                border-none shadow-none text-center cursor-pointer flex items-center gap-4"
+                border-none shadow-none text-center cursor-pointer flex  md:flex-row flex-col items-center gap-4"
             >
               <img alt="manufacturer" src={manu} className="w-12 h-12" />
               Manufacturers
