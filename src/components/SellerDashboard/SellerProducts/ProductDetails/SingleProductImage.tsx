@@ -43,7 +43,7 @@ const SingleProductImage: React.FC = () => {
         <img
           src={selectedImage}
           alt="Selected Earbud"
-          className="max-h-[600px] object-contain"
+          className="max-h-[600px] object-contain  mix-blend-multiply"
         />
       </div>
     </div>
