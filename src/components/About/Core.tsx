@@ -1,84 +1,60 @@
-import coreImg from "../../assets/About/core.png";
-import bagImg from "../../assets/About/coreBag.png";
-import shoeImg from "../../assets/About/coreShow.png";
+import consultationImg1 from "../../assets/About/core.png";
+import main from "../../assets/About/coreBag.png";
+import consultationImg2 from "../../assets/About/coreShow.png";
+import SellerHeader from "../Seller/SellerHeader";
 
 const Core = () => {
   return (
-    <div className="w-full mx-auto flex flex-col lg:flex-row lg:justify-between items-center gap-8 lg:gap-[160px]">
-      {/* Images Container - First on mobile */}
-      <div className="lg:relative flex-shrink-0 w-full lg:w-[615px] lg:ps-[100px]">
-        {/* Main Image */}
-        <img
-          className="lg:w-[629px] w-full h-[300px] lg:h-[529px] rounded-lg lg:rounded-[12px] object-cover"
-          src={coreImg}
-          alt="Core"
-        />
+    <div className="flex flex-col md:flex-row w-full items-center gap-10">
+        <div className="w-2/3">
+          <div className="relative w-[620px] mx-auto">
+            {/* Main Image */}
+            <img
+              src={consultationImg1}
+              alt="Consultation"
+              className="rounded-xl h-[520px] w-full object-cover shadow-md"
+            />
 
-        {/* Desktop Overlay Images */}
-        <img
-          className="hidden lg:block absolute top-[60px] left-[-10px] w-[250px] h-[150px] rounded-[12px] object-cover shadow-lg"
-          src={bagImg}
-          alt="Bag"
-        />
-        <img
-          className="hidden lg:block absolute bottom-[48px] right-[-110px]  w-[250px] h-[180px] rounded-[12px] object-cover shadow-lg"
-          src={shoeImg}
-          alt="Shoe"
-        />
+            {/* Left Floating Image */}
+            <img
+              src={main}
+              alt="Consultation Detail"
+              className="absolute top-12 left-0 -translate-x-1/2 w-[260px] h-[175px] rounded-xl shadow-lg"
+            />
 
-        {/* Mobile Bottom Images */}
-        <div className="flex lg:hidden gap-4 mt-4">
-          <img
-            className="w-1/2 h-[150px] rounded-lg object-cover shadow"
-            src={bagImg}
-            alt="Bag"
-          />
-          <img
-            className="w-1/2 h-[150px] rounded-lg object-cover shadow"
-            src={shoeImg}
-            alt="Shoe"
-          />
+            {/* Right Floating Image */}
+            <img
+              src={consultationImg2}
+              alt="Consultation Detail"
+              className="absolute bottom-12 right-0 translate-x-1/2 w-[260px] h-[175px] rounded-xl shadow-lg"
+            />
+          </div>
+        </div>
+
+        <div className=" w-1/3">
+          <SellerHeader className=" !text-2xl !capitalize !font-[600]">
+            Our Core Values
+          </SellerHeader>
+          <p className="text-[#484848] font-[400] pb-8 text-[18px] leading-relaxed">
+            To create a global marketplace where businesses and buyers can connect, purchase, and build relationships with trust and confidence
+          </p>
+
+          <div className="flex-col flex gap-6 text-base text-[#484848]">
+            <p>
+              <span className="text-goldenrod text-[20px] font-semibold">Integrity:</span> We do business with honesty and transparency.
+            </p>
+            <p>
+              <span className="text-goldenrod text-[20px] font-semibold">Innovation:</span> We constantly seek new ways to improve and offer better products.
+            </p>
+            <p>
+              <span className="text-goldenrod text-[20px] font-semibold">Customer Focus: </span> We put our customers’ needs at the center of everything we do.
+            </p>
+            <p>
+              <span className="text-goldenrod text-[20px] font-semibold">Sustainability:</span>  We commit to supporting eco-friendly and sustainable practices.
+            </p>
+          </div>
         </div>
       </div>
-
-      {/* Content Section */}
-      <div className="w-full lg:max-w-[600px]">
-        <h6 className="text-[24px] font-semibold leading-[28.8px] text-[#1A1A1A] mb-4">
-          Our Core Values
-        </h6>
-        <p className="text-[18px] font-normal leading-[28.8px] text-[#1A1A1A] mb-8">
-          To create a global marketplace where businesses and buyers can
-          connect, purchase, and build relationships with trust and confidence
-        </p>
-
-        <div className="space-y-2">
-          <h6 className="text-[20px] font-semibold leading-[24px] text-goldenrod">
-            Integrity:{" "}
-            <span className="text-[16px] font-normal leading-[25.6px] text-jet-black">
-              We do business with honesty and transparency.
-            </span>
-          </h6>
-          <h6 className="text-[20px] font-semibold leading-[24px] text-goldenrod">
-            Innovation:{" "}
-            <span className="text-[16px] font-normal leading-[25.6px] text-jet-black">
-              We constantly seek new ways to improve and offer better products.
-            </span>
-          </h6>
-          <h6 className="text-[20px] font-semibold leading-[24px] text-goldenrod">
-            Customer Focus:{" "}
-            <span className="text-[16px] font-normal leading-[25.6px] text-jet-black">
-              We put our customers' needs at the center of everything we do.
-            </span>
-          </h6>
-          <h6 className="text-[20px] font-semibold leading-[24px] text-goldenrod">
-            Sustainability:{" "}
-            <span className="text-[16px] font-normal leading-[25.6px] text-jet-black">
-              We commit to supporting eco-friendly and sustainable practices.
-            </span>
-          </h6>
-        </div>
-      </div>
-    </div>
   );
 };
 

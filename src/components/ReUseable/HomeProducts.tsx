@@ -1,66 +1,110 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import HomeProductCard from "./HomeProductCard";
 import { products } from "@/lib/productCard/cardData";
 import { Button } from "@/components/ui/button";
 import arrow from "../../assets/Icon/arrow.svg";
 
-const HomeProducts = () => {
-  const [visibleCount, setVisibleCount] = useState(30); // desktop default
-  const [mobileIndex, setMobileIndex] = useState(1); // mobile pagination
-  const [isMobile, setIsMobile] = useState(false);
+interface HomeProductsProps {
+  cols: {
+    mobile: number;
+    md: number;
+    lg: number;
+  };
+  rows: {
+    mobile: number;
+    md: number;
+    lg: number;
+  };
+}
 
-  // Detect screen width
+const isMobileWidth = (width: number) => width < 768;
+const isMdWidth = (width: number) => width >= 768 && width < 1024;
+
+const HomeProducts = ({ cols, rows }: HomeProductsProps) => {
+  const [windowWidth, setWindowWidth] = useState(
+    typeof window !== "undefined" ? window.innerWidth : 1024
+  );
+  const [visibleCount, setVisibleCount] = useState(0);
+
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768); // Tailwind md breakpoint
-    };
-    handleResize();
+    const handleResize = () => setWindowWidth(window.innerWidth);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Products to show
-  const displayedProducts = isMobile
-    ? products.slice(0, mobileIndex * 4)
-    : products.slice(0, visibleCount);
+  // Updated getVisibleCount with direct logic, avoids useCallback warnings
+  const getVisibleCount = useCallback(() => {
+    if (isMobileWidth(windowWidth)) return cols.mobile * rows.mobile;
+    if (isMdWidth(windowWidth)) return cols.md * rows.md;
+    return cols.lg * rows.lg;
+  }, [windowWidth, cols, rows]);
 
-  // Handle explore more
+  useEffect(() => {
+    setVisibleCount(getVisibleCount());
+  }, [getVisibleCount]);
+
   const handleExploreMore = () => {
-    if (isMobile) {
-      setMobileIndex((prev) => prev + 1);
-    } else {
-      setVisibleCount((prev) => prev + 30);
+    setVisibleCount((prev) => prev + getVisibleCount());
+  };
+
+  const displayedProducts = products.slice(0, visibleCount);
+
+  const currentCols = isMobileWidth(windowWidth)
+    ? cols.mobile
+    : isMdWidth(windowWidth)
+    ? cols.md
+    : cols.lg;
+
+  const rowsCount = Math.ceil(displayedProducts.length / currentCols);
+
+  const getColsClass = (num: number) => {
+    switch (num) {
+      case 1:
+        return "grid-cols-1";
+      case 2:
+        return "grid-cols-2";
+      case 3:
+        return "grid-cols-3";
+      case 4:
+        return "grid-cols-4";
+      case 5:
+        return "grid-cols-5";
+      case 6:
+        return "grid-cols-6";
+      default:
+        return ""; // For > 6 fallback to inline style
     }
   };
 
-  // Whether there are more products to show
-  const hasMore = isMobile
-    ? mobileIndex * 4 < products.length
-    : visibleCount < products.length;
+  const colClass = getColsClass(currentCols);
+  const gridClass = `grid gap-8 ${colClass}`;
+
+  const gridStyle =
+    currentCols > 6
+      ? { gridTemplateColumns: `repeat(${currentCols}, minmax(0, 1fr))` }
+      : {};
 
   return (
     <div className="mt-[80px]">
-      {/* Grid */}
       <div
-        className={`grid gap-8 ${
-          isMobile
-            ? `grid-cols-2 ${displayedProducts.length > 2 ? "grid-rows-2" : ""}`
-            : "grid-cols-6"
-        }`}
+        className={gridClass}
+        style={{
+          ...gridStyle,
+          gridTemplateRows: `repeat(${rowsCount}, auto)`,
+        }}
       >
         {displayedProducts.map((product, idx) => (
           <HomeProductCard key={idx} {...product} />
         ))}
       </div>
 
-      {/* Explore More Button */}
-      {hasMore && (
+      {visibleCount < products.length && (
         <div className="text-center mt-6">
           <Button
             onClick={handleExploreMore}
-            className="inline-flex items-center gap-2 px-5 py-2 rounded-[20px] 
+            className="inline-flex items-center gap-2 px-5 py-3 rounded-[20px] 
               text-sunset-orange font-medium md:font-semibold text-base md:text-[18px] 
-              hover:shadow-lg transition-shadow cursor-pointer"
+              hover:shadow-xl transition-shadow shadow-lg cursor-pointer"
           >
             Explore More
             <img src={arrow} alt="arrow icon" className="w-4 h-4" />
