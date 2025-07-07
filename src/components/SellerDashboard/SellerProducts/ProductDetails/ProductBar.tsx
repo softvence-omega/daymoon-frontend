@@ -50,8 +50,8 @@ const ProductBar = () => {
   return (
     <div>
       <div className="bg-white rounded-xl border border-foundation-white p-8 mb-8">
-        <div className="flex items-start justify-between mb-6">
-          <div className="flex-1">
+        <div className="flex flex-col lg:flex-row items-start justify-between mb-6 gap-6">
+          <div className="flex-1 ">
             <div className="flex items-center space-x-3 mb-2">
               <CommonHeader className="!text-black">
                 {productData.name}
@@ -63,49 +63,54 @@ const ProductBar = () => {
               </Badge>
             </div>
             <SubHeader>SKU: {productData.sku}</SubHeader>
+
+            <div className=" flex flex-col lg:flex-row gap-8 pt-6 ">
+              <div>
+                <SubHeader className="">Created On</SubHeader>
+                <SubHeader className=" !text-black">
+                  {productData.createdOn}
+                </SubHeader>
+              </div>
+              <div>
+                <SubHeader className="">Last Updated</SubHeader>
+                <SubHeader className=" !text-black">
+                  {productData.lastUpdated}
+                </SubHeader>
+              </div>
+              <div>
+                <SubHeader className="">Category</SubHeader>
+                <SubHeader className=" !text-black">
+                  {productData.category.join(" > ")}
+                </SubHeader>
+              </div>
+              <div>
+                <SubHeader className="">Visibility</SubHeader>
+                <SubHeader className=" !text-black">
+                  {productData.visibility}
+                </SubHeader>
+              </div>
+            </div>
           </div>
 
-          <div className="flex items-center space-x-3">
-            <ButtonWithIcon className="text- " icon={EyeOff}>
+          <div className="flex flex-wrap items-center gap-3">
+            <ButtonWithIcon
+              className=" not-lg:w-full flex justify-center  "
+              icon={EyeOff}
+            >
               Unpublish
             </ButtonWithIcon>
-            <ButtonWithIcon className="text- " icon={Trash2}>
+            <ButtonWithIcon
+              className=" not-lg:w-full flex justify-center  "
+              icon={Trash2}
+            >
               Delete
             </ButtonWithIcon>
             <ButtonWithIcon
-              className="text-white bg-catalien-blue border-transparent"
+              className="text-white bg-catalien-blue border-transparent  not-lg:w-full flex justify-center"
               icon={Pencil}
             >
               Edit
             </ButtonWithIcon>
-          </div>
-        </div>
-
-        {/* Product Metadata Grid */}
-        <div className=" flex gap-8 ">
-          <div>
-            <SubHeader className="">Created On</SubHeader>
-            <SubHeader className=" !text-black">
-              {productData.createdOn}
-            </SubHeader>
-          </div>
-          <div>
-            <SubHeader className="">Last Updated</SubHeader>
-            <SubHeader className=" !text-black">
-              {productData.lastUpdated}
-            </SubHeader>
-          </div>
-          <div>
-            <SubHeader className="">Category</SubHeader>
-            <SubHeader className=" !text-black">
-              {productData.category.join(" > ")}
-            </SubHeader>
-          </div>
-          <div>
-            <SubHeader className="">Visibility</SubHeader>
-            <SubHeader className=" !text-black">
-              {productData.visibility}
-            </SubHeader>
           </div>
         </div>
       </div>

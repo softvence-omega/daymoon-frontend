@@ -13,8 +13,8 @@ const priceTiers = [
   { range: ">= 1000 pieces", price: "$0.56" },
 ];
 
-import { FaStar } from "react-icons/fa6";
-import { FaStarHalf } from "react-icons/fa";
+import { IoMdStar, IoMdStarHalf } from "react-icons/io";
+IoMdStar;
 
 const ProductText = () => {
   return (
@@ -24,12 +24,12 @@ const ProductText = () => {
         IP7 Rating, Mic for iPhone and Android, Black.
       </CommonHeader>
       <div className="flex items-center gap-4">
-        <div className="flex gap-2 text-[#FFC633]">
-          <FaStar />
-          <FaStar />
-          <FaStar />
-          <FaStar />
-          <FaStarHalf />
+        <div className="flex gap-2 text-[#FFC633] text-xl">
+          <IoMdStar />
+          <IoMdStar />
+          <IoMdStar />
+          <IoMdStar />
+          <IoMdStarHalf />
         </div>
         <div className="flex">
           <CommonHeader className="!text-black !text-base"> 4.5/</CommonHeader>
