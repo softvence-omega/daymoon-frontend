@@ -32,6 +32,7 @@ interface Product {
 export default function ProductExtraDetails() {
   const [product, setProduct] = useState<Product | null>(null);
   const [clickedButton, setClickedButton] = useState<string | null>(null);
+  console.log("first", clickedButton);
 
   useEffect(() => {
     fetch("/product_info.json")

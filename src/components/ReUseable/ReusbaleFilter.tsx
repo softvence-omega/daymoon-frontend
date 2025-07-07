@@ -5,6 +5,8 @@ import { useState } from "react";
 const ReusableFilter = ({ title, options }: IFilterProps) => {
   const [selectedValues, setSelectedValues] = useState<string[]>([]);
 
+  console.log("first", selectedValues);
+
   const handleToggle = (option: IFilterOption) => {
     setSelectedValues((prev) => {
       const isSelected = prev.includes(option.value);
