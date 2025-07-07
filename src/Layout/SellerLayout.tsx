@@ -14,6 +14,20 @@ const SellerLayout = () => {
     "/seller-dashboard/all-products",
   ];
 
+  const shouldHideSidebar = () => {
+    if (hide.includes(pathname)) return true;
+
+    // Matches any slug path like: /seller-dashboard/all-products/:slug
+    if (
+      pathname.startsWith("/seller-dashboard/all-products/") &&
+      pathname.split("/").length === 4
+    ) {
+      return true;
+    }
+
+    return false;
+  };
+
   const handleMobileMenuToggle = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
@@ -21,7 +35,7 @@ const SellerLayout = () => {
   return (
     <div className="flex min-h-screen bg-gray-50">
       {/* Desktop Sidebar */}
-      {!hide.includes(pathname) && (
+      {!shouldHideSidebar() && (
         <div className="hidden lg:flex md:w-64 md:flex-col">
           <div className="border-r border-gray-200 h-full">
             <SellerSidebar />

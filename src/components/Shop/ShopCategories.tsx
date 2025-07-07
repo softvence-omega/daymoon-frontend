@@ -11,6 +11,7 @@ import img8 from "../../assets/Home/image(7).png";
 import img9 from "../../assets/Home/image(8).png";
 import img10 from "../../assets/Home/image(9).png";
 import img13 from "../../assets/Home/image.png";
+import img12 from "../../assets/Home/outwear.png";
 
 import {
   Carousel,
@@ -52,7 +53,7 @@ const ShopCategories = ({ number }: { number: number }) => {
     { name: "Footwear", image: img9 },
     { name: "Accessories", image: img10 },
     { name: "Sportswear", image: img11 },
-    { name: "Outwear & Jackets", image: img11 },
+    { name: "Outwear & Jackets", image: img12 },
   ];
   return (
     <div className=" relative   mt-10 md:mt-20">
