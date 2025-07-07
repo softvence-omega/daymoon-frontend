@@ -1,6 +1,6 @@
-import EnquiriesByStatus from "../SellerInquirie/EnquiriesByStatus";
-import InquiriesTrend from "../SellerInquirie/InquiriesTrend";
 import Wrapper from "../Shared/Wrapper";
+import EarningTrend from "./EarningTrend";
+import EnquiriesByCategories from "./EnquiriesByCategories";
 import PaymentCard from "./PaymentCard";
 
 const Payment = () => {
@@ -12,10 +12,10 @@ const Payment = () => {
 
         <div className="flex flex-col lg:flex-row w-full gap-5">
           <div className="w-full lg:w-1/2">
-            <EnquiriesByStatus />
+            <EnquiriesByCategories />
           </div>
           <div className="w-full lg:w-1/2">
-            <InquiriesTrend />
+            <EarningTrend />
           </div>
         </div>
       </div>

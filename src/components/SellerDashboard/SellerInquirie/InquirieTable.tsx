@@ -312,7 +312,7 @@ export function InquirieTable() {
     <div>
       {/* Action Buttons */}
       <div className="flex flex-col md:flex-row md:justify-end gap-3 mb-4 w-full">
-        <Link to="/sellerdashboard/inquiries-details">
+        <Link to="/seller-dashboard/inquiries-details">
           <button className="w-full md:w-auto flex h-12 px-6 py-[10px] items-center justify-center gap-2 rounded-[16px] bg-[#192D4E] text-white text-lg font-medium hover:bg-[#14325f] transition cursor-pointer">
             <IoIosCheckmarkCircleOutline />
             Mark As Resolved
@@ -386,7 +386,7 @@ export function InquirieTable() {
         </div>
         <div className="flex gap-1">
           <button
-            className="px-3 py-1 rounded border text-sm hover:bg-gray-200 disabled:opacity-40"
+            className="px-3 py-1 rounded border text-sm hover:bg-gray-200 disabled:opacity-40 cursor-pointer"
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
           >
@@ -406,7 +406,7 @@ export function InquirieTable() {
             </button>
           ))}
           <button
-            className="px-3 py-1 rounded border text-sm hover:bg-gray-200 disabled:opacity-40"
+            className="px-3 py-1 rounded border text-sm hover:bg-gray-200 disabled:opacity-40 cursor-pointer"
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
           >

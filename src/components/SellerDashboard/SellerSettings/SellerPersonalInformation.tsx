@@ -76,13 +76,13 @@ const SellerPersonalInformation = () => {
             <div className="flex gap-4">
               <Button
                 variant="outline"
-                className="text-sm px-10 py-4 border-[#F04436] text-[#F04436] rounded-[20px] h-auto w-auto"
+                className="text-sm px-10 py-4 border-[#F04436] text-[#F04436] rounded-[20px] h-auto w-auto cursor-pointer"
               >
                 Remove
               </Button>
               <Button
                 variant="outline"
-                className="text-sm px-10 py-4 border-[#F04436] text-white bg-[#F04436] rounded-[20px] h-auto w-auto"
+                className="text-sm px-10 py-4 border-[#F04436] text-white bg-[#F04436] rounded-[20px] h-auto w-auto cursor-pointer"
               >
                 Upload
               </Button>
@@ -106,7 +106,7 @@ const SellerPersonalInformation = () => {
                 htmlFor="firstName"
                 className="text-[#666666] text-sm font-normal"
               >
-                First Name
+                First Namee
               </Label>
               <Input
                 id="firstName"
