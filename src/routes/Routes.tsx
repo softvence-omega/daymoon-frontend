@@ -14,21 +14,15 @@ import SellerRegistration from "@/components/Authentication/seller/SellerRegistr
 import Seller from "@/components/Seller/Seller";
 import SellerLayout from "@/Layout/SellerLayout";
 import SellerDashboardPage from "@/pages/SellerDashboard/SellerDashboardPage";
-
 import SellerHelpPage from "@/pages/SellerDashboard/SellerHelpPage";
-import SellerInquiriesDetails from "@/pages/SellerDashboard/SellerInquiriesDetails";
 import SellerInquiriesPage from "@/pages/SellerDashboard/SellerInquiriesPage";
-
 import SellerProductsPage from "@/pages/SellerDashboard/SellerProductsPage";
-
 import SellerOrdersPage from "@/pages/SellerDashboard/SellerOrder/SellerOrdersPage";
-import SellerInquiriesPage from "@/pages/SellerDashboard/SellerInquiriesPage";
 import SellerPaymentPage from "@/pages/SellerDashboard/SellerPaymentPage";
 import SellerAnalyticsPage from "@/pages/SellerDashboard/SellerAnalyticsPage";
 import SellerPromotionPage from "@/pages/SellerDashboard/SellerPromotionPage";
 import SellerRewiewPage from "@/pages/SellerDashboard/SellerRewiewPage";
 import SellerSettingsPage from "@/pages/SellerDashboard/SellerSettingsPage";
-import SellerHelpPage from "@/pages/SellerDashboard/SellerHelpPage";
 import AddProductForm from "@/components/SellerDashboard/SellerProducts/AddProductForm";
 import SellerInquiriesDetails from "@/pages/SellerDashboard/SellerInquiriesDetails";
 import BuyerRoute from "./BuyerRoute";
@@ -127,7 +121,6 @@ const routes = createBrowserRouter([
     element: <NotFound />,
   },
   /* Seller */
-
   {
     path: "/seller-dashboard",
     element: <SellerLayout />,

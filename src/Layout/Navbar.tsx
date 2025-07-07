@@ -10,7 +10,7 @@ import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import logo from "../assets/logo.png";
+import logo from "../assets/Navbar/logo.png";
 import arrow from "../assets/Navbar/arrow.svg";
 import menu from "../assets/Navbar/menu.svg";
 import world from "../assets/Navbar/public.svg";
@@ -52,13 +52,9 @@ const Navbar = () => {
     <nav className="w-full hidden md:block text-[#1A1A1A] bg-white shadow py-7">
       {/* Left: Logo */}
       <div className="flex justify-between items-center max-w-[1400px] mx-auto my-auto px-4 lg:px-0">
-        <div className="flex items-center ">
-          <div className="flex w-[124px] h-[45px] cursor-pointer items-center ">
             <Link to="/">
-              <img src={logo} alt="logo" />
+              <img className="w-[124px] h-[48px] object-cover" src={logo} alt="logo" />
             </Link>
-          </div>
-        </div>
 
         {/* Center: Links */}
         <section className="flex items-center justify-center gap-7  xl:ml-52">
