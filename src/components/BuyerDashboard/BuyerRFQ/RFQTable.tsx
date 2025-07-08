@@ -1,16 +1,36 @@
+import * as React from "react";
 import { MdEdit, MdDelete } from "react-icons/md";
 import { Button } from "@/components/ui/button";
-import { IoIosArrowForward } from "react-icons/io";
-import { IoIosArrowBack } from "react-icons/io";
-import { useState, useMemo, useEffect } from "react";
+import { useMemo } from "react";
 import { FilterState } from "./RFQFilter";
+
+import {
+  ColumnDef,
+  SortingState,
+  VisibilityState,
+  PaginationState,
+  flexRender,
+  getCoreRowModel,
+  getSortedRowModel,
+  getPaginationRowModel,
+  useReactTable,
+} from "@tanstack/react-table";
+import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 interface RFQTableProps {
   filters?: FilterState;
 }
 
 type RFQLead = {
-  id: number;
+  id: string;
   title: string;
   category: string;
   quantity: string;
@@ -21,7 +41,7 @@ type RFQLead = {
 
 const rfqLeads: RFQLead[] = [
   {
-    id: 1,
+    id: "1",
     title: "Need 200 office chairs",
     category: "Electronics",
     quantity: "200 units",
@@ -30,7 +50,7 @@ const rfqLeads: RFQLead[] = [
     responses: 12,
   },
   {
-    id: 2,
+    id: "2",
     title: "Need 200 office chairs",
     category: "Industrial",
     quantity: "200 units",
@@ -39,7 +59,7 @@ const rfqLeads: RFQLead[] = [
     responses: 8,
   },
   {
-    id: 3,
+    id: "3",
     title: "Organic Cotton T-Shirts",
     category: "Fashion",
     quantity: "200 units",
@@ -48,7 +68,7 @@ const rfqLeads: RFQLead[] = [
     responses: 15,
   },
   {
-    id: 4,
+    id: "4",
     title: "High-Quality Kitchen Appliances",
     category: "Home & Living",
     quantity: "50 units",
@@ -57,7 +77,7 @@ const rfqLeads: RFQLead[] = [
     responses: 3,
   },
   {
-    id: 5,
+    id: "5",
     title: "Automotive Spare Parts",
     category: "Automotive",
     quantity: "100 units",
@@ -66,7 +86,7 @@ const rfqLeads: RFQLead[] = [
     responses: 25,
   },
   {
-    id: 6,
+    id: "6",
     title: "Medical Equipment Supplies",
     category: "Healthcare",
     quantity: "100 units",
@@ -75,7 +95,7 @@ const rfqLeads: RFQLead[] = [
     responses: 18,
   },
   {
-    id: 7,
+    id: "7",
     title: "Custom Packaging Materials",
     category: "Industrial",
     quantity: "5000 units",
@@ -84,13 +104,40 @@ const rfqLeads: RFQLead[] = [
     responses: 7,
   },
   {
-    id: 8,
+    id: "8",
     title: "Smart Home Security Systems",
     category: "Electronics",
     quantity: "30 units",
     status: "Open",
     datePosted: "09/06/2025",
     responses: 22,
+  },
+  {
+    id: "9",
+    title: "Wireless Headphones",
+    category: "Electronics",
+    quantity: "150 units",
+    status: "In Progress",
+    datePosted: "06/06/2025",
+    responses: 14,
+  },
+  {
+    id: "10",
+    title: "Laptop Computers",
+    category: "Electronics",
+    quantity: "25 units",
+    status: "Closed",
+    datePosted: "05/06/2025",
+    responses: 9,
+  },
+  {
+    id: "11",
+    title: "Office Supplies",
+    category: "Business",
+    quantity: "500 units",
+    status: "Open",
+    datePosted: "04/06/2025",
+    responses: 31,
   },
 ];
 
@@ -100,11 +147,118 @@ const statusColor = {
   Closed: "bg-[#E5E5E5] text-[#1A1A1A]",
 };
 
+// Columns
+const columns: ColumnDef<RFQLead>[] = [
+  {
+    accessorKey: "title",
+    header: "Lead Title",
+    cell: ({ row }) => (
+      <div className="font-normal text-base text-[#1A1A1A]">
+        {row.original.title}
+      </div>
+    ),
+  },
+  {
+    accessorKey: "category",
+    header: "Category",
+    cell: ({ row }) => (
+      <div className="font-normal text-base text-[#1A1A1A]">
+        {row.original.category}
+      </div>
+    ),
+  },
+  {
+    accessorKey: "quantity",
+    header: "Quantity",
+    cell: ({ row }) => (
+      <div className="font-normal text-base text-[#1A1A1A]">
+        {row.original.quantity}
+      </div>
+    ),
+  },
+  {
+    accessorKey: "status",
+    header: "Status",
+    cell: ({ row }) => {
+      const status = row.original.status;
+      return (
+        <span
+          className={`px-3 py-1.5 text-sm font-medium rounded-xl ${statusColor[status]}`}
+        >
+          {status}
+        </span>
+      );
+    },
+  },
+  {
+    accessorKey: "datePosted",
+    header: "Date Posted",
+    cell: ({ row }) => (
+      <div className="font-normal text-base text-[#1A1A1A]">
+        {row.original.datePosted}
+      </div>
+    ),
+  },
+  {
+    accessorKey: "responses",
+    header: "Response",
+    cell: ({ row }) => (
+      <div>
+        <span className="font-normal text-base text-[#1A1A1A]">
+          {row.original.responses}
+        </span>
+      </div>
+    ),
+  },
+  {
+    id: "actions",
+    header: "Action",
+    cell: ({ row }) => {
+      const handleEdit = (id: string) => {
+        console.log("Edit RFQ:", id);
+        // Add edit functionality here
+      };
+
+      const handleDelete = (id: string) => {
+        console.log("Delete RFQ:", id);
+        // Add delete functionality here
+      };
+
+      return (
+        <div className="flex items-center justify-center gap-4">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => handleEdit(row.original.id)}
+            className="p-2 text-[#F04436] rounded-full transition-colors"
+            title="Edit"
+          >
+            <MdEdit size={16} />
+          </Button>
+          <button
+            onClick={() => handleDelete(row.original.id)}
+            className="p-2 text-[#F04436] rounded-full transition-colors"
+            title="Delete"
+          >
+            <MdDelete size={16} />
+          </button>
+        </div>
+      );
+    },
+  },
+];
+
 export const RFQTable = ({
   filters = { status: "all", category: "all", time: "all", sortBy: "newest" },
 }: RFQTableProps) => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5;
+  const [sorting, setSorting] = React.useState<SortingState>([]);
+  const [columnVisibility, setColumnVisibility] =
+    React.useState<VisibilityState>({});
+  const [rowSelection, setRowSelection] = React.useState({});
+  const [pagination, setPagination] = React.useState<PaginationState>({
+    pageIndex: 0,
+    pageSize: 5,
+  });
 
   // Filter and sort data based on filters
   const filteredAndSortedData = useMemo(() => {
@@ -140,7 +294,6 @@ export const RFQTable = ({
       switch (filters.sortBy) {
         case "newest":
           filtered.sort((a, b) => {
-            // Convert DD/MM/YYYY to YYYY-MM-DD for proper date parsing
             const dateA = a.datePosted.split("/").reverse().join("-");
             const dateB = b.datePosted.split("/").reverse().join("-");
             return new Date(dateB).getTime() - new Date(dateA).getTime();
@@ -170,292 +323,132 @@ export const RFQTable = ({
     return filtered;
   }, [filters]);
 
-  // Calculate pagination based on filtered data
-  const totalItems = filteredAndSortedData.length;
-  const totalPages = Math.ceil(totalItems / itemsPerPage);
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-
-  // Get current page items from filtered data
-  const currentItems = useMemo(() => {
-    return filteredAndSortedData.slice(startIndex, endIndex);
-  }, [filteredAndSortedData, startIndex, endIndex]);
-
-  // Reset to page 1 when filters change
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [filters]);
-
-  // Generate page numbers
-  const getPageNumbers = () => {
-    const pages = [];
-    const maxVisiblePages = 4;
-    let start = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
-    const end = Math.min(totalPages, start + maxVisiblePages - 1);
-
-    if (end - start + 1 < maxVisiblePages) {
-      start = Math.max(1, end - maxVisiblePages + 1);
-    }
-
-    for (let i = start; i <= end; i++) {
-      pages.push(i);
-    }
-    return pages;
-  };
-
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-  };
-
-  const handlePrevious = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
-
-  const handleNext = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
-
-  const handleEdit = (id: number) => {
-    console.log("Edit RFQ:", id);
-    // Add edit functionality here
-  };
-
-  const handleDelete = (id: number) => {
-    console.log("Delete RFQ:", id);
-    // Add delete functionality here
-  };
+  const table = useReactTable({
+    data: filteredAndSortedData,
+    columns,
+    state: {
+      sorting,
+      columnVisibility,
+      rowSelection,
+      pagination,
+    },
+    onSortingChange: setSorting,
+    onPaginationChange: setPagination,
+    onColumnVisibilityChange: setColumnVisibility,
+    onRowSelectionChange: setRowSelection,
+    getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    manualPagination: false,
+  });
 
   return (
-    <div>
-      {/* Desktop Table View */}
-      <div className="hidden md:block">
-        <div className="overflow-x-auto">
-          <div className="p-2 overflow-hidden border border-[#E0E0E1] rounded-xl bg-white mt-10 min-w-[800px]">
-            <table className="min-w-full">
-              <thead className="bg-foundation-white">
-                <tr>
-                  <th className="p-3 rounded-tl-xl">
-                    <input type="checkbox" />
-                  </th>
-                  {[
-                    "Lead Title",
-                    "Category",
-                    "Quantity",
-                    "Status",
-                    "Date Posted",
-                    "Response",
-                    "Action",
-                  ].map((header, index, array) => (
-                    <th
-                      key={header}
-                      className={`p-3 text-sm font-medium text-gray-600 ${
-                        index === 4 || index === 5 || index === 6
-                          ? "text-center"
-                          : "text-left"
-                      } ${index === array.length - 1 ? "rounded-tr-2xl" : ""}`}
-                    >
-                      {header}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {currentItems.map((lead) => (
-                  <tr
-                    key={lead.id}
-                    className="border-t border-[#E0E0E1] first:border-none hover:bg-gray-50"
-                  >
-                    <td className="p-3">
-                      <input type="checkbox" />
-                    </td>
-                    <td className="p-3">
-                      <div className="font-medium text-gray-800">
-                        {lead.title}
-                      </div>
-                      <div className="text-xs text-gray-500">
-                        RFQ ID: #{lead.id.toString().padStart(4, "0")}
-                      </div>
-                    </td>
-                    <td className="p-3 text-gray-700">{lead.category}</td>
-                    <td className="p-3 text-gray-700">{lead.quantity}</td>
-                    <td className="p-3">
-                      <span
-                        className={`px-3 py-1.5 text-sm font-medium rounded-xl ${
-                          statusColor[lead.status]
-                        }`}
-                      >
-                        {lead.status}
-                      </span>
-                    </td>
-                    <td className="p-3 text-center text-gray-700">
-                      {lead.datePosted}
-                    </td>
-                    <td className="p-3 text-center">
-                      <span className="text-jet-black font-medium">
-                        {lead.responses}
-                      </span>
-                    </td>
-                    <td className="p-3">
-                      <div className="flex items-center justify-center gap-4">
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          onClick={() => handleEdit(lead.id)}
-                          className="p-2 text-[#F04436] rounded-full transition-colors"
-                          title="Edit"
-                        >
-                          <MdEdit size={16} />
-                        </Button>
-                        <button
-                          onClick={() => handleDelete(lead.id)}
-                          className="p-2 text-[#F04436] rounded-full transition-colors"
-                          title="Delete"
-                        >
-                          <MdDelete size={16} />
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-      {/* Mobile Card View */}
-      <div className="md:hidden mt-10">
-        <div className="space-y-4">
-          {currentItems.map((lead) => (
-            <div
-              key={lead.id}
-              className="bg-white border border-[#E0E0E1] rounded-xl p-4 shadow-sm"
-            >
-              <div className="flex items-start justify-between mb-3">
-                <div className="flex items-center gap-2">
-                  <input type="checkbox" className="mt-1" />
-                  <div>
-                    <div className="font-medium text-gray-800 text-sm">
-                      {lead.title}
-                    </div>
-                    <div className="text-xs text-gray-500">
-                      RFQ ID: #{lead.id.toString().padStart(4, "0")}
-                    </div>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={() => handleEdit(lead.id)}
-                    className="p-2 text-[#F04436] rounded-full transition-colors h-8 w-8"
-                    title="Edit"
-                  >
-                    <MdEdit size={14} />
-                  </Button>
-                  <button
-                    onClick={() => handleDelete(lead.id)}
-                    className="p-2 text-[#F04436] rounded-full transition-colors h-8 w-8 flex items-center justify-center"
-                    title="Delete"
-                  >
-                    <MdDelete size={14} />
-                  </button>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-2 gap-3 text-sm">
-                <div>
-                  <span className="text-gray-500">Category:</span>
-                  <div className="font-medium text-gray-800">
-                    {lead.category}
-                  </div>
-                </div>
-                <div>
-                  <span className="text-gray-500">Quantity:</span>
-                  <div className="font-medium text-gray-800">
-                    {lead.quantity}
-                  </div>
-                </div>
-                <div>
-                  <span className="text-gray-500">Date Posted:</span>
-                  <div className="font-medium text-gray-800">
-                    {lead.datePosted}
-                  </div>
-                </div>
-                <div>
-                  <span className="text-gray-500">Responses:</span>
-                  <div className="font-medium text-gray-800">
-                    {lead.responses}
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-3 pt-3 border-t border-gray-100">
-                <div className="flex items-center justify-between">
-                  <span className="text-gray-500 text-sm">Status:</span>
-                  <span
-                    className={`px-3 py-1.5 text-xs font-medium rounded-xl ${
-                      statusColor[lead.status]
-                    }`}
-                  >
-                    {lead.status}
-                  </span>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Pagination */}
-      <div className="flex flex-col md:flex-row justify-between items-center pt-5 pb-10 text-jet-black text-base gap-4">
-        <div>
-          <p>
-            Showing {startIndex + 1} to {Math.min(endIndex, totalItems)} of{" "}
-            {totalItems} RFQ leads
-          </p>
-        </div>
-        <div>
-          <ul className="flex items-center border border-foundation-white rounded-xl">
-            <li
-              className={`border-r border-foundation-white p-4 text-2xl cursor-pointer ${
-                currentPage === 1
-                  ? "text-gray-400 cursor-not-allowed"
-                  : "text-sunset-orange hover:bg-gray-50"
-              }`}
-              onClick={handlePrevious}
-            >
-              <IoIosArrowBack />
-            </li>
-            {getPageNumbers().map((page) => (
-              <li
-                key={page}
-                className={`border-r border-foundation-white p-4 cursor-pointer hover:bg-gray-50 ${
-                  currentPage === page
-                    ? "bg-sunset-orange text-white"
-                    : "text-gray-700"
-                }`}
-                onClick={() => handlePageChange(page)}
+    <div >
+      {/* Table */}
+      <div className="w-full bg-white rounded-xl shadow-md p-2">
+        <Table className=" overflow-x-auto w-full">
+          <TableHeader className="h-[56px] rounded-2xl">
+            {table.getHeaderGroups().map((headerGroup) => (
+              <TableRow
+                key={headerGroup.id}
+                className="bg-[#E5E5E5] text-[#666666] text-sm font-normal"
               >
-                {page}
-              </li>
+                {headerGroup.headers.map((header) => (
+                  <TableHead key={header.id}>
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
+                  </TableHead>
+                ))}
+              </TableRow>
             ))}
-            <li
-              className={`p-4 text-2xl cursor-pointer ${
-                currentPage === totalPages
-                  ? "text-gray-400 cursor-not-allowed"
-                  : "text-sunset-orange hover:bg-gray-50"
-              }`}
-              onClick={handleNext}
-            >
-              <IoIosArrowForward />
-            </li>
-          </ul>
+          </TableHeader>
+          <TableBody>
+            {table.getRowModel().rows.length ? (
+              table.getRowModel().rows.map((row) => (
+                <TableRow key={row.id}>
+                  {row.getVisibleCells().map((cell) => (
+                    <TableCell className="p-3" key={cell.id}>
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext()
+                      )}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell
+                  colSpan={columns.length}
+                  className="h-24 text-center"
+                >
+                  No RFQ leads found.
+                </TableCell>
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+      </div>
+
+      {/* Pagination Footer */}
+      <div className="flex flex-col sm:flex-row items-center justify-between mt-4 px-2">
+        <div className=" text-sm md:text-lg text-gray-600 mb-2 sm:mb-0">
+          Showing {pagination.pageIndex * pagination.pageSize + 1} to{" "}
+          {Math.min(
+            (pagination.pageIndex + 1) * pagination.pageSize,
+            filteredAndSortedData.length
+          )}{" "}
+          of {filteredAndSortedData.length} RFQ leads
         </div>
+        <ul className="flex items-center border border-foundation-white rounded-xl overflow-hidden">
+          <li
+            className={`border-r border-foundation-white p-2 md:p-4 text-sm md:text-lg cursor-pointer ${
+              !table.getCanPreviousPage()
+                ? "text-gray-400 cursor-not-allowed"
+                : "text-sunset-orange hover:bg-gray-50"
+            }`}
+            onClick={() => {
+              if (table.getCanPreviousPage()) {
+                table.previousPage();
+              }
+            }}
+          >
+            <IoIosArrowBack />
+          </li>
+
+          {Array.from({ length: table.getPageCount() }).map((_, index) => (
+            <li
+              key={index}
+              className={`border-r border-foundation-white p-2 md:p-4 text-sm md:text-lg cursor-pointer hover:bg-gray-50 ${
+                table.getState().pagination.pageIndex === index
+                  ? "bg-sunset-orange text-white"
+                  : "text-gray-700"
+              }`}
+              onClick={() => table.setPageIndex(index)}
+            >
+              {index + 1}
+            </li>
+          ))}
+
+          <li
+            className={`p-2 md:p-4 text-sm md:text-lg cursor-pointer ${
+              !table.getCanNextPage()
+                ? "text-gray-400 cursor-not-allowed"
+                : "text-sunset-orange hover:bg-gray-50"
+            }`}
+            onClick={() => {
+              if (table.getCanNextPage()) {
+                table.nextPage();
+              }
+            }}
+          >
+            <IoIosArrowForward />
+          </li>
+        </ul>
       </div>
     </div>
   );

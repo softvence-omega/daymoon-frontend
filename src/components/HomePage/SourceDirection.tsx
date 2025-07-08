@@ -25,7 +25,7 @@ const sourceCards = [
 export default function SourceDirectSection() {
   return (
     <section
-      className="w-full mt-32 py-12 md:py-20"
+      className="w-full mt-10 md:mt-32 py-12 md:py-20"
       style={{
         background: "linear-gradient(180deg, #272727 0%, #1A1A1A 35%)",
       }}

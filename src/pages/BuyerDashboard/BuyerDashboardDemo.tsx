@@ -1,9 +1,9 @@
-
+import BuyerDashboard from "@/components/BuyerDashboard/BuyerDashboardHome/BuyerDashboard";
 
 const BuyerDashboardDemo = () => {
   return (
     <div>
-      Buyer Dashboard Home
+     <BuyerDashboard/> 
     </div>
   )
 }
