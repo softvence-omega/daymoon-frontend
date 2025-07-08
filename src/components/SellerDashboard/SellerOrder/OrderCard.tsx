@@ -1,51 +1,45 @@
 import DashboardCard from "@/common/DashboardCard";
 import DashboardCommonSpace from "@/common/DashboardCommonSpace";
-import { BsFillBoxSeamFill } from "react-icons/bs";
-import { IoMdEye } from "react-icons/io";
+import { ShoppingCart, Truck, RotateCcw } from "lucide-react";
 
-import { FaCheckCircle } from "react-icons/fa";
-import { IoAlertOutline } from "react-icons/io5";
+import { BiDollarCircle } from "react-icons/bi";
 
 const cardData = [
   {
-    title: "Total Products",
+    title: "Total Orders",
     value: "150",
-    unit: "/Units",
-    icon: <BsFillBoxSeamFill className="h-6 w-6 text-[#9747FF]" />,
+    icon: <ShoppingCart className="h-6 w-6 text-[#9747FF]" />,
     trend: { percentage: 12, isPositive: true },
     iconBgColor: "bg-purple-100",
     titleColor: " text-[#9747FF]",
   },
   {
-    title: "Total Variations",
-    value: "23",
-    unit: "",
-    icon: <IoMdEye className="h-6 w-6 text-black" />,
+    title: "Total Sales",
+    value: "$3,45,344",
+    icon: <BiDollarCircle className="h-6 w-6 text-black" />,
     trend: { percentage: 12, isPositive: true },
     iconBgColor: "bg-[#2F7EEF1A]",
-    titleColor: "text-[#08AD36]",
+    titleColor: "text-[#2F7EEF]",
   },
   {
-    title: "Active Products",
-    value: "20",
-    unit: "/variations",
-    icon: <FaCheckCircle className="h-6 w-6 text-[#F2BC3C]" />,
+    title: "Pending Shipment",
+    value: "42",
+    icon: <Truck className="h-6 w-6 text-[#F2BC3C]" />,
     trend: { percentage: 12, isPositive: true },
     iconBgColor: "bg-[#F2BC3C1A]",
     titleColor: "text-[#F2BC3C]",
   },
   {
-    title: "Out of Stock",
+    title: "Return",
     value: "23",
-    unit: "/Variations",
-    icon: <IoAlertOutline className="h-6 w-6 text-[#D9222A]" />,
+    icon: <RotateCcw className="h-6 w-6 text-[#D9222A]" />,
     trend: { percentage: -8, isPositive: false },
     iconBgColor: "bg-[#D9222A]/10",
     titleColor: "text-[#D9222A]",
   },
 ];
 
-const ProductCard = () => {
+const OrderCard = () => {
   return (
     <>
       <DashboardCommonSpace className="">
@@ -59,4 +53,4 @@ const ProductCard = () => {
   );
 };
 
-export default ProductCard;
+export default OrderCard;
