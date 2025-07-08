@@ -3,6 +3,7 @@ interface BreadcrumbsProps {
   title: string;
   subtitle: string;
   subtitle2?: string;
+
 }
 
 const Breadcrumbs: FC<BreadcrumbsProps> = ({ title, subtitle, subtitle2 }) => (

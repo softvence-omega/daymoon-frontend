@@ -44,9 +44,9 @@ const HomeProducts = ({ cols, rows }: HomeProductsProps) => {
     setVisibleCount(getVisibleCount());
   }, [getVisibleCount]);
 
-  const handleExploreMore = () => {
-    setVisibleCount((prev) => prev + getVisibleCount());
-  };
+  // const handleExploreMore = () => {
+  //   setVisibleCount((prev) => prev + getVisibleCount());
+  // };
 
   const displayedProducts = products.slice(0, visibleCount);
 

@@ -37,6 +37,9 @@ import SellerInvoiceFormPage from "@/pages/SellerDashboard/SellerInvoiceFormPage
 // import BuyerOrdersPage from "@/pages/BuyerDashboard/BuyerOrdersPage";
 import IndividualProduct from "@/components/SingleProduct/IndividualProduct";
 import BuyerRFQ from "../pages/BuyerDashboard/BuyerRFQ";
+
+import OrderDetails from "@/components/SellerDashboard/SellerOrder/OrderDetails/OrderDetails";
+
 import BuyerOrdersPage from "@/pages/BuyerDashboard/BuyerOrdersPage";
 import BuyerReview from "@/pages/BuyerDashboard/BuyerReview";
 import BuyerRefund from "@/pages/BuyerDashboard/BuyerRefund";
@@ -44,6 +47,7 @@ import BuyerOrderDetails from "@/pages/BuyerDashboard/BuyerOrderDetails";
 import BuyerPayments from "@/pages/BuyerDashboard/BuyerPayments";
 import BuyerMessages from "@/pages/BuyerDashboard/BuyerMessages";
 import BuyerFavorites from "@/pages/BuyerDashboard/BuyerFavorites";
+
 
 const routes = createBrowserRouter([
   {
@@ -183,6 +187,7 @@ const routes = createBrowserRouter([
 
       { path: "products", element: <SellerProductsPage /> },
       { path: "orders", element: <SellerOrdersPage /> },
+      { path: "orders/:id", element: <OrderDetails /> },
 
       { path: "inquiries", element: <SellerInquiriesPage /> },
       { path: "payments", element: <SellerPaymentPage /> },
