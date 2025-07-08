@@ -460,7 +460,7 @@ const features = [
 
 export default function WhyChooseUs() {
   return (
-    <section className=" mx-auto mt-[120px]">
+    <section className=" mx-auto mt-32">
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -471,7 +471,7 @@ export default function WhyChooseUs() {
         <div className="flex items-center justify-start w-full">
           <div className="h-1 w-12 bg-[#FFB300] mr-4" />
 
-          <span className="text-[#FFB300] font-semibold text-2xl mr-4 whitespace-nowrap">
+          <span className="text-[#FFB300] font-semibold text-3xl mr-4 whitespace-nowrap">
             Why Choose Us
           </span>
         </div>

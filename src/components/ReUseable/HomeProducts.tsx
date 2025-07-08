@@ -1,8 +1,8 @@
-import { useState, useEffect, useCallback } from "react";
-import HomeProductCard from "./HomeProductCard";
+import SharedButton from "@/common/CommonHomepageButton";
 import { products } from "@/lib/productCard/cardData";
-import { Button } from "@/components/ui/button";
-import arrow from "../../assets/Icon/arrow.svg";
+import { useCallback, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import HomeProductCard from "./HomeProductCard";
 
 interface HomeProductsProps {
   cols: {
@@ -99,17 +99,11 @@ const HomeProducts = ({ cols, rows }: HomeProductsProps) => {
       </div>
 
       {visibleCount < products.length && (
-        <div className="text-center mt-6">
-          <Button
-            onClick={handleExploreMore}
-            className="inline-flex items-center gap-2 px-5 py-3 rounded-[20px] 
-              text-sunset-orange font-medium md:font-semibold text-base md:text-[18px] 
-              hover:shadow-xl transition-shadow shadow-lg cursor-pointer"
-          >
-            Explore More
-            <img src={arrow} alt="arrow icon" className="w-4 h-4" />
-          </Button>
-        </div>
+        <Link to="/shop">
+          <div className="max-w-[1520px] mx-auto flex justify-center mt-12 ">
+            <SharedButton></SharedButton>
+          </div>
+        </Link>
       )}
     </div>
   );

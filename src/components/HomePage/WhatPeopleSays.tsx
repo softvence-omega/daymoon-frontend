@@ -55,18 +55,18 @@ const reviews = [
 ];
 const TestimonialCarousel = () => {
   return (
-    <section className="relative mt-32 ">
-      <h2 className="text-[32px] md:text-5xl font-semibold mb-10 px-2 md:px-0 tracking-tight">
+    <section className=" relative mt-32 ">
+      <h2 className="text-3xl md:text-5xl font-semibold px-2 md:px-0 tracking-tight">
         WHAT PEOPLE SAYS
       </h2>
-      <div className="relative flex mt-12 items-center justify-center">
+      <div className="relative  md:ml-0 flex mt-6 md:mt-12 items-center justify-center ">
         <Carousel
           opts={{
             align: "start",
           }}
-          className="w-full  "
+          className="w-full "
         >
-          <CarouselContent className="gap-6">
+          <CarouselContent className="gap-6 ">
             {reviews.map((review) => (
               <motion.div
                 key={review.id}
@@ -76,18 +76,21 @@ const TestimonialCarousel = () => {
               >
                 <CarouselItem
                   className="
-                  w-full 
-                  sm:w-[90vw] 
+                   
+                 
+                  w-[95vw] 
                   md:w-1/2 
                   xl:w-1/3 
-                  min-w-[320px] 
-                  max-w-[460px]
-                  
+                 
+                   md:min-w-[450px]          
                 "
                 >
-                  <Card className="relative h-[400px] rounded-2xl border-none   bg-white shadow-md my-2  flex flex-col justify-between">
+                  <Card
+                    className=" relative h-[300px] md:h-[400px]  shadow-[0px_0px_10px_2px_#E5E5E5] 
+                  rounded-xl  border-none   bg-white  my-2  flex flex-col justify-between"
+                  >
                     <CardContent className="p-8 h-full flex flex-col justify-between">
-                      <div className="text-base text-[#212121] font-medium leading-relaxed mb-6">
+                      <div className="text-sm md:text-base  text-[#212121] font-medium leading-relaxed mb-6">
                         {review.text}
                       </div>
 
@@ -112,8 +115,8 @@ const TestimonialCarousel = () => {
             ))}
           </CarouselContent>
 
-          <CarouselPrevious className="!absolute !-left-7 md:!-left-14 top-1/2 -translate-y-1/2 rounded-full border  shadow bg-white border-none  w-12 h-12 flex justify-center items-center text-[#f04436] hover:bg-gray-100 p-2 " />
-          <CarouselNext className="!absolute  border-none  w-12 h-12 flex justify-center items-center text-[#f04436] hover:bg-gray-100 !-right-7 md:!-right-10 top-1/2 -translate-y-1/2 rounded-full border bg-white shadow p-2 " />
+          <CarouselPrevious className="!absolute hidden !-left-7 md:!-left-14 top-1/2 -translate-y-1/2 rounded-full border  shadow bg-white border-none  w-12 h-12 md:flex justify-center items-center text-[#f04436] hover:bg-gray-100 p-2 " />
+          <CarouselNext className="!absolute  border-none  w-12 h-12 hidden md:flex justify-center items-center text-[#f04436] hover:bg-gray-100 !-right-7 md:!-right-10 top-1/2 -translate-y-1/2 rounded-full border bg-white shadow p-2 " />
         </Carousel>
       </div>
     </section>

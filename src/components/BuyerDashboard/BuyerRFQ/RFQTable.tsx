@@ -231,93 +231,184 @@ export const RFQTable = ({
 
   return (
     <div>
-      <div className="p-2 overflow-hidden border border-[#E0E0E1] rounded-xl bg-white mt-10">
-        <table className="min-w-full">
-          <thead className="bg-foundation-white">
-            <tr>
-              <th className="p-3 rounded-tl-xl">
-                <input type="checkbox" />
-              </th>
-              {[
-                "Lead Title",
-                "Category",
-                "Quantity",
-                "Status",
-                "Date Posted",
-                "Response",
-                "Action",
-              ].map((header, index, array) => (
-                <th
-                  key={header}
-                  className={`p-3 text-sm font-medium text-gray-600 ${
-                    index === 4 || index === 5 || index === 6
-                      ? "text-center"
-                      : "text-left"
-                  } ${index === array.length - 1 ? "rounded-tr-2xl" : ""}`}
-                >
-                  {header}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {currentItems.map((lead) => (
-              <tr
-                key={lead.id}
-                className="border-t border-[#E0E0E1] first:border-none hover:bg-gray-50"
-              >
-                <td className="p-3">
-                  <input type="checkbox" />
-                </td>
-                <td className="p-3">
-                  <div className="font-medium text-gray-800">{lead.title}</div>
-                  <div className="text-xs text-gray-500">
-                    RFQ ID: #{lead.id.toString().padStart(4, "0")}
+      {/* Desktop Table View */}
+      <div className="hidden md:block">
+        <div className="overflow-x-auto">
+          <div className="p-2 overflow-hidden border border-[#E0E0E1] rounded-xl bg-white mt-10 min-w-[800px]">
+            <table className="min-w-full">
+              <thead className="bg-foundation-white">
+                <tr>
+                  <th className="p-3 rounded-tl-xl">
+                    <input type="checkbox" />
+                  </th>
+                  {[
+                    "Lead Title",
+                    "Category",
+                    "Quantity",
+                    "Status",
+                    "Date Posted",
+                    "Response",
+                    "Action",
+                  ].map((header, index, array) => (
+                    <th
+                      key={header}
+                      className={`p-3 text-sm font-medium text-gray-600 ${
+                        index === 4 || index === 5 || index === 6
+                          ? "text-center"
+                          : "text-left"
+                      } ${index === array.length - 1 ? "rounded-tr-2xl" : ""}`}
+                    >
+                      {header}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {currentItems.map((lead) => (
+                  <tr
+                    key={lead.id}
+                    className="border-t border-[#E0E0E1] first:border-none hover:bg-gray-50"
+                  >
+                    <td className="p-3">
+                      <input type="checkbox" />
+                    </td>
+                    <td className="p-3">
+                      <div className="font-medium text-gray-800">
+                        {lead.title}
+                      </div>
+                      <div className="text-xs text-gray-500">
+                        RFQ ID: #{lead.id.toString().padStart(4, "0")}
+                      </div>
+                    </td>
+                    <td className="p-3 text-gray-700">{lead.category}</td>
+                    <td className="p-3 text-gray-700">{lead.quantity}</td>
+                    <td className="p-3">
+                      <span
+                        className={`px-3 py-1.5 text-sm font-medium rounded-xl ${
+                          statusColor[lead.status]
+                        }`}
+                      >
+                        {lead.status}
+                      </span>
+                    </td>
+                    <td className="p-3 text-center text-gray-700">
+                      {lead.datePosted}
+                    </td>
+                    <td className="p-3 text-center">
+                      <span className="text-jet-black font-medium">
+                        {lead.responses}
+                      </span>
+                    </td>
+                    <td className="p-3">
+                      <div className="flex items-center justify-center gap-4">
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          onClick={() => handleEdit(lead.id)}
+                          className="p-2 text-[#F04436] rounded-full transition-colors"
+                          title="Edit"
+                        >
+                          <MdEdit size={16} />
+                        </Button>
+                        <button
+                          onClick={() => handleDelete(lead.id)}
+                          className="p-2 text-[#F04436] rounded-full transition-colors"
+                          title="Delete"
+                        >
+                          <MdDelete size={16} />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Card View */}
+      <div className="md:hidden mt-10">
+        <div className="space-y-4">
+          {currentItems.map((lead) => (
+            <div
+              key={lead.id}
+              className="bg-white border border-[#E0E0E1] rounded-xl p-4 shadow-sm"
+            >
+              <div className="flex items-start justify-between mb-3">
+                <div className="flex items-center gap-2">
+                  <input type="checkbox" className="mt-1" />
+                  <div>
+                    <div className="font-medium text-gray-800 text-sm">
+                      {lead.title}
+                    </div>
+                    <div className="text-xs text-gray-500">
+                      RFQ ID: #{lead.id.toString().padStart(4, "0")}
+                    </div>
                   </div>
-                </td>
-                <td className="p-3 text-gray-700">{lead.category}</td>
-                <td className="p-3 text-gray-700">{lead.quantity}</td>
-                <td className="p-3">
+                </div>
+                <div className="flex items-center gap-2">
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => handleEdit(lead.id)}
+                    className="p-2 text-[#F04436] rounded-full transition-colors h-8 w-8"
+                    title="Edit"
+                  >
+                    <MdEdit size={14} />
+                  </Button>
+                  <button
+                    onClick={() => handleDelete(lead.id)}
+                    className="p-2 text-[#F04436] rounded-full transition-colors h-8 w-8 flex items-center justify-center"
+                    title="Delete"
+                  >
+                    <MdDelete size={14} />
+                  </button>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3 text-sm">
+                <div>
+                  <span className="text-gray-500">Category:</span>
+                  <div className="font-medium text-gray-800">
+                    {lead.category}
+                  </div>
+                </div>
+                <div>
+                  <span className="text-gray-500">Quantity:</span>
+                  <div className="font-medium text-gray-800">
+                    {lead.quantity}
+                  </div>
+                </div>
+                <div>
+                  <span className="text-gray-500">Date Posted:</span>
+                  <div className="font-medium text-gray-800">
+                    {lead.datePosted}
+                  </div>
+                </div>
+                <div>
+                  <span className="text-gray-500">Responses:</span>
+                  <div className="font-medium text-gray-800">
+                    {lead.responses}
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-3 pt-3 border-t border-gray-100">
+                <div className="flex items-center justify-between">
+                  <span className="text-gray-500 text-sm">Status:</span>
                   <span
-                    className={`px-3 py-1.5 text-sm font-medium rounded-xl ${
+                    className={`px-3 py-1.5 text-xs font-medium rounded-xl ${
                       statusColor[lead.status]
                     }`}
                   >
                     {lead.status}
                   </span>
-                </td>
-                <td className="p-3 text-center text-gray-700">
-                  {lead.datePosted}
-                </td>
-                <td className="p-3 text-center">
-                  <span className="text-jet-black font-medium">
-                    {lead.responses}
-                  </span>
-                </td>
-                <td className="p-3">
-                  <div className="flex items-center justify-center gap-4">
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={() => handleEdit(lead.id)}
-                      className="p-2 text-[#F04436] rounded-full transition-colors"
-                      title="Edit"
-                    >
-                      <MdEdit size={16} />
-                    </Button>
-                    <button
-                      onClick={() => handleDelete(lead.id)}
-                      className="p-2 text-[#F04436] rounded-full transition-colors"
-                      title="Delete"
-                    >
-                      <MdDelete size={16} />
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Pagination */}

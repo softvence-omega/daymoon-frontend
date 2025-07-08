@@ -15,7 +15,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Upload, X } from "lucide-react";
+import { X } from "lucide-react";
+import { MdOutlineCloudUpload } from "react-icons/md";
 
 interface RFQModalProps {
   isOpen: boolean;
@@ -126,203 +127,194 @@ const RFQModal: React.FC<RFQModalProps> = ({ isOpen, onClose }) => {
     onClose();
   };
 
-  const isFormValid = () => {
-    return (
-      formData.leadTitle.trim() !== "" &&
-      formData.productCategory !== "" &&
-      formData.productDescription.trim() !== "" &&
-      formData.expectedDeliveryDate !== ""
-    );
-  };
-
   return (
-      <Dialog open={isOpen} onOpenChange={onClose}>
-        <DialogContent className=" w-full max-h-[90vh] overflow-y-auto bg-white">
-          <DialogHeader>
-            <DialogTitle className="text-2xl font-semibold text-gray-900">
-              Create New RFQ
-            </DialogTitle>
-          </DialogHeader>
+    <Dialog open={isOpen} onOpenChange={onClose}>
+      <DialogContent className="w-[1031px] max-h-[90vh] overflow-y-auto bg-white p-6 sm:rounded-xl border-none">
+        <DialogHeader>
+          <DialogTitle className="text-2xl font-semibold text-gray-900">
+            Create New RFQ
+          </DialogTitle>
+        </DialogHeader>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 py-4">
-            {/* Left Column - Form Fields */}
-            <div className="space-y-6">
-              {/* Lead Title */}
-              <div className="space-y-2">
-                <label
-                  htmlFor="leadTitle"
-                  className="text-sm font-medium text-gray-700"
-                >
-                  Lead Title <span className="text-red-500">*</span>
-                </label>
-                <Input
-                  id="leadTitle"
-                  type="text"
-                  placeholder="Enter lead title"
-                  value={formData.leadTitle}
-                  onChange={(e) =>
-                    handleInputChange("leadTitle", e.target.value)
-                  }
-                  className="w-full"
-                />
-              </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 py-4">
+          {/* Left Column - Form Fields */}
+          <div className="space-y-6">
+            {/* Lead Title */}
+            <div className="">
+              <label
+                htmlFor="leadTitle"
+                className="text-lg font-medium text-[#484848]"
+              >
+                Lead Title
+              </label>
+              <Input
+                id="leadTitle"
+                type="text"
+                placeholder="Enter lead title"
+                value={formData.leadTitle}
+                onChange={(e) => handleInputChange("leadTitle", e.target.value)}
+                className="w-full bg-[#E5E5E5] border border-[#B3B3B3] text-base rounded-xl placeholder:text-[#969696] h-auto p-3 mt-2"
+              />
+            </div>
 
-              {/* Product Category */}
-              <div className="space-y-2">
-                <label
-                  htmlFor="productCategory"
-                  className="text-sm font-medium text-gray-700"
-                >
-                  Product Category <span className="text-red-500">*</span>
-                </label>
-                <Select
-                  value={formData.productCategory}
-                  onValueChange={(value) =>
-                    handleInputChange("productCategory", value)
-                  }
-                >
-                  <SelectTrigger className="w-full">
-                    <SelectValue placeholder="Select product category" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {productCategories.map((category) => (
-                      <SelectItem key={category} value={category}>
-                        {category}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
+            {/* Product Category */}
+            <div className="">
+              <label
+                htmlFor="productCategory"
+                className="text-lg font-medium text-[#484848]"
+              >
+                Product Category <span className="text-red-500">*</span>
+              </label>
+              <Select
+                value={formData.productCategory}
+                onValueChange={(value) =>
+                  handleInputChange("productCategory", value)
+                }
+              >
+                <SelectTrigger className="w-full bg-[#E5E5E5] border border-[#B3B3B3] text-base rounded-xl placeholder:text-[#969696] h-auto p-3 mt-2">
+                  <SelectValue placeholder="Select product category" />
+                </SelectTrigger>
+                <SelectContent className="bg-white">
+                  {productCategories.map((category) => (
+                    <SelectItem key={category} value={category}>
+                      {category}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
 
-              {/* Price Range */}
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-700">
-                  Price Range (USD)
-                </label>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="space-y-1">
-                    <label htmlFor="minPrice" className="text-xs text-gray-500">
-                      Min Price
-                    </label>
-                    <Input
-                      id="minPrice"
-                      type="number"
-                      placeholder="0"
-                      value={formData.minPrice}
-                      onChange={(e) =>
-                        handleInputChange("minPrice", e.target.value)
-                      }
-                      min="0"
-                      step="0.01"
-                    />
-                  </div>
-                  <div className="space-y-1">
-                    <label htmlFor="maxPrice" className="text-xs text-gray-500">
-                      Max Price
-                    </label>
-                    <Input
-                      id="maxPrice"
-                      type="number"
-                      placeholder="0"
-                      value={formData.maxPrice}
-                      onChange={(e) =>
-                        handleInputChange("maxPrice", e.target.value)
-                      }
-                      min="0"
-                      step="0.01"
-                    />
-                  </div>
+            {/* Price Range */}
+            <div className="">
+              <div className="grid grid-cols-2 gap-4 mt-2">
+                <div className="">
+                  <label
+                    htmlFor="minPrice"
+                    className="text-lg font-medium text-[#484848]"
+                  >
+                    Min Price
+                  </label>
+                  <Input
+                    id="minPrice"
+                    type="number"
+                    placeholder="0"
+                    value={formData.minPrice}
+                    onChange={(e) =>
+                      handleInputChange("minPrice", e.target.value)
+                    }
+                    min="0"
+                    step="0.01"
+                    className="w-full bg-[#E5E5E5] border border-[#B3B3B3] text-base rounded-xl placeholder:text-[#969696] h-auto p-3 mt-1"
+                  />
                 </div>
-              </div>
-
-              {/* Product Description */}
-              <div className="space-y-2">
-                <label
-                  htmlFor="productDescription"
-                  className="text-sm font-medium text-gray-700"
-                >
-                  Product Description <span className="text-red-500">*</span>
-                </label>
-                <Textarea
-                  id="productDescription"
-                  placeholder="Describe your product requirements in detail..."
-                  value={formData.productDescription}
-                  onChange={(e) =>
-                    handleInputChange("productDescription", e.target.value)
-                  }
-                  className="min-h-[120px] resize-none"
-                />
-              </div>
-
-              {/* Expected Delivery Date */}
-              <div className="space-y-2">
-                <label
-                  htmlFor="expectedDeliveryDate"
-                  className="text-sm font-medium text-gray-700"
-                >
-                  Expected Delivery Date <span className="text-red-500">*</span>
-                </label>
-                <Input
-                  id="expectedDeliveryDate"
-                  type="date"
-                  value={formData.expectedDeliveryDate}
-                  onChange={(e) =>
-                    handleInputChange("expectedDeliveryDate", e.target.value)
-                  }
-                  min={new Date().toISOString().split("T")[0]}
-                />
-              </div>
-
-              {/* Requirements */}
-              <div className="space-y-2">
-                <label
-                  htmlFor="requirements"
-                  className="text-sm font-medium text-gray-700"
-                >
-                  Additional Requirements
-                </label>
-                <Textarea
-                  id="requirements"
-                  placeholder="Any specific requirements, certifications, or preferences..."
-                  value={formData.requirements}
-                  onChange={(e) =>
-                    handleInputChange("requirements", e.target.value)
-                  }
-                  className="min-h-[80px] resize-none"
-                />
+                <div className="">
+                  <label
+                    htmlFor="maxPrice"
+                    className="text-lg font-medium text-[#484848]"
+                  >
+                    Max Price
+                  </label>
+                  <Input
+                    id="maxPrice"
+                    type="number"
+                    placeholder="0"
+                    value={formData.maxPrice}
+                    onChange={(e) =>
+                      handleInputChange("maxPrice", e.target.value)
+                    }
+                    min="0"
+                    step="0.01"
+                    className="w-full bg-[#E5E5E5] border border-[#B3B3B3] text-base rounded-xl placeholder:text-[#969696] h-auto p-3 mt-1"
+                  />
+                </div>
               </div>
             </div>
 
-            {/* Right Column - Photo Upload & Buttons */}
-            <div className="space-y-6">
-              {/* Photo Upload */}
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-700">
-                  Product Photos (Optional)
-                </label>
-                <div
-                  className={`border-2 border-dashed rounded-lg p-6 text-center transition-colors ${
-                    dragActive
-                      ? "border-blue-500 bg-blue-50"
-                      : "border-gray-300 hover:border-gray-400"
-                  }`}
-                  onDragEnter={handleDrag}
-                  onDragLeave={handleDrag}
-                  onDragOver={handleDrag}
-                  onDrop={handleDrop}
-                >
-                  <Upload className="w-8 h-8 mx-auto mb-2 text-gray-400" />
-                  <p className="text-sm text-gray-600 mb-2">
-                    Drag and drop photos here, or{" "}
-                    <label
-                      htmlFor="photo-upload"
-                      className="text-blue-600 hover:text-blue-700 cursor-pointer"
-                    >
-                      click to browse
-                    </label>
-                  </p>
-                  <p className="text-xs text-gray-400">
-                    PNG, JPG up to 5MB each (max 5 photos)
+            {/* Product Description */}
+            <div className="">
+              <label
+                htmlFor="productDescription"
+                className="text-lg font-medium text-[#484848]"
+              >
+                Product Description <span className="text-red-500">*</span>
+              </label>
+              <Textarea
+                id="productDescription"
+                placeholder="Describe your product requirements in detail..."
+                value={formData.productDescription}
+                onChange={(e) =>
+                  handleInputChange("productDescription", e.target.value)
+                }
+                className="min-h-[120px] resize-none w-full bg-[#E5E5E5] border border-[#B3B3B3] text-base rounded-xl placeholder:text-[#969696] p-3 mt-2"
+              />
+            </div>
+
+            {/* Expected Delivery Date */}
+            <div className="">
+              <label
+                htmlFor="expectedDeliveryDate"
+                className="text-lg font-medium text-[#484848]"
+              >
+                Expected Delivery Date <span className="text-red-500">*</span>
+              </label>
+              <Input
+                id="expectedDeliveryDate"
+                type="date"
+                value={formData.expectedDeliveryDate}
+                onChange={(e) =>
+                  handleInputChange("expectedDeliveryDate", e.target.value)
+                }
+                min={new Date().toISOString().split("T")[0]}
+                className="w-full bg-[#E5E5E5] border border-[#B3B3B3] text-base rounded-xl placeholder:text-[#969696] h-auto p-3 mt-2 [&::-webkit-calendar-picker-indicator]:text-[#F04436] [&::-webkit-calendar-picker-indicator]:cursor-pointer [&::-webkit-calendar-picker-indicator]:ml-auto"
+                style={{
+                  colorScheme: "light",
+                }}
+              />
+            </div>
+
+            {/* Requirements */}
+            <div className="">
+              <label
+                htmlFor="requirements"
+                className="text-lg font-medium text-[#484848]"
+              >
+                Additional Requirements
+              </label>
+              <Textarea
+                id="requirements"
+                placeholder="Any specific requirements, certifications, or preferences..."
+                value={formData.requirements}
+                onChange={(e) =>
+                  handleInputChange("requirements", e.target.value)
+                }
+                className="min-h-[80px] resize-none w-full bg-[#E5E5E5] border border-[#B3B3B3] text-base rounded-xl placeholder:text-[#969696] p-3 mt-2"
+              />
+            </div>
+          </div>
+
+          {/* Right Column - Photo Upload & Buttons */}
+          <div className="space-y-6">
+            {/* Photo Upload */}
+            <div>
+              <label className="text-lg font-medium text-[#484848]">
+                Product Photos (Optional)
+              </label>
+              <div
+                className={`border-1 border-dashed rounded-[20px] p-4 text-center transition-colors mt-2 ${
+                  dragActive
+                    ? "border-blue-500 bg-blue-50"
+                    : "border-gray-300 hover:border-gray-400"
+                }`}
+                onDragEnter={handleDrag}
+                onDragLeave={handleDrag}
+                onDragOver={handleDrag}
+                onDrop={handleDrop}
+              >
+                <div className="max-h-[300px] bg-[#EFEFEF] rounded-[16px] p-4 py-10">
+                  <MdOutlineCloudUpload className="w-8 h-8 mx-auto mb-2 text-gray-400" />
+                  <p className="px-10">
+                    <span className="text-[#F04436]">Upload an image</span> or
+                    drag and drop PNG, JPG,PDF up to 10 mb
                   </p>
                   <input
                     id="photo-upload"
@@ -333,51 +325,50 @@ const RFQModal: React.FC<RFQModalProps> = ({ isOpen, onClose }) => {
                     className="hidden"
                   />
                 </div>
-
-                {/* Uploaded Photos Preview */}
-                {formData.photos.length > 0 && (
-                  <div className="grid grid-cols-3 gap-2 mt-4">
-                    {formData.photos.map((photo, index) => (
-                      <div key={index} className="relative group">
-                        <img
-                          src={URL.createObjectURL(photo)}
-                          alt={`Preview ${index + 1}`}
-                          className="w-full h-16 object-cover rounded-md border"
-                        />
-                        <button
-                          onClick={() => removePhoto(index)}
-                          className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs hover:bg-red-600 transition-colors"
-                        >
-                          <X className="w-3 h-3" />
-                        </button>
-                      </div>
-                    ))}
-                  </div>
-                )}
               </div>
 
-              {/* Action Buttons */}
-              <div className="space-y-3">
-                <Button
-                  onClick={handleSubmit}
-                  disabled={!isFormValid()}
-                  className="w-full bg-[var(--color-sunset-orange)] hover:bg-[var(--color-sunset-orange)]/90"
-                >
-                  Post Lead
-                </Button>
-                <Button
-                  variant="outline"
-                  onClick={handleCancel}
-                  className="w-full"
-                >
-                  Cancel
-                </Button>
-              </div>
+              {/* Uploaded Photos Preview */}
+              {formData.photos.length > 0 && (
+                <div className="grid grid-cols-3 gap-2 mt-4">
+                  {formData.photos.map((photo, index) => (
+                    <div key={index} className="relative group">
+                      <img
+                        src={URL.createObjectURL(photo)}
+                        alt={`Preview ${index + 1}`}
+                        className="w-full h-16 object-cover rounded-md border"
+                      />
+                      <button
+                        onClick={() => removePhoto(index)}
+                        className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs hover:bg-red-600 transition-colors"
+                      >
+                        <X className="w-3 h-3" />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Action Buttons */}
+            <div className="grid grid-cols-2 gap-4">
+              <Button
+                onClick={handleSubmit}
+                className="w-full bg-[#FFF] text-[#F04436] rounded-[20px] py-4 h-auto border border-[#F04436] hover:bg-[#F04436]/90 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                Post Lead
+              </Button>
+              <Button
+                variant="outline"
+                onClick={handleCancel}
+                className="w-full bg-[#F04436] text-white rounded-[20px] py-4 h-auto border border-[#F04436] hover:bg-[#F04436]/90 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                Cancel
+              </Button>
             </div>
           </div>
-        </DialogContent>
-      </Dialog>
-
+        </div>
+      </DialogContent>
+    </Dialog>
   );
 };
 

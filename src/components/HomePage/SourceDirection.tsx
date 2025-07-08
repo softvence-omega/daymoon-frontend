@@ -8,7 +8,7 @@ const sourceCards = [
   {
     img: img1,
     alt: "Factory Live Tour",
-    title: "Take a Factory Live Tour",
+    title: "Take a Factory Live Tour etc",
   },
   {
     img: img2,
@@ -32,7 +32,7 @@ export default function SourceDirectSection() {
     >
       <CommonWrapper>
         <div className="">
-          <h2 className="text-white text-[32px] md:text-[48px] font-semibold leading-[1.2] mb-10">
+          <h2 className="text-white text-3xl md:text-[48px] font-semibold leading-[1.2] mb-10">
             SOURCE DIRECT FROM <br className="hidden md:block" />
             MANUFACTURERS
           </h2>
