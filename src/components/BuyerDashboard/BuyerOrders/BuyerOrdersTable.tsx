@@ -1,16 +1,11 @@
 import { BuyerOrderTableData } from "@/lib/Buyer/BuyerOrderTable";
 import { OrdersTableProps } from "@/types/Buyer/BuyerOrderTypes";
-import {
-  ChevronDown,
-  ExternalLink,
-  MessageSquare,
-  RotateCcw,
-  Search,
-} from "lucide-react";
+import { ChevronDown, Search } from "lucide-react";
 import reviews from "@/assets/reviews.svg";
 import refund from "@/assets/refund 1.svg";
 import coupon from "@/assets/coupon 1.svg";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const BuyerOrdersTable: React.FC<OrdersTableProps> = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -53,13 +48,16 @@ const BuyerOrdersTable: React.FC<OrdersTableProps> = () => {
           </p>
         </div>
         <div className="flex gap-3">
-          <button className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700   hover:bg-gray-50 transition-colors">
+          <Link
+            to="/reviews"
+            className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700   hover:bg-gray-50 transition-colors"
+          >
             <span className="border-b border-catalien-blue text-lg">
               Reviews
             </span>
             {/* <MessageSquare className="w-4 h-4 " /> */}
             <img src={reviews} alt="" />
-          </button>
+          </Link>
           <button className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700  transition-colors">
             <span className="border-b border-catalien-blue text-lg">
               Refund
