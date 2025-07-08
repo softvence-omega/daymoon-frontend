@@ -9,6 +9,17 @@ import {
   Area,
 } from "recharts";
 
+// Update this path if you're using ShadCN or Radix UI Select
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectGroup,
+  SelectLabel,
+  SelectItem,
+} from "@/components/ui/select";
+
 type RevenueData = {
   month: string;
   week?: string;
@@ -92,7 +103,7 @@ const PromotionPerformance = () => {
 
   return (
     <div className="bg-white rounded-xl shadow-md p-8">
-      <div className="flex justify-between items-center mb-6">
+      <div className="flex flex-wrap justify-between items-center mb-6 gap-4">
         <h1 className="text-2xl font-medium text-[#484848]">
           Promotions Performance
         </h1>
@@ -108,19 +119,25 @@ const PromotionPerformance = () => {
           </div>
         </div>
 
-        <div className="flex space-x-2 bg-[#FCFCFC] border border-[#B3B3B3] rounded-xl text-[#484848] overflow-hidden text-lg">
-          {["week", "month", "year"].map((item) => (
-            <button
-              key={item}
-              className={`px-4 py-2.5 text-sm capitalize cursor-pointer ${
-                timeRange === item ? "bg-catalien-blue text-white" : ""
-              }`}
-              onClick={() => setTimeRange(item as "week" | "month" | "year")}
-            >
-              {item}
-            </button>
-          ))}
-        </div>
+        {/* 🔽 Time Range Dropdown Filter */}
+        <Select
+          value={timeRange}
+          onValueChange={(value) =>
+            setTimeRange(value as "week" | "month" | "year")
+          }
+        >
+          <SelectTrigger className="w-[180px] border border-[#B3B3B3] text-[#484848] rounded-xl px-4 py-2.5 text-sm bg-[#FCFCFC]">
+            <SelectValue placeholder="Select Time Range" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectLabel>Time Range</SelectLabel>
+              <SelectItem value="week">This Week</SelectItem>
+              <SelectItem value="month">This Month</SelectItem>
+              <SelectItem value="year">Last 6 Months</SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
       </div>
 
       <div className="h-80">
@@ -182,7 +199,6 @@ const PromotionPerformance = () => {
               }
             />
 
-            {/* Actual Data Series */}
             <Area
               type="monotone"
               dataKey="views"
