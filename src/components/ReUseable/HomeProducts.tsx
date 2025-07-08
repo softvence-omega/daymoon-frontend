@@ -1,5 +1,6 @@
 import SharedButton from "@/common/CommonHomepageButton";
 import { products } from "@/lib/productCard/cardData";
+
 import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import HomeProductCard from "./HomeProductCard";
@@ -85,7 +86,8 @@ const HomeProducts = ({ cols, rows }: HomeProductsProps) => {
       : {};
 
   return (
-    <div className="mt-[80px]">
+    <div className="my-[80px]">
+      {/* Grid */}
       <div
         className={gridClass}
         style={{
@@ -98,8 +100,11 @@ const HomeProducts = ({ cols, rows }: HomeProductsProps) => {
         ))}
       </div>
 
-      {visibleCount < products.length && (
-        <Link to="/shop">
+
+      {/* Explore More Button */}
+      {hasMore && (
+        <Link to="/products">
+
           <div className="max-w-[1520px] mx-auto flex justify-center mt-12 ">
             <SharedButton></SharedButton>
           </div>

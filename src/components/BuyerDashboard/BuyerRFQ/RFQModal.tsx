@@ -163,7 +163,7 @@ const RFQModal: React.FC<RFQModalProps> = ({ isOpen, onClose }) => {
                 htmlFor="productCategory"
                 className="text-lg font-medium text-[#484848]"
               >
-                Product Category <span className="text-red-500">*</span>
+                Product Category
               </label>
               <Select
                 value={formData.productCategory}
@@ -236,7 +236,7 @@ const RFQModal: React.FC<RFQModalProps> = ({ isOpen, onClose }) => {
                 htmlFor="productDescription"
                 className="text-lg font-medium text-[#484848]"
               >
-                Product Description <span className="text-red-500">*</span>
+                Product Description
               </label>
               <Textarea
                 id="productDescription"
@@ -255,7 +255,7 @@ const RFQModal: React.FC<RFQModalProps> = ({ isOpen, onClose }) => {
                 htmlFor="expectedDeliveryDate"
                 className="text-lg font-medium text-[#484848]"
               >
-                Expected Delivery Date <span className="text-red-500">*</span>
+                Expected Delivery Date
               </label>
               <Input
                 id="expectedDeliveryDate"
@@ -353,14 +353,14 @@ const RFQModal: React.FC<RFQModalProps> = ({ isOpen, onClose }) => {
             <div className="grid grid-cols-2 gap-4">
               <Button
                 onClick={handleSubmit}
-                className="w-full bg-[#FFF] text-[#F04436] rounded-[20px] py-4 h-auto border border-[#F04436] hover:bg-[#F04436]/90 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-[#FFF] text-[#F04436] rounded-[20px] py-4 h-auto border border-[#F04436] cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Post Lead
               </Button>
               <Button
                 variant="outline"
                 onClick={handleCancel}
-                className="w-full bg-[#F04436] text-white rounded-[20px] py-4 h-auto border border-[#F04436] hover:bg-[#F04436]/90 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-[#F04436] text-white rounded-[20px] py-4 h-auto border border-[#F04436] hover:bg-[#F04436]/90 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Cancel
               </Button>
