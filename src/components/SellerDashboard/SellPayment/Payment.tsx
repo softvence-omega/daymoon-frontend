@@ -1,3 +1,5 @@
+import { RecentOrders } from "../Dashboard/RecentOrders";
+import { TopSellingProducts } from "../Dashboard/TopSellingProducts";
 import Wrapper from "../Shared/Wrapper";
 import EarningTrend from "./EarningTrend";
 import EnquiriesByCategories from "./EnquiriesByCategories";
@@ -16,6 +18,14 @@ const Payment = () => {
           </div>
           <div className="w-full lg:w-1/2">
             <EarningTrend />
+          </div>
+        </div>
+        <div className="flex flex-col lg:flex-row w-full gap-5">
+          <div className="w-full lg:w-1/2">
+            <RecentOrders />
+          </div>
+          <div className="w-full lg:w-1/2">
+            <TopSellingProducts />
           </div>
         </div>
       </div>
