@@ -1,6 +1,6 @@
 import { BuyerOrder } from "@/types/Buyer/BuyerOrderTypes";
 
-export const BuyerOrderTable: BuyerOrder[] = [
+export const BuyerOrderTableData: BuyerOrder[] = [
   {
     id: "ORD-2025-347",
     supplier: "TechSupplies Inc.",

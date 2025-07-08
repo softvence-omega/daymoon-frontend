@@ -6,28 +6,28 @@ import { MdOutlineOutbox } from "react-icons/md";
 const Card = () => {
   const statusData = [
     {
-      title: "Total Revenue",
-      amount: "23,8543",
+      title: "Total Promotions",
+      amount: "24",
       change: "↓ 12%",
       unit: "for this month",
       icon: <AiFillDollarCircle />,
     },
     {
-      title: "Total Orders",
-      amount: "154",
+      title: "Active Promotions",
+      amount: "8",
       change: "↓ 12%",
       unit: "for this month",
       icon: <FaBorderAll />,
     },
     {
-      title: "Active Listing",
-      amount: "42",
+      title: "Clicks from Promotions",
+      amount: "1447",
       change: "↓ 12%",
       unit: "for this month",
       icon: <MdOutlineOutbox />,
     },
     {
-      title: "Inquiries",
+      title: "Sales from Promotion",
       amount: "23",
       change: "↓ -8%",
       unit: "for this month",
@@ -35,8 +35,8 @@ const Card = () => {
     },
   ];
 
-  const colors = ["#FFA600", "#9747FF", "#12CC1E", "#009CDE"];
-  const bgColors = ["#FFA6001A", "#9747FF1A", "#12CC1E1A", "#009CDE1A"]; // 10% opacity in hex
+  const colors = ["#9747FF", "#2F7EEF", "#F2BC3C", "#D9222A"];
+  const bgColors = ["#F5EDFF", "#EBF3FE", "#FEF9EC", "#FCE9EA"]; // 10% opacity in hex
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 place-items-start w-full ">

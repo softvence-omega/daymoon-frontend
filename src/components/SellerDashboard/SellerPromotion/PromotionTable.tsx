@@ -277,7 +277,7 @@ const columns: ColumnDef<Inquiry>[] = [
 ];
 
 // Table Component
-export function InquirieTable() {
+export function PromotionTable() {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
