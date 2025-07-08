@@ -3,14 +3,13 @@ import { MdOutlineMessage } from "react-icons/md";
 
 const RFQNeedHelp = () => {
   return (
-    <div className="border border-[#E5E5E5] rounded-2xl bg-white max-w-[350px] p-6">
-      <h3 className="text-2xl text-[#1A1A1A] ">Need Help?</h3>
+    <div className="border border-[#E5E5E5] rounded-2xl bg-white sm:max-w-[350px] p-4 sm:p-6 mt-10 flex sm:block items-center justify-between gap-2">
+      <h3 className="text-md sm:text-2xl text-[#1A1A1A] ">Need Help?</h3>
       <Button
-        variant="default"
-        className="bg-[#F04436] text-white h-auto rounded-2xl mt-6 flex items-center gap-2 px-16 py-4 "
+        className="bg-[#F04436] text-white h-auto rounded-2xl sm:mt-6 flex items-center gap-2 sm:px-16 sm:py-4 "
       >
         <MdOutlineMessage className="w-6 h-6" />
-        <span className="text-lg">Live Chat Support</span>
+        <p className=" text-sm sm:text-lg">Live Chat Support</p>
       </Button>
     </div>
   );
