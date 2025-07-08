@@ -1,6 +1,7 @@
 import SharedButton from "@/common/CommonHomepageButton";
 import { products } from "@/lib/productCard/cardData";
-import { useEffect, useState } from "react";
+
+import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import HomeProductCard from "./HomeProductCard";
 
@@ -99,9 +100,11 @@ const HomeProducts = ({ cols, rows }: HomeProductsProps) => {
         ))}
       </div>
 
+
       {/* Explore More Button */}
       {hasMore && (
         <Link to="/products">
+
           <div className="max-w-[1520px] mx-auto flex justify-center mt-12 ">
             <SharedButton></SharedButton>
           </div>
