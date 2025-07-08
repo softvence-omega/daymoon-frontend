@@ -48,7 +48,7 @@ const Card = () => {
         return (
           <div
             key={single.title}
-            className="w-full max-w-[358px] h-[187px]  p-5 sm:p-6 bg-white rounded-[16px] border border-[#E0E0E0] flex flex-col justify-between mx-auto"
+            className="w-full h-[187px]  p-5 sm:p-6 bg-white rounded-[16px] border border-[#E0E0E0] flex flex-col justify-between mx-auto"
           >
             {/* Top Row */}
             <div className="flex items-center justify-start gap-5">

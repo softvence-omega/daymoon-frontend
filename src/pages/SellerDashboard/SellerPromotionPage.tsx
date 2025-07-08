@@ -1,7 +1,9 @@
+import Promotion from "@/components/SellerDashboard/SellerPromotion/Promotion";
+
 const SellerPromotionPage = () => {
   return (
     <div>
-      <h1>SellerPromotionPage</h1>
+      <Promotion />
     </div>
   );
 };
