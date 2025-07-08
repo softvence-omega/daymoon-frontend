@@ -1,138 +1,224 @@
-// src/App/Components/Home/ProductDetails.tsx
-
-import { Button } from "@/components/ui/button";
 import classNames from "classnames";
-import { ChevronRight, Star, Truck } from "lucide-react";
-import { useEffect, useState } from "react";
+import { ChevronRight, Truck } from "lucide-react";
+import { useState } from "react";
 
-interface Product {
+import { motion } from "motion/react";
+import Breadcrumbs from "../SellerDashboard/SellerProducts/Breadcrumbs";
+import SingleProductImage from "../SellerDashboard/SellerProducts/ProductDetails/SingleProductImage";
+import { StarRating } from "../SellerDashboard/SellerProducts/ProductDetails/StarRating";
+
+export interface Product {
   productId: string;
-  name: string;
-  brand: string;
-  category: string;
-  rating: {
-    score: number;
-    reviews: number;
-  };
-  minimumOrderQuantity: number;
-  priceTiers: { quantityRange: string; price: number }[];
-  sample: { available: boolean; price: number };
-  variants: { color: string; image: string }[];
-  shipping: {
-    type: string;
-    description: string;
-  };
-  actions: string[];
+  productSlug: string;
+  productName: string;
+  productCategory: string;
+  brandName: string;
+  skuNo: string;
   description: string;
-  images: string[];
-  productDetails: {
-    keyFeatures: string[];
-    additionalFeatures: string[];
-    keyAttributes: Record<string, string>;
+  aboutProduct: string;
+  vendorInfo: {
+    vendorId: string;
+    vendorName: string;
+    storeUrl: string;
+    contactEmail: string;
+    verified: boolean;
   };
+  pricePerUnit: string;
+  samplePrice: string;
+  moq: {
+    range: string;
+    price: string;
+  }[];
+  discounts?: {
+    type: "bulk";
+    minQty: number;
+    discountPercent: number;
+  }[];
+  inventory: {
+    stock: number;
+    inStock: boolean;
+    lowStockThreshold?: number;
+  };
+  variants: {
+    color: string;
+    image: string;
+  }[];
+  sizes: string[];
+  keyFeatures: string[];
+  additionalFeatures: {
+    title: string;
+    description: string;
+  }[];
+  keyAttributes: {
+    [key: string]: string;
+  };
+  ratings: {
+    score: number;
+    totalReviews: number;
+  };
+  reviews?: {
+    userId: string;
+    rating: number;
+    comment: string;
+    date: string;
+  }[];
+  customizations: {
+    option: string;
+    price: string;
+  }[];
 }
 
+const dummyProduct: Product = {
+  productId: "BT-EARBUDS-BLACK",
+  productSlug: "bluetooth-earbuds-deep-bass",
+  productName:
+    "Bluetooth Wireless Earbuds with Deep Bass, 40H Playtime, LED Display, IP7 Rating, Mic for iPhone and Android",
+  productCategory: "Electronics",
+  brandName: "Electronics Products Manufacturer",
+  skuNo: "EBB-1001",
+  description:
+    "High-quality wireless earbuds with deep bass and long playtime.",
+  aboutProduct:
+    "Enjoy immersive sound with these waterproof, long-lasting earbuds perfect for both casual and active lifestyles.",
+  vendorInfo: {
+    vendorId: "VEND-202",
+    vendorName: "ElectroMart",
+    storeUrl: "/vendors/electromart",
+    contactEmail: "sales@electromart.com",
+    verified: true,
+  },
+  pricePerUnit: "$5.34",
+  samplePrice: "$1.50",
+  moq: [
+    { range: "10-199", price: "$5.34" },
+    { range: "200-499", price: "$3.45" },
+    { range: "500-999", price: "$1.56" },
+    { range: "1000+", price: "$0.56" },
+  ],
+  discounts: [{ type: "bulk", minQty: 500, discountPercent: 15 }],
+  inventory: {
+    stock: 1500,
+    inStock: true,
+    lowStockThreshold: 100,
+  },
+  variants: [
+    { color: "Black", image: "/img/black_Earbuds1.png" },
+    { color: "White", image: "/img/white_Earbuds1.png" },
+    { color: "Pink", image: "/img/pink_Earbuds1.png" },
+  ],
+  sizes: [],
+  keyFeatures: [
+    "Crystal Clear Sound",
+    "True Wireless Connectivity",
+    "Bluetooth 5.0",
+    "40 Hours Playtime",
+  ],
+  additionalFeatures: [
+    {
+      title: "LED Display",
+      description: "Real-time battery level display on case.",
+    },
+    {
+      title: "Water Resistant",
+      description: "IP7 Rating ensures durability against sweat and water.",
+    },
+  ],
+  keyAttributes: {
+    Model: "TrueSound Pro Wireless Earbuds",
+    Connectivity: "Bluetooth 5.0",
+    BatteryLife: "Up to 10 hours of playtime",
+    ChargingTime: "1.5 hours",
+    DriverSize: "10mm dynamic drivers",
+    Packaging: "Earbuds, charging case, USB-C cable, 3 ear tip sizes",
+  },
+  ratings: {
+    score: 4.5,
+    totalReviews: 7457,
+  },
+  reviews: [
+    {
+      userId: "USER-1001",
+      rating: 5,
+      comment: "Excellent sound quality and battery life!",
+      date: "2025-07-06",
+    },
+  ],
+  customizations: [{ option: "Add Logo", price: "$0.50" }],
+};
+
 export default function ProductDetails() {
-  const [product, setProduct] = useState<Product | null>(null);
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
-  const [selectedColor, setSelectedColor] = useState<string>("");
+  const [product] = useState<Product>(dummyProduct);
+
+  const [selectedColor, setSelectedColor] = useState<string>(
+    product.variants[0].color
+  );
   const [clickedButton, setClickedButton] = useState<string | null>(null);
 
-  useEffect(() => {
-    fetch("/product_info.json")
-      .then((res) => res.json())
-      .then((data) => {
-        setProduct(data[0]);
-        setSelectedImage(data[0].images[0]);
-        setSelectedColor(data[0].variants[0].color);
-      });
-  }, []);
-
-  if (!product) return <div>Loading...</div>;
-
   return (
-    <>
-      <div className="grid grid-cols-1 ml-20 mx-auto md:grid-cols-2 gap-8 p-6">
-        {/* LEFT SIDE – IMAGES */}
-        <div className="flex wfull">
-          <div className="flex flex-col gap-2 mt-1 pr-5 pt-0">
-            {product.images.map((img, idx) => (
-              <img
-                key={idx}
-                src={img}
-                alt={`Thumb ${idx}`}
-                onClick={() => setSelectedImage(img)}
-                className={classNames(
-                  "w-16 h-16 object-cover cursor-pointer border rounded-md",
-                  {
-                    "ring-2 ring-blue-500": selectedImage === img,
-                  }
-                )}
-                style={{ width: "87px", height: "45px" }}
-              />
-            ))}
-          </div>
-          <img
-            src={selectedImage!}
-            alt="Main Product"
-            className="w-full max-h-[400px] object-contain rounded-xl border"
-            style={{ width: "614px", height: "732px" }}
-          />
+    <div className="mt-6 mx-auto">
+      <Breadcrumbs
+        title="Shop"
+        subtitle="Products"
+        subtitle2={product.productName}
+      />
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-6">
+        <div className="relative">
+          <SingleProductImage />
         </div>
 
-        {/* RIGHT SIDE – DETAILS */}
-        <div className="max-w-xl mx-auto p-4 rounded-xl border bg-white shadow-sm space-y-4">
-          {/* Title & Rating */}
+        <div className="space-y-4 text-sm bg-white p-4 rounded-xl shadow-[0_0_1px_0] ">
           <div>
-            <h1 className="text-lg font-semibold leading-snug">
-              {product.name}
+            <h1 className="text-xl md:text-2xl font-semibold leading-tight text-gray-800">
+              {product.productName}
             </h1>
-            <div className="flex items-center gap-2 text-sm mt-1 text-gray-600">
-              <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
-              {product.rating.score}/5 ({product.rating.reviews})
+            <div className="flex items-center gap-2 text-gray-500 mt-5 ">
+              <StarRating rating={product.ratings.score} />
+              {product.ratings.score}/5 ({product.ratings.totalReviews} )
             </div>
           </div>
 
-          {/* MOQ + Prices */}
-          <div className="text-sm">
-            <p className=" text-gray-700">Minimum Order Quantity</p>
-            <p className=" mb-2">{product.minimumOrderQuantity} Pieces</p>
-            <div className="grid grid-cols-4 text-center text-xs text-gray-700 gap-2">
-              {product.priceTiers.map((tier, i) => (
-                <div key={i}>
-                  <p>{tier.quantityRange} pieces</p>
-                  <p className="font-bold">${tier.price.toFixed(2)}</p>
+          <div>
+            <p className="text-[[#E5E5E5] font-medium">
+              Minimum Order Quantity
+            </p>
+            <p className="mb-2 text-gray-900 text-lg font-semibold">
+              {product.moq[0].range}
+            </p>
+            <div className="flex justify-start flex-wrap items-center mt-5  gap-5 ">
+              {product.moq.map((tier, i) => (
+                <div key={i} className="border-none rounded-md p-2 text-start ">
+                  <p className="text-sm  text-[[#E5E5E5]">{tier.range}</p>
+                  <p className="text-lg md:font-semibold mt-2 md:text-xl text-gray-800">
+                    {tier.price}
+                  </p>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Sample */}
-          <div className="flex items-center justify-between bg-orange-50 border border-orange-200 rounded-lg p-3 text-sm">
-            <div className="font-medium ">
+          <div className="flex mt-8 items-center justify-between  border border-[#E5E5E5] rounded-lg p-4">
+            <div className="font-medium text-base">
               🎁 Get Your Sample{" "}
-              <span className="text-red-600">(${product.sample.price})</span>
+              <span className="text-red-600  ">({product.samplePrice})</span>
             </div>
-            <ChevronRight className="text-orange-600 w-4 h-4" />
+            <ChevronRight className="text-orange-600 bg-[#FEECEB] w-6 h-6 rounded-full" />
           </div>
-
-          {/* Variants */}
+          <hr className="text-[#B3B3B3] my-8 h1 w-full" />
           <div>
-            <p className="text-sm font-semibold mb-2">Variants</p>
-            <div className="flex gap-3">
+            <p className=" text-[#B3B3B3]  text-base mb-2">Variants</p>
+            <div className="flex gap-5 mt-5 flex-wrap ">
               {product.variants.map((variant, i) => (
                 <img
                   key={i}
                   src={variant.image}
                   alt={variant.color}
                   onClick={() => {
-                    setSelectedImage(variant.image);
                     setSelectedColor(variant.color);
                   }}
                   className={classNames(
-                    "w-[60px] h-[60px] object-cover border rounded-lg cursor-pointer p-1",
+                    "w-14 h-14 object-cover border-[#E5E5E5] border-1 rounded-lg cursor-pointer p-1",
                     {
-                      "border-red-500 ring-2 ring-red-500":
+                      "border-[#F04436] ring-1 ring-[#F04436]":
                         selectedColor === variant.color,
                     }
                   )}
@@ -140,71 +226,45 @@ export default function ProductDetails() {
               ))}
             </div>
           </div>
-
-          {/* Shipping */}
-          <div className="bg-gray-50 border rounded-lg p-3 text-sm space-y-1">
-            <div className="flex items-center gap-2 font-semibold">
-              <Truck className="w-4 h-4 text-orange-500" />
-              Shipping
+          <hr className="text-[#B3B3B3] my-8 h1 w-full" />
+          <div className=" border-none rounded-lg text-sm space-y-1">
+            <div className="flex items-center gap-2   text-[#B3B3B3]">
+              <Truck className="w-4 h-4 text-orange-500" /> Shipping
             </div>
-            <p className="font-medium">{product.shipping.type}</p>
-            <p className="text-gray-600">{product.shipping.description}</p>
+            <div className="border-[#E5E5E5] mt-5 border-1 p-3 rounded-2xl">
+              <p className="text-gray-800 text-lg font-medium ">Standard</p>
+              <p className="text-[[#E5E5E5]">
+                Lorem ipsum dolor sit amet consectetur. Eget volutpat varius
+                proin risus nisi.
+              </p>
+            </div>
+          </div>
+          <hr className="text-[#B3B3B3] my-8 h1 w-full" />
+          <div className="grid grid-cols-1 md:grid-cols-3 mt-12 gap-3 ">
+            {[
+              { label: "Add To Cart" },
+              { label: "Chat Now" },
+              { label: "Buy Now" },
+            ].map(({ label }) => (
+              <motion.button
+                className=" px-10 py-3 rounded-3xl border-[#F04436] border-1 hover:bg-[#F04436] hover:text-white text-[#F04436] transition-colors duration-200 font-semibold "
+                onClick={() => {
+                  console.log(`${label} clicked`);
+                }}
+              >
+                {label}
+              </motion.button>
+            ))}
           </div>
 
-          {/* Action Buttons */}
-          <div className="grid grid-cols-3 gap-2">
-            <Button
-              variant="outline"
-              className={classNames(
-                "text-[14px] hover:bg-transparent hover:text-inherit",
-                clickedButton === "add" && "bg-red-500 text-white"
-              )}
-              onClick={() => {
-                setClickedButton("add");
-                console.log("Add To Cart clicked");
-              }}
-            >
-              Add To Cart
-            </Button>
-
-            <Button
-              variant="outline"
-              className={classNames(
-                "text-[14px] hover:bg-transparent hover:text-inherit",
-                clickedButton === "chat" && "bg-red-500 text-white"
-              )}
-              onClick={() => {
-                setClickedButton("chat");
-                console.log("Chat Now clicked");
-              }}
-            >
-              Chat Now
-            </Button>
-
-            <Button
-              variant="outline"
-              className={classNames(
-                "text-[14px] hover:bg-transparent hover:text-inherit",
-                clickedButton === "buy" && "bg-red-500 text-white"
-              )}
-              onClick={() => {
-                setClickedButton("buy");
-                console.log("Buy Now clicked");
-              }}
-            >
-              Buy Now
-            </Button>
-          </div>
-
-          {/* Description */}
-          <div className="border rounded-lg p-4 bg-gray-50 text-sm">
-            <p className="font-semibold mb-2">About This Product</p>
-            <p className="text-gray-600 leading-relaxed line-clamp-6">
-              {product.description}
+          <div className="border-[#E5E5E5] mt-12 border-1 rounded-xl p-6 ">
+            <p className="font-semibold mb-2 text-lg">About This Product</p>
+            <p className="text-[#484848] text-base leading-relaxed">
+              {product.aboutProduct}
             </p>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
