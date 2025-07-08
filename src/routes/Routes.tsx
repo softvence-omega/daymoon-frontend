@@ -138,7 +138,7 @@ const routes = createBrowserRouter([
             element: <BuyerMessages />,
           },
           {
-            path: "messages",
+            path: "favorites",
             element: <BuyerFavorites />,
           },
           {
