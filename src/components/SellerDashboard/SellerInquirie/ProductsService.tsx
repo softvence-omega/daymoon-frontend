@@ -1,5 +1,3 @@
-"use client";
-
 import SubTitle from "../Shared/SubTitle";
 import * as React from "react";
 import {
@@ -25,6 +23,7 @@ import samplePhoto from "@/assets/image/product.png";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Plus } from "lucide-react";
+import { FaAngleDown } from "react-icons/fa";
 
 // Type
 type Inquiry = {
@@ -68,42 +67,57 @@ const columns: ColumnDef<Inquiry>[] = [
     accessorKey: "productName",
     header: "Product",
     cell: ({ row }) => (
-      <div className="flex items-center gap-3">
-        <img
-          src={row.original.photo}
-          alt={row.original.productName}
-          className="w-10 h-10 rounded object-cover"
-        />
-        <div>
-          <div className="font-medium text-sm">{row.original.productName}</div>
-          <div className="text-xs text-gray-500">SKU: {row.original.sku}</div>
+      <div className="flex items-center justify-between gap-3 w-full">
+        <div className="flex items-center gap-3">
+          <img
+            src={row.original.photo}
+            alt={row.original.productName}
+            className="w-10 h-10 rounded object-cover"
+          />
+          <div className="flex flex-col leading-tight">
+            <span className="font-medium text-sm text-gray-900">
+              {row.original.productName}
+            </span>
+            <span className="text-xs text-gray-600">
+              SKU: {row.original.sku}
+            </span>
+          </div>
         </div>
+        <span className="text-[#000000] text-sm">
+          <FaAngleDown />
+        </span>{" "}
+        {/* ▼ down arrow */}
       </div>
     ),
   },
   {
     accessorKey: "quantity",
-    header: "Quantity",
+    header: () => <div className="text-center pr-6">Quantity</div>,
     cell: ({ row }) => (
-      <div className="inline-block px-3 py-1 border border-gray-300 rounded-md text-sm font-medium bg-gray-50">
-        {row.original.quantity}
+      <div className="flex justify-center text-center text-sm font-medium text-gray-800">
+        <div className=" w-[73px] h-[40px] text-center px-6 py-[9px]   border border-gray-300 rounded-md text-sm font-medium bg-gray-50">
+          {row.original.quantity}
+        </div>
       </div>
     ),
   },
   {
     accessorKey: "unitPrice",
-    header: "Unit Price",
+
+    header: () => <div className="text-center pr-6">Unit Price</div>,
     cell: ({ row }) => (
-      <div className="inline-block px-3 py-1 border border-gray-300 rounded-md text-sm font-medium bg-gray-50">
-        ${row.original.unitPrice.toFixed(2)}
+      <div className="flex justify-center text-center text-sm font-medium text-gray-800">
+        <div className="w-[73px] h-[40px] text-center px-3 py-[9px]   border border-gray-300 rounded-md text-sm font-medium bg-gray-50">
+          ${row.original.unitPrice.toFixed(2)}
+        </div>
       </div>
     ),
   },
   {
     accessorKey: "totalAmount",
-    header: "Total",
+    header: () => <div className="text-center pr-6">Total</div>,
     cell: ({ row }) => (
-      <div className="text-sm font-semibold">
+      <div className="text-center text-sm font-semibold text-gray-900">
         ${row.original.totalAmount.toFixed(2)}
       </div>
     ),
@@ -153,8 +167,8 @@ const ProductsService = () => {
   return (
     <div className="space-y-5">
       <SubTitle miniTitle="Products & Service" />
-      <div className="w-full bg-white rounded-xl shadow-md p-2 ">
-        <Table>
+      <div className="w-full bg-white rounded-xl shadow-md border border-[#D8D8D8] p-2 ">
+        <Table className="w-full">
           <TableHeader className="h-[56px]">
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow
@@ -174,12 +188,27 @@ const ProductsService = () => {
               </TableRow>
             ))}
           </TableHeader>
+
           <TableBody>
             {table.getRowModel().rows.length ? (
-              table.getRowModel().rows.map((row) => (
-                <TableRow key={row.id}>
-                  {row.getVisibleCells().map((cell) => (
-                    <TableCell className="p-3" key={cell.id}>
+              table.getRowModel().rows.map((row, rowIndex, rowArray) => (
+                <TableRow
+                  key={row.id}
+                  className={`${
+                    rowIndex !== rowArray.length - 1
+                      ? "border-b border-gray-300"
+                      : ""
+                  }`}
+                >
+                  {row.getVisibleCells().map((cell, cellIndex, cellArray) => (
+                    <TableCell
+                      key={cell.id}
+                      className={`p-3 border-t border-gray-300 ${
+                        cellIndex !== cellArray.length - 1
+                          ? "border-r border-gray-300"
+                          : ""
+                      }`}
+                    >
                       {flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext()
@@ -192,7 +221,7 @@ const ProductsService = () => {
               <TableRow>
                 <TableCell
                   colSpan={columns.length}
-                  className="h-24 text-center"
+                  className="h-24 text-center border-t border-gray-300"
                 >
                   No products found.
                 </TableCell>
