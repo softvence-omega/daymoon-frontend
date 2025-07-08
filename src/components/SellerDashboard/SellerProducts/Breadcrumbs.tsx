@@ -1,7 +1,7 @@
 import { FC } from "react";
 interface BreadcrumbsProps {
   title: string;
-  subtitle: string;
+  subtitle?: string;
 }
 
 const Breadcrumbs: FC<BreadcrumbsProps> = ({ title, subtitle }) => (

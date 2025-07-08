@@ -36,6 +36,7 @@ import SellerInvoiceFormPage from "@/pages/SellerDashboard/SellerInvoiceFormPage
 import Shop from "@/components/Shop/Shop";
 // import BuyerOrdersPage from "@/pages/BuyerDashboard/BuyerOrdersPage";
 import BuyerRFQ from "../pages/BuyerDashboard/BuyerRFQ";
+import OrderDetails from "@/components/SellerDashboard/SellerOrder/OrderDetails/OrderDetails";
 
 const routes = createBrowserRouter([
   {
@@ -147,6 +148,7 @@ const routes = createBrowserRouter([
 
       { path: "products", element: <SellerProductsPage /> },
       { path: "orders", element: <SellerOrdersPage /> },
+      { path: "orders/:id", element: <OrderDetails /> },
 
       { path: "inquiries", element: <SellerInquiriesPage /> },
       { path: "payments", element: <SellerPaymentPage /> },
