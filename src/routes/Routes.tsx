@@ -1,44 +1,56 @@
-import { createBrowserRouter } from "react-router-dom";
-import App from "../App";
-import About from "../pages/About";
-import Contact from "../pages/Contact";
-import NotFound from "../pages/NotFound";
-import Home from "../pages/Home";
-import AdminRoute from "./AdminRoutes";
+import BuyerSignup from "@/components/Authentication/BuyerSignup";
+import SellerRegistration from "@/components/Authentication/seller/SellerRegistration";
+import OverViewBanner from "@/components/ReUseable/OverViewBanner";
+import Seller from "@/components/Seller/Seller";
+import AddProductForm from "@/components/SellerDashboard/SellerProducts/AddProductForm";
+import SellerLayout from "@/Layout/SellerLayout";
 import AdminDashboard from "@/pages/Admin/AdminDashboard";
 import Login from "@/pages/Login";
-import Signup from "@/pages/Signup";
-import BuyerSignup from "@/components/Authentication/BuyerSignup";
-import OverViewBanner from "@/components/ReUseable/OverViewBanner";
-import SellerRegistration from "@/components/Authentication/seller/SellerRegistration";
-import Seller from "@/components/Seller/Seller";
-import SellerLayout from "@/Layout/SellerLayout";
+import SellerAnalyticsPage from "@/pages/SellerDashboard/SellerAnalyticsPage";
 import SellerDashboardPage from "@/pages/SellerDashboard/SellerDashboardPage";
 import SellerHelpPage from "@/pages/SellerDashboard/SellerHelpPage";
+import SellerInquiriesDetails from "@/pages/SellerDashboard/SellerInquiriesDetails";
 import SellerInquiriesPage from "@/pages/SellerDashboard/SellerInquiriesPage";
-import SellerProductsPage from "@/pages/SellerDashboard/SellerProductsPage";
 import SellerOrdersPage from "@/pages/SellerDashboard/SellerOrder/SellerOrdersPage";
 import SellerPaymentPage from "@/pages/SellerDashboard/SellerPaymentPage";
-import SellerAnalyticsPage from "@/pages/SellerDashboard/SellerAnalyticsPage";
+import SellerProductsPage from "@/pages/SellerDashboard/SellerProductsPage";
 import SellerPromotionPage from "@/pages/SellerDashboard/SellerPromotionPage";
 import SellerRewiewPage from "@/pages/SellerDashboard/SellerRewiewPage";
 import SellerSettingsPage from "@/pages/SellerDashboard/SellerSettingsPage";
-import AddProductForm from "@/components/SellerDashboard/SellerProducts/AddProductForm";
-import SellerInquiriesDetails from "@/pages/SellerDashboard/SellerInquiriesDetails";
-import BuyerRoute from "./BuyerRoute";
+import Signup from "@/pages/Signup";
+import { createBrowserRouter } from "react-router-dom";
+import App from "../App";
 import BuyerLayout from "../Layout/BuyerLayout";
+import About from "../pages/About";
 import BuyerDashboardDemo from "../pages/BuyerDashboard/BuyerDashboardDemo";
 import BuyerSettings from "../pages/BuyerDashboard/BuyerSettings";
+import Contact from "../pages/Contact";
+import Home from "../pages/Home";
+import NotFound from "../pages/NotFound";
+import AdminRoute from "./AdminRoutes";
+import BuyerRoute from "./BuyerRoute";
 
 import AllProduct from "@/components/SellerDashboard/SellerProducts/AllProduct";
 import ProductDetails from "@/components/SellerDashboard/SellerProducts/ProductDetails/ProductDetails";
-import SellerInvoiceFormPage from "@/pages/SellerDashboard/SellerInvoiceFormPage";
 import Shop from "@/components/Shop/Shop";
+import SellerInvoiceFormPage from "@/pages/SellerDashboard/SellerInvoiceFormPage";
 // import BuyerOrdersPage from "@/pages/BuyerDashboard/BuyerOrdersPage";
+import IndividualProduct from "@/components/SingleProduct/IndividualProduct";
 import BuyerRFQ from "../pages/BuyerDashboard/BuyerRFQ";
 import BuyerHome from "@/pages/BuyerLandingPage/BuyerHome";
 import ProductCategories from "@/pages/BuyerLandingPage/ProductCategories";
 import ProductFilter from "@/pages/BuyerLandingPage/ProductFilter";
+
+import OrderDetails from "@/components/SellerDashboard/SellerOrder/OrderDetails/OrderDetails";
+
+import BuyerOrdersPage from "@/pages/BuyerDashboard/BuyerOrdersPage";
+import BuyerReview from "@/pages/BuyerDashboard/BuyerReview";
+import BuyerRefund from "@/pages/BuyerDashboard/BuyerRefund";
+import BuyerOrderDetails from "@/pages/BuyerDashboard/BuyerOrderDetails";
+import BuyerPayments from "@/pages/BuyerDashboard/BuyerPayments";
+import BuyerMessages from "@/pages/BuyerDashboard/BuyerMessages";
+import BuyerFavorites from "@/pages/BuyerDashboard/BuyerFavorites";
+
 
 const routes = createBrowserRouter([
   {
@@ -62,8 +74,12 @@ const routes = createBrowserRouter([
         element: <Contact />,
       },
       {
-        path: "seller",
+        path: "/seller",
         element: <Seller />,
+      },
+      {
+        path: "/single",
+        element: <IndividualProduct />,
       },
 
       {
@@ -128,10 +144,34 @@ const routes = createBrowserRouter([
             path: "",
             element: <BuyerDashboardDemo />,
           },
-          // {
-          //   path: "orders",
-          //   element: <BuyerOrdersPage />,
-          // },
+          {
+            path: "orders",
+            element: <BuyerOrdersPage />,
+          },
+          {
+            path: "reviews",
+            element: <BuyerReview />,
+          },
+          {
+            path: "refund",
+            element: <BuyerRefund />,
+          },
+          {
+            path: "orders/:id",
+            element: <BuyerOrderDetails />,
+          },
+          {
+            path: "messages",
+            element: <BuyerMessages />,
+          },
+          {
+            path: "favorites",
+            element: <BuyerFavorites />,
+          },
+          {
+            path: "payments",
+            element: <BuyerPayments />,
+          },
           {
             path: "settings",
             element: <BuyerSettings />,
@@ -165,6 +205,7 @@ const routes = createBrowserRouter([
 
       { path: "products", element: <SellerProductsPage /> },
       { path: "orders", element: <SellerOrdersPage /> },
+      { path: "orders/:id", element: <OrderDetails /> },
 
       { path: "inquiries", element: <SellerInquiriesPage /> },
       { path: "payments", element: <SellerPaymentPage /> },

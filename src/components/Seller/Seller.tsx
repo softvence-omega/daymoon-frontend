@@ -6,13 +6,13 @@ import Work from "./Work";
 
 const Seller = () => {
   return (
-    <>
+    <div className=" bg-[#FCFCFC] w-full">
       <Hero />
       <Counter />
       <BusinessCard />
       <Confidence />
       <Work />
-    </>
+    </div>
   );
 };
 

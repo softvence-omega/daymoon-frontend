@@ -37,11 +37,8 @@ const FilterSelect = ({
   onValueChange,
 }: FilterSelectProps) => {
   return (
-    <Select
-      defaultValue={defaultValue}
-      onValueChange={onValueChange}
-    >
-      <SelectTrigger className="w-full rounded-full border border-[#E5E5E5] bg-white text-[#1A1A1A] placeholder:text-[#1A1A1A] px-5 py-3 data-[size=default]:h-auto text-base [&_svg:not([class*='text-'])]:text-[#F04436]">
+    <Select defaultValue={defaultValue} onValueChange={onValueChange}>
+      <SelectTrigger className="w-full rounded-full border border-[#E5E5E5] bg-white text-[#1A1A1A] placeholder:text-[#1A1A1A] px-5 py-3 data-[size=default]:h-auto text-base [&>svg]:text-[#F04436] [&>svg]:opacity-100">
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>
       <SelectContent className="bg-white">
@@ -134,7 +131,7 @@ const RFQFilter = ({ onFilterChange = () => {} }: RFQFilterProps) => {
   };
 
   return (
-    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 p-4 border border-[#E5E5E5] rounded-full max-w-7xl mx-auto bg-transparent">
+    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 p-4 lg:border lg:border-[#E5E5E5] rounded-full max-w-7xl mx-auto bg-transparent">
       {filterConfigs.map((config) => (
         <FilterSelect
           key={config.label}
