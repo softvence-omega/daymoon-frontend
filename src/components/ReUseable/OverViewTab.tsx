@@ -11,16 +11,19 @@ import { Button } from "@/components/ui/button";
 import ProductsComponent from "./ProductsComponent";
 import Reviews from "./Reviews";
 import { products } from "@/lib/productCard/cardData";
+import MoreButton from "./MoreButton";
 
 const OverViewTab = () => {
   const [activeTab, setActiveTab] = useState("product");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [selectedPrice, setSelectedPrice] = useState("All");
+  const [showAll, setShowAll] = useState(false);
 
   const categories = [
     "All",
     ...Array.from(new Set(products.map((p) => p.category).filter(Boolean))),
   ];
+
   const prices = [
     "All",
     ...Array.from(
@@ -28,12 +31,23 @@ const OverViewTab = () => {
     ).sort(),
   ];
 
+  const filteredProducts = products.filter(
+    (p) =>
+      (selectedCategory === "All" || p.category === selectedCategory) &&
+      (selectedPrice === "All" || p.priceRange === selectedPrice)
+  );
+
   return (
     <div>
       <Tabs
         defaultValue="product"
         className="w-full mt-12"
-        onValueChange={(val) => setActiveTab(val)}
+        onValueChange={(val) => {
+          setActiveTab(val);
+          if (val !== "product") {
+            setShowAll(false);
+          }
+        }}
       >
         <TabsList className="w-full flex flex-wrap justify-between sm:justify-start sm:gap-10 border-b border-[#E5E5E5] bg-transparent p-0">
           <TabsTrigger
@@ -63,7 +77,7 @@ const OverViewTab = () => {
           </TabsTrigger>
         </TabsList>
 
-        {/* Filters only for Products Tab */}
+        {/* Filters */}
         {activeTab === "product" && (
           <div className="flex flex-wrap justify-end gap-4 mt-[40px]">
             {/* Category Filter */}
@@ -91,7 +105,7 @@ const OverViewTab = () => {
               </DropdownMenuContent>
             </DropdownMenu>
 
-            {/* Price Filter */}
+            {/* ✅ Price Filter */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button
@@ -116,12 +130,23 @@ const OverViewTab = () => {
           </div>
         )}
 
-        {/* Tab Contents */}
+        {/* Tab Content - Products */}
         <TabsContent value="product" className="mt-6">
           <ProductsComponent
             selectedCategory={selectedCategory}
             selectedPrice={selectedPrice}
+            showAll={showAll}
+            gridCols="3"
+            mobileCols={1}
+            visibleCount={9}
           />
+
+          {!showAll && filteredProducts.length > 6 && (
+            <MoreButton
+              onClick={() => setShowAll(true)}
+              text={`View All (${filteredProducts.length}) Products`}
+            />
+          )}
         </TabsContent>
 
         <TabsContent value="reviews" className="mt-6">
