@@ -1,8 +1,9 @@
+// components/HomeProduct/HomeProducts.tsx
+
 import { useState, useEffect, useCallback } from "react";
 import HomeProductCard from "./HomeProductCard";
 import { products } from "@/lib/productCard/cardData";
-import { Button } from "@/components/ui/button";
-import arrow from "../../assets/Icon/arrow.svg";
+import MoreButton from "./MoreButton";
 
 interface HomeProductsProps {
   cols: {
@@ -32,7 +33,6 @@ const HomeProducts = ({ cols, rows }: HomeProductsProps) => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Updated getVisibleCount with direct logic, avoids useCallback warnings
   const getVisibleCount = useCallback(() => {
     if (isMobileWidth(windowWidth)) return cols.mobile * rows.mobile;
     if (isMdWidth(windowWidth)) return cols.md * rows.md;
@@ -72,7 +72,7 @@ const HomeProducts = ({ cols, rows }: HomeProductsProps) => {
       case 6:
         return "grid-cols-6";
       default:
-        return ""; // For > 6 fallback to inline style
+        return "";
     }
   };
 
@@ -99,17 +99,7 @@ const HomeProducts = ({ cols, rows }: HomeProductsProps) => {
       </div>
 
       {visibleCount < products.length && (
-        <div className="text-center mt-6">
-          <Button
-            onClick={handleExploreMore}
-            className="inline-flex items-center gap-2 px-5 py-3 rounded-[20px] 
-              text-sunset-orange font-medium md:font-semibold text-base md:text-[18px] 
-              hover:shadow-xl transition-shadow shadow-lg cursor-pointer"
-          >
-            Explore More
-            <img src={arrow} alt="arrow icon" className="w-4 h-4" />
-          </Button>
-        </div>
+        <MoreButton onClick={handleExploreMore} text="Explore More"/>
       )}
     </div>
   );
