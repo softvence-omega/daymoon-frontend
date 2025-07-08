@@ -7,7 +7,7 @@ import { FaTruck } from "react-icons/fa";
 // Activity data structure
 interface Activity {
   id: number;
-  type: "purchase" | "message" | "completed" | "alert";
+  type: "purchase" | "message" | "completed" | "payment";
   description: string;
   time: string;
 }
@@ -35,7 +35,7 @@ const activities: Activity[] = [
   {
     id: 4,
     type: "payment",
-    description: "Pyment of $1500 received for order #12345",
+    description: "Payment of $1500 received for order #12345",
     time: "1d ago",
   },
 ];

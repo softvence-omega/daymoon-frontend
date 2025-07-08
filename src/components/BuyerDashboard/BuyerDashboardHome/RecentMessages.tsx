@@ -36,7 +36,6 @@ const messages = [
 // Props interface
 interface Props {
   name: string;
-  company: string;
   message: string;
   image: string;
 }
@@ -79,11 +78,10 @@ export function RecentMessages() {
 
       {/* Cards stacked vertically */}
       <div className="flex flex-col gap-6 items-center">
-        {messages.map(({ id, name, company, message, image }) => (
+        {messages.map(({ id, name, message, image }) => (
           <RecentMessagesCard
             key={id}
             name={name}
-            company={company}
             message={message}
             image={image}
           />

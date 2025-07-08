@@ -1,3 +1,4 @@
+import Title from "@/components/SellerDashboard/Shared/Title.tsx";
 import {
   Select,
   SelectContent,
@@ -7,7 +8,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import Title from "../Shared/Title";
 
 const Header = () => {
   return (
