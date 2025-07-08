@@ -19,6 +19,7 @@ export type Route = {
 export interface ICategory {
   name: string;
   image: string;
+  slug: string;
 }
 export interface ISlider {
   images: string[];

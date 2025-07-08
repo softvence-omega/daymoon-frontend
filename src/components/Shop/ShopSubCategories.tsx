@@ -1,17 +1,17 @@
 import { Card } from "@/components/ui/card";
-import img1 from "../../assets/Home/electronics.png";
-import img2 from "../../assets/Home/image(1).png";
-// import img11 from "../../assets/Home/image(10).png";
-import img3 from "../../assets/Home/image(2).png";
-import img4 from "../../assets/Home/image(3).png";
-import img5 from "../../assets/Home/image(4).png";
-import img6 from "../../assets/Home/image(5).png";
-// import img7 from "../../assets/Home/image(6).png";
-// import img8 from "../../assets/Home/image(7).png";
-// import img9 from "../../assets/Home/image(8).png";
-// import img10 from "../../assets/Home/image(9).png";
-import img13 from "../../assets/Home/image.png";
-// import img12 from "../../assets/Home/outwear.png";
+// import img1 from "../../assets/Home/electronics.png";
+// import img2 from "../../assets/Home/image(1).png";
+import img11 from "../../assets/Home/image(10).png";
+// import img3 from "../../assets/Home/image(2).png";
+// import img4 from "../../assets/Home/image(3).png";
+// import img5 from "../../assets/Home/image(4).png";
+// import img6 from "../../assets/Home/image(5).png";
+import img7 from "../../assets/Home/image(6).png";
+import img8 from "../../assets/Home/image(7).png";
+import img9 from "../../assets/Home/image(8).png";
+import img10 from "../../assets/Home/image(9).png";
+// import img13 from "../../assets/Home/image.png";
+import img12 from "../../assets/Home/outwear.png";
 
 import {
   Carousel,
@@ -21,12 +21,15 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { ICategory } from "@/types";
-import {  useNavigate } from "react-router-dom";
+import {  useNavigate, useParams } from "react-router-dom";
 
-const ShopCategories = ({ number }: { number: number }) => {
+const ShopSubCategories = ({ number }: { number: number }) => {
   const numberOfCategories = number || 8;
   const navigate = useNavigate();
 
+  const {slug, subCategory} = useParams();
+
+  console.log(subCategory, "fffffff")
   const getResponsiveBasisClass = (number: number) => {
     switch (number) {
       case 6:
@@ -41,24 +44,22 @@ const ShopCategories = ({ number }: { number: number }) => {
 
   const handleCategoryClick = (category: ICategory) => {
     console.log(`Dont click me, said by: ${category.name}`);
-    navigate(`/buyerHome/${category.slug}`);
+    navigate(`/buyerHome/${slug}/${category.slug}`);
   };
   const categoriesData: ICategory[] = [
-    { name: "Electronics", image: img1, slug: "electronics" },
-    { name: "Home & Living", image: img13, slug: "home-and-living"},
-    { name: "Fashion & Apparel", image: img2, slug: "fashion-and-apparel"},
-    { name: "Beauty", image: img3, slug: "beauty"},
-    { name: "Industrial ", image: img4, slug: "industrial"},
-    { name: "Health & Wellness", image: img5, slug: "health"},
-    { name: " Furniture", image: img6, slug: "furniture"},
-    { name: " Kids", image: img6, slug: "kids"},
-    { name: " Jewellery", image: img6, slug: "jewellery"},
-    // { name: "Men's Clothing", image: img7, slug: ""},
-    // { name: "Women's Clothing", image: img8, slug: ""},
-    // { name: "Footwear", image: img9, slug: ""},
-    // { name: "Accessories", image: img10, slug: ""},
-    // { name: "Sportswear", image: img11, slug: ""},
-    // { name: "Outwear & Jackets", image: img12, slug: ""},
+    // { name: "Electronics", image: img1, slug: "electronics" },
+    // { name: "Home & Living", image: img13, slug: "home-and-living"},
+    // { name: "Fashion & Apparel", image: img2, slug: "fashion-and-apparel"},
+    // { name: "Health & Beauty", image: img3, slug: ""},
+    // { name: "Industrial ", image: img4, slug: ""},
+    // { name: "Health & Wellness", image: img5, slug: ""},
+    // { name: " Furniture", image: img6, slug: ""},
+    { name: "Men's Clothing", image: img7, slug: "mens-clothing"},
+    { name: "Women's Clothing", image: img8, slug: "womens-clothing"},
+    { name: "Footwear", image: img9, slug: "footwear"},
+    { name: "Accessories", image: img10, slug: "accessories"},
+    { name: "Sportswear", image: img11, slug: "sportswear"},
+    { name: "Outwear & Jackets", image: img12, slug: "outwear-and-jackets"},
   ];
   return (
     <div >
@@ -104,4 +105,4 @@ const ShopCategories = ({ number }: { number: number }) => {
   );
 };
 
-export default ShopCategories;
+export default ShopSubCategories;
