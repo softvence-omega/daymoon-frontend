@@ -1,9 +1,9 @@
-import { RecentOrders } from "../Dashboard/RecentOrders";
-import { TopSellingProducts } from "../Dashboard/TopSellingProducts";
 import Wrapper from "../Shared/Wrapper";
 import EarningTrend from "./EarningTrend";
 import EnquiriesByCategories from "./EnquiriesByCategories";
 import PaymentCard from "./PaymentCard";
+import { PaymentHistory } from "./PaymentHistory";
+import PaymentMethodsSeller from "./PaymentMethodsSeller";
 
 const Payment = () => {
   return (
@@ -22,10 +22,10 @@ const Payment = () => {
         </div>
         <div className="flex flex-col lg:flex-row w-full gap-5">
           <div className="w-full lg:w-1/2">
-            <RecentOrders />
+            <PaymentHistory />
           </div>
           <div className="w-full lg:w-1/2">
-            <TopSellingProducts />
+            <PaymentMethodsSeller />
           </div>
         </div>
       </div>
