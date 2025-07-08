@@ -1,7 +1,7 @@
 // components/Reviews.tsx
 import { ReviewCard } from "@/components/BuyerDashboard/BuyerReviews/ReviewCard";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { buyerReviewData } from "@/lib/Buyer/buyerReviewData";
+import { buyerReviewData } from "@/lib/Buyer/BuyerReviewData";
 
 const BuyerReview = () => {
   // Separate data into pending and reviewed based on some condition
