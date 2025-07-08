@@ -41,6 +41,8 @@ import BuyerReview from "@/pages/BuyerDashboard/BuyerReview";
 import BuyerRefund from "@/pages/BuyerDashboard/BuyerRefund";
 import BuyerOrderDetails from "@/pages/BuyerDashboard/BuyerOrderDetails";
 import BuyerPayments from "@/pages/BuyerDashboard/BuyerPayments";
+import BuyerMessages from "@/pages/BuyerDashboard/BuyerMessages";
+import BuyerFavorites from "@/pages/BuyerDashboard/BuyerFavorites";
 
 const routes = createBrowserRouter([
   {
@@ -133,7 +135,11 @@ const routes = createBrowserRouter([
           },
           {
             path: "messages",
-            element: <BuyerSettings />,
+            element: <BuyerMessages />,
+          },
+          {
+            path: "messages",
+            element: <BuyerFavorites />,
           },
           {
             path: "payments",
