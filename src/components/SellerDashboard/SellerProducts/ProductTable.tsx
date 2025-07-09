@@ -1,4 +1,11 @@
-import Pagination from "@/common/Pagination";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 import { LuFileText } from "react-icons/lu";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { Link } from "react-router-dom";
