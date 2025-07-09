@@ -1,6 +1,5 @@
 import { useState } from "react";
 import CommonWrapper from "@/common/CommonWrapper";
-
 import GlobalSearchBar from "../ReUseable/GlobalSearchBar";
 import JoinUs from "../ReUseable/JoinUs";
 import FashionBanner from "./FashonBanner";
@@ -23,10 +22,9 @@ const Shop = () => {
   return (
     <div>
       <FashionBanner />
-      <GlobalSearchBar />
-      <ShopAdvertise />
-
       <CommonWrapper>
+        <GlobalSearchBar />
+        <ShopAdvertise />
         <ShopCategories number={8} />
 
         {/* Products Section */}
@@ -35,7 +33,7 @@ const Shop = () => {
             selectedCategory="All"
             selectedPrice="All"
             gridCols="4"
-            mobileCols={2}
+            mobileCols={1}
             visibleCount={16}
             showAll={showAllProducts}
           />
@@ -49,7 +47,7 @@ const Shop = () => {
 
         {/* Top Rated Manufacturers Section */}
         <TopManufacturer
-        title="Top Rated Manufacturer"
+          title="Top Rated Manufacturer"
           showTopRatedOnly={true}
           showAll={false}
           cols={{ mobile: 1, md: 3, lg: 3 }}
@@ -62,7 +60,7 @@ const Shop = () => {
         {!showAllTopRated && (
           <MoreButton
             onClick={() => setShowAllTopRated(true)}
-            text="Explore More Top Rated"
+            text="Explore More"
           />
         )}
 
