@@ -152,7 +152,6 @@ export default function ProductDetails() {
   const [selectedColor, setSelectedColor] = useState<string>(
     product.variants[0].color
   );
-  const [clickedButton, setClickedButton] = useState<string | null>(null);
 
   return (
     <div className="mt-6 mx-auto">
