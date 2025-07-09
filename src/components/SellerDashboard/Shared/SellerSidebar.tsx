@@ -5,11 +5,13 @@ import {
   MdOutlineRateReview,
 } from "react-icons/md";
 import { FaTruck } from "react-icons/fa6";
-import { FaRegHeart } from "react-icons/fa";
-import { IoMdSettings } from "react-icons/io";
+import { FaRegHeart, FaRegStar } from "react-icons/fa";
+import { IoMdHelpCircleOutline, IoMdSettings } from "react-icons/io";
 import { Badge } from "@/components/ui/badge";
 import { Link, useLocation } from "react-router-dom";
 import logo from "@/assets/dashboard/buyer-dashboard/logo.png"; // Adjust the path to your logo image
+import { GrAnnounce } from "react-icons/gr";
+import { IoSettingsOutline } from "react-icons/io5";
 
 // Define types for better reusability
 export interface SidebarItem {
@@ -57,22 +59,22 @@ const defaultSidebarItems: SidebarItem[] = [
     href: "/seller-dashboard/analytics",
   },
   {
-    icon: IoMdSettings,
+    icon: GrAnnounce,
     label: "Promotions",
     href: "/seller-dashboard/promotions",
   },
   {
-    icon: IoMdSettings,
+    icon: FaRegStar,
     label: "Reviews",
     href: "/seller-dashboard/reviews",
   },
   {
-    icon: IoMdSettings,
+    icon: IoSettingsOutline,
     label: "Settings",
     href: "/seller-dashboard/settings",
   },
   {
-    icon: IoMdSettings,
+    icon: IoMdHelpCircleOutline,
     label: "Help",
     href: "/seller-dashboard/help",
   },

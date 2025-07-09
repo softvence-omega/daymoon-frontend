@@ -1,8 +1,9 @@
-import SharedButton from "@/common/CommonHomepageButton";
+// components/HomeProduct/HomeProducts.tsx
+
 import { products } from "@/lib/productCard/cardData";
 import { useCallback, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import HomeProductCard from "./HomeProductCard";
+import MoreButton from "./MoreButton";
 
 interface HomeProductsProps {
   cols: {
@@ -32,7 +33,6 @@ const HomeProducts = ({ cols, rows }: HomeProductsProps) => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Updated getVisibleCount with direct logic, avoids useCallback warnings
   const getVisibleCount = useCallback(() => {
     if (isMobileWidth(windowWidth)) return cols.mobile * rows.mobile;
     if (isMdWidth(windowWidth)) return cols.md * rows.md;
@@ -72,7 +72,7 @@ const HomeProducts = ({ cols, rows }: HomeProductsProps) => {
       case 6:
         return "grid-cols-6";
       default:
-        return ""; // For > 6 fallback to inline style
+        return "";
     }
   };
 
@@ -99,11 +99,7 @@ const HomeProducts = ({ cols, rows }: HomeProductsProps) => {
       </div>
 
       {visibleCount < products.length && (
-        <Link to="/shop">
-          <div className="max-w-[1520px] mx-auto flex justify-center mt-12 ">
-            <SharedButton></SharedButton>
-          </div>
-        </Link>
+        <MoreButton onClick={handleExploreMore} text="Explore More" />
       )}
     </div>
   );

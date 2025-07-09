@@ -49,7 +49,7 @@ const BuyerSettings = () => {
           account settings
         </p>
       </div>
-      
+
       {/* Mobile Header */}
       <div className="flex justify-between items-center md:hidden">
         <Button
@@ -93,7 +93,10 @@ const BuyerSettings = () => {
 
       {/* Mobile View - Optimized for performance */}
       <div className="block md:hidden">
-        <div className="space-y-4 will-change-scroll" style={{ scrollBehavior: 'smooth' }}>
+        <div
+          className="space-y-4 will-change-scroll"
+          style={{ scrollBehavior: "smooth" }}
+        >
           {tabsData.map((tab) => (
             <div key={tab.value} className="transform-gpu">
               {tab.component}

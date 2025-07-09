@@ -10,8 +10,8 @@ import CommonWrapper from "../common/CommonWrapper";
 const Home = () => {
   return (
     <>
+      <HomeTabs />
       <CommonWrapper>
-        <HomeTabs />
         <WhyChooseUs />
         <TradeWithConfidence />
       </CommonWrapper>

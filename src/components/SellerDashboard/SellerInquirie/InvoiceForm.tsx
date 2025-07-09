@@ -13,6 +13,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import ProductsService from "./ProductsService";
+import DiscountPricingPayment from "./DiscountPricingPayment";
 
 function formatDate(date: Date | undefined) {
   if (!date) return "";
@@ -275,6 +276,9 @@ const InvoiceForm = () => {
       </div>
       {/* ProductsService */}
       <ProductsService />
+      <div>
+        <DiscountPricingPayment />
+      </div>
     </div>
   );
 };

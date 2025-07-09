@@ -1,5 +1,3 @@
-"use client";
-
 import * as React from "react";
 import { IoIosCheckmarkCircleOutline } from "react-icons/io";
 import { MdDeleteOutline } from "react-icons/md";
