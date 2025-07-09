@@ -1,64 +1,61 @@
-import DashboardCard from "@/common/DashboardCard";
-import DashboardCommonSpace from "@/common/DashboardCommonSpace";
-import { BsFillBoxSeamFill } from "react-icons/bs";
-import { IoMdEye } from "react-icons/io";
-
-import { FaCheckCircle } from "react-icons/fa";
-import { IoAlertOutline } from "react-icons/io5";
+import { MdAccessTime } from "react-icons/md";
+import { VscRefresh } from "react-icons/vsc";
+import PaymentHeaderCard from "./PaymentHeaderCard";
+import { FaDollarSign } from "react-icons/fa6";
+import { FaLongArrowAltUp } from "react-icons/fa";
+import { IoMdInformationCircleOutline } from "react-icons/io";
 
 const cardData = [
   {
-    title: "Total Products",
-    value: "150",
-    unit: "/Units",
-    icon: <BsFillBoxSeamFill className="h-6 w-6 text-[#9747FF]" />,
+    title: "Total Spent",
+    value: "29,553",
+    unit: "This Month",
+    icon: <FaDollarSign className="h-6 w-6 text-[#F46A39]" />,
     trend: { percentage: 12, isPositive: true },
-    iconBgColor: "bg-purple-100",
-    titleColor: " text-[#9747FF]",
+    iconBgColor: "bg-[#FEECEB]",
+    bottomSection:{
+      color: "text-[#08AD36]",
+      text: "12% more than last month",
+      icon: <FaLongArrowAltUp className="h-5 w-5" />
+    }
   },
   {
-    title: "Total Variations",
-    value: "23",
-    unit: "",
-    icon: <IoMdEye className="h-6 w-6 text-black" />,
+    title: "Pending Payments",
+    value: "12500",
+    unit: "3 Transactions",
+    icon: <MdAccessTime className="h-6 w-6 text-[#F28B31]" />,
     trend: { percentage: 12, isPositive: true },
-    iconBgColor: "bg-[#2F7EEF1A]",
-    titleColor: "text-[#08AD36]",
+    iconBgColor: "bg-[#F28B311A]",
+    bottomSection:{
+      color: "text-[#F28B31]",
+      text: "1 Payment requires action",
+      icon: <IoMdInformationCircleOutline className="h-6 w-6" />
+    }
   },
   {
-    title: "Active Products",
-    value: "20",
-    unit: "/variations",
-    icon: <FaCheckCircle className="h-6 w-6 text-[#F2BC3C]" />,
+    title: "Refund Requests",
+    value: "253",
+    unit: "2 Pending",
+    icon: <VscRefresh className="h-6 w-6 text-[#E8292C]" />,
     trend: { percentage: 12, isPositive: true },
-    iconBgColor: "bg-[#F2BC3C1A]",
-    titleColor: "text-[#F2BC3C]",
-  },
-  {
-    title: "Out of Stock",
-    value: "23",
-    unit: "/Variations",
-    icon: <IoAlertOutline className="h-6 w-6 text-[#D9222A]" />,
-    trend: { percentage: -8, isPositive: false },
-    iconBgColor: "bg-[#D9222A]/10",
-    titleColor: "text-[#D9222A]",
+    iconBgColor: "bg-[#E8292C1A]",
+    bottomSection:{
+      color: "text-[#F04436]",
+      text: "Last processed june 18, 2025",
+      icon: <IoMdInformationCircleOutline className="h-6 w-6" />
+    }
   },
 ];
 const PaymentsHeaderCards = () => {
   return (
     <>
-      <DashboardCommonSpace className="">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {cardData.map((data, index) => (
-            <DashboardCard key={index} data={data} />
-          ))}
-        </div>
-      </DashboardCommonSpace>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+        {cardData.map((data, index) => (
+          <PaymentHeaderCard key={index} data={data} />
+        ))}
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default PaymentsHeaderCards
-
-
-
+export default PaymentsHeaderCards;
