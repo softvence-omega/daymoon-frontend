@@ -1,3 +1,5 @@
+import { useState, useMemo, useEffect } from "react";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import {
   Table,
   TableBody,
@@ -7,6 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import PaymentsFilters, { FilterState } from "./PaymentsFilters";
 
 import visa from "@/assets/dashboard/buyer-dashboard/visa.svg";
 import mastercard from "@/assets/dashboard/buyer-dashboard/mastercard.svg";
@@ -104,9 +107,216 @@ const paymentData = [
     status: "processing",
     paymentDate: "05/06/2025",
   },
+  {
+    id: "10006",
+    transactionId: "TNX-001239",
+    orderId: "ORD-2025-766",
+    product: {
+      name: "Mastercard ending 7890",
+      image: mastercard,
+    },
+    supplier: "ElectroHub",
+    amount: "$3,200.00",
+    status: "completed",
+    paymentDate: "03/06/2025",
+  },
+  {
+    id: "10007",
+    transactionId: "TNX-001240",
+    orderId: "ORD-2025-767",
+    product: {
+      name: "PayPal Account",
+      image: paypal,
+    },
+    supplier: "ShopSphere",
+    amount: "$890.00",
+    status: "pending",
+    paymentDate: "01/06/2025",
+  },
+  {
+    id: "10008",
+    transactionId: "TNX-001241",
+    orderId: "ORD-2025-768",
+    product: {
+      name: "Card ending 2345",
+      image: card,
+    },
+    supplier: "TechGear",
+    amount: "$5,670.00",
+    status: "processing",
+    paymentDate: "30/05/2025",
+  },
+  {
+    id: "10009",
+    transactionId: "TNX-001242",
+    orderId: "ORD-2025-769",
+    product: {
+      name: "Visa ending 6789",
+      image: visa,
+    },
+    supplier: "ShopSphere",
+    amount: "$1,200.00",
+    status: "completed",
+    paymentDate: "09/07/2025", // Today's date
+  },
+  {
+    id: "10010",
+    transactionId: "TNX-001243",
+    orderId: "ORD-2025-770",
+    product: {
+      name: "PayPal Account",
+      image: paypal,
+    },
+    supplier: "ElectroHub",
+    amount: "$750.00",
+    status: "failed",
+    paymentDate: "08/07/2025", // Yesterday
+  },
 ];
 
 const PaymentsTable = () => {
+  const [currentPage, setCurrentPage] = useState(0);
+  const [filters, setFilters] = useState<FilterState>({
+    status: "all",
+    category: "all",
+    time: "all",
+    sortBy: "newest",
+    search: "",
+  });
+  const itemsPerPage = 5;
+
+  // Filter and sort data based on filters
+  const filteredAndSortedData = useMemo(() => {
+    let filtered = [...paymentData];
+
+    // Filter by status
+    if (filters.status !== "all") {
+      filtered = filtered.filter(
+        (payment) => payment.status === filters.status
+      );
+    }
+
+    // Filter by search term
+    if (filters.search) {
+      const searchTerm = filters.search.toLowerCase();
+      filtered = filtered.filter(
+        (payment) =>
+          payment.transactionId.toLowerCase().includes(searchTerm) ||
+          payment.orderId.toLowerCase().includes(searchTerm) ||
+          payment.product.name.toLowerCase().includes(searchTerm) ||
+          payment.supplier.toLowerCase().includes(searchTerm)
+      );
+    }
+
+    // Filter by time period
+    if (filters.time !== "all") {
+      const currentDate = new Date();
+      filtered = filtered.filter((payment) => {
+        const paymentDate = new Date(
+          payment.paymentDate.split("/").reverse().join("-")
+        );
+
+        switch (filters.time) {
+          case "today": {
+            return paymentDate.toDateString() === currentDate.toDateString();
+          }
+          case "week": {
+            const weekAgo = new Date(
+              currentDate.getTime() - 7 * 24 * 60 * 60 * 1000
+            );
+            return paymentDate >= weekAgo;
+          }
+          case "month": {
+            const monthAgo = new Date(
+              currentDate.getTime() - 30 * 24 * 60 * 60 * 1000
+            );
+            return paymentDate >= monthAgo;
+          }
+          case "quarter": {
+            const quarterAgo = new Date(
+              currentDate.getTime() - 90 * 24 * 60 * 60 * 1000
+            );
+            return paymentDate >= quarterAgo;
+          }
+          case "year": {
+            const yearAgo = new Date(
+              currentDate.getTime() - 365 * 24 * 60 * 60 * 1000
+            );
+            return paymentDate >= yearAgo;
+          }
+          default:
+            return true;
+        }
+      });
+    }
+
+    // Sort data
+    switch (filters.sortBy) {
+      case "newest":
+        filtered.sort((a, b) => {
+          const dateA = new Date(a.paymentDate.split("/").reverse().join("-"));
+          const dateB = new Date(b.paymentDate.split("/").reverse().join("-"));
+          return dateB.getTime() - dateA.getTime();
+        });
+        break;
+      case "oldest":
+        filtered.sort((a, b) => {
+          const dateA = new Date(a.paymentDate.split("/").reverse().join("-"));
+          const dateB = new Date(b.paymentDate.split("/").reverse().join("-"));
+          return dateA.getTime() - dateB.getTime();
+        });
+        break;
+      case "amount-high":
+        filtered.sort((a, b) => {
+          const amountA = parseFloat(a.amount.replace(/[$,]/g, ""));
+          const amountB = parseFloat(b.amount.replace(/[$,]/g, ""));
+          return amountB - amountA;
+        });
+        break;
+      case "amount-low":
+        filtered.sort((a, b) => {
+          const amountA = parseFloat(a.amount.replace(/[$,]/g, ""));
+          const amountB = parseFloat(b.amount.replace(/[$,]/g, ""));
+          return amountA - amountB;
+        });
+        break;
+      default:
+        break;
+    }
+
+    return filtered;
+  }, [filters]);
+
+  // Calculate pagination values
+  const totalPages = Math.ceil(filteredAndSortedData.length / itemsPerPage);
+  const startIndex = currentPage * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentData = filteredAndSortedData.slice(startIndex, endIndex);
+
+  // Reset pagination when filters change
+  useEffect(() => {
+    setCurrentPage(0);
+  }, [filters]);
+
+  // Filter change handler
+  const handleFilterChange = (newFilters: FilterState) => {
+    setFilters(newFilters);
+    setCurrentPage(0); // Reset to first page when filters change
+  };
+
+  // Pagination handlers
+  const handlePrevious = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const handleNext = () => {
+    if (currentPage < totalPages - 1) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
   // Render status badge with appropriate colors
   const renderStatus = (status: string) => {
     const config = statusConfig[status as keyof typeof statusConfig];
@@ -120,61 +330,115 @@ const PaymentsTable = () => {
   };
 
   return (
-    <div className="border border-[#E5E5E5] rounded-2xl shadow-sm p-4 overflow-x-auto space-y-6 bg-[#FFFFFF]">
-      <Table className="w-full ">
-        <TableHeader>
-          <TableRow className="text-[#666666]">
-            <TableHead className="w-[140px] px-4 py-2">Transaction ID</TableHead>
-            <TableHead className="w-[120px] px-4 py-2">Order ID</TableHead>
-            <TableHead className="px-4 py-2">Payment Method</TableHead>
-            <TableHead className="px-4 py-2">Supplier</TableHead>
-            <TableHead className="px-4 py-2">Payment Date</TableHead>
-            <TableHead className="px-4 py-2">Status</TableHead>
-            <TableHead className="text-right px-4 py-2">Amount</TableHead>
-            <TableHead className="text-center px-4 py-2">Invoice</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody className="text-[#1A1A1A] text-base font-normal">
-          {paymentData.map((payment) => (
-            <TableRow key={payment.id}>
-              <TableCell className="px-4 py-4 font-medium">
-                {payment.transactionId}
-              </TableCell>
-              <TableCell className="px-4 py-4">{payment.orderId}</TableCell>
-              <TableCell className="px-4 py-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 flex items-center justify-center">
-                    <img
-                      src={payment.product.image}
-                      alt={payment.product.name}
-                      className="w-6 h-6 object-contain"
-                    />
-                  </div>
-                  <span className="text-sm font-medium">
-                    {payment.product.name}
-                  </span>
-                </div>
-              </TableCell>
-              <TableCell className="px-4 py-4">{payment.supplier}</TableCell>
-              <TableCell className="px-4 py-4">{payment.paymentDate}</TableCell>
-              <TableCell className="px-4 py-4">
-                {renderStatus(payment.status)}
-              </TableCell>
-              <TableCell className="text-right px-4 py-4 font-medium">
-                {payment.amount}
-              </TableCell>
-              <TableCell className="text-center px-4 py-4 text-[#F04436]">
-                Download
-              </TableCell>
+    <div>
+      {/* Filters */}
+      <PaymentsFilters onFilterChange={handleFilterChange} />
+
+      <div className="border border-[#E5E5E5] rounded-2xl shadow-sm p-4 overflow-x-auto space-y-6 bg-[#FFFFFF] mt-6">
+        <Table className="w-full">
+          <TableHeader>
+            <TableRow className="text-[#666666]">
+              <TableHead className="w-[140px] px-4 py-2">
+                Transaction ID
+              </TableHead>
+              <TableHead className="w-[120px] px-4 py-2">Order ID</TableHead>
+              <TableHead className="px-4 py-2">Payment Method</TableHead>
+              <TableHead className="px-4 py-2">Supplier</TableHead>
+              <TableHead className="px-4 py-2">Payment Date</TableHead>
+              <TableHead className="px-4 py-2">Status</TableHead>
+              <TableHead className="text-right px-4 py-2">Amount</TableHead>
+              <TableHead className="text-center px-4 py-2">Invoice</TableHead>
             </TableRow>
+          </TableHeader>
+          <TableBody className="text-[#1A1A1A] text-base font-normal">
+            {currentData.map((payment) => (
+              <TableRow key={payment.id}>
+                <TableCell className="px-4 py-4 font-medium">
+                  {payment.transactionId}
+                </TableCell>
+                <TableCell className="px-4 py-4">{payment.orderId}</TableCell>
+                <TableCell className="px-4 py-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 flex items-center justify-center">
+                      <img
+                        src={payment.product.image}
+                        alt={payment.product.name}
+                        className="w-6 h-6 object-contain"
+                      />
+                    </div>
+                    <span className="text-sm font-medium">
+                      {payment.product.name}
+                    </span>
+                  </div>
+                </TableCell>
+                <TableCell className="px-4 py-4">{payment.supplier}</TableCell>
+                <TableCell className="px-4 py-4">
+                  {payment.paymentDate}
+                </TableCell>
+                <TableCell className="px-4 py-4">
+                  {renderStatus(payment.status)}
+                </TableCell>
+                <TableCell className="text-right px-4 py-4 font-medium">
+                  {payment.amount}
+                </TableCell>
+                <TableCell className="text-center px-4 py-4 text-[#F04436]">
+                  Download
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+          <TableFooter>
+            <TableRow>
+              <TableCell colSpan={8}></TableCell>
+            </TableRow>
+          </TableFooter>
+        </Table>
+      </div>
+      {/* Pagination Footer */}
+      <div className="flex flex-col sm:flex-row items-center justify-between mt-4 px-2">
+        <div className="text-sm md:text-lg text-gray-600 mb-2 sm:mb-0">
+          Showing {startIndex + 1} to{" "}
+          {Math.min(endIndex, filteredAndSortedData.length)} of{" "}
+          {filteredAndSortedData.length} payments
+        </div>
+        <ul className="flex items-center border border-[#E5E5E5] rounded-xl overflow-hidden">
+          <li
+            className={`border-r border-[#E5E5E5] p-2 md:p-4 text-sm md:text-lg cursor-pointer ${
+              currentPage === 0
+                ? "text-gray-400 cursor-not-allowed"
+                : "text-[#F04436] hover:bg-gray-50"
+            }`}
+            onClick={handlePrevious}
+          >
+            <IoIosArrowBack />
+          </li>
+
+          {Array.from({ length: totalPages }).map((_, index) => (
+            <li
+              key={index}
+              className={`border-r border-[#E5E5E5] p-2 md:p-4 text-sm md:text-lg cursor-pointer hover:bg-gray-50 ${
+                currentPage === index
+                  ? "bg-[#F04436] text-white"
+                  : "text-gray-700"
+              }`}
+              onClick={() => setCurrentPage(index)}
+            >
+              {index + 1}
+            </li>
           ))}
-        </TableBody>
-        <TableFooter>
-          <TableRow>
-            <TableCell colSpan={8}></TableCell>
-          </TableRow>
-        </TableFooter>
-      </Table>
+
+          <li
+            className={`p-2 md:p-4 text-sm md:text-lg cursor-pointer ${
+              currentPage === totalPages - 1
+                ? "text-gray-400 cursor-not-allowed"
+                : "text-[#F04436] hover:bg-gray-50"
+            }`}
+            onClick={handleNext}
+          >
+            <IoIosArrowForward />
+          </li>
+        </ul>
+      </div>
     </div>
   );
 };
