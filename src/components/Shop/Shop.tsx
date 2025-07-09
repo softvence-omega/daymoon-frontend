@@ -54,7 +54,7 @@ const Shop = () => {
           rows={
             showAllTopRated
               ? { mobile: 100, md: 100, lg: 100 } // Show all top rated
-              : { mobile: 2, md: 2, lg: 2 }       // Show initial few
+              : { mobile: 2, md: 2, lg: 2 } // Show initial few
           }
         />
         {!showAllTopRated && (

@@ -99,7 +99,7 @@ const HomeProducts = ({ cols, rows }: HomeProductsProps) => {
       </div>
 
       {visibleCount < products.length && (
-        <MoreButton onClick={handleExploreMore} text="Explore More"/>
+        <MoreButton onClick={handleExploreMore} text="Explore More" />
       )}
     </div>
   );
