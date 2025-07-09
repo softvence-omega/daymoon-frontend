@@ -13,10 +13,10 @@ interface Trend {
 interface CardData {
   title: string;
   value: string | number;
-  icon: ReactNode;
+  icon?: ReactNode;
   trend: Trend;
-  iconBgColor: string;
-  titleColor: string;
+  iconBgColor?: string;
+  titleColor?: string;
   unit?: string;
 }
 
@@ -28,10 +28,12 @@ const DashboardCard: FC<CardProps> = ({ data }) => {
   const { title, value, icon, trend, iconBgColor, titleColor, unit } = data;
 
   return (
-    <Card className="w-full lg:min-w-[358px] h-[187px]  bg-white rounded-[16px] border border-[#E0E0E0]  ">
+    <Card className="w-full lg:max-w-[358px] h-[187px]  bg-white rounded-[16px] border border-[#E0E0E0]  ">
       <CardContent className="">
         <div className="flex  items-center gap-4 ">
-          <div className={`p-3 rounded-lg ${iconBgColor}`}>{icon}</div>
+          {icon && (
+            <div className={`p-3 rounded-lg ${iconBgColor}`}>{icon}</div>
+          )}
           <CommonHeader className={`!text-lg font-medium mb-2  `}>
             {title}
           </CommonHeader>

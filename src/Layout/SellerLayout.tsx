@@ -9,28 +9,31 @@ const SellerLayout = () => {
 
   const { pathname } = useLocation();
 
-  const hide = [
-    "/seller-dashboard/add-product",
-    "/seller-dashboard/all-products",
-    "/seller-dashboard/orders",
-  ];
-
   const shouldHideSidebar = () => {
-    // Direct match from the hide list
-    if (hide.includes(pathname)) return true;
+    const hideExact = [
+      "/seller-dashboard/add-product",
+      "/seller-dashboard/all-products",
+      "/seller-dashboard/all-orders",
+    ];
 
-    // Match dynamic product details route: /seller-dashboard/all-products/:slug
+    const pathnameSegments = pathname.split("/");
+    if (hideExact.includes(pathname)) return true;
     if (
       pathname.startsWith("/seller-dashboard/all-products/") &&
-      pathname.split("/").length === 4
+      pathnameSegments.length === 4
     ) {
       return true;
     }
-
-    // Match order details route: /seller-dashboard/orders/:id
     if (
-      pathname.startsWith("/seller-dashboard/orders/") &&
-      pathname.split("/").length === 3
+      pathname.startsWith("/seller-dashboard/all-orders/") &&
+      pathnameSegments.length === 4
+    ) {
+      return true;
+    }
+    if (
+      pathname.startsWith("/seller-dashboard/all-orders/") &&
+      pathnameSegments.length === 5 &&
+      pathname.endsWith("/buyer-profile")
     ) {
       return true;
     }

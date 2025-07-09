@@ -1,3 +1,4 @@
+import ButtonWithIcon from "@/common/ButtonWithIcon";
 import { IoSearchSharp } from "react-icons/io5";
 import { LuSlidersHorizontal } from "react-icons/lu";
 import { MdEdit } from "react-icons/md";
@@ -18,17 +19,15 @@ const ProductSearch = () => {
           </span>
         </div>
         <div className="flex items-center gap-3">
-          <div className="flex items-center cursor-pointer  gap-1  rounded-xl text-lg bg-catalien-blue text-white py-2.5 px-6">
-            <span>
-              <MdEdit />
-            </span>
-
-            <button className="cursor-pointer">Edit Selected</button>
-          </div>
-          <div className="flex items-center cursor-pointer  gap-1 border border-catalien-blue rounded-xl text-lg  text-catalien-blue py-2.5 px-6">
-            <MdDeleteOutline />
-            <button className="cursor-pointer">Delete Selected</button>
-          </div>
+          <ButtonWithIcon
+            icon={MdEdit}
+            className="  bg-catalien-blue text-white"
+          >
+            Edit Selected
+          </ButtonWithIcon>
+          <ButtonWithIcon icon={MdDeleteOutline} className="">
+            Delete Selected
+          </ButtonWithIcon>
         </div>
       </div>
     </div>

@@ -46,15 +46,18 @@ const Navbar = () => {
   ];
 
   return (
+
     <nav className="w-full bg-white shadow py-4">
       <div className="lg:hidden flex items-center justify-between w-full px-4">
         <Link to="/">
           <img
             className="w-[100px] h-[40px] object-contain"
+development
             src={logo}
             alt="logo"
           />
         </Link>
+
         <MobileSidebar />
       </div>
 
