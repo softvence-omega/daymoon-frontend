@@ -27,7 +27,7 @@ const ProductCategories = () => {
                         selectedCategory="All"
                         selectedPrice="All"
                         gridCols="4"
-                        mobileCols={2}
+                        mobileCols={1}
                         visibleCount={12}
                         showAll={showAllProducts}
                     />
