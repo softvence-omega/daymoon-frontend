@@ -98,6 +98,9 @@ const HomeProducts = ({ cols, rows }: HomeProductsProps) => {
         ))}
       </div>
 
+      {visibleCount < products.length && (
+        <MoreButton onClick={handleExploreMore} text="Explore More"/>
+      )}
       {/* Explore More Button */}
       {/* {hasMore && (
         <Link to="/products">
