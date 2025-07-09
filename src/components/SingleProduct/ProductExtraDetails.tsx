@@ -177,6 +177,7 @@ const dummyProduct: Product = {
 
 export default function ProductExtraDetails() {
   const [product] = useState(dummyProduct);
+
   const [tabValue, setTabValue] = useState("details");
 
   return (

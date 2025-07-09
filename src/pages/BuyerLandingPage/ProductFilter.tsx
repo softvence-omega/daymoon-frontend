@@ -1,5 +1,6 @@
 import CommonWrapper from "@/common/CommonWrapper";
 import GlobalSearchBar from "@/components/ReUseable/GlobalSearchBar";
+import JoinUs from "@/components/ReUseable/JoinUs";
 import MoreButton from "@/components/ReUseable/MoreButton";
 import ProductsComponent from "@/components/ReUseable/ProductsComponent";
 import FilterSection from "@/components/Shop/FilterSection";
@@ -17,7 +18,7 @@ const ProductFilter = () => {
 
     return (
         <CommonWrapper>
-            <div className="lg:flex lg:justify-between gap-6">
+            <div className="lg:flex lg:justify-between lg:gap-[102px] md:gap-[102px]">
                 <div className="lg:w-1/4">
                     <FilterSection />
                 </div>
@@ -42,7 +43,7 @@ const ProductFilter = () => {
                     </div>
                     {/* Top Rated Manufacturers Section */}
                     <TopManufacturer
-                        title="Suppliers from this category"
+                        title="Top Rated Suppliers"
                         showTopRatedOnly={true}
                         showAll={false}
                         cols={{ mobile: 1, md: 3, lg: 3 }}
@@ -60,6 +61,7 @@ const ProductFilter = () => {
                     )}
                 </div>
             </div>
+            <JoinUs/>
         </CommonWrapper>
     )
 }

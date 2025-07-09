@@ -1,16 +1,16 @@
-import { useState } from "react";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
-  DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { products } from "@/lib/productCard/cardData";
 import { ChevronDown } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { useState } from "react";
 import ProductsComponent from "./ProductsComponent";
 import Reviews from "./Reviews";
-import { products } from "@/lib/productCard/cardData";
 import MoreButton from "./MoreButton";
 
 const OverViewTab = () => {

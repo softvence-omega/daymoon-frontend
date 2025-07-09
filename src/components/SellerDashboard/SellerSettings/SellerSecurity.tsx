@@ -1,295 +1,332 @@
+"use client";
+
+import StyledInput from "@/components/ReUseable/StyledInput";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardTitle } from "@/components/ui/card";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { Separator } from "@/components/ui/separator";
+import { Textarea } from "@/components/ui/textarea";
+import { motion } from "framer-motion";
+import { AlertTriangle } from "lucide-react";
 import { useState } from "react";
 
-// import { Checkbox } from "@/components/ui/checkbox";
+interface ISection {
+  title: string;
+  description?: string;
+  settings: {
+    id: string;
+    label: string;
+    description: string;
+    checked: boolean;
+  }[];
+}
 
-// import {
-//   Select,
-//   SelectContent,
-//   SelectItem,
-//   SelectTrigger,
-//   SelectValue,
-// } from "@/components/ui/select";
+export default function AccountSecurity() {
+  const [sections, setSections] = useState<ISection[]>([
+    {
+      title: "Profile Visibility",
+      description: "Controll who can see your seller profile.",
+      settings: [
+        {
+          id: "public",
+          label: "Public",
+          description: "anyone can see your profile",
+          checked: false,
+        },
+        {
+          id: "registered",
+          label: "Only Registered Users",
+          description: "Only registered users can see your profile",
 
-// const currencyOptions = [
-//   { value: "usd", label: "USD ($)" },
-//   { value: "eur", label: "Euro (€)" },
-//   { value: "gbp", label: "GBP (£)" },
-// ];
-
-// const languageOptions = [
-//   { value: "english", label: "English" },
-//   { value: "spanish", label: "Spanish" },
-//   { value: "french", label: "French" },
-// ];
-
-const SellerSecurity = () => {
-  const [formData, setFormData] = useState({
-    currentPassword: "",
-    newPassword: "",
-    confirmPassword: "",
-    twoFactorEnabled: false,
-    emailPreferences: {
-      promotions: false,
-      updates: false,
-      newsletters: false,
+          checked: false,
+        },
+        {
+          id: "private",
+          label: "Private",
+          description: "Only you and selected users can see your profile",
+          checked: false,
+        },
+      ],
     },
-    language: "",
-    currency: "",
-  });
 
-  const handleInputChange = (field: string, value: string | boolean) => {
-    setFormData((prev) => ({
-      ...prev,
-      [field]: value,
-    }));
+    {
+      title: "Data Sharing",
+      settings: [
+        {
+          id: "Share Data for marketing ",
+          label: "Share Data for marketing ",
+          description:
+            "Allow us to use your data to personalize marketing and recommendations",
+          checked: false,
+        },
+        {
+          id: "Share Data for analytics",
+          label: "Share Data for analytics",
+          description:
+            "Allow us to use data for improving our platform and services",
+          checked: false,
+        },
+      ],
+    },
+  ]);
+
+  const handleCheckboxChange = (
+    sectionIndex: number,
+    settingIndex: number,
+    checked: boolean
+  ) => {
+    setSections((prevSections) => {
+      const newSections = [...prevSections];
+      newSections[sectionIndex].settings[settingIndex].checked = checked;
+
+      const setting = newSections[sectionIndex].settings[settingIndex];
+      console.log(
+        `[LOG] ${setting.label} → ${checked ? "✅ Checked" : "❌ Unchecked"}`
+      );
+
+      return newSections;
+    });
   };
 
-  // const handleEmailPreferenceChange = (preference: string, value: boolean) => {
-  //   setFormData((prev) => ({
-  //     ...prev,
-  //     emailPreferences: {
-  //       ...prev.emailPreferences,
-  //       [preference]: value,
-  //     },
-  //   }));
-  // };
-
-  const handleSubmit = () => {
-    console.log("Submitting form data:", formData);
-    // Example: Send formData to the backend
-    // fetch('/api/account-settings', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify(formData),
-    // });
-  };
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   return (
-    <div className="mx-auto mt-8 p-10  ">
-      <h1 className="text-3xl font-medium text-[#1A1A1A] mb-6">
-        Account Security
-      </h1>
+    <div className="mt-20  text-jet-black  space-y-8">
+      <div className="space-y-2">
+        <h1 className="text-xl md:text-2xl font-semibold ">Account Security</h1>
+        <p className="text-[#666] text-sm">
+          Manage your account security settings
+        </p>
+      </div>
+      <hr className=" text-[#E5E5E5]" />
+      <div className="flex flex-col lg:flex-row justify-between gap-32 items-start w-full">
+        <div className="w-full lg:w-1/2">
+          <h1 className="text-lg font-medium mb-4">Change Password</h1>
+          <div className="space-y-6">
+            <div className="space-y-2">
+              <Label className="text-[#666]" htmlFor="current-password">
+                Current Password
+              </Label>
+              <StyledInput
+                id="current-password"
+                type="text"
+                className="w-full"
+                value={currentPassword}
+                onChange={(e) => setCurrentPassword(e.target.value)}
+                placeholder="••••••••••••••••"
+              />
+            </div>
 
-      {/* Change Password Section */}
+            <div className="space-y-2">
+              <Label className="text-[#666]" htmlFor="new-password">
+                New Password
+              </Label>
+              <StyledInput
+                id="new-password"
+                type="text"
+                className="w-full"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                placeholder="••••••••••••••••"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label className="text-[#666]" htmlFor="confirm-password">
+                Confirm Password
+              </Label>
+              <StyledInput
+                id="confirm-password"
+                type="text"
+                className="w-full"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                placeholder="••••••••••••••••"
+              />
+            </div>
+
+            <motion.button
+              whileTap={{ scale: 0.9 }}
+              whileHover={{ scale: 1.01 }}
+              className="bg-[#192D4E] rounded-2xl text-sm md:text-lg font-medium px-10 py-3 mt-4 hover:bg-gray-900 text-white cursor-pointer"
+            >
+              Update Password
+            </motion.button>
+          </div>
+        </div>
+
+        <div className="w-full lg:w-1/2 flex justify-end   ">
+          <div className="p-0 shadow-none border-none">
+            <div className="p-0">
+              <div className="text-lg   p-0 font-medium">
+                Two Factor Authentication
+              </div>
+            </div>
+            <div className=" p-0 mt-3">
+              <p className="text-sm text-gray-600">
+                Add an extra layer of security to your account by requiring
+                access to your phone when you log in.
+              </p>
+              <motion.button
+                whileTap={{ scale: 0.9 }}
+                whileHover={{ scale: 1.01 }}
+                className="bg-[#192D4E] rounded-2xl text-sm md:text-lg font-medium px-10 py-3 mt-8 hover:bg-gray-900 text-white cursor-pointer"
+              >
+                Enable Two-Factor Authentication
+              </motion.button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="border-none p-0 mt-20 shadow-none">
+        <h1 className="text-2xl font-semibold">Email Verification</h1>
+
+        <div className="space-y-4 mt-5">
+          <div className="flex items-center gap-2">
+            <Badge
+              variant="destructive"
+              className="bg-red-100 text-base text-red-800 hover:bg-red-100"
+            >
+              Verified Required
+            </Badge>
+            <span className="text-sm text-gray-600">
+              Your email has not been verified
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <Separator />
+
+      <div className="space-y-2">
+        <h2 className="text-2xl font-semibold text-gray-900">
+          Privacy & Data Security
+        </h2>
+        <p className="text-sm text-gray-600">
+          Manage your privacy and security settings
+        </p>
+      </div>
+
+      <hr className=" text-[#E5E5E5]" />
       <div className="space-y-6">
-        <h2 className="text-xl font-medium">Change Password</h2>
-        <div className="space-y-2">
-          <Label
-            htmlFor="currentPassword"
-            className="text-[#666666] text-sm font-normal"
-          >
-            Current Password
-          </Label>
-          <Input
-            id="currentPassword"
-            type="password"
-            placeholder="*********"
-            value={formData.currentPassword}
-            onChange={(e) =>
-              handleInputChange("currentPassword", e.target.value)
-            }
-            className="border border-[#B3B3B3] rounded-xl px-4 py-3 md:text-lg h-auto w-full sm:w-1/2"
-          />
-        </div>
-        <div className="space-y-2">
-          <Label
-            htmlFor="newPassword"
-            className="text-[#666666] text-sm font-normal"
-          >
-            New Password
-          </Label>
-          <Input
-            id="newPassword"
-            type="password"
-            placeholder="*********"
-            value={formData.newPassword}
-            onChange={(e) => handleInputChange("newPassword", e.target.value)}
-            className="border border-[#B3B3B3] rounded-xl px-4 py-3 md:text-lg h-auto w-full sm:w-1/2"
-          />
-        </div>
-        <div className="space-y-2">
-          <Label
-            htmlFor="confirmPassword"
-            className="text-[#666666] text-sm font-normal"
-          >
-            Confirm Password
-          </Label>
-          <Input
-            id="confirmPassword"
-            type="password"
-            placeholder="*********"
-            value={formData.confirmPassword}
-            onChange={(e) =>
-              handleInputChange("confirmPassword", e.target.value)
-            }
-            className="border border-[#B3B3B3] rounded-xl px-4 py-3 md:text-lg h-auto w-full sm:w-1/2"
-          />
-        </div>
-        <Button
-          className="text-lg px-10 py-4 border-[#192D4E] text-white bg-[#192D4E] rounded-[20px] h-auto w-auto"
-          onClick={handleSubmit}
+        {sections.map((section, sectionIndex) => (
+          <div key={section.title} className="shadow-none border-none  ">
+            <h1 className="text-xl  font-medium text-jet-black">
+              {section.title}
+            </h1>
+
+            <div className="space-y-6 mt-5">
+              {section.settings.map((setting, settingIndex) => (
+                <div
+                  key={setting.id}
+                  className="flex items-start text-jet-black space-x-3"
+                >
+                  <Checkbox
+                    id={setting.id}
+                    checked={setting.checked}
+                    onCheckedChange={(checked) =>
+                      handleCheckboxChange(
+                        sectionIndex,
+                        settingIndex,
+                        checked as boolean
+                      )
+                    }
+                    className="mt-1 h-5 w-5 cursor-pointer transition-colors duration-200 ease-in-out 
+    border 
+    data-[state=checked]:bg-[#f04436] 
+    data-[state=checked]:border-[#f04436] 
+    data-[state=checked]:text-white 
+    data-[state=unchecked]:bg-transparent 
+    data-[state=unchecked]:border-[#f04436] 
+    data-[state=unchecked]:border-2"
+                  />
+
+                  <div className="flex-1 space-y-1">
+                    <Label
+                      htmlFor={setting.id}
+                      className="text-base font-medium text-gray-900 cursor-pointer"
+                    >
+                      {setting.label}
+                    </Label>
+                    <p className="text-sm text-gray-600">
+                      {setting.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+      <Separator />
+
+      <div className="border-none  shadow-none ">
+        <h1
+          className="text-2xl    
+       font-semibold"
         >
-          Update Password
-        </Button>
+          Download Your Data
+        </h1>
+
+        <div className="space-y-4 mt-2">
+          <p className="text-sm text-gray-600">
+            Download a copy of your data including information, photos, posts
+            and more information.
+          </p>
+          <motion.button
+            whileTap={{ scale: 0.9 }}
+            whileHover={{ scale: 1.01 }}
+            className=" rounded-2xl text-sm md:text-lg font-medium px-10 py-3 mt-4 bg-transparent text-jet-black border-1 cursor-pointer"
+          >
+            Request data Download
+          </motion.button>
+        </div>
       </div>
 
-      {/* Two Factor Authentication Section
-      <div className="mt-20">
-        <h3 className="text-lg font-medium text-[#484848]">
-          Two Factor Authentication
-        </h3>
-        <p className="text-[#484848] text-base w-full sm:w-1/2 mt-4 mb-8">
-          Add an extra layer of security to your account by requiring access to
-          your phone when you log in.
-        </p>
-        <Button
-          className="text-lg px-10 py-4 border-[#192D4E] text-white bg-[#192D4E] rounded-[20px] h-auto w-auto"
-          onClick={() => handleInputChange("twoFactorEnabled", true)}
-        >
-          Enable Two-Factor Authentication
-        </Button>
-      </div>
+      <Separator />
 
-      {/* Email Preferences Section */}
-      {/* <div className="mt-20">
-        <h3 className="text-lg font-medium text-[#484848]">
-          E-mail Preference
-        </h3>
-        <div className="space-y-4 mt-4">
-          <div className="flex items-center space-x-2">
-            <Checkbox
-              id="promotions"
-              checked={formData.emailPreferences.promotions}
-              onCheckedChange={(checked) =>
-                handleEmailPreferenceChange("promotions", !!checked)
-              }
-              className="text-[#F04436]"
+      <Card className="p-0 border-none shadow-none">
+        <CardTitle className="text-2xl font-semibold text-[#484848] p-0  ">
+          Deactivate Account
+        </CardTitle>
+        <CardContent className="space-y-4 p-0">
+          <p className="text-sm text-gray-600">
+            Temporarily disable your account. You can reactivate your account.
+          </p>
+
+          <Alert className="bg-[#D3000919] mt-8 border-red-200">
+            <AlertTriangle className="h-4 w-4 text-red-600" />
+            <AlertDescription className="text-red-800">
+              <strong>Warning:</strong> Deactivating your account will remove
+              all your products from the marketplace and suspend your ability to
+              sell. This action can be reversed by contacting support.
+            </AlertDescription>
+          </Alert>
+          <div className="mt-6">
+            <Label className="text-sm text-[#666]" htmlFor="deactivate-reason">
+              Reason for deactivation (optional)
+            </Label>
+            <Textarea
+              rows={12}
+              className="w-full h-40 mt-2 rounded-md border border-[#B3B3B3] bg-transparent px-3 py-2 text-sm text-[#333333] placeholder:text-[#B3B3B3] focus:outline-none focus:border-[#B3B3B3] focus:ring-[#B3B3B3] focus:shadow-none"
             />
-            <Label htmlFor="promotions" className="text-[#484848] text-sm">
-              Receive promotional emails
-            </Label>
           </div>
-          <div className="flex items-center space-x-2">
-            <Checkbox
-              id="updates"
-              checked={formData.emailPreferences.updates}
-              onCheckedChange={(checked) =>
-                handleEmailPreferenceChange("updates", !!checked)
-              }
-              className="text-[#F04436]"
-            />
-            <Label htmlFor="updates" className="text-[#484848] text-sm">
-              Receive updates about new features
-            </Label>
-          </div>
-          <div className="flex items-center space-x-2">
-            <Checkbox
-              id="news"
-              checked={formData.emailPreferences.newsletters}
-              onCheckedChange={(checked) =>
-                handleEmailPreferenceChange("newsletters", !!checked)
-              }
-              className="text-[#F04436]"
-            />
-            <Label htmlFor="news" className="text-[#484848] text-sm">
-              Receive newsletters
-            </Label>
-          </div>
-        </div>
-      </div> */}
-
-      {/* Language and Currency Section */}
-      {/* <div className="mt-20">
-        <h3 className="text-lg font-medium text-[#484848]">
-          Language and Currency
-        </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
-          <div className="space-y-2">
-            <Label
-              htmlFor="language"
-              className="text-[#666666] text-sm font-normal"
+          <div className="pt-4">
+            <motion.button
+              whileTap={{ scale: 0.9 }}
+              whileHover={{ scale: 1.01 }}
+              className=" rounded-2xl text-sm md:text-lg font-medium px-10 py-3 mt-4   text-white bg-[#D30009] hover:bg-amber-800 border-1 cursor-pointer"
             >
-              Language
-            </Label>
-            <Select
-              onValueChange={(value) => handleInputChange("language", value)}
-            >
-              <SelectTrigger
-                id="language"
-                className="w-full border border-[#B3B3B3] rounded-xl px-4 py-3 md:text-lg h-auto data-[size=default]:h-auto [&_svg:not([class*='text-'])]:text-[#F04436] [&_svg]:text-[##F04436]"
-              >
-                <SelectValue
-                  placeholder={formData.language || "Select Language"}
-                />
-              </SelectTrigger>
-              <SelectContent className="bg-white">
-                {languageOptions.map((option) => (
-                  <SelectItem key={option.value} value={option.value}>
-                    {option.label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+              Deactivate Account
+            </motion.button>
           </div>
-          <div className="space-y-2">
-            <Label
-              htmlFor="currency"
-              className="text-[#666666] text-sm font-normal"
-            >
-              Currency
-            </Label>
-            <Select
-              onValueChange={(value) => handleInputChange("currency", value)}
-            >
-              <SelectTrigger
-                id="currency"
-                className="w-full border border-[#B3B3B3] rounded-xl px-4 py-3 md:text-lg data-[size=default]:h-auto"
-              >
-                <SelectValue
-                  placeholder={formData.currency || "Select Currency"}
-                />
-              </SelectTrigger>
-              <SelectContent className="bg-white">
-                {currencyOptions.map((option) => (
-                  <SelectItem key={option.value} value={option.value}>
-                    {option.label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-        </div>
-      </div> */}
-
-      {/* Delete Account Section */}
-      {/* <div className="mt-20">
-        <h3 className="text-lg font-medium text-[#484848]">Delete Account</h3>
-        <p className="text-[#484848] text-base w-full sm:w-1/2 mt-4 mb-8">
-          Once you delete your account, there is no going back. Please be
-          certain.
-        </p>
-        <Button
-          className="text-lg px-10 py-4 border-[#D30009] text-white bg-[#D30009] rounded-[20px] h-auto w-auto"
-          onClick={() => alert("Account deleted successfully!")}
-        >
-          Delete Account
-        </Button>
-      </div> */}
-
-      {/* Save Changes Button */}
-      {/* <div className="mt-20 flex justify-end">
-        <Button
-          className="text-lg px-10 py-4 border-[#F04436] text-white bg-[#F04436] rounded-[20px] h-auto w-auto"
-          onClick={() => alert("Account deleted successfully!")}
-        >
-          Save Changes
-        </Button>
-      </div>  */}
+        </CardContent>
+      </Card>
     </div>
   );
-};
-
-export default SellerSecurity;
+}
