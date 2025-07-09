@@ -128,19 +128,24 @@ const PaymentsFilters = ({ onFilterChange = () => {} }: RFQFilterProps) => {
   };
 
   return (
-    <div className="p-4 lg:border lg:border-[#E5E5E5] rounded-full max-w-7xl mx-auto bg-transparent">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
+    <div className="p-4 xl:border xl:border-[#E5E5E5] rounded-full max-w-7xl mx-auto bg-transparent">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-4 items-center">
         {/* Search Bar - Takes half on large screens */}
         <div className="relative md:col-span-2 lg:col-span-1">
           <div className="relative">
-            <Search className="absolute right-4 top-1/2 transform -translate-y-1/2 text-[#666666] w-6 h-auto bg-amber-300" />
+            <Search
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white w-6 p-1 rounded-full h-auto"
+              style={{
+                background: "linear-gradient(270deg, #F7813B 0%, #F46A39 100%)",
+              }}
+            />
             <Input
               type="text"
               placeholder="Search payments..."
-              value={filters.search} 
+              value={filters.search}
               onChange={handleSearchChange}
               className="w-full rounded-full border border-[#E5E5E5] bg-white text-[#1A1A1A] placeholder:text-[#666666] pl-6 pr-12 py-3 text-base focus:outline-none focus:ring-2 focus:ring-[#F04436] focus:border-transparent h-auto"
-            />   
+            />
           </div>
         </div>
 
@@ -152,7 +157,9 @@ const PaymentsFilters = ({ onFilterChange = () => {} }: RFQFilterProps) => {
               placeholder={config.placeholder}
               options={config.options}
               defaultValue={config.defaultValue}
-              onValueChange={(value) => handleFilterChange(config.filterKey, value)}
+              onValueChange={(value) =>
+                handleFilterChange(config.filterKey, value)
+              }
             />
           ))}
         </div>
