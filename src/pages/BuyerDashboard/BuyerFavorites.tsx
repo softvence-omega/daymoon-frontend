@@ -9,3 +9,4 @@ const BuyerFavorites = () => {
 };
 
 export default BuyerFavorites;
+

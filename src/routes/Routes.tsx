@@ -37,6 +37,12 @@ import SellerInvoiceFormPage from "@/pages/SellerDashboard/SellerInvoiceFormPage
 // import BuyerOrdersPage from "@/pages/BuyerDashboard/BuyerOrdersPage";
 import IndividualProduct from "@/components/SingleProduct/IndividualProduct";
 import BuyerRFQ from "../pages/BuyerDashboard/BuyerRFQ";
+import BuyerHome from "@/pages/BuyerLandingPage/BuyerHome";
+import ProductCategories from "@/pages/BuyerLandingPage/ProductCategories";
+import ProductFilter from "@/pages/BuyerLandingPage/ProductFilter";
+
+import OrderDetails from "@/components/SellerDashboard/SellerOrder/OrderDetails/OrderDetails";
+
 import BuyerOrdersPage from "@/pages/BuyerDashboard/BuyerOrdersPage";
 import BuyerReview from "@/pages/BuyerDashboard/BuyerReview";
 import BuyerRefund from "@/pages/BuyerDashboard/BuyerRefund";
@@ -44,10 +50,7 @@ import BuyerOrderDetails from "@/pages/BuyerDashboard/BuyerOrderDetails";
 import BuyerPayments from "@/pages/BuyerDashboard/BuyerPayments";
 import BuyerMessages from "@/pages/BuyerDashboard/BuyerMessages";
 import BuyerFavorites from "@/pages/BuyerDashboard/BuyerFavorites";
-import BuyerHome from "@/pages/BuyerLandingPage/BuyerHome";
-import ProductCategories from "@/pages/BuyerLandingPage/ProductCategories";
-import ProductFilter from "@/pages/BuyerLandingPage/ProductFilter";
-import OrderDetails from "@/components/SellerDashboard/SellerOrder/OrderDetails/OrderDetails";
+
 
 const routes = createBrowserRouter([
   {

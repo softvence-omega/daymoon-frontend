@@ -11,6 +11,7 @@ import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 import ProductsComponent from "./ProductsComponent";
 import Reviews from "./Reviews";
+import MoreButton from "./MoreButton";
 
 const OverViewTab = () => {
   const [activeTab, setActiveTab] = useState("product");

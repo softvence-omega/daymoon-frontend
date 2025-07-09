@@ -85,8 +85,7 @@ const HomeProducts = ({ cols, rows }: HomeProductsProps) => {
       : {};
 
   return (
-    <div className="my-[80px]">
-      {/* Grid */}
+    <div className="mt-[80px]">
       <div
         className={gridClass}
         style={{
