@@ -111,12 +111,12 @@ const SellerNotifications = () => {
   };
 
   return (
-    <div className="mt-32 md:mt-42 lg:mt-0 mx-auto p-6 ">
-      <div className="space-y-2 px-4 mt-20 mb-3">
+    <div className="mt-32 md:mt-42 lg:mt-0 mx-auto ">
+      <div className="space-y-2  mt-20 mb-3">
         <h1 className="text-2xl font-semibold text-jet-black">
           Notifications Settings
         </h1>
-        <p className="text-[#666]">
+        <p className="text-[#666] text-sm">
           Choose how you want to be notified about your activity
         </p>
       </div>
