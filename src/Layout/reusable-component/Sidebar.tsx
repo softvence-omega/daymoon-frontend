@@ -46,7 +46,7 @@ const defaultSidebarItems: SidebarItem[] = [
     label: "Payments",
     href: "/buyer/dashboard/payments",
   },
-  { icon: FaRegHeart, label: "Favorites", href: "/buyer/dashboard/cart" },
+  { icon: FaRegHeart, label: "Favorites", href: "/buyer/dashboard/favorites" },
   {
     icon: MdOutlineRateReview,
     label: "RFQ",
@@ -55,10 +55,7 @@ const defaultSidebarItems: SidebarItem[] = [
   { icon: IoMdSettings, label: "Settings", href: "/buyer/dashboard/settings" },
 ];
 
-const Sidebar: React.FC<SidebarProps> = ({
-  items = defaultSidebarItems,
-  
-}) => {
+const Sidebar: React.FC<SidebarProps> = ({ items = defaultSidebarItems }) => {
   const location = useLocation();
 
   return (

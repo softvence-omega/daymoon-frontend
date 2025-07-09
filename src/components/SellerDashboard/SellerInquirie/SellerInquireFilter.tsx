@@ -86,11 +86,11 @@ const SellerInquireFilter = ({ onFilterChange = () => {} }: RFQFilterProps) => {
     },
     {
       label: "Category",
-      placeholder: "All Categories",
+      placeholder: "All Products",
       defaultValue: "all",
       filterKey: "category" as keyof FilterState,
       options: [
-        { value: "all", label: "All Categories" },
+        { value: "all", label: "All Products" },
         { value: "subscription", label: "Subscription" },
         { value: "purchase", label: "Purchase" },
         { value: "refund", label: "Refund" },
@@ -99,11 +99,11 @@ const SellerInquireFilter = ({ onFilterChange = () => {} }: RFQFilterProps) => {
     },
     {
       label: "Time",
-      placeholder: "All Time",
+      placeholder: "Last 30 Days",
       defaultValue: "all",
       filterKey: "time" as keyof FilterState,
       options: [
-        { value: "all", label: "All Time" },
+        { value: "all", label: "Last 30 Days" },
         { value: "today", label: "Today" },
         { value: "week", label: "This Week" },
         { value: "month", label: "This Month" },
