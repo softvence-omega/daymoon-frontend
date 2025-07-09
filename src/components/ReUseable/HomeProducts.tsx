@@ -100,16 +100,15 @@ const HomeProducts = ({ cols, rows }: HomeProductsProps) => {
         ))}
       </div>
 
-
       {/* Explore More Button */}
-      {hasMore && (
+      {/* {hasMore && (
         <Link to="/products">
 
           <div className="max-w-[1520px] mx-auto flex justify-center mt-12 ">
             <SharedButton></SharedButton>
           </div>
         </Link>
-      )}
+      )} */}
     </div>
   );
 };
