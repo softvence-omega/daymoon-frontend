@@ -50,6 +50,7 @@ import BuyerOrderDetails from "@/pages/BuyerDashboard/BuyerOrderDetails";
 import BuyerPayments from "@/pages/BuyerDashboard/BuyerPayments";
 import BuyerMessages from "@/pages/BuyerDashboard/BuyerMessages";
 import BuyerFavorites from "@/pages/BuyerDashboard/BuyerFavorites";
+import SupplierProfileDetails from "@/pages/BuyerLandingPage/SupplierProfileDetails";
 
 
 const routes = createBrowserRouter([
@@ -98,6 +99,10 @@ const routes = createBrowserRouter([
       {
         path: "/buyerHome/:slug/:subCategory",
         element: <ProductFilter/>
+      },
+      {
+        path:"/suppliersDetails",
+        element: <SupplierProfileDetails/>
       },
       // -----------
       // -------------------
