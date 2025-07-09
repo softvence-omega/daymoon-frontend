@@ -53,15 +53,15 @@ const renderCustomizedLabel = ({
 
 export default function CustomerInsights() {
   return (
-    <div className="w-full  mx-auto h-[490px]">
+    <div className="w-full  mx-auto h-[420px]">
       <Card className="bg-gray-50 border-0 border-gray-500 shadow-sm h-full flex flex-col">
-        <CardHeader className="pb-4">
+        <CardHeader className="">
           <CardTitle className="text-lg font-medium text-gray-700">
             Customer Insights
           </CardTitle>
         </CardHeader>
 
-        <CardContent className="flex flex-col justify-between flex-grow space-y-6 px-4 pb-4">
+        <CardContent className="flex flex-col justify-between   ">
           {/* Chart + Legend Section */}
           <div className="flex flex-col items-center">
             <div className="relative w-48 h-48">
@@ -96,7 +96,7 @@ export default function CustomerInsights() {
             </div>
 
             {/* Legend */}
-            <div className="mt-6 flex flex-col space-y-3">
+            <div className=" flex flex-col space-y-3">
               <div className="flex items-center space-x-3">
                 <div className="w-4 h-4 rounded-full bg-indigo-600"></div>
                 <span className="text-sm text-gray-600 font-medium">
@@ -114,7 +114,7 @@ export default function CustomerInsights() {
 
           {/* Metrics Section */}
           <div className="w-full">
-            <div className="space-y-2">
+            <div className="space-y-2 mt-7">
               <p className="text-sm text-gray-500">Average Customer Spend</p>
               <div className="flex items-center space-x-2">
                 <span className="text-2xl font-semibold text-gray-800">

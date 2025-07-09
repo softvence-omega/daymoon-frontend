@@ -1,118 +1,104 @@
-// components/TopRatedManufacturers.jsx
-// import ManufacturerCard from "./ManufacturerCard";
-
-import { Link } from "react-router-dom";
-
-import SharedButton from "@/common/CommonHomepageButton";
-import image1 from "../../assets/Manufacturer/Rectangle 5.png";
-import image2 from "../../assets/Manufacturer/Rectangle 6.png";
-import {
-  default as image3,
-  default as image4,
-} from "../../assets/Manufacturer/Rectangle 7.png";
+import { useState, useEffect } from "react";
 import ManufacturerCard from "../ReUseable/ManufacturerCard";
+import { Manufacturer, manufacturers } from "@/lib/Manufacturer/manufacturer";
 
-const manufacturers = [
-  {
-    id: 1,
-    shopName: "Samsung Electronics",
-    name: "Samsung",
-    location: "Seoul, South Korea",
-    rating: 4.9,
-    totalReviews: 1200,
-    images: [image1, image2, image3, image4],
-  },
-  {
-    id: 2,
-    shopName: "Apple Store",
-    name: "Apple",
-    location: "California, USA",
-    rating: 4.8,
-    totalReviews: 1500,
-    images: [image1, image2, image3, image4],
-  },
-  {
-    id: 3,
-    shopName: "Sony Corporation",
-    name: "Sony",
-    location: "Tokyo, Japan",
-    rating: 4.7,
-    totalReviews: 980,
-    images: [image1, image2, image3, image4],
-  },
-  {
-    id: 4,
-    shopName: "LG Electronics",
-    name: "LG",
-    location: "Seoul, South Korea",
-    rating: 4.6,
-    totalReviews: 875,
-    images: [image1, image2, image3, image4],
-  },
-  {
-    id: 5,
-    shopName: "Samsung Digital Plaza",
-    name: "Samsung",
-    location: "Suwon, South Korea",
-    rating: 4.7,
-    totalReviews: 1025,
-    images: [image1, image2, image3, image4],
-  },
-  {
-    id: 6,
-    shopName: "Sony Center",
-    name: "Sony",
-    location: "Tokyo, Japan",
-    rating: 4.5,
-    totalReviews: 740,
-    images: [image1, image2, image3, image4],
-  },
-];
-const TopRatedManufacturers = () => {
+interface TopRatedManufacturersProps {
+  title?: string; // <-- add title prop here
+  showTopRatedOnly?: boolean;
+  showAll?: boolean;
+  cols?: {
+    mobile: number;
+    md: number;
+    lg: number;
+    xl?: number;
+  };
+  rows?: {
+    mobile: number;
+    md: number;
+    lg: number;
+    xl?: number;
+  };
+}
+
+const isMobileWidth = (width: number) => width < 768;
+const isMdWidth = (width: number) => width >= 768 && width < 1024;
+
+const TopManufacturer = ({
+  title,                  // receive title from props
+  showTopRatedOnly = false,
+  showAll = true,
+  cols = { mobile: 1, md: 2, lg: 3, xl: 3 },
+  rows = { mobile: 1, md: 2, lg: 2, xl: 2 },
+}: TopRatedManufacturersProps) => {
+  const [windowWidth, setWindowWidth] = useState(
+    typeof window !== "undefined" ? window.innerWidth : 1024
+  );
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Filter data
+  let filteredManufacturers: Manufacturer[] = [];
+
+  if (showTopRatedOnly) {
+    filteredManufacturers = manufacturers.filter((m) => m.rating >= 4.7);
+  } else if (showAll) {
+    filteredManufacturers = manufacturers;
+  }
+
+  const currentCols = isMobileWidth(windowWidth)
+    ? cols.mobile
+    : isMdWidth(windowWidth)
+    ? cols.md
+    : windowWidth >= 1280 && cols.xl
+    ? cols.xl
+    : cols.lg;
+
+  const currentRows = isMobileWidth(windowWidth)
+    ? rows.mobile
+    : isMdWidth(windowWidth)
+    ? rows.md
+    : windowWidth >= 1280 && rows.xl
+    ? rows.xl
+    : rows.lg;
+
+  const visibleCount = currentCols * (currentRows || 1);
+
+  const displayedManufacturers = filteredManufacturers.slice(0, visibleCount);
+
+  const getColsClass = (num: number) => {
+    switch (num) {
+      case 1: return "grid-cols-1";
+      case 2: return "grid-cols-2";
+      case 3: return "grid-cols-3";
+      case 4: return "grid-cols-4";
+      case 5: return "grid-cols-5";
+      case 6: return "grid-cols-6";
+      default: return "";
+    }
+  };
+
+  const colClass = getColsClass(currentCols);
+  const gridClass = `grid gap-4 md:gap-6 lg:gap-8 mt-12 ${colClass}`;
+
   return (
-    <div>
-      <section className="py-10 mt-10 md:mt-18">
-        <div className="mx-auto  text-center">
-          <h2 className="text-2xl md:text-3xl font-semibold mb-6 text-start">
-            Top Rated Manufacturers
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4 mt-12 md:gap-4 lg:gap-8">
-            {manufacturers.map((manufacturer) => (
-              <ManufacturerCard
-                key={manufacturer.id}
-                manufacturer={manufacturer}
-              />
-            ))}
-          </div>
-        </div>
-        <Link to="/products">
-          <div className="max-w-[1520px] mx-auto flex justify-center mt-12 ">
-            <SharedButton></SharedButton>
-          </div>
-        </Link>
-      </section>{" "}
-      <section className="py-10 mt-10 md:mt-20">
-        <div className="mx-auto  text-center">
-          <h2 className="text-2xl md:text-3xl font-semibold mb-6 text-start">
-            All Manufacturers
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4 mt-12 md:gap-4 lg:gap-8">
-            {manufacturers.map((manufacturer) => (
-              <ManufacturerCard
-                key={manufacturer.id}
-                manufacturer={manufacturer}
-              />
-            ))}
-          </div>
-        </div>
-        <Link to="/products">
-          <div className="max-w-[1520px] mx-auto flex justify-center mt-12 ">
-            <SharedButton></SharedButton>
-          </div>
-        </Link>
-      </section>
-    </div>
+    <section className="mt-10 md:mt-18 max-w-full mx-auto">
+      {title && (
+        <h2 className="text-xl lg:text-[32px] text-center md:text-left lg:text-left pt-6 md:pt-0 lg:pt-0 font-semibold mb-6 uppercase">
+          {title}
+        </h2>
+      )}
+
+      <div className={gridClass}>
+        {displayedManufacturers.map((manufacturer) => (
+          <ManufacturerCard key={manufacturer.id} manufacturer={manufacturer} />
+        ))}
+      </div>
+    </section>
   );
 };
 
-export default TopRatedManufacturers;
+export default TopManufacturer;

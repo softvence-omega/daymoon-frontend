@@ -1,14 +1,14 @@
-import { Card } from "@/components/ui/card";
-import { ImPencil } from "react-icons/im";
-import { FaPlus } from "react-icons/fa";
-import { MdOutlineDelete } from "react-icons/md";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { FaPlus } from "react-icons/fa";
+import { ImPencil } from "react-icons/im";
+import { MdOutlineDelete } from "react-icons/md";
 
-import visa from "@/assets/dashboard/buyer-dashboard/visa.png";
 import mastercard from "@/assets/dashboard/buyer-dashboard/mastercard.png";
+import visa from "@/assets/dashboard/buyer-dashboard/visa.png";
 import { Badge } from "@/components/ui/badge";
-import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 const cardDetails = [
   {

@@ -1,6 +1,5 @@
 import Wrapper from "../Shared/Wrapper";
 import AnalyticsCard from "./AnalyticsCard";
-import AnimatedHome from "./PurchaseBehaviourChart/AnimatedHome";
 import { CampaignTable } from "./CampaignTable";
 import { ProductCategory } from "./ProductCategory";
 import SalesByCategory from "./SalesByCategory";
@@ -8,6 +7,8 @@ import SaleTrends from "./SaleTrends";
 import CustomerInsights from "./CustomerInsights";
 import ConversionFunnel from "./ConversionFunnel";
 import PromotionsAnalytics from "./PromotionsAnalytics";
+import GeographicDistribution from "./GeographicDistribution";
+import PurchaseBehaviour from "./PurchaseBehaviour";
 
 const Analytics = () => {
   return (
@@ -23,7 +24,7 @@ const Analytics = () => {
             <SalesByCategory />
           </div>
           <div className="w-full lg:w-1/2">
-            <AnimatedHome />
+            <PurchaseBehaviour />
           </div>
         </div>
         <ProductCategory />
@@ -32,7 +33,7 @@ const Analytics = () => {
             <CustomerInsights />
           </div>
           <div className="w-full lg:w-1/2">
-            <AnimatedHome />
+            <GeographicDistribution />
           </div>
         </div>
         <div className="flex flex-col lg:flex-row w-full gap-5">

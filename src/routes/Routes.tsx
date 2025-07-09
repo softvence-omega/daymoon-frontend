@@ -37,6 +37,12 @@ import SellerInvoiceFormPage from "@/pages/SellerDashboard/SellerInvoiceFormPage
 // import BuyerOrdersPage from "@/pages/BuyerDashboard/BuyerOrdersPage";
 import IndividualProduct from "@/components/SingleProduct/IndividualProduct";
 import BuyerRFQ from "../pages/BuyerDashboard/BuyerRFQ";
+import BuyerHome from "@/pages/BuyerLandingPage/BuyerHome";
+import ProductCategories from "@/pages/BuyerLandingPage/ProductCategories";
+import ProductFilter from "@/pages/BuyerLandingPage/ProductFilter";
+
+import OrderDetails from "@/components/SellerDashboard/SellerOrder/OrderDetails/OrderDetails";
+
 import BuyerOrdersPage from "@/pages/BuyerDashboard/BuyerOrdersPage";
 import BuyerReview from "@/pages/BuyerDashboard/BuyerReview";
 import BuyerRefund from "@/pages/BuyerDashboard/BuyerRefund";
@@ -45,6 +51,7 @@ import BuyerPayments from "@/pages/BuyerDashboard/BuyerPayments";
 import BuyerMessages from "@/pages/BuyerDashboard/BuyerMessages";
 import BuyerFavorites from "@/pages/BuyerDashboard/BuyerFavorites";
 import CreatePromotionPage from "@/pages/SellerDashboard/CreatePromotionPage";
+
 
 const routes = createBrowserRouter([
   {
@@ -80,6 +87,20 @@ const routes = createBrowserRouter([
         path: "/overview",
         element: <OverViewBanner />,
       },
+      // rakib demo route for buyer
+      {
+        path: "/buyerHome",
+        element: <BuyerHome />
+      },
+      {
+        path: "/buyerHome/:slug",
+        element: <ProductCategories/>
+      },
+      {
+        path: "/buyerHome/:slug/:subCategory",
+        element: <ProductFilter/>
+      },
+      // -----------
       // -------------------
       {
         path: "/admin",
@@ -89,6 +110,7 @@ const routes = createBrowserRouter([
         ],
       },
     ],
+
   },
   {
     path: "/login",
@@ -184,6 +206,7 @@ const routes = createBrowserRouter([
 
       { path: "products", element: <SellerProductsPage /> },
       { path: "orders", element: <SellerOrdersPage /> },
+      { path: "orders/:id", element: <OrderDetails /> },
 
       { path: "inquiries", element: <SellerInquiriesPage /> },
       { path: "payments", element: <SellerPaymentPage /> },

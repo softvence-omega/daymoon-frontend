@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import React from "react";
 import { FaPlus } from "react-icons/fa";
 import {
@@ -112,21 +111,13 @@ const PromotionsAnalytics = () => {
         </div>
 
         {/* Single button replacing the time range buttons */}
-        {/* <button
-          className="flex justify-baseline items-center gap-2 px-6 py-2 rounded-xl bg-catalien-blue text-white text-sm font-medium hover:bg-blue-700 transition"
+        <button
+          className="h-12 flex justify-baseline items-center gap-2 px-6 py-2 rounded-xl bg-catalien-blue hover:bg-catalien-blue-hover text-white text-sm font-medium transition duration-200 cursor-pointer"
           onClick={() => alert("Button clicked!")}
         >
-          <FaPlus className="" />
+          <FaPlus />
           New Campaign
-        </button> */}
-        <motion.button
-          whileTap={{ scale: 0.9 }}
-          whileHover={{ scale: 1.01 }}
-          className=" flex justify-baseline items-center gap-2 bg-[#192D4E] rounded-2xl text-lg font-medium px-8 py-3 mt-4 hover:bg-gray-900 text-white cursor-pointer"
-        >
-          <FaPlus className="" />
-          New Campaign
-        </motion.button>
+        </button>
       </div>
 
       <div className="h-80">

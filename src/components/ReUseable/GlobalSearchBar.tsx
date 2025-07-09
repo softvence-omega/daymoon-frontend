@@ -13,7 +13,7 @@ import arrow from "../../assets/Navbar/arrow.svg";
 
 const GlobalSearchBar = () => {
   return (
-    <div className="w-full max-w-[1460px] mx-auto hidden lg:flex flex-col md:flex-row items-center justify-between gap-4 lg:px-48 py-4 mt-12 ">
+    <div className="w-full mx-auto hidden lg:flex flex-col md:flex-row items-center justify-between gap-4 h-[80px] mt-12 ">
       <div className="w-full flex-1 flex items-center rounded-full shadow-sm   bg-white px-6 py-4">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -53,7 +53,7 @@ const GlobalSearchBar = () => {
           </DropdownMenuContent>
         </DropdownMenu>
 
-        <div className="flex-1 mx-2   relative rounded-full overflow-hidden">
+        <div className="flex-1 mx-2  relative rounded-full overflow-hidden">
           <Input
             type="text"
             placeholder="Search for products..."
@@ -72,7 +72,7 @@ const GlobalSearchBar = () => {
      for mobile view query
       </div> */}
 
-      <div className=" px-4 py-6 flex items-center border border-none rounded-full shadow bg-white w-full md:w-auto">
+      <div className=" px-4 py-6 mt-5 flex items-center border border-none rounded-full shadow bg-white w-full md:w-auto">
         <button className="text-sm whitespace-nowrap flex items-center justify-center w-full md:w-auto">
           <img alt="arrow" src={fileSearch} className="w-fit h-fit mr-4" />
           <span className="text-[#1A1A1A] text-sm md:text-base text-nowrap hidden sm:inline">

@@ -12,15 +12,25 @@ const SellerLayout = () => {
   const hide = [
     "/seller-dashboard/add-product",
     "/seller-dashboard/all-products",
+    "/seller-dashboard/orders",
   ];
 
   const shouldHideSidebar = () => {
+    // Direct match from the hide list
     if (hide.includes(pathname)) return true;
 
-    // Matches any slug path like: /seller-dashboard/all-products/:slug
+    // Match dynamic product details route: /seller-dashboard/all-products/:slug
     if (
       pathname.startsWith("/seller-dashboard/all-products/") &&
       pathname.split("/").length === 4
+    ) {
+      return true;
+    }
+
+    // Match order details route: /seller-dashboard/orders/:id
+    if (
+      pathname.startsWith("/seller-dashboard/orders/") &&
+      pathname.split("/").length === 3
     ) {
       return true;
     }

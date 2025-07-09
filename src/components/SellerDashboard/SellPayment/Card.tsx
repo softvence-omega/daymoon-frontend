@@ -1,5 +1,5 @@
 import { AiFillDollarCircle } from "react-icons/ai";
-import { FaBorderAll, FaArrowUp } from "react-icons/fa";
+import { FaBorderAll } from "react-icons/fa";
 import { MdOutlineOutbox } from "react-icons/md";
 
 const Card = () => {
@@ -8,80 +8,86 @@ const Card = () => {
       title: "Total Earnings",
       amount: "5,000",
       change: "↓ 12%",
-      unit: "Lifetime Earnings",
+      note: "Lifetime Earnings",
       icon: <AiFillDollarCircle />,
     },
     {
       title: "Pending Earnings",
       amount: "1,000",
       change: "↓ 12%",
-      unit: "Processing period 2-3 days",
+      note: "Processing period 2-3 days",
       icon: <FaBorderAll />,
     },
     {
       title: "Available Balance",
       amount: "4,000",
-      change: "↓ 12%",
-      unit: "Withdraw Fund",
+      note: "Withdraw Fund",
       icon: <MdOutlineOutbox />,
     },
   ];
 
-  const colors = ["#FFA600", "#9747FF", "#12CC1E", "#009CDE"];
-  const bgColors = ["#FFA6001A", "#9747FF1A", "#12CC1E1A", "#009CDE1A"]; // 10% opacity in hex
+  const colors = ["#FFA600", "#9747FF", "#12CC1E"];
+  const bgColors = ["#FFA6001A", "#9747FF1A", "#12CC1E1A"];
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-5">
-      {statusData.map((single, index) => {
-        const isNegative = single.change.includes("-");
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {statusData.map((item, index) => {
+        const isLast = index === statusData.length - 1;
+        const isNegative = item.change?.includes("-");
         const changeColor = isNegative ? "#E35A5F" : "#12CC1E";
-        const cleanChangeText = single.change.replace(/[↓↑]/g, "").trim();
+        const cleanChange = item.change?.replace(/[↓↑]/g, "").trim();
 
         return (
           <div
-            key={single.title}
-            className="w-full max-w-[510px] h-[187px] p-5 sm:p-6 bg-white rounded-[16px] border border-[#E0E0E0] flex flex-col justify-between mx-auto"
+            key={item.title}
+            className="w-full h-[187px] p-5 bg-white rounded-xl border border-gray-200 flex flex-col justify-between"
           >
             {/* Top Row */}
-            <div className="flex items-center justify-start gap-5">
+            <div className="flex items-center gap-4">
               <div
-                className="w-[48px] h-[48px] rounded-[12px] p-[12px] flex items-center justify-center"
+                className="w-12 h-12 flex items-center justify-center rounded-lg"
                 style={{ backgroundColor: bgColors[index] }}
               >
-                <span
-                  className="w-6 h-6 text-[24px] flex items-center justify-center"
-                  style={{ color: colors[index] }}
-                >
-                  {single.icon}
+                <span className="text-2xl" style={{ color: colors[index] }}>
+                  {item.icon}
                 </span>
               </div>
-
-              <h1 className="text-[#484848] text-[18px] leading-[160%] font-[400] font-poppins">
-                {single.title}
-              </h1>
-            </div>
-
-            {/* Centered Amount */}
-            <div className="flex-1 flex flex-col items-center justify-center">
-              <h2
-                className="text-xl sm:text-2xl md:text-3xl font-semibold font-Robot tracking-[-0.68px]"
-                style={{ color: colors[index] }}
-              >
-                {single.amount}
+              <h2 className="text-lg text-gray-800 font-medium">
+                {item.title}
               </h2>
             </div>
 
-            {/* Bottom Row: Change & Unit */}
-            <div className="flex items-center justify-start gap-1 text-sm font-Robot">
-              <FaArrowUp
-                style={{
-                  color: changeColor,
-                  transform: isNegative ? "rotate(180deg)" : "none",
-                }}
-              />
-              <span style={{ color: changeColor }}>{cleanChangeText}</span>
-              <span className="text-[#666666]">{single.unit}</span>
+            {/* Amount */}
+            <div className="text-center">
+              <h1
+                className="text-3xl font-semibold"
+                style={{ color: colors[index] }}
+              >
+                {item.amount}
+              </h1>
             </div>
+
+            {/* Bottom Row */}
+            {isLast ? (
+              <div className="flex justify-start">
+                <button className="px-4 py-1  bg-[#F04436] hover:bg-[#F04436] h-10 text-lg text-white rounded-md transition">
+                  Withdraw Fund
+                </button>
+              </div>
+            ) : (
+              <div className="flex items-center gap-2 text-sm">
+                <span
+                  style={{
+                    color: changeColor,
+                    transform: isNegative ? "rotate(180deg)" : "none",
+                  }}
+                >
+                  ▲
+                </span>
+                <span style={{ color: changeColor }}>{cleanChange}</span>
+                <span className="text-gray-600">{item.note}</span>
+              </div>
+            )}
           </div>
         );
       })}
