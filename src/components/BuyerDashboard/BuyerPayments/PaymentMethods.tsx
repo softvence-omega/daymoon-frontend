@@ -1,3 +1,4 @@
+import React from "react";
 import { FaPlus } from "react-icons/fa";
 import visa from "@/assets/dashboard/buyer-dashboard/visa.svg";
 import mastercard from "@/assets/dashboard/buyer-dashboard/mastercard.svg";
@@ -28,6 +29,7 @@ const cardDetails = [
 ];
 
 const PaymentMethods = () => {
+
   const handleEdit = (id: string) => {
     console.log(`Editing payment method with ID: ${id}`);
     // Example: Open a modal or navigate to an edit page
@@ -50,13 +52,10 @@ const PaymentMethods = () => {
     console.log("Adding new payment method");
     // Example: Open a modal or navigate to add payment method page
   };
-
   return (
-    <div className="">
-      <h2 className="text-2xl sm:text-3xl font-medium text-[#1A1A1A] mt-6 sm:mt-10 mb-4 sm:mb-6">
-        Payment Methods
-      </h2>
-      <div className="mx-auto mt-6 sm:mt-8 md:p-6 sm:p-10 bg-[#FFFFFF] md:border border-[#B3B3B3] rounded-[20px]">
+    <div className="mt-8 md:mt-10 lg:mt-20 ">
+      <h2 className="text-[#1A1A1A] font-medium text-2xl">Payment Methods</h2>
+      <div className="mx-auto mt-4 sm:mt-6 md:p-6 sm:p-10 bg-[#FFFFFF] md:border border-[#B3B3B3] rounded-[20px]">
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-6">
           {cardDetails.map((card) => (
             <PaymentMethodCard
@@ -67,9 +66,9 @@ const PaymentMethods = () => {
               onSetDefault={handleSetDefault}
             />
           ))}
-          
+
           {/* Add New Payment Method Card */}
-          <div 
+          <div
             className="bg-[#FFFFFF] p-4 sm:p-6 rounded-xl border border-dashed border-[#B3B3B3] flex flex-col gap-2 items-center justify-center cursor-pointer hover:bg-[#F9F9F9] transition-colors"
             onClick={handleAddPaymentMethod}
           >
