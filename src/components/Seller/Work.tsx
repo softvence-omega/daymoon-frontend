@@ -8,6 +8,7 @@ import ConsultationSection from "./ConsultationSection";
 import ChoosePlan from "@/common/ChoosePlan";
 import SubHeader from "@/common/SubHeader";
 import CommonHeader from "@/common/CommonHeader";
+import ChooseYourPlan from "../ReUseable/ChooseYourPlan";
 
 const WorkList = [
   {
@@ -82,7 +83,8 @@ const Work = () => {
 
           <SellWithUsSection />
           <ConsultationSection />
-          <ChoosePlan />
+          {/* <ChoosePlan /> */}
+          <ChooseYourPlan />
         </CommonWrapper>
       </CommonSpace>
     </div>

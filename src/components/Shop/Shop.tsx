@@ -1,29 +1,37 @@
+import { useState } from "react";
 import CommonWrapper from "@/common/CommonWrapper";
 
 import GlobalSearchBar from "../ReUseable/GlobalSearchBar";
 import JoinUs from "../ReUseable/JoinUs";
-import ShopAdvertise from "./Advertise";
-import { BestSellingBanner } from "./BestSale";
 import FashionBanner from "./FashonBanner";
-import { FlashSaleBanner } from "./FlashSale";
-import { NewArrivalBanner } from "./NewArrival";
 import ShopCategories from "./ShopCategories";
-import TopRatedManufacturers from "./TopManufacturer";
 import ProductsComponent from "../ReUseable/ProductsComponent";
+import MoreButton from "../ReUseable/MoreButton";
+import ShopAdvertise from "./ShopAdvertise";
+import TopManufacturer from "./TopManufacturer";
 
 const Shop = () => {
+  // State for ProductsComponent showAll
+  const [showAllProducts, setShowAllProducts] = useState(false);
+
+  // State for Top Rated Manufacturers showAll
+  const [showAllTopRated, setShowAllTopRated] = useState(false);
+
+  // State for All Manufacturers showAll
+  // const [showAllManufacturers, setShowAllManufacturers] = useState(false);
+
   return (
     <div>
       <FashionBanner />
+      <CommonWrapper>
+        <GlobalSearchBar />
+      </CommonWrapper>
       <ShopAdvertise />
-      <GlobalSearchBar />
-      <NewArrivalBanner />
-      <div className="flex flex-col lg:flex-row  max-w-[1080px] mx-auto justify-center items-center gap-8">
-        <FlashSaleBanner />
-        <BestSellingBanner />
-      </div>
+
       <CommonWrapper>
         <ShopCategories number={8} />
+
+        {/* Products Section */}
         <div className="mt-20">
           <ProductsComponent
             selectedCategory="All"
@@ -31,11 +39,54 @@ const Shop = () => {
             gridCols="4"
             mobileCols={2}
             visibleCount={16}
+            showAll={showAllProducts}
           />
+          {!showAllProducts && (
+            <MoreButton
+              onClick={() => setShowAllProducts(true)}
+              text="Explore More"
+            />
+          )}
         </div>
-        <TopRatedManufacturers />
+
+        {/* Top Rated Manufacturers Section */}
+        <TopManufacturer
+          title="Top Rated Manufacturer"
+          showTopRatedOnly={true}
+          showAll={false}
+          cols={{ mobile: 1, md: 3, lg: 3 }}
+          rows={
+            showAllTopRated
+              ? { mobile: 100, md: 100, lg: 100 } // Show all top rated
+              : { mobile: 2, md: 2, lg: 2 } // Show initial few
+          }
+        />
+        {!showAllTopRated && (
+          <MoreButton
+            onClick={() => setShowAllTopRated(true)}
+            text="Explore More Top Rated"
+          />
+        )}
+
+        {/* All Manufacturers Section */}
+        {/* <TopRatedManufacturers
+          showTopRatedOnly={false}
+          showAll={true}
+          cols={{ mobile: 1, md: 3, lg: 3 }}
+          rows={
+            showAllManufacturers
+              ? { mobile: 100, md: 100, lg: 100 } // Show all manufacturers
+              : { mobile: 1, md: 3, lg: 3 }       // Show initial few
+          }
+        />
+        {!showAllManufacturers && (
+          <MoreButton
+            onClick={() => setShowAllManufacturers(true)}
+            text="Explore More Manufacturers"
+          />
+        )} */}
+
         <JoinUs />
-        {/* <FilterSection /> */}
       </CommonWrapper>
     </div>
   );

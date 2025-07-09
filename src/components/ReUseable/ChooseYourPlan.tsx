@@ -41,7 +41,7 @@ const plans = [
   },
 ];
 
-const ChoosePlan = () => {
+const ChooseYourPlan = () => {
   return (
     <div className="py-12 md:py-16">
       <div className="text-center mb-10 md:mb-12 px-4">
@@ -95,4 +95,4 @@ const ChoosePlan = () => {
   );
 };
 
-export default ChoosePlan;
+export default ChooseYourPlan;

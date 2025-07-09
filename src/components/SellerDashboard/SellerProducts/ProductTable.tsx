@@ -3,6 +3,7 @@ import image1 from "../../../assets/landing/image1.png";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { LuFileText } from "react-icons/lu";
 import { Link } from "react-router-dom";
+import Pagination from "@/common/Pagination";
 
 type Product = {
   id: number;
@@ -132,116 +133,126 @@ const slugify = (text: string) => {
 
 export const ProductTable = () => {
   return (
-    <div className="p-2 overflow-hidden border border-[#E0E0E1] rounded-xl bg-white">
-      <table className="min-w-full">
-        <thead className="bg-foundation-white">
-          <tr>
-            <th className="p-3 rounded-tl-2xl">
-              <input type="checkbox" />
-            </th>
-            {[
-              "Product",
-              "Category",
-              "Price",
-              "Status",
-              "Stock",
-              "Analytics",
-              "Date",
-              "Action",
-            ].map((header, index, array) => (
-              <th
-                key={header}
-                className={`p-3 text-sm font-medium text-gray-600 ${
-                  index === 4 || index === 5 || index === 6
-                    ? "text-center"
-                    : "text-left"
-                } ${index === array.length - 1 ? "rounded-tr-2xl" : ""}`}
-              >
-                {header}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {products.map((p) => (
-            <tr
-              key={p.id}
-              className="border-t border-[#E0E0E1] first:border-none hover:bg-gray-50"
-            >
-              <td className="p-3">
+    <>
+      <div className="p-2 overflow-hidden border border-[#E0E0E1] rounded-xl bg-white">
+        <table className="min-w-full">
+          <thead className="bg-foundation-white">
+            <tr>
+              <th className="p-3 rounded-tl-2xl">
                 <input type="checkbox" />
-              </td>
-              <td className="p-3 flex items-center">
-                <img src={p.img} alt="" className="w-10 h-10 rounded mr-3" />
-                <div>
-                  <div className="font-medium text-gray-800">{p.name}</div>
-                  <div className="text-xs text-gray-500">SKU: SP‑X2023‑BLK</div>
-                </div>
-              </td>
-              <td className="p-3 text-gray-700">{p.category}</td>
-              <td className="p-3 text-gray-700">{p.price}</td>
-              <td className="p-3">
-                <span
-                  className={`px-5 py-1.5 text-sm font-semibold  bg-[#10B98133]/20 text rounded-xl ${
-                    statusColor[p.status]
-                  }`}
+              </th>
+              {[
+                "Product",
+                "Category",
+                "Price",
+                "Status",
+                "Stock",
+                "Analytics",
+                "Date",
+                "Action",
+              ].map((header, index, array) => (
+                <th
+                  key={header}
+                  className={`p-3 text-sm font-medium text-gray-600 ${
+                    index === 4 || index === 5 || index === 6
+                      ? "text-center"
+                      : "text-left"
+                  } ${index === array.length - 1 ? "rounded-tr-2xl" : ""}`}
                 >
-                  {p.status}
-                </span>
-              </td>
-              <td className="p-3">
-                <div className="flex items-center">
-                  <div className="text-gray-700 mr-2">
-                    {p.stock.toString().padStart(2, "0")}
-                  </div>
-                  <div className="w-24 h-2 bg-gray-200 rounded overflow-hidden">
-                    <div
-                      className="h-full bg-green-500"
-                      style={{ width: `${p.stock}%` }}
-                    />
-                  </div>
-                </div>
-              </td>
-              <td className="p-3   flex space-x-4">
-                <div>
-                  <div className=" flex items-center gap-1 text-[#666] pb-1">
-                    <span className="text-2xl">
-                      <MdOutlineRemoveRedEye />
-                    </span>
-                    <span>View</span>
-                  </div>
-
-                  <span className="text-jet-black font-medium">{p.views}</span>
-                </div>
-                <div>
-                  <div className=" flex items-center gap-1 text-[#666] pb-1">
-                    <span className="text-2xl">
-                      <LuFileText />
-                    </span>
-                    <span>Inquiries</span>
-                  </div>
-
-                  <span className="text-jet-black font-medium">
-                    {" "}
-                    {p.inquiries}
-                  </span>
-                </div>
-              </td>
-              <td className="p-3 text-gray-700">{p.date}</td>
-              <td className="p-3">
-                <Link
-                  to={`/seller-dashboard/all-products/slugify${slugify(
-                    p.name
-                  )}`}
-                  className=" text-sunset-orange cursor-pointer"
-                >
-                  View
-                </Link>
-              </td>
+                  {header}
+                </th>
+              ))}
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+          </thead>
+          <tbody>
+            {products.map((p) => (
+              <tr
+                key={p.id}
+                className="border-t border-[#E0E0E1] first:border-none hover:bg-gray-50"
+              >
+                <td className="p-3">
+                  <input type="checkbox" />
+                </td>
+                <td className="p-3 flex items-center">
+                  <img src={p.img} alt="" className="w-10 h-10 rounded mr-3" />
+                  <div>
+                    <div className="font-medium text-gray-800">{p.name}</div>
+                    <div className="text-xs text-gray-500">
+                      SKU: SP‑X2023‑BLK
+                    </div>
+                  </div>
+                </td>
+                <td className="p-3 text-gray-700">{p.category}</td>
+                <td className="p-3 text-gray-700">{p.price}</td>
+                <td className="p-3">
+                  <span
+                    className={`px-5 py-1.5 text-sm font-semibold  bg-[#10B98133]/20 text rounded-xl ${
+                      statusColor[p.status]
+                    }`}
+                  >
+                    {p.status}
+                  </span>
+                </td>
+                <td className="p-3">
+                  <div className="flex items-center">
+                    <div className="text-gray-700 mr-2">
+                      {p.stock.toString().padStart(2, "0")}
+                    </div>
+                    <div className="w-24 h-2 bg-gray-200 rounded overflow-hidden">
+                      <div
+                        className="h-full bg-green-500"
+                        style={{ width: `${p.stock}%` }}
+                      />
+                    </div>
+                  </div>
+                </td>
+                <td className="p-3   flex space-x-4">
+                  <div>
+                    <div className=" flex items-center gap-1 text-[#666] pb-1">
+                      <span className="text-2xl">
+                        <MdOutlineRemoveRedEye />
+                      </span>
+                      <span>View</span>
+                    </div>
+
+                    <span className="text-jet-black font-medium">
+                      {p.views}
+                    </span>
+                  </div>
+                  <div>
+                    <div className=" flex items-center gap-1 text-[#666] pb-1">
+                      <span className="text-2xl">
+                        <LuFileText />
+                      </span>
+                      <span>Inquiries</span>
+                    </div>
+
+                    <span className="text-jet-black font-medium">
+                      {" "}
+                      {p.inquiries}
+                    </span>
+                  </div>
+                </td>
+                <td className="p-3 text-gray-700">{p.date}</td>
+                <td className="p-3">
+                  <Link
+                    to={`/seller-dashboard/all-products/slugify${slugify(
+                      p.name
+                    )}`}
+                    className=" text-sunset-orange cursor-pointer"
+                  >
+                    View
+                  </Link>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <Pagination
+        title="All Products"
+        showText="Showing 1 to 10 of 24 orders"
+      />
+    </>
   );
 };

@@ -1,9 +1,8 @@
 import prdt1 from "@/assets/Reuseable/prodcut1.png";
 import prdt2 from "@/assets/Reuseable/prodcut2.png";
-import prdt3 from "@/assets/Reuseable/prodcut3.png";
+import { default as prdt3, default as prdt6 } from "@/assets/Reuseable/prodcut3.png";
 import prdt4 from "@/assets/Reuseable/prodcut4.png";
 import prdt5 from "@/assets/Reuseable/prodcut5.png";
-import prdt6 from "@/assets/Reuseable/prodcut3.png";
 
 export interface ProductType {
   id: number;
@@ -74,23 +73,24 @@ const baseProducts: Omit<ProductType, "id">[] = [
   },
 ];
 
-export const products: ProductType[] = Array.from({ length: 50 }).map(
-  (_, i) => {
-    const base = baseProducts[i % baseProducts.length];
-    return {
-      id: i + 1,
-      ...base,
-      // Variation examples (optional)
-      rating: +(base.rating - 0.1 * (i % 5)).toFixed(1),
-      discount: i % 3 === 0 ? base.discount : 0,
-      category:
-        i % 12 === 9
-          ? "Laptop"
-          : i % 12 === 10
-          ? "Computer"
-          : i % 12 === 11
-          ? "Mobile"
-          : base.category,
-    };
-  }
-);
+export const
+  products: ProductType[] = Array.from({ length: 50 }).map(
+    (_, i) => {
+      const base = baseProducts[i % baseProducts.length];
+      return {
+        id: i + 1,
+        ...base,
+        // Variation examples (optional)
+        rating: +(base.rating - 0.1 * (i % 5)).toFixed(1),
+        discount: i % 3 === 0 ? base.discount : 0,
+        category:
+          i % 12 === 9
+            ? "Laptop"
+            : i % 12 === 10
+              ? "Computer"
+              : i % 12 === 11
+                ? "Mobile"
+                : base.category,
+      };
+    }
+  );
