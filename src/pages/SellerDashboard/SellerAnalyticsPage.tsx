@@ -1,7 +1,9 @@
+import Analytics from "@/components/SellerDashboard/SellerAnalytics/Analytics";
+
 const SellerAnalyticsPage = () => {
   return (
     <div>
-      <h1>SellerAnalyticsPage</h1>
+      <Analytics />
     </div>
   );
 };
