@@ -51,13 +51,13 @@ const BuyerHome = () => {
             rows={
               showAllTopRated
                 ? { mobile: 100, md: 100, lg: 100 } // show all when true
-                : { mobile: 1, md: 2, lg: 2 }       // initial few
+                : { mobile: 2, md: 2, lg: 2 }       // initial few
             }
           />
           {!showAllTopRated && (
             <MoreButton
               onClick={() => setShowAllTopRated(true)}
-              text="Explore More Top Rated"
+              text="Explore More"
             />
           )}
 
@@ -70,13 +70,13 @@ const BuyerHome = () => {
             rows={
               showAllManufacturers
                 ? { mobile: 100, md: 100, lg: 100 } // show all when true
-                : { mobile: 1, md: 5, lg: 5 }       // initial few
+                : { mobile: 3, md: 5, lg: 5 }       // initial few
             }
           />
           {!showAllManufacturers && (
             <MoreButton
               onClick={() => setShowAllManufacturers(true)}
-              text="Explore More Manufacturers"
+              text="Explore More"
             />
           )}
         </div>

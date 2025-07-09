@@ -4,9 +4,9 @@ import { useState } from "react";
 import manu from "../../assets/Home/manu.png";
 import product from "../../assets/Home/products.png";
 import Categories from "../Shop/ShopCategories";
-import TopRatedManufacturers from "../Shop/TopManufacturer";
 import GlobalSearchBar from "../ReUseable/GlobalSearchBar";
 import HomeProducts from "../ReUseable/HomeProducts";
+import TopManufacturer from "../Shop/TopManufacturer";
 
 const contentVariants = {
   initial: { opacity: 0, x: 20 },
@@ -81,7 +81,7 @@ const HomeTabs = () => {
               >
                 <GlobalSearchBar />
                 <Categories number={8} />
-                <TopRatedManufacturers />
+                <TopManufacturer />
               </motion.div>
             )}
           </AnimatePresence>

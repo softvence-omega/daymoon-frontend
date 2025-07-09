@@ -13,7 +13,7 @@ import arrow from "../../assets/Navbar/arrow.svg";
 
 const GlobalSearchBar = () => {
   return (
-    <div className="w-full max-w-[1460px] mx-auto hidden lg:flex flex-col md:flex-row items-center justify-between gap-4 lg:px-48 py-4 mt-12 ">
+    <div className="w-full mx-auto hidden lg:flex flex-col md:flex-row items-center justify-between gap-4 h-[80px] mt-12 ">
       <div className="w-full flex-1 flex items-center rounded-full shadow-sm   bg-white px-6 py-4">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
