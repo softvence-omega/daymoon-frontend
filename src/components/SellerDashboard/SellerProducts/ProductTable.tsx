@@ -1,3 +1,7 @@
+import Pagination from "@/common/Pagination";
+import { LuFileText } from "react-icons/lu";
+import { MdOutlineRemoveRedEye } from "react-icons/md";
+import { Link } from "react-router-dom";
 import image from "../../../assets/image/product.png";
 import image1 from "../../../assets/landing/image1.png";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
