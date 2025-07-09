@@ -52,9 +52,13 @@ const Navbar = () => {
     <nav className="w-full hidden md:block text-[#1A1A1A] bg-white shadow py-7">
       {/* Left: Logo */}
       <div className="flex justify-between items-center max-w-[1400px] mx-auto my-auto px-4 lg:px-0">
-            <Link to="/">
-              <img className="w-[124px] h-[48px] object-cover" src={logo} alt="logo" />
-            </Link>
+        <Link to="/">
+          <img
+            className="w-[124px] h-[48px] object-cover"
+            src={logo}
+            alt="logo"
+          />
+        </Link>
 
         {/* Center: Links */}
         <section className="flex items-center justify-center gap-7  xl:ml-52">

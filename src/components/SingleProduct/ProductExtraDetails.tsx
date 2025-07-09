@@ -177,7 +177,6 @@ const dummyProduct: Product = {
 
 export default function ProductExtraDetails() {
   const [product] = useState(dummyProduct);
-  const [clickedButton, setClickedButton] = useState<string | null>(null);
   const [tabValue, setTabValue] = useState("details");
 
   return (
@@ -253,10 +252,7 @@ export default function ProductExtraDetails() {
                   <li>Package: (Min. order: 1000 pieces)</li>
                   <li>Color: (Min. order: 2000 pieces)</li>
                 </ul>
-                <button
-                  className="w-fit flex justify-start p-3 text-white  rounded-xl bg-[#192D4E] items-center gap-2 text-sm font-medium"
-                  onClick={() => setClickedButton("Message")}
-                >
+                <button className="w-fit flex justify-start p-3 text-white  rounded-xl bg-[#192D4E] items-center gap-2 text-sm font-medium">
                   <MessageCircleMore /> Message
                 </button>
               </Card>

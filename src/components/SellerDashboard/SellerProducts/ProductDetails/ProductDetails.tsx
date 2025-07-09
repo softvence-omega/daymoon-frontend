@@ -18,8 +18,8 @@ const ProductDetails = () => {
   const { title } = useParams<{ title: string }>();
 
   return (
-    <div className="bg-[#FCFCFC]">
-      <div className="pb-6">
+    <div className="">
+      <div className="pb-6 md:pb-10">
         <Breadcrumbs
           title="Products"
           subtitle={`All Product > ${originalTitle(title || "")}`}
@@ -27,15 +27,15 @@ const ProductDetails = () => {
       </div>
       <ProductBar />
 
-      <div className="flex flex-col lg:flex-row gap-6">
-        <div className="w-full lg:w-2/3 flex flex-col gap-9">
+      <div className="flex flex-col lg:flex-row gap-8">
+        <div className="w-full lg:w-2/3 flex flex-col gap-8">
           <SingleProductImage />
           <ProductText />
           <PerformanceAnalytics />
           <ReviewFeedback />
         </div>
 
-        <div className="w-full lg:w-1/3 flex flex-col gap-9">
+        <div className="w-full lg:w-1/3 flex flex-col gap-8">
           <InventoryManagement />
           <PriceMoqCard />
           <ShippingDetails />
