@@ -2,6 +2,7 @@ import EnquiriesByStatus from "./EnquiriesByStatus";
 import InquirieCard from "./InquirieCard";
 import InquiriesTrend from "./InquiriesTrend";
 import { InquirieTable } from "./InquirieTable";
+import SellerInquireFilter from "./SellerInquireFilter";
 
 const Inquirie = () => {
   return (
@@ -16,6 +17,7 @@ const Inquirie = () => {
           <InquiriesTrend />
         </div>
       </div>
+      <SellerInquireFilter />
       <div>
         <InquirieTable />
       </div>
