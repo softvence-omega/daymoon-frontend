@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import {
   AreaChart,
   XAxis,
@@ -17,8 +17,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import DashboardCard from "@/common/DashboardCard";
-import DashboardCommonSpace from "@/common/DashboardCommonSpace";
+import { ChevronDown } from "lucide-react";
+import SmallCard from "./SmallCard";
+import { useLocation } from "react-router-dom";
 
 type RevenueData = {
   month: string;
@@ -60,37 +61,20 @@ const weeklyData: RevenueData[] = [
   { month: "Jan", week: "Sun", revenue: 400, inquiries: 10, views: 45 },
 ];
 
-const cardData = [
-  {
-    title: "Total Sales",
-    value: "1,200",
-
-    trend: { percentage: 12, isPositive: true },
-  },
-  {
-    title: "Total Variations",
-    value: "12,500",
-
-    trend: { percentage: 12, isPositive: true },
-  },
-  {
-    title: "Active Products",
-    value: "15,000",
-
-    trend: { percentage: 12, isPositive: true },
-  },
-  {
-    title: "Conversion Rate",
-    value: "8%",
-    unit: "/Variations",
-    trend: { percentage: 12, isPositive: true },
-  },
-];
-
-const MonthlyRevenue = () => {
+interface MonthlyRevenueProps {
+  title: string;
+  subtitle1?: string;
+  subtitle2?: string;
+}
+const MonthlyRevenue: FC<MonthlyRevenueProps> = ({
+  title,
+  subtitle1,
+  subtitle2,
+}) => {
   const [timeRange, setTimeRange] = React.useState<"week" | "month" | "year">(
     "year"
   );
+  const { pathname } = useLocation();
 
   const getData = () => {
     switch (timeRange) {
@@ -117,17 +101,27 @@ const MonthlyRevenue = () => {
     ];
   };
 
+  const productSlug = pathname.startsWith("/seller-dashboard/all-products/")
+    ? pathname.split("/")[3]
+    : null;
   return (
     <div>
-      <div className="flex justify-between items-center">
-        <CommonHeader>Performance Analytics</CommonHeader>
+      <div
+        className={`flex justify-between items-center ${
+          !(subtitle1 || subtitle2) && "pb-6"
+        }`}
+      >
+        <CommonHeader>{title}</CommonHeader>
 
         <Select
           value={timeRange}
           onValueChange={(val: "week" | "month" | "year") => setTimeRange(val)}
         >
-          <SelectTrigger className="min-w-[200px] bg-[#FCFCFC] border border-[#B3B3B3] px-3 py-5 cursor-pointer rounded-md outline-none text-sm">
+          <SelectTrigger
+            className={` sm:min-w-[200px] bg-[#FCFCFC] border border-[#B3B3B3] px-3 py-5 cursor-pointer rounded-md outline-none text-sm `}
+          >
             <SelectValue placeholder="Select Range" />
+            <ChevronDown className="w-4 h-4 " />
           </SelectTrigger>
           <SelectContent className="bg-white">
             <SelectItem value="week">Weekly</SelectItem>
@@ -137,26 +131,22 @@ const MonthlyRevenue = () => {
         </Select>
       </div>
 
-      <DashboardCommonSpace>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {cardData.map((data, index) => (
-            <DashboardCard key={index} data={data} />
-          ))}
-        </div>
-      </DashboardCommonSpace>
+      {productSlug && <SmallCard />}
 
-      <div className="flex justify-center items-center mb-6">
-        <div className="flex gap-6 text-[#484848] text-base">
-          <div className="flex items-center gap-4">
-            <div className="w-6 h-6 rounded-full bg-[#9747FF]"></div>
-            <p>Product View</p>
-          </div>
-          <div className="flex items-center gap-4">
-            <div className="w-6 h-6 rounded-full bg-[#62B2FD]"></div>
-            <p>Inquiries</p>
+      {(subtitle1 || subtitle2) && (
+        <div className="flex justify-center items-center mb-6">
+          <div className="flex gap-6 text-[#484848] text-base">
+            <div className="flex items-center gap-4">
+              <div className="w-6 h-6 rounded-full bg-[#9747FF]"></div>
+              <p>{subtitle1}</p>
+            </div>
+            <div className="flex items-center gap-4">
+              <div className="w-6 h-6 rounded-full bg-[#62B2FD]"></div>
+              <p>{subtitle2}</p>
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       <div className="h-80">
         <ResponsiveContainer width="100%" height="100%">

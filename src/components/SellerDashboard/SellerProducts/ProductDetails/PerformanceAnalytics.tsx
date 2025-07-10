@@ -2,6 +2,7 @@ import CommonHeader from "@/common/CommonHeader";
 import SubHeader from "@/common/SubHeader";
 import ProgressBar from "./ProgressBar";
 import MonthlyRevenue from "./MonthlyRevenue";
+import SmallCard from "./SmallCard";
 
 const analytic = [
   { title: "Total Enquiries", quantity: "300" },
@@ -13,9 +14,13 @@ const analytic = [
 const PerformanceAnalytics = () => {
   return (
     <div className=" border border-foundation-white rounded-2xl p-6 bg-white">
-      <MonthlyRevenue />
+      <MonthlyRevenue
+        title="Performance Analytics"
+        subtitle1="Product View"
+        subtitle2="Revenue"
+      />
 
-      <div className=" flex justify-between gap-10 pt-10 ">
+      <div className=" flex flex-col md:flex-row justify-between gap-10 pt-10 ">
         <div className=" flex-1   ">
           <CommonHeader className="pb-4">Enquiries</CommonHeader>
           <div className="bg-ghost rounded-xl border p-3 border-foundation-white flex flex-col gap-4">

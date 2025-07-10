@@ -92,14 +92,14 @@ const InventoryManagement = ({
           <ButtonWithIcon
             onClick={handleUpdateStock}
             icon={Plus}
-            className="!text-white bg-sunset-orange border-transparent !px-10 "
+            className="!text-white bg-sunset-orange border-transparent !px-5  flex-1"
           >
             Update Stock
           </ButtonWithIcon>
           <ButtonWithIcon
             onClick={handleViewHistory}
             icon={GrHistory}
-            className="text-sunset-orange border-sunset-orange border !px-10 flex-1 justify-center "
+            className="text-sunset-orange border-sunset-orange border !px-5 flex-1 justify-center gap-2"
           >
             History
           </ButtonWithIcon>

@@ -5,7 +5,6 @@ import CommonSpace from "@/common/CommonSpace";
 import arrow from "../../assets/landing/arrow.svg";
 import SellWithUsSection from "./SellWithUsSection";
 import ConsultationSection from "./ConsultationSection";
-import ChoosePlan from "@/common/ChoosePlan";
 import SubHeader from "@/common/SubHeader";
 import CommonHeader from "@/common/CommonHeader";
 import ChooseYourPlan from "../ReUseable/ChooseYourPlan";

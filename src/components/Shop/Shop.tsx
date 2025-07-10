@@ -2,12 +2,13 @@ import { useState } from "react";
 import CommonWrapper from "@/common/CommonWrapper";
 import GlobalSearchBar from "../ReUseable/GlobalSearchBar";
 import JoinUs from "../ReUseable/JoinUs";
-import FashionBanner from "./FashonBanner";
 import ShopCategories from "./ShopCategories";
 import ProductsComponent from "../ReUseable/ProductsComponent";
 import MoreButton from "../ReUseable/MoreButton";
-import ShopAdvertise from "./ShopAdvertise";
 import TopManufacturer from "./TopManufacturer";
+import { NewArrivalBanner } from "./NewArrival";
+import { BestSellingBanner } from "./BestSale";
+import { FlashSaleBanner } from "./FlashSale";
 
 const Shop = () => {
   // State for ProductsComponent showAll
@@ -21,10 +22,15 @@ const Shop = () => {
 
   return (
     <div>
-      <FashionBanner />
       <CommonWrapper>
-        <GlobalSearchBar />
-        <ShopAdvertise />
+        <div className="lg:w-3/4 mx-auto">
+          <GlobalSearchBar />
+          <NewArrivalBanner />
+          <div className="lg:flex items-center lg:gap-6">
+            <FlashSaleBanner />
+            <BestSellingBanner />
+          </div>
+        </div>
         <ShopCategories number={8} />
 
         {/* Products Section */}
@@ -32,10 +38,13 @@ const Shop = () => {
           <ProductsComponent
             selectedCategory="All"
             selectedPrice="All"
-            gridCols="4"
-            mobileCols={1}
-            visibleCount={16}
             showAll={showAllProducts}
+            cols={{ mobile: 1, md: 4, lg: 4 }}
+            rows={
+              showAllProducts
+                ? { mobile: 100, md: 100, lg: 100 } // Show all products
+                : { mobile: 3, md: 4, lg: 4 }       // Show limited initially
+            }
           />
           {!showAllProducts && (
             <MoreButton

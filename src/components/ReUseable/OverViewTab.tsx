@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -7,8 +8,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { products } from "@/lib/productCard/cardData";
-import { ChevronDown } from "lucide-react";
-import { useState } from "react";
+import { ChevronDown, Check } from "lucide-react";
 import ProductsComponent from "./ProductsComponent";
 import Reviews from "./Reviews";
 import MoreButton from "./MoreButton";
@@ -44,9 +44,7 @@ const OverViewTab = () => {
         className="w-full mt-12"
         onValueChange={(val) => {
           setActiveTab(val);
-          if (val !== "product") {
-            setShowAll(false);
-          }
+          if (val !== "product") setShowAll(false);
         }}
       >
         <TabsList className="w-full flex flex-wrap justify-between sm:justify-start sm:gap-10 border-b border-[#E5E5E5] bg-transparent p-0">
@@ -79,13 +77,13 @@ const OverViewTab = () => {
 
         {/* Filters */}
         {activeTab === "product" && (
-          <div className="flex flex-wrap justify-end gap-4 mt-[40px]">
+          <div className="flex flex-wrap justify-end gap-4 mt-10">
             {/* Category Filter */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button
                   variant="outline"
-                  className="w-[180px] flex justify-between items-center"
+                  className="w-[180px] flex justify-between items-center cursor-pointer"
                 >
                   {selectedCategory === "All"
                     ? "All Categories"
@@ -93,36 +91,52 @@ const OverViewTab = () => {
                   <ChevronDown className="ml-2 h-4 w-4 text-sunset-orange" />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="bg-white max-h-[60vh] overflow-y-auto">
+              <DropdownMenuContent className="bg-white max-h-[60vh] overflow-y-auto w-[180px]">
                 {categories.map((cat) => (
                   <DropdownMenuItem
                     key={cat}
                     onClick={() => setSelectedCategory(cat)}
+                    className={`cursor-pointer px-3 py-2 rounded-md transition text-sm flex justify-between items-center ${
+                      selectedCategory === cat
+                        ? "bg-white font-medium"
+                        : "hover:bg-slate-100 hover:text-sunset-orange"
+                    }`}
                   >
                     {cat}
+                    {selectedCategory === cat && (
+                      <Check className="w-4 h-4 ml-2" />
+                    )}
                   </DropdownMenuItem>
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
 
-            {/* ✅ Price Filter */}
+            {/* Price Filter */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button
                   variant="outline"
-                  className="w-[150px] flex justify-between items-center"
+                  className="w-[150px] flex justify-between items-center cursor-pointer"
                 >
                   Price: {selectedPrice}
                   <ChevronDown className="ml-2 h-4 w-4 text-sunset-orange" />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="bg-white max-h-[60vh] overflow-y-auto">
+              <DropdownMenuContent className="bg-white max-h-[60vh] overflow-y-auto w-[150px]">
                 {prices.map((price) => (
                   <DropdownMenuItem
                     key={price}
                     onClick={() => setSelectedPrice(price)}
+                    className={`cursor-pointer px-3 py-2 rounded-md transition text-sm flex justify-between items-center ${
+                      selectedPrice === price
+                        ? "bg-white font-medium"
+                        : "hover:bg-slate-100 hover:text-sunset-orange"
+                    }`}
                   >
                     {price}
+                    {selectedPrice === price && (
+                      <Check className="w-4 h-4 ml-2" />
+                    )}
                   </DropdownMenuItem>
                 ))}
               </DropdownMenuContent>
@@ -130,18 +144,21 @@ const OverViewTab = () => {
           </div>
         )}
 
-        {/* Tab Content - Products */}
+        {/* Products Content */}
         <TabsContent value="product" className="mt-6">
           <ProductsComponent
             selectedCategory={selectedCategory}
             selectedPrice={selectedPrice}
             showAll={showAll}
-            gridCols="3"
-            mobileCols={1}
-            visibleCount={9}
+            cols={{ mobile: 1, md: 2, lg: 3 }}
+            rows={
+              showAll
+                ? { mobile: 100, md: 100, lg: 100 }
+                : { mobile: 1, md: 4, lg: 4 }
+            }
           />
 
-          {!showAll && filteredProducts.length > 6 && (
+          {!showAll && filteredProducts.length > 0 && (
             <MoreButton
               onClick={() => setShowAll(true)}
               text={`View All (${filteredProducts.length}) Products`}
@@ -149,6 +166,7 @@ const OverViewTab = () => {
           )}
         </TabsContent>
 
+        {/* Reviews Content */}
         <TabsContent value="reviews" className="mt-6">
           <Reviews />
         </TabsContent>

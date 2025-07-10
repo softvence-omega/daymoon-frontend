@@ -9,6 +9,7 @@ import ProductHistory from "./ProductHistory";
 import InventoryManagement from "./InventoryManagement";
 import PriceMoqCard from "./PriceMoqCard";
 import ShippingDetails from "./ShippingDetails";
+import CommonWrapper from "@/common/CommonWrapper";
 
 const originalTitle = (slug: string): string => {
   return slug.replace(/-/g, " ").replace(/\b\w/g, (char) => char.toUpperCase());
@@ -18,7 +19,7 @@ const ProductDetails = () => {
   const { title } = useParams<{ title: string }>();
 
   return (
-    <div className="">
+    <CommonWrapper className="">
       <div className="pb-6 md:pb-10">
         <Breadcrumbs
           title="Products"
@@ -42,7 +43,7 @@ const ProductDetails = () => {
           <ProductHistory />
         </div>
       </div>
-    </div>
+    </CommonWrapper>
   );
 };
 
