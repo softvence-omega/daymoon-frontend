@@ -21,14 +21,14 @@ const ProductNavbar = () => {
         </div>
 
         <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 w-full lg:w-auto">
-          <ButtonWithIcon className="   flex flex-row-reverse ">
+          <ButtonWithIcon className="  justify-center flex flex-row-reverse ">
             <TfiImport />
             Export Data
           </ButtonWithIcon>
 
           <ButtonWithIcon
             onClick={handleClick}
-            className=" flex flex-row-reverse text-white border-transparent !bg-sunset-orange f"
+            className=" flex flex-row-reverse justify-center text-white border-transparent !bg-sunset-orange f"
           >
             <Plus />
             Add New Product

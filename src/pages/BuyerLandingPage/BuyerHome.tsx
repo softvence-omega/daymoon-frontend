@@ -22,9 +22,13 @@ const BuyerHome = () => {
       icon: productIcon,
       content: (
         <>
-          <GlobalSearchBar />
-          <NewArrivalBanner />
+          <div className="md:w-3/4 lg:w-3/4 mx-auto">
+            <GlobalSearchBar />
+          </div>
           <ShopCategories number={8} />
+          <div className="md:w-3/4 lg:w-3/4 mx-auto">
+            <NewArrivalBanner />
+          </div>
           <HomeProducts
             cols={{ mobile: 2, md: 4, lg: 6 }}
             rows={{ mobile: 2, md: 4, lg: 8 }}
@@ -39,7 +43,9 @@ const BuyerHome = () => {
       icon: manuIcon,
       content: (
         <div className="text-center max-w-full">
-          <GlobalSearchBar />
+          <div className="lg:w-3/4 mx-auto">
+            <GlobalSearchBar />
+          </div>
           <ShopCategories number={8} />
 
           {/* Top Rated Manufacturers */}

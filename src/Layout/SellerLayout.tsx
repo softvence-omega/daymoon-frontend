@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import SellerDashboardNavbar from "@/components/SellerDashboard/Shared/SellerDashboardNavbar";
@@ -6,6 +6,7 @@ import SellerSidebar from "@/components/SellerDashboard/Shared/SellerSidebar";
 
 const SellerLayout = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const { pathname } = useLocation();
 
@@ -17,29 +18,43 @@ const SellerLayout = () => {
     ];
 
     const pathnameSegments = pathname.split("/");
-    if (hideExact.includes(pathname)) return true;
-    if (
+
+    const isProductDetails =
       pathname.startsWith("/seller-dashboard/all-products/") &&
-      pathnameSegments.length === 4
-    ) {
-      return true;
-    }
-    if (
+      pathnameSegments.length === 4;
+
+    const isOrderDetails =
       pathname.startsWith("/seller-dashboard/all-orders/") &&
-      pathnameSegments.length === 4
-    ) {
-      return true;
-    }
-    if (
+      pathnameSegments.length === 4;
+
+    const isBuyerProfile =
       pathname.startsWith("/seller-dashboard/all-orders/") &&
       pathnameSegments.length === 5 &&
-      pathname.endsWith("/buyer-profile")
-    ) {
-      return true;
-    }
+      pathname.endsWith("/buyer-profile");
 
-    return false;
+    return (
+      hideExact.includes(pathname) ||
+      isProductDetails ||
+      isOrderDetails ||
+      isBuyerProfile
+    );
   };
+
+  // Update sidebar open state for special detail pages
+  useEffect(() => {
+    const pathnameSegments = pathname.split("/");
+
+    const isDetailView =
+      (pathname.startsWith("/seller-dashboard/all-products/") &&
+        pathnameSegments.length === 4) ||
+      (pathname.startsWith("/seller-dashboard/all-orders/") &&
+        pathnameSegments.length === 4) ||
+      (pathname.startsWith("/seller-dashboard/all-orders/") &&
+        pathnameSegments.length === 5 &&
+        pathname.endsWith("/buyer-profile"));
+
+    setIsSidebarOpen(isDetailView);
+  }, [pathname]);
 
   const handleMobileMenuToggle = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -62,6 +77,7 @@ const SellerLayout = () => {
         <SellerDashboardNavbar
           onMobileMenuToggle={handleMobileMenuToggle}
           notificationCount={3}
+          isSidebarOpen={isSidebarOpen}
         />
 
         {/* Mobile SellerSidebar */}
@@ -75,7 +91,11 @@ const SellerLayout = () => {
         </Sheet>
 
         {/* Page Content */}
-        <main className="flex-1 overflow-auto p-6 md:p-10">
+        <main
+          className={`flex-1 overflow-auto   ${
+            isSidebarOpen ? " pt-4 md:pt-10" : "p-4 md:p-10 "
+          }`}
+        >
           <Outlet />
         </main>
       </div>

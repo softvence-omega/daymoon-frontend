@@ -7,16 +7,20 @@ import { MdDeleteOutline } from "react-icons/md";
 const ProductSearch = () => {
   return (
     <div>
-      <div className="w-full flex justify-between items-center pb-6">
-        <div className=" w-full max-w-xl flex items-center justify-between border border-foundation-white rounded-xl text-[#ABB7C2]  px-2.5 py-3 cursor-pointer">
-          <div className="flex items-center gap-2">
-            <IoSearchSharp />
-            <input type="text" placeholder="Search..." />
+      <div className="w-full flex flex-col xl:flex-row justify-between items-start  xl:items-center pb-6 gap-x-10 gap-y-5">
+        <div className="w-full flex-1 xl:max-w-xl flex items-center justify-between border border-foundation-white rounded-xl text-[#ABB7C2] cursor-pointer px-4 py-2 bg-white">
+          <div className="flex items-center gap-2 flex-grow">
+            <IoSearchSharp className="text-lg" />
+            <input
+              type="text"
+              placeholder="Search..."
+              className="flex-grow bg-transparent border-none outline-none text-[#1F2937] placeholder-[#ABB7C2]"
+            />
           </div>
 
-          <span>
-            <LuSlidersHorizontal />
-          </span>
+          <button className="p-2 hover:bg-gray-100 rounded-lg">
+            <LuSlidersHorizontal className="text-lg" />
+          </button>
         </div>
         <div className="flex items-center gap-3">
           <ButtonWithIcon
@@ -25,7 +29,7 @@ const ProductSearch = () => {
           >
             Edit Selected
           </ButtonWithIcon>
-          <ButtonWithIcon icon={MdDeleteOutline} className="">
+          <ButtonWithIcon icon={MdDeleteOutline}>
             Delete Selected
           </ButtonWithIcon>
         </div>

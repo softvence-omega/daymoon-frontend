@@ -1,3 +1,10 @@
+import image from "../../../assets/image/product.png";
+import image1 from "../../../assets/landing/image1.png";
+import { MdOutlineRemoveRedEye } from "react-icons/md";
+import { LuFileText } from "react-icons/lu";
+import { Link, useLocation } from "react-router-dom";
+import Pagination from "@/common/Pagination";
+import { slugify } from "../SellerOrder/OrderTable";
 import {
   Table,
   TableBody,
@@ -6,11 +13,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { LuFileText } from "react-icons/lu";
-import { MdOutlineRemoveRedEye } from "react-icons/md";
-import { Link } from "react-router-dom";
-import image from "../../../assets/image/product.png";
-import image1 from "../../../assets/landing/image1.png";
+import { Button } from "@/components/ui/button";
 
 type Product = {
   id: number;
@@ -74,6 +77,138 @@ const products: Product[] = [
     date: "03/05/2025",
     img: image1,
   },
+  {
+    id: 5,
+    name: "Smart Fitness Tracker",
+    category: "Gadgets & Electronics",
+    price: "$49.99",
+    status: "Active",
+    stock: 150,
+    views: 2810,
+    inquiries: 42,
+    date: "10/06/2025",
+    img: image,
+  },
+  {
+    id: 6,
+    name: "Wireless Noise-Canceling Headphones",
+    category: "Fashion & Accessories",
+    price: "$119.99",
+    status: "Low Stock",
+    stock: 25,
+    views: 3962,
+    inquiries: 89,
+    date: "25/07/2025",
+    img: image1,
+  },
+  {
+    id: 7,
+    name: "Ergonomic Office Chair",
+    category: "Home & Living",
+    price: "$199.99",
+    status: "Active",
+    stock: 60,
+    views: 1789,
+    inquiries: 34,
+    date: "02/03/2024",
+    img: image,
+  },
+  {
+    id: 8,
+    name: "Virtual Reality Headset",
+    category: "Gadgets & Electronics",
+    price: "$149.99",
+    status: "Active",
+    stock: 70,
+    views: 4521,
+    inquiries: 102,
+    date: "19/09/2023",
+    img: image1,
+  },
+  {
+    id: 9,
+    name: "Adjustable Standing Desk",
+    category: "Home & Living",
+    price: "$229.99",
+    status: "Out Of Stock",
+    stock: 0,
+    views: 1354,
+    inquiries: 21,
+    date: "11/12/2024",
+    img: image,
+  },
+  {
+    id: 10,
+    name: "LED Ring Light Set",
+    category: "Toys & Games",
+    price: "$39.99",
+    status: "Active",
+    stock: 95,
+    views: 3120,
+    inquiries: 58,
+    date: "07/01/2025",
+    img: image1,
+  },
+  {
+    id: 11,
+    name: "Bluetooth Smart Glasses",
+    category: "Gadgets & Electronics",
+    price: "$99.99",
+    status: "Low Stock",
+    stock: 18,
+    views: 2740,
+    inquiries: 46,
+    date: "29/04/2025",
+    img: image,
+  },
+  {
+    id: 12,
+    name: "Portable Projector",
+    category: "Gadgets & Electronics",
+    price: "$129.99",
+    status: "Active",
+    stock: 110,
+    views: 2987,
+    inquiries: 64,
+    date: "13/06/2025",
+    img: image1,
+  },
+  {
+    id: 13,
+    name: "Noise-Isolation Gaming Headset",
+    category: "Toys & Games",
+    price: "$89.00",
+    status: "Active",
+    stock: 55,
+    views: 3881,
+    inquiries: 73,
+    date: "16/02/2025",
+    img: image,
+  },
+  {
+    id: 14,
+    name: "Rechargeable Mini Fan",
+    category: "Home & Living",
+    price: "$24.99",
+    status: "Out Of Stock",
+    stock: 0,
+    views: 2105,
+    inquiries: 39,
+    date: "04/08/2024",
+    img: image1,
+  },
+  {
+    id: 15,
+    name: "Rechargeable Mini Fan",
+    category: "Home & Living",
+    price: "$24.99",
+    status: "Out Of Stock",
+    stock: 0,
+    views: 2105,
+    inquiries: 39,
+    date: "04/08/2024",
+    img: image,
+  },
 ];
 
 const statusColor = {
@@ -82,28 +217,44 @@ const statusColor = {
   "Out Of Stock": "bg-red-100 text-red-800",
 };
 
+const tableHead = [
+  "Product",
+  "Category",
+  "Price",
+  "Status",
+  "Stock",
+  "Analytics",
+  "Date",
+  "Action",
+];
+
 export const ProductTable = () => {
   const { pathname } = useLocation();
+
   return (
-    <>
-      <div className="p-2 overflow-hidden border border-[#E0E0E1] rounded-xl bg-white">
+    <div className="w-full">
+      <div className="p-2  border border-[#E0E0E1] rounded-xl bg-white mb-5">
         <Table>
-          <TableHeader className="bg-foundation-white">
-            <TableRow>
-              <TableHead>
+          <TableHeader className="pb-5">
+            <TableRow className="first:border-none">
+              {/* Checkbox Column */}
+              <TableHead className="rounded-l-xl bg-foundation-white">
                 <input type="checkbox" />
               </TableHead>
-              {[
-                "Product",
-                "Category",
-                "Price",
-                "Status",
-                "Stock",
-                "Analytics",
-                "Date",
-                "Action",
-              ].map((header) => (
-                <TableHead key={header} className="text-gray-600 font-medium">
+
+              {/* Dynamic Table Headers */}
+              {tableHead.map((header, index) => (
+                <TableHead
+                  key={header}
+                  className={`
+        font-medium text-sm text-center last:pr-2
+        ${index === 0 || index === 1 ? "text-start" : ""}
+        ${index === 1 || index === 6 ? "hidden xl:table-cell" : ""}
+        ${index === 3 || index === 5 ? "hidden md:table-cell" : ""}
+        ${index === tableHead.length - 1 ? "rounded-r-xl" : ""}
+        py-4 h-full bg-foundation-white text-foundation-gray
+      `}
+                >
                   {header}
                 </TableHead>
               ))}
@@ -112,35 +263,37 @@ export const ProductTable = () => {
 
           <TableBody>
             {products.map((p) => (
-              <TableRow
-                key={p.id}
-                className="border-t border-[#E0E0E1] hover:bg-gray-50"
-              >
+              <TableRow key={p.id} className="hover:bg-gray-50">
                 <TableCell>
                   <input type="checkbox" />
                 </TableCell>
-                <TableCell className="flex items-center">
+                <TableCell className="flex items-center py-4">
                   <img src={p.img} alt="" className="w-10 h-10 rounded mr-3" />
-                  <div>
-                    <div className="font-medium text-gray-800">{p.name}</div>
-                    <div className="text-xs text-gray-500">
+                  <div className="hidden xl:block">
+                    <div className="font-medium text-gray-800  ">{p.name}</div>
+                    <div className="text-xs text-gray-500 ">
                       SKU: SP‑X2023‑BLK
                     </div>
                   </div>
                 </TableCell>
-                <TableCell className="text-gray-700">{p.category}</TableCell>
-                <TableCell className="text-gray-700">{p.price}</TableCell>
-                <TableCell>
-                  <span
-                    className={`px-5 py-1.5 text-sm font-semibold rounded-xl ${
+                <TableCell className="text-gray-700 hidden  xl:table-cell ">
+                  {p.category}
+                </TableCell>
+                <TableCell className="text-gray-700 text-center">
+                  {p.price}
+                </TableCell>
+                <TableCell className="font-medium text-center hidden  md:table-cell">
+                  <Button
+                    size="sm"
+                    className={`p-5 text-sm font-semibold rounded-xl ${
                       statusColor[p.status]
                     }`}
                   >
                     {p.status}
-                  </span>
+                  </Button>
                 </TableCell>
                 <TableCell>
-                  <div className="flex items-center">
+                  <div className="flex items-center  justify-center">
                     <span className="text-gray-700 mr-2">
                       {p.stock.toString().padStart(2, "0")}
                     </span>
@@ -152,27 +305,33 @@ export const ProductTable = () => {
                     </div>
                   </div>
                 </TableCell>
-                <TableCell className="flex space-x-4">
-                  <div>
-                    <div className="flex items-center gap-1 text-[#666] pb-1">
-                      <MdOutlineRemoveRedEye className="text-2xl" />{" "}
-                      <span>View</span>
+                <TableCell className="hidden  md:table-cell">
+                  <div className="flex space-x-4 items-center  justify-center">
+                    <div>
+                      <div className="flex items-center gap-1 text-[#666] pb-1">
+                        <MdOutlineRemoveRedEye className="text-2xl" />
+                        <span>View</span>
+                      </div>
+                      <span className="text-jet-black font-medium">
+                        {p.views}
+                      </span>
                     </div>
-                    <span className="text-jet-black font-medium">
-                      {p.views}
-                    </span>
-                  </div>
-                  <div>
-                    <div className="flex items-center gap-1 text-[#666] pb-1">
-                      <LuFileText className="text-2xl" /> <span>Inquiries</span>
+                    <div>
+                      <div className="flex items-center gap-1 text-[#666] pb-1">
+                        <LuFileText className="text-2xl" />
+                        <span>Inquiries</span>
+                      </div>
+                      <span className="text-jet-black font-medium">
+                        {p.inquiries}
+                      </span>
                     </div>
-                    <span className="text-jet-black font-medium">
-                      {p.inquiries}
-                    </span>
                   </div>
                 </TableCell>
-                <TableCell className="text-gray-700">{p.date}</TableCell>
-                <TableCell>
+                <TableCell className="text-gray-700 text-center hidden xl:table-cell">
+                  {p.date}
+                </TableCell>
+
+                <TableCell className="text-center">
                   <Link
                     to={`/seller-dashboard/all-products/${slugify(p.name)}`}
                     className="text-sunset-orange cursor-pointer"
@@ -193,6 +352,6 @@ export const ProductTable = () => {
           path="/seller-dashboard/all-products"
         />
       )}
-    </>
+    </div>
   );
 };
