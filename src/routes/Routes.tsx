@@ -51,6 +51,8 @@ import BuyerPayments from "@/pages/BuyerDashboard/BuyerPayments";
 import BuyerMessages from "@/pages/BuyerDashboard/BuyerMessages";
 import BuyerFavorites from "@/pages/BuyerDashboard/BuyerFavorites";
 import SupplierProfileDetails from "@/pages/BuyerLandingPage/SupplierProfileDetails";
+import CreatePromotionPage from "@/pages/SellerDashboard/CreatePromotionPage";
+
 
 
 const routes = createBrowserRouter([
@@ -221,6 +223,7 @@ const routes = createBrowserRouter([
       { path: "help", element: <SellerHelpPage /> },
       { path: "inquiries-details", element: <SellerInquiriesDetails /> },
       { path: "invoice-form", element: <SellerInvoiceFormPage /> },
+      { path: "create-promotion", element: <CreatePromotionPage /> },
     ],
   },
 ]);
