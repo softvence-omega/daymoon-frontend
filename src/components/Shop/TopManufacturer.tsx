@@ -87,7 +87,7 @@ const TopManufacturer = ({
   return (
     <section className="mt-10 md:mt-18 max-w-full mx-auto">
       {title && (
-        <h2 className="text-xl lg:text-[32px] text-center md:text-left lg:text-left pt-6 md:pt-0 lg:pt-0 font-semibold mb-6 uppercase">
+        <h2 className="text-[24px] lg:text-[32px] text-center md:text-left lg:text-left pt-6 md:pt-0 lg:pt-0 font-semibold mb-6 uppercase">
           {title}
         </h2>
       )}
@@ -102,3 +102,4 @@ const TopManufacturer = ({
 };
 
 export default TopManufacturer;
+ 

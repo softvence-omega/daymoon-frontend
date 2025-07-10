@@ -49,10 +49,10 @@ import BuyerOrderDetails from "@/pages/BuyerDashboard/BuyerOrderDetails";
 import BuyerPayments from "@/pages/BuyerDashboard/BuyerPayments";
 import BuyerMessages from "@/pages/BuyerDashboard/BuyerMessages";
 import BuyerFavorites from "@/pages/BuyerDashboard/BuyerFavorites";
-
+import SupplierProfileDetails from "@/pages/BuyerLandingPage/SupplierProfileDetails";
 import BuyerProfile from "@/components/SellerDashboard/SellerOrder/Profile/BuyerProfile";
-
 import CreatePromotionPage from "@/pages/SellerDashboard/CreatePromotionPage";
+
 
 
 const routes = createBrowserRouter([
@@ -101,6 +101,10 @@ const routes = createBrowserRouter([
       {
         path: "/buyerHome/:slug/:subCategory",
         element: <ProductFilter />,
+      },
+      {
+        path:"/suppliersDetails",
+        element: <SupplierProfileDetails/>
       },
       // -----------
       // -------------------

@@ -1,7 +1,7 @@
 import CommonWrapper from "@/common/CommonWrapper";
 import SidebarInfo from "./SidebarInfo";
-import JoinUs from "./JoinUs";
 import OverViewTab from "./OverViewTab";
+import JoinUs from "./JoinUs";
 
 const overviewData = [
   {
@@ -76,10 +76,7 @@ const OverView = () => {
             <SidebarInfo />
           </div>
         </div>
-
-        <div className="mt-10">
-          <JoinUs />
-        </div>
+        <JoinUs/>
       </CommonWrapper>
     </div>
   );

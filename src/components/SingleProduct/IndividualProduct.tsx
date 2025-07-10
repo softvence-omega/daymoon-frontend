@@ -1,28 +1,61 @@
 import CommonWrapper from "@/common/CommonWrapper";
 import { useParams } from "react-router-dom";
-import HomeProducts from "../ReUseable/HomeProducts";
 import ProductDetails from "./ProductDetails";
 import ProductExtraDetails from "./ProductExtraDetails";
+import ProductsComponent from "../ReUseable/ProductsComponent";
+import { useState } from "react";
+import MoreButton from "../ReUseable/MoreButton";
 
 const IndividualProduct = () => {
   const { productId } = useParams();
   console.log("🚀 ~ IndividualProduct ~ productId:", productId);
 
+  const [showAllProducts, setShowAllProducts] = useState(false);
+
   return (
     <CommonWrapper>
       <ProductDetails />
+
       <div className="mt-20 mb-32">
         <h1 className="text-xl font-semibold md:text-5xl">
-          {" "}
           Frequently bought together
         </h1>
-        <HomeProducts
-          cols={{ mobile: 1, md: 2, lg: 4 }}
-          rows={{ mobile: 1, md: 1, lg: 1 }}
+
+        <ProductsComponent
+          selectedCategory="All"
+          selectedPrice="All"
+          showAll={showAllProducts}
+          cols={{ mobile: 1, md: 4, lg: 4 }}
+          rows={
+            showAllProducts
+              ? { mobile: 100, md: 100, lg: 100 } // Show all products
+              : { mobile: 2, md: 1, lg: 1 }       // Show limited initially
+          }
         />
       </div>
-
       <ProductExtraDetails />
+      {/* Products Section */}
+      <div className="mt-20">
+        <h1 className="text-[24px] lg:text-[40px] font-semibold uppercase">More From the seller</h1>
+        <ProductsComponent
+          selectedCategory="All"
+          selectedPrice="All"
+          showAll={showAllProducts}
+          cols={{ mobile: 1, md: 4, lg: 4 }}
+          rows={
+            showAllProducts
+              ? { mobile: 100, md: 100, lg: 100 } // Show all products
+              : { mobile: 1, md: 1, lg: 1 }       // Show limited initially
+          }
+        />
+        {!showAllProducts && (
+          <MoreButton
+            onClick={() => setShowAllProducts(true)}
+            text="Explore More"
+          />
+        )}
+      </div>
+
     </CommonWrapper>
   );
 };
