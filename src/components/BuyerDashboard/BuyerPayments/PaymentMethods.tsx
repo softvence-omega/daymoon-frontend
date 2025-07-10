@@ -1,4 +1,3 @@
-import React from "react";
 import { FaPlus } from "react-icons/fa";
 import visa from "@/assets/dashboard/buyer-dashboard/visa.svg";
 import mastercard from "@/assets/dashboard/buyer-dashboard/mastercard.svg";

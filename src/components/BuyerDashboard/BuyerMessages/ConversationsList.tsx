@@ -3,17 +3,7 @@ import { Search } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Input } from "@/components/ui/input";
 
-interface Conversation {
-  id: number;
-  name: string;
-  lastMessage: string;
-  timestamp: string;
-  unread: number;
-  avatar: string;
-  online: boolean;
-  type: "supplier" | "support";
-  rating?: number; // Rating out of 5
-}
+import { Conversation } from "./types";
 
 interface ConversationsListProps {
   conversations: Conversation[];
