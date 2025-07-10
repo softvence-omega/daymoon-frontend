@@ -13,6 +13,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 // image imports
+import NavCatgegory from "@/components/Category/NavCategory";
 import arrow from "../assets/Navbar/arrow.svg";
 import logo from "../assets/Navbar/logo.png";
 import menu from "../assets/Navbar/menu.svg";
@@ -27,16 +28,16 @@ const Navbar = () => {
 
   const isActive = (path: string) => location.pathname === path;
 
-  const categories = [
-    "Electronics",
-    "Fashion",
-    "Home & Garden",
-    "Sports & Outdoors",
-    "Books",
-    "Beauty & Health",
-    "Automotive",
-    "Toys & Games",
-  ];
+  // const categories = [
+  //   "Electronics",
+  //   "Fashion",
+  //   "Home & Garden",
+  //   "Sports & Outdoors",
+  //   "Books",
+  //   "Beauty & Health",
+  //   "Automotive",
+  //   "Toys & Games",
+  // ];
 
   const countries = [
     { code: "USA", name: "United States", flag: usa },
@@ -72,20 +73,14 @@ const Navbar = () => {
           <section className="flex items-center justify-center gap-7 xl:ml-52">
             <DropdownMenu>
               <DropdownMenuTrigger className="border-none p-2" asChild>
-                <motion.div
-                  whileHover={{ scale: 1.01 }}
-                  whileTap={{ scale: 0.8 }}
-                  className="flex items-center bg-transparent text-lg text-[#666] hover:bg-white space-x-1"
-                >
+                <div className="flex items-center bg-transparent text-lg text-[#666] hover:bg-white space-x-1">
                   <span>Categories</span>
                   <ChevronDown className="h-4 w-4" />
-                </motion.div>
+                </div>
               </DropdownMenuTrigger>
-              <DropdownMenuContent
-                align="start"
-                className="w-52 bg-white border-0"
-              >
-                {categories.map((category, idx) => (
+              <DropdownMenuContent align="start" className=" bg-white border-0">
+                <NavCatgegory />
+                {/* {categories.map((category, idx) => (
                   <motion.div
                     whileHover={{ scale: 1.01 }}
                     whileTap={{ scale: 0.8 }}
@@ -96,7 +91,7 @@ const Navbar = () => {
                     </DropdownMenuItem>
                     <div className="border-t border-[#E5E5E5] my-1" />
                   </motion.div>
-                ))}
+                ))} */}
               </DropdownMenuContent>
             </DropdownMenu>
 
