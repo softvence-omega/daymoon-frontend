@@ -1,10 +1,4 @@
-import image from "../../../assets/image/product.png";
-import image1 from "../../../assets/landing/image1.png";
-import { MdOutlineRemoveRedEye } from "react-icons/md";
-import { LuFileText } from "react-icons/lu";
-import { Link, useLocation } from "react-router-dom";
 import Pagination from "@/common/Pagination";
-import { slugify } from "../SellerOrder/OrderTable";
 import {
   Table,
   TableBody,
@@ -13,6 +7,12 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { LuFileText } from "react-icons/lu";
+import { MdOutlineRemoveRedEye } from "react-icons/md";
+import { Link, useLocation } from "react-router-dom";
+import image from "../../../assets/image/product.png";
+import image1 from "../../../assets/landing/image1.png";
+import { slugify } from "../SellerOrder/OrderTable";
 
 type Product = {
   id: number;

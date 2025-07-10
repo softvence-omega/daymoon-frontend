@@ -1,3 +1,4 @@
+import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
@@ -5,9 +6,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 interface FilterOption {
   value: string;
@@ -86,11 +86,6 @@ const SellerInquireFilter = ({ onFilterChange = () => {} }: RFQFilterProps) => {
     },
     {
       label: "Category",
-      placeholder: "All Products",
-      defaultValue: "all",
-      filterKey: "category" as keyof FilterState,
-      options: [
-        { value: "all", label: "All Products" },
       placeholder: "All Categories",
       defaultValue: "all",
       filterKey: "category" as keyof FilterState,
@@ -104,11 +99,6 @@ const SellerInquireFilter = ({ onFilterChange = () => {} }: RFQFilterProps) => {
     },
     {
       label: "Time",
-      placeholder: "Last 30 Days",
-      defaultValue: "all",
-      filterKey: "time" as keyof FilterState,
-      options: [
-        { value: "all", label: "Last 30 Days" },
       placeholder: "All Time",
       defaultValue: "all",
       filterKey: "time" as keyof FilterState,
