@@ -26,7 +26,7 @@ const Shop = () => {
         <div className="lg:w-3/4 mx-auto">
           <GlobalSearchBar />
           <NewArrivalBanner />
-          <div className="flex items-center gap-6">
+          <div className="lg:flex items-center lg:gap-6">
             <FlashSaleBanner />
             <BestSellingBanner />
           </div>
@@ -43,7 +43,7 @@ const Shop = () => {
             rows={
               showAllProducts
                 ? { mobile: 100, md: 100, lg: 100 } // Show all products
-                : { mobile: 1, md: 4, lg: 4 }       // Show limited initially
+                : { mobile: 3, md: 4, lg: 4 }       // Show limited initially
             }
           />
           {!showAllProducts && (

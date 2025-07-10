@@ -1,5 +1,6 @@
 import CommonWrapper from "@/common/CommonWrapper";
 import GlobalSearchBar from "@/components/ReUseable/GlobalSearchBar";
+import JoinUs from "@/components/ReUseable/JoinUs";
 import MoreButton from "@/components/ReUseable/MoreButton";
 import ProductsComponent from "@/components/ReUseable/ProductsComponent";
 import FashionBanner from "@/components/Shop/FashonBanner";
@@ -33,7 +34,7 @@ const ProductCategories = () => {
             rows={
               showAllProducts
                 ? { mobile: 100, md: 100, lg: 100 }  // show all products
-                : { mobile: 1, md: 3, lg: 3 }        // show limited rows initially
+                : { mobile: 2, md: 3, lg: 3 }        // show limited rows initially
             }
           />
           {!showAllProducts && (
@@ -62,6 +63,7 @@ const ProductCategories = () => {
             text="Explore More"
           />
         )}
+        <JoinUs/>
       </CommonWrapper>
     </div>
   );
