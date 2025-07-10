@@ -56,7 +56,7 @@ const Sidebar: React.FC<SidebarProps> = ({ items = defaultSidebarItems }) => {
 
   return (
      <div
-      className="flex flex-col h-full bg-white"
+      className="flex flex-col bg-white sticky top-0 h-screen"
       style={{ boxShadow: "3px 4px 42.3px 0px #0000001A" }}
     >
       {/* Logo */}

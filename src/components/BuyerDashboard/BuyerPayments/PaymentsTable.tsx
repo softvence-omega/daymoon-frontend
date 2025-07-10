@@ -172,6 +172,58 @@ const paymentData = [
     status: "failed",
     paymentDate: "08/07/2025", // Yesterday
   },
+  {
+    id: "10011",
+    transactionId: "TNX-001288",
+    orderId: "ORD-2025-777",
+    product: {
+      name: "PayPal Account",
+      image: paypal,
+    },
+    supplier: "ElectroHub",
+    amount: "$750.00",
+    status: "failed",
+    paymentDate: "08/07/2025", // Yesterday
+  },
+  {
+    id: "10013",
+    transactionId: "TNX-001223",
+    orderId: "ORD-2025-766",
+    product: {
+      name: "PayPal Account",
+      image: paypal,
+    },
+    supplier: "ElectroHub",
+    amount: "$750.00",
+    status: "failed",
+    paymentDate: "08/07/2025", // Yesterday
+  },
+  {
+    id: "10010",
+    transactionId: "TNX-001243",
+    orderId: "ORD-2025-770",
+    product: {
+      name: "PayPal Account",
+      image: paypal,
+    },
+    supplier: "ElectroHub",
+    amount: "$750.00",
+    status: "failed",
+    paymentDate: "08/07/2025", // Yesterday
+  },
+  {
+    id: "10010",
+    transactionId: "TNX-001243",
+    orderId: "ORD-2025-770",
+    product: {
+      name: "PayPal Account",
+      image: paypal,
+    },
+    supplier: "ElectroHub",
+    amount: "$750.00",
+    status: "failed",
+    paymentDate: "08/07/2025", // Yesterday
+  },
 ];
 
 const PaymentsTable = () => {
@@ -183,17 +235,19 @@ const PaymentsTable = () => {
     sortBy: "newest",
     search: "",
   });
-  const itemsPerPage = 5;
+  const itemsPerPage = 10; // Reduced for testing
 
   // Filter and sort data based on filters
   const filteredAndSortedData = useMemo(() => {
     let filtered = [...paymentData];
+  
 
     // Filter by status
     if (filters.status !== "all") {
       filtered = filtered.filter(
         (payment) => payment.status === filters.status
       );
+      console.log("After status filter:", filtered.length);
     }
 
     // Filter by search term
@@ -206,8 +260,10 @@ const PaymentsTable = () => {
           payment.product.name.toLowerCase().includes(searchTerm) ||
           payment.supplier.toLowerCase().includes(searchTerm)
       );
+      console.log("After search filter:", filtered.length);
     }
 
+    // Skip time filtering for now to test
     // Filter by time period
     if (filters.time !== "all") {
       const currentDate = new Date();
@@ -248,6 +304,7 @@ const PaymentsTable = () => {
             return true;
         }
       });
+      console.log("After time filter:", filtered.length);
     }
 
     // Sort data
@@ -284,14 +341,40 @@ const PaymentsTable = () => {
         break;
     }
 
+    console.log("Final filtered data:", filtered.length);
     return filtered;
   }, [filters]);
 
   // Calculate pagination values
-  const totalPages = Math.ceil(filteredAndSortedData.length / itemsPerPage);
+  const totalPages =
+    filteredAndSortedData.length > 0
+      ? Math.ceil(filteredAndSortedData.length / itemsPerPage)
+      : 1;
   const startIndex = currentPage * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
+  const endIndex = Math.min(
+    startIndex + itemsPerPage,
+    filteredAndSortedData.length
+  );
   const currentData = filteredAndSortedData.slice(startIndex, endIndex);
+
+  // Debug pagination
+  console.log("Pagination Debug:", {
+    totalItems: filteredAndSortedData.length,
+    itemsPerPage,
+    currentPage,
+    totalPages,
+    startIndex,
+    endIndex,
+    currentDataLength: currentData.length,
+    showPagination: filteredAndSortedData.length > itemsPerPage
+  });
+
+  // Ensure currentPage is within valid range
+  useEffect(() => {
+    if (currentPage >= totalPages && totalPages > 0) {
+      setCurrentPage(Math.max(0, totalPages - 1));
+    }
+  }, [currentPage, totalPages]);
 
   // Reset pagination when filters change
   useEffect(() => {
@@ -300,20 +383,34 @@ const PaymentsTable = () => {
 
   // Filter change handler
   const handleFilterChange = (newFilters: FilterState) => {
+    console.log("Filter changed:", newFilters);
     setFilters(newFilters);
-    setCurrentPage(0); // Reset to first page when filters change
+    // Don't reset page here as it's handled in useEffect
   };
 
   // Pagination handlers
   const handlePrevious = () => {
+    console.log("Previous clicked - Current page:", currentPage);
     if (currentPage > 0) {
       setCurrentPage(currentPage - 1);
+      console.log("Moving to page:", currentPage - 1);
     }
   };
 
   const handleNext = () => {
+    console.log("Next clicked - Current page:", currentPage, "Total pages:", totalPages);
     if (currentPage < totalPages - 1) {
       setCurrentPage(currentPage + 1);
+      console.log("Moving to page:", currentPage + 1);
+    }
+  };
+
+  // Handle page click
+  const handlePageClick = (pageIndex: number) => {
+    console.log("Page clicked:", pageIndex, "Current page:", currentPage);
+    if (pageIndex >= 0 && pageIndex < totalPages) {
+      setCurrentPage(pageIndex);
+      console.log("Setting page to:", pageIndex);
     }
   };
 
@@ -394,50 +491,55 @@ const PaymentsTable = () => {
           </TableFooter>
         </Table>
       </div>
+
       {/* Pagination Footer */}
       <div className="flex flex-col sm:flex-row items-center justify-between mt-4 px-2">
         <div className="text-sm md:text-lg text-gray-600 mb-2 sm:mb-0">
-          Showing {startIndex + 1} to{" "}
+          Showing {filteredAndSortedData.length > 0 ? startIndex + 1 : 0} to{" "}
           {Math.min(endIndex, filteredAndSortedData.length)} of{" "}
           {filteredAndSortedData.length} payments
         </div>
-        <ul className="flex items-center border border-[#E5E5E5] rounded-xl overflow-hidden">
-          <li
-            className={`border-r border-[#E5E5E5] p-2 md:p-4 text-sm md:text-lg cursor-pointer ${
-              currentPage === 0
-                ? "text-gray-400 cursor-not-allowed"
-                : "text-[#F04436] hover:bg-gray-50"
-            }`}
-            onClick={handlePrevious}
-          >
-            <IoIosArrowBack />
-          </li>
-
-          {Array.from({ length: totalPages }).map((_, index) => (
-            <li
-              key={index}
-              className={`border-r border-[#E5E5E5] p-2 md:p-4 text-sm md:text-lg cursor-pointer hover:bg-gray-50 ${
-                currentPage === index
-                  ? "bg-[#F04436] text-white"
-                  : "text-gray-700"
+        {filteredAndSortedData.length > itemsPerPage && (
+          <div className="flex items-center border border-[#E5E5E5] rounded-xl overflow-hidden">
+            <button
+              className={`border-r border-[#E5E5E5] p-2 md:p-4 text-sm md:text-lg ${
+                currentPage === 0
+                  ? "text-gray-400 cursor-not-allowed"
+                  : "text-[#F04436] hover:bg-gray-50 cursor-pointer"
               }`}
-              onClick={() => setCurrentPage(index)}
+              onClick={handlePrevious}
+              disabled={currentPage === 0}
             >
-              {index + 1}
-            </li>
-          ))}
+              <IoIosArrowBack />
+            </button>
 
-          <li
-            className={`p-2 md:p-4 text-sm md:text-lg cursor-pointer ${
-              currentPage === totalPages - 1
-                ? "text-gray-400 cursor-not-allowed"
-                : "text-[#F04436] hover:bg-gray-50"
-            }`}
-            onClick={handleNext}
-          >
-            <IoIosArrowForward />
-          </li>
-        </ul>
+            {Array.from({ length: totalPages }).map((_, index) => (
+              <button
+                key={index}
+                className={`border-r border-[#E5E5E5] p-2 md:p-4 text-sm md:text-lg cursor-pointer hover:bg-gray-50 ${
+                  currentPage === index
+                    ? "bg-[#F04436] text-white"
+                    : "text-gray-700"
+                }`}
+                onClick={() => handlePageClick(index)}
+              >
+                {index + 1}
+              </button>
+            ))}
+
+            <button
+              className={`p-2 md:p-4 text-sm md:text-lg ${
+                currentPage === totalPages - 1
+                  ? "text-gray-400 cursor-not-allowed"
+                  : "text-[#F04436] hover:bg-gray-50 cursor-pointer"
+              }`}
+              onClick={handleNext}
+              disabled={currentPage === totalPages - 1}
+            >
+              <IoIosArrowForward />
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
