@@ -3,6 +3,7 @@ import { FiAlertCircle } from "react-icons/fi";
 import { BsFillBoxSeamFill } from "react-icons/bs";
 import { MdOutlineCreditCard, MdOutlineMessage } from "react-icons/md";
 import { FaTruck } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 
 // Activity data structure
 interface Activity {
@@ -121,9 +122,9 @@ const RecentActivity = () => {
         <h1 className="text-2xl font-medium text-[#484848] leading-tight">
           Recent Activity
         </h1>
-        <button className="underline text-[#F04436] text-base font-medium hover:text-[#d6332a] transition-colors">
+        <Link to="/buyer/dashboard/orders" className="underline text-[#F04436] text-base font-medium hover:text-[#d6332a] transition-colors">
           View All
-        </button>
+        </Link>
       </div>
 
       {/* Cards stacked vertically */}
