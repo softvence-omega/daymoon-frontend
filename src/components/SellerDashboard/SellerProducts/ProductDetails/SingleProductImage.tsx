@@ -17,7 +17,7 @@ const SingleProductImage: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState(earbuds[0].img);
 
   return (
-    <div className="flex gap-6 max-h-[860px]">
+    <div className="flex gap-8   max-h-[860px]">
       {/* Thumbnail List */}
       <div className="w-24 overflow-y-auto flex flex-col gap-4 py-2 pr-1">
         {earbuds.map((earbud, index) => (

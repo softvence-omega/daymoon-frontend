@@ -6,7 +6,7 @@ import {
 } from "react-icons/md";
 import { FaTruck } from "react-icons/fa6";
 import { FaRegHeart, FaRegStar } from "react-icons/fa";
-import { IoMdHelpCircleOutline, IoMdSettings } from "react-icons/io";
+import { IoMdHelpCircleOutline } from "react-icons/io";
 import { Badge } from "@/components/ui/badge";
 import { Link, useLocation } from "react-router-dom";
 import logo from "@/assets/dashboard/buyer-dashboard/logo.png"; // Adjust the path to your logo image

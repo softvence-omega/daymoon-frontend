@@ -1,7 +1,7 @@
-import { AiFillDollarCircle } from "react-icons/ai";
-import { BiMessageDetail } from "react-icons/bi";
-import { FaBorderAll, FaArrowUp } from "react-icons/fa";
-import { MdOutlineOutbox } from "react-icons/md";
+import Promotions1 from "@/assets/Icon/promotion1.png";
+import Promotions2 from "@/assets/Icon/promotion2.png";
+import Promotions3 from "@/assets/Icon/promotion3.png";
+import Promotions4 from "@/assets/Icon/promotion4.png";
 
 const Card = () => {
   const statusData = [
@@ -10,36 +10,36 @@ const Card = () => {
       amount: "24",
       change: "↓ 12%",
       unit: "for this month",
-      icon: <AiFillDollarCircle />,
+      icon: Promotions1,
     },
     {
       title: "Active Promotions",
       amount: "8",
       change: "↓ 12%",
       unit: "for this month",
-      icon: <FaBorderAll />,
+      icon: Promotions2,
     },
     {
       title: "Clicks from Promotions",
       amount: "1447",
       change: "↓ 12%",
       unit: "for this month",
-      icon: <MdOutlineOutbox />,
+      icon: Promotions3,
     },
     {
       title: "Sales from Promotion",
       amount: "23",
       change: "↓ -8%",
       unit: "for this month",
-      icon: <BiMessageDetail />,
+      icon: Promotions4,
     },
   ];
 
   const colors = ["#9747FF", "#2F7EEF", "#F2BC3C", "#D9222A"];
-  const bgColors = ["#F5EDFF", "#EBF3FE", "#FEF9EC", "#FCE9EA"]; // 10% opacity in hex
+  const bgColors = ["#F5EDFF", "#EBF3FE", "#FEF9EC", "#FCE9EA"];
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 place-items-start w-full ">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 place-items-start w-full">
       {statusData.map((single, index) => {
         const isNegative = single.change.includes("-");
         const changeColor = isNegative ? "#E35A5F" : "#12CC1E";
@@ -48,22 +48,21 @@ const Card = () => {
         return (
           <div
             key={single.title}
-            className="w-full h-[187px]  p-5 sm:p-6 bg-white rounded-[16px] border border-[#E0E0E0] flex flex-col justify-between mx-auto"
+            className="w-full h-[187px] p-5 sm:p-6 bg-white rounded-[16px] border border-[#E0E0E0] flex flex-col justify-between"
           >
             {/* Top Row */}
             <div className="flex items-center justify-start gap-5">
               <div
-                className="w-[48px] h-[48px] rounded-[12px] p-[12px] flex items-center justify-center"
+                className="w-[48px] h-[48px] rounded-[12px] p-[8px] flex items-center justify-center"
                 style={{ backgroundColor: bgColors[index] }}
               >
-                <span
-                  className="w-6 h-6 text-[24px] flex items-center justify-center"
-                  style={{ color: colors[index] }}
-                >
-                  {single.icon}
-                </span>
+                <img
+                  src={single.icon}
+                  alt={single.title}
+                  width={28}
+                  height={28}
+                />
               </div>
-
               <h1 className="text-[#484848] text-[18px] leading-[160%] font-[400] font-poppins">
                 {single.title}
               </h1>
@@ -81,12 +80,17 @@ const Card = () => {
 
             {/* Bottom Row: Change & Unit */}
             <div className="flex items-center justify-start gap-1 text-sm font-Robot">
-              <FaArrowUp
+              <svg
+                width={12}
+                height={12}
                 style={{
-                  color: changeColor,
                   transform: isNegative ? "rotate(180deg)" : "none",
+                  fill: changeColor,
                 }}
-              />
+                viewBox="0 0 24 24"
+              >
+                <path d="M12 2l-10 18h20l-10-18z" />
+              </svg>
               <span style={{ color: changeColor }}>{cleanChangeText}</span>
               <span className="text-[#666666]">{single.unit}</span>
             </div>

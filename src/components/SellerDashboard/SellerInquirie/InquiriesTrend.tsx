@@ -4,7 +4,7 @@ import type { ApexOptions } from "apexcharts";
 const InquiriesTrend = () => {
   const series = [
     {
-      data: [5, 12, 20, 25, 30, 35], // data in thousands
+      data: [5, 12, 20, 25, 30, 35],
     },
   ];
 
@@ -32,7 +32,7 @@ const InquiriesTrend = () => {
     yaxis: {
       min: 5,
       max: 35,
-      tickAmount: 6, // creates ticks at 5,10,15,...35
+      tickAmount: 6,
       forceNiceScale: false,
       labels: {
         formatter: (val) => {
@@ -54,13 +54,13 @@ const InquiriesTrend = () => {
         opacity: 0.5,
       },
     },
-    colors: ["#A5DBF3"], // changed base color here
+    colors: ["#A5DBF3"],
     fill: {
       type: "gradient",
       gradient: {
         shadeIntensity: 1,
-        opacityFrom: 0.4, // start opacity (semi-transparent)
-        opacityTo: 0, // end opacity (fully transparent)
+        opacityFrom: 0.4,
+        opacityTo: 0,
         stops: [0, 90, 100],
         colorStops: [
           {
@@ -88,7 +88,7 @@ const InquiriesTrend = () => {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 md:gap-8 lg:gap-12 mb-8 w-full">
         {/* Title */}
         <div className="w-full md:flex-1">
-          <h1 className="text-[24px] leading-[130%]  text-[#484848] mb-4">
+          <h1 className="text-[24px] leading-[130%]  text-[#484848] mt-4 ">
             Inquiries Trend
           </h1>
         </div>

@@ -1,9 +1,18 @@
 import Pagination from "@/common/Pagination";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 import { LuFileText } from "react-icons/lu";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import image from "../../../assets/image/product.png";
 import image1 from "../../../assets/landing/image1.png";
+import { slugify } from "../SellerOrder/OrderTable";
 
 type Product = {
   id: number;
@@ -67,54 +76,6 @@ const products: Product[] = [
     date: "03/05/2025",
     img: image1,
   },
-  {
-    id: 5,
-    name: "Crystal Clear Monitor",
-    category: "Toys & Games",
-    price: "$69.99",
-    status: "Out Of Stock",
-    stock: 0,
-    views: 3473,
-    inquiries: 67,
-    date: "03/05/2025",
-    img: image1,
-  },
-  {
-    id: 6,
-    name: "Crystal Clear Monitor",
-    category: "Toys & Games",
-    price: "$69.99",
-    status: "Out Of Stock",
-    stock: 0,
-    views: 3473,
-    inquiries: 67,
-    date: "03/05/2025",
-    img: image1,
-  },
-  {
-    id: 7,
-    name: "Crystal Clear Monitor",
-    category: "Toys & Games",
-    price: "$69.99",
-    status: "Out Of Stock",
-    stock: 0,
-    views: 3473,
-    inquiries: 67,
-    date: "03/05/2025",
-    img: image1,
-  },
-  {
-    id: 8,
-    name: "4K Gaming Monitor",
-    category: "Fashion & Accessories",
-    price: "$79.99",
-    status: "Active",
-    stock: 80,
-    views: 3473,
-    inquiries: 67,
-    date: "15/08/2023",
-    img: image1,
-  },
 ];
 
 const statusColor = {
@@ -123,24 +84,17 @@ const statusColor = {
   "Out Of Stock": "bg-red-100 text-red-800",
 };
 
-const slugify = (text: string) => {
-  return text
-    .toLowerCase()
-    .replace(/[^\w\s-]/g, "")
-    .trim()
-    .replace(/\s+/g, "-");
-};
-
 export const ProductTable = () => {
+  const { pathname } = useLocation();
   return (
     <>
       <div className="p-2 overflow-hidden border border-[#E0E0E1] rounded-xl bg-white">
-        <table className="min-w-full">
-          <thead className="bg-foundation-white">
-            <tr>
-              <th className="p-3 rounded-tl-2xl">
+        <Table>
+          <TableHeader className="bg-foundation-white">
+            <TableRow>
+              <TableHead>
                 <input type="checkbox" />
-              </th>
+              </TableHead>
               {[
                 "Product",
                 "Category",
@@ -150,30 +104,24 @@ export const ProductTable = () => {
                 "Analytics",
                 "Date",
                 "Action",
-              ].map((header, index, array) => (
-                <th
-                  key={header}
-                  className={`p-3 text-sm font-medium text-gray-600 ${
-                    index === 4 || index === 5 || index === 6
-                      ? "text-center"
-                      : "text-left"
-                  } ${index === array.length - 1 ? "rounded-tr-2xl" : ""}`}
-                >
+              ].map((header) => (
+                <TableHead key={header} className="text-gray-600 font-medium">
                   {header}
-                </th>
+                </TableHead>
               ))}
-            </tr>
-          </thead>
-          <tbody>
+            </TableRow>
+          </TableHeader>
+
+          <TableBody>
             {products.map((p) => (
-              <tr
+              <TableRow
                 key={p.id}
-                className="border-t border-[#E0E0E1] first:border-none hover:bg-gray-50"
+                className="border-t border-[#E0E0E1] hover:bg-gray-50"
               >
-                <td className="p-3">
+                <TableCell>
                   <input type="checkbox" />
-                </td>
-                <td className="p-3 flex items-center">
+                </TableCell>
+                <TableCell className="flex items-center">
                   <img src={p.img} alt="" className="w-10 h-10 rounded mr-3" />
                   <div>
                     <div className="font-medium text-gray-800">{p.name}</div>
@@ -181,23 +129,23 @@ export const ProductTable = () => {
                       SKU: SP‑X2023‑BLK
                     </div>
                   </div>
-                </td>
-                <td className="p-3 text-gray-700">{p.category}</td>
-                <td className="p-3 text-gray-700">{p.price}</td>
-                <td className="p-3">
+                </TableCell>
+                <TableCell className="text-gray-700">{p.category}</TableCell>
+                <TableCell className="text-gray-700">{p.price}</TableCell>
+                <TableCell>
                   <span
-                    className={`px-5 py-1.5 text-sm font-semibold  bg-[#10B98133]/20 text rounded-xl ${
+                    className={`px-5 py-1.5 text-sm font-semibold rounded-xl ${
                       statusColor[p.status]
                     }`}
                   >
                     {p.status}
                   </span>
-                </td>
-                <td className="p-3">
+                </TableCell>
+                <TableCell>
                   <div className="flex items-center">
-                    <div className="text-gray-700 mr-2">
+                    <span className="text-gray-700 mr-2">
                       {p.stock.toString().padStart(2, "0")}
-                    </div>
+                    </span>
                     <div className="w-24 h-2 bg-gray-200 rounded overflow-hidden">
                       <div
                         className="h-full bg-green-500"
@@ -205,54 +153,48 @@ export const ProductTable = () => {
                       />
                     </div>
                   </div>
-                </td>
-                <td className="p-3   flex space-x-4">
+                </TableCell>
+                <TableCell className="flex space-x-4">
                   <div>
-                    <div className=" flex items-center gap-1 text-[#666] pb-1">
-                      <span className="text-2xl">
-                        <MdOutlineRemoveRedEye />
-                      </span>
+                    <div className="flex items-center gap-1 text-[#666] pb-1">
+                      <MdOutlineRemoveRedEye className="text-2xl" />{" "}
                       <span>View</span>
                     </div>
-
                     <span className="text-jet-black font-medium">
                       {p.views}
                     </span>
                   </div>
                   <div>
-                    <div className=" flex items-center gap-1 text-[#666] pb-1">
-                      <span className="text-2xl">
-                        <LuFileText />
-                      </span>
-                      <span>Inquiries</span>
+                    <div className="flex items-center gap-1 text-[#666] pb-1">
+                      <LuFileText className="text-2xl" /> <span>Inquiries</span>
                     </div>
-
                     <span className="text-jet-black font-medium">
-                      {" "}
                       {p.inquiries}
                     </span>
                   </div>
-                </td>
-                <td className="p-3 text-gray-700">{p.date}</td>
-                <td className="p-3">
+                </TableCell>
+                <TableCell className="text-gray-700">{p.date}</TableCell>
+                <TableCell>
                   <Link
-                    to={`/seller-dashboard/all-products/slugify${slugify(
-                      p.name
-                    )}`}
-                    className=" text-sunset-orange cursor-pointer"
+                    to={`/seller-dashboard/all-products/${slugify(p.name)}`}
+                    className="text-sunset-orange cursor-pointer"
                   >
                     View
                   </Link>
-                </td>
-              </tr>
+                </TableCell>
+              </TableRow>
             ))}
-          </tbody>
-        </table>
+          </TableBody>
+        </Table>
       </div>
-      <Pagination
-        title="All Products"
-        showText="Showing 1 to 10 of 24 orders"
-      />
+
+      {pathname !== "/seller-dashboard/all-products" && (
+        <Pagination
+          title="All Products"
+          showText="Showing 1 to 10 of 24 orders"
+          path="/seller-dashboard/all-products"
+        />
+      )}
     </>
   );
 };

@@ -15,7 +15,7 @@ import SellerOrdersPage from "@/pages/SellerDashboard/SellerOrder/SellerOrdersPa
 import SellerPaymentPage from "@/pages/SellerDashboard/SellerPaymentPage";
 import SellerProductsPage from "@/pages/SellerDashboard/SellerProductsPage";
 import SellerPromotionPage from "@/pages/SellerDashboard/SellerPromotionPage";
-import SellerRewiewPage from "@/pages/SellerDashboard/SellerRewiewPage";
+import SellerReviewPage from "@/pages/SellerDashboard/SellerReviewPage";
 import SellerSettingsPage from "@/pages/SellerDashboard/SellerSettingsPage";
 import Signup from "@/pages/Signup";
 import { createBrowserRouter } from "react-router-dom";
@@ -30,7 +30,6 @@ import NotFound from "../pages/NotFound";
 import AdminRoute from "./AdminRoutes";
 import BuyerRoute from "./BuyerRoute";
 
-import AllProduct from "@/components/SellerDashboard/SellerProducts/AllProduct";
 import ProductDetails from "@/components/SellerDashboard/SellerProducts/ProductDetails/ProductDetails";
 import Shop from "@/components/Shop/Shop";
 import SellerInvoiceFormPage from "@/pages/SellerDashboard/SellerInvoiceFormPage";
@@ -50,6 +49,10 @@ import BuyerOrderDetails from "@/pages/BuyerDashboard/BuyerOrderDetails";
 import BuyerPayments from "@/pages/BuyerDashboard/BuyerPayments";
 import BuyerMessages from "@/pages/BuyerDashboard/BuyerMessages";
 import BuyerFavorites from "@/pages/BuyerDashboard/BuyerFavorites";
+
+import BuyerProfile from "@/components/SellerDashboard/SellerOrder/Profile/BuyerProfile";
+
+import CreatePromotionPage from "@/pages/SellerDashboard/CreatePromotionPage";
 
 
 const routes = createBrowserRouter([
@@ -89,15 +92,15 @@ const routes = createBrowserRouter([
       // rakib demo route for buyer
       {
         path: "/buyerHome",
-        element: <BuyerHome />
+        element: <BuyerHome />,
       },
       {
         path: "/buyerHome/:slug",
-        element: <ProductCategories/>
+        element: <ProductCategories />,
       },
       {
         path: "/buyerHome/:slug/:subCategory",
-        element: <ProductFilter/>
+        element: <ProductFilter />,
       },
       // -----------
       // -------------------
@@ -109,7 +112,6 @@ const routes = createBrowserRouter([
         ],
       },
     ],
-
   },
   {
     path: "/login",
@@ -196,26 +198,24 @@ const routes = createBrowserRouter([
         path: "products",
         element: <SellerProductsPage />,
       },
+      { path: "all-products", element: <SellerProductsPage /> },
       { path: "add-product", element: <AddProductForm /> },
-      { path: "all-products", element: <AllProduct /> },
       { path: "all-products/:title", element: <ProductDetails /> },
       { path: "orders", element: <SellerOrdersPage /> },
-
-      // { path: "orders", element: <SellerOrdersPage /> },
-
-      { path: "products", element: <SellerProductsPage /> },
-      { path: "orders", element: <SellerOrdersPage /> },
-      { path: "orders/:id", element: <OrderDetails /> },
+      { path: "all-orders", element: <SellerOrdersPage /> },
+      { path: "all-orders/:id", element: <OrderDetails /> },
+      { path: "all-orders/:id/buyer-profile", element: <BuyerProfile /> },
 
       { path: "inquiries", element: <SellerInquiriesPage /> },
       { path: "payments", element: <SellerPaymentPage /> },
       { path: "analytics", element: <SellerAnalyticsPage /> },
       { path: "promotions", element: <SellerPromotionPage /> },
-      { path: "reviews", element: <SellerRewiewPage /> },
+      { path: "reviews", element: <SellerReviewPage /> },
       { path: "settings", element: <SellerSettingsPage /> },
       { path: "help", element: <SellerHelpPage /> },
       { path: "inquiries-details", element: <SellerInquiriesDetails /> },
       { path: "invoice-form", element: <SellerInvoiceFormPage /> },
+      { path: "create-promotion", element: <CreatePromotionPage /> },
     ],
   },
 ]);
