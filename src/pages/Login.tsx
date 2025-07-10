@@ -1,9 +1,9 @@
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useNavigate } from "react-router-dom";
-import img from "../assets/SignUp/signup.png"; // Adjust the path as necessary
 import Nav from "@/components/Authentication/Nav";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { z } from "zod";
+import img from "../assets/SignUp/signup.png"; // Adjust the path as necessary
 
 const loginSchema = z.object({
   email: z.string().email("Invalid email format"),

@@ -27,7 +27,12 @@ const Navbar = () => {
   const location = useLocation();
 
   const isActive = (path: string) => location.pathname === path;
-
+  const menuItems = [
+    { label: "Become A Supplier", href: "/supplier" },
+    { label: "App & Extensions", href: "/apps" },
+    { label: "Help Centre", href: "/help" },
+    { label: "Log In & Sign Up", href: "/login" },
+  ];
   // const categories = [
   //   "Electronics",
   //   "Fashion",
@@ -193,20 +198,17 @@ const Navbar = () => {
                   </motion.div>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-56 bg-white border-0 rounded-xl shadow-md p-2 space-y-1">
-                  {[
-                    "Become A Supplier",
-                    "App & Extensions",
-                    "Help Centre",
-                    "Log In & Sign Up",
-                  ].map((item, idx) => (
+                  {menuItems.map((item, idx) => (
                     <motion.div
                       whileHover={{ scale: 1.01 }}
                       whileTap={{ scale: 0.8 }}
                       key={idx}
                     >
-                      <DropdownMenuItem className="text-lg hover:text-[#F04436] px-4 py-2 rounded-md hover:bg-gray-100 cursor-pointer text-[#1A1A1A]">
-                        {item}
-                      </DropdownMenuItem>
+                      <Link to={item.href}>
+                        <DropdownMenuItem className="text-lg hover:text-[#F04436] px-4 py-2 rounded-md hover:bg-gray-100 cursor-pointer text-[#1A1A1A]">
+                          {item.label}
+                        </DropdownMenuItem>
+                      </Link>
                       <div className="border-t border-[#E5E5E5] my-1" />
                     </motion.div>
                   ))}
