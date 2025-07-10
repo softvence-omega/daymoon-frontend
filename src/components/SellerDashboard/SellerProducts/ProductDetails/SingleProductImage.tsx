@@ -14,19 +14,19 @@ const earbuds = [
 ];
 
 const SingleProductImage: React.FC = () => {
-  const [selectedImage, setSelectedImage] = useState(earbuds[0].img);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <div className="flex gap-8   max-h-[860px]">
-      {/* Thumbnail List */}
-      <div className="w-24 overflow-y-auto flex flex-col gap-4 py-2 pr-1">
+    <div className="flex flex-col-reverse md:flex-row gap-8 max-h-[860px] min-h-[400px] flex-1">
+      {/* Thumbnail strip */}
+      <div className="w-full md:w-24 overflow-y-auto flex flex-row md:flex-col gap-4 py-2 pr-1">
         {earbuds.map((earbud, index) => (
           <div
             key={index}
-            onClick={() => setSelectedImage(earbud.img)}
+            onClick={() => setActiveIndex(index)}
             className={`cursor-pointer border rounded-xl overflow-hidden transition duration-200 ${
-              selectedImage === earbud.img
-                ? "border-catalien-blue  "
+              activeIndex === index
+                ? "border-catalien-blue"
                 : "border-foundation-white"
             }`}
           >
@@ -39,11 +39,12 @@ const SingleProductImage: React.FC = () => {
         ))}
       </div>
 
-      <div className="flex-1 flex items-center justify-center rounded-3xl border border-foundation-white ">
+      {/* Selected image display */}
+      <div className="flex-1 flex items-center justify-center rounded-3xl border border-foundation-white min-h-[300px]">
         <img
-          src={selectedImage}
+          src={earbuds[activeIndex].img}
           alt="Selected Earbud"
-          className="max-h-[600px] object-contain  mix-blend-multiply"
+          className="max-h-[600px] object-contain mix-blend-multiply"
         />
       </div>
     </div>

@@ -1,3 +1,5 @@
+import CommonHeader from "@/common/CommonHeader";
+import DashboardCommonSpace from "@/common/DashboardCommonSpace";
 import React from "react";
 import {
   AreaChart,
@@ -91,126 +93,128 @@ const RevenueOverview = () => {
   };
 
   return (
-    <div className="bg-white rounded-xl shadow-md p-8">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-medium text-[#484848]">
-          Revenue Overview
-        </h1>
+    <DashboardCommonSpace>
+      <div className=" py-4 sm:p-10  border border-[#E0E0E1] rounded-xl bg-white">
+        <div className="flex flex-col sm:flex-row  justify-between items-center mb-6 gap-4">
+          <CommonHeader className="text-[#484848]">
+            Revenue Overview
+          </CommonHeader>
 
-        <div className="flex gap-6 text-[#484848] text-base">
-          <div className="flex items-center gap-4">
-            <div className="w-6 h-6 rounded-full bg-[#9747FF]"></div>
-            <p>Product View</p>
+          <div className="lg:flex gap-6 text-[#484848] text-base hidden ">
+            <div className="flex  items-center gap-1 xl:gap-4">
+              <div className="min-w-6 min-h-6 rounded-full bg-[#9747FF]"></div>
+              <p className="text-xs xl:text-base">Product View</p>
+            </div>
+            <div className="flex items-center gap-1 xl:gap-4">
+              <div className="min-w-6 min-h-6 rounded-full bg-[#62B2FD]"></div>
+              <p className="text-xs xl:text-base">Inquiries</p>
+            </div>
           </div>
-          <div className="flex items-center gap-4">
-            <div className="w-6 h-6 rounded-full bg-[#62B2FD]"></div>
-            <p>Inquiries</p>
+
+          <div className="flex space-x-2 bg-[#FCFCFC] border border-[#B3B3B3] rounded-xl text-[#484848] overflow-hidden text-lg">
+            {["week", "month", "year"].map((item) => (
+              <button
+                key={item}
+                className={`px-4 py-2.5 text-sm capitalize cursor-pointer ${
+                  timeRange === item ? "bg-catalien-blue text-white" : ""
+                }`}
+                onClick={() => setTimeRange(item as "week" | "month" | "year")}
+              >
+                {item}
+              </button>
+            ))}
           </div>
         </div>
 
-        <div className="flex space-x-2 bg-[#FCFCFC] border border-[#B3B3B3] rounded-xl text-[#484848] overflow-hidden text-lg">
-          {["week", "month", "year"].map((item) => (
-            <button
-              key={item}
-              className={`px-4 py-2.5 text-sm capitalize cursor-pointer ${
-                timeRange === item ? "bg-catalien-blue text-white" : ""
-              }`}
-              onClick={() => setTimeRange(item as "week" | "month" | "year")}
+        <div className="h-80">
+          <ResponsiveContainer width="100%" height="100%">
+            <AreaChart
+              data={getData()}
+              margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
             >
-              {item}
-            </button>
-          ))}
+              <defs>
+                <linearGradient id="colorRevenue" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="#3B82F6" stopOpacity={0.8} />
+                  <stop offset="95%" stopColor="#3B82F6" stopOpacity={0} />
+                </linearGradient>
+                <linearGradient id="colorInquiries" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="#10B981" stopOpacity={0.8} />
+                  <stop offset="95%" stopColor="#10B981" stopOpacity={0} />
+                </linearGradient>
+                <linearGradient id="colorViews" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="#8B5CF6" stopOpacity={0.8} />
+                  <stop offset="95%" stopColor="#8B5CF6" stopOpacity={0} />
+                </linearGradient>
+              </defs>
+
+              <CartesianGrid
+                strokeDasharray="3 3"
+                vertical={false}
+                stroke="#f0f0f0"
+              />
+              <XAxis
+                dataKey={getXAxisKey()}
+                axisLine={false}
+                tickLine={false}
+                tick={{ fill: "#969696" }}
+                padding={{ left: 20 }}
+              />
+              <YAxis
+                axisLine={false}
+                tickLine={false}
+                tick={{ fill: "#969696" }}
+                tickFormatter={(value) =>
+                  timeRange === "year" ? `$${value / 1000}k` : value
+                }
+              />
+              <Tooltip
+                contentStyle={{
+                  borderRadius: "8px",
+                  boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
+                  border: "none",
+                }}
+                formatter={formatTooltip}
+                labelFormatter={(label) =>
+                  `${
+                    timeRange === "year"
+                      ? "Month"
+                      : timeRange === "month"
+                      ? "Week"
+                      : "Day"
+                  }: ${label}`
+                }
+              />
+
+              {/* Actual Data Series */}
+              <Area
+                type="monotone"
+                dataKey="views"
+                stroke="#9747FF"
+                fill="url(#colorViews)"
+                strokeWidth={2}
+                name="Product View"
+              />
+              <Area
+                type="monotone"
+                dataKey="inquiries"
+                stroke="#62B2FD"
+                fill="url(#colorInquiries)"
+                strokeWidth={2}
+                name="Inquiries"
+              />
+              <Area
+                type="monotone"
+                dataKey="revenue"
+                stroke="#3B82F6"
+                fill="url(#colorRevenue)"
+                strokeWidth={2}
+                name="Revenue"
+              />
+            </AreaChart>
+          </ResponsiveContainer>
         </div>
       </div>
-
-      <div className="h-80">
-        <ResponsiveContainer width="100%" height="100%">
-          <AreaChart
-            data={getData()}
-            margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
-          >
-            <defs>
-              <linearGradient id="colorRevenue" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#3B82F6" stopOpacity={0.8} />
-                <stop offset="95%" stopColor="#3B82F6" stopOpacity={0} />
-              </linearGradient>
-              <linearGradient id="colorInquiries" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#10B981" stopOpacity={0.8} />
-                <stop offset="95%" stopColor="#10B981" stopOpacity={0} />
-              </linearGradient>
-              <linearGradient id="colorViews" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#8B5CF6" stopOpacity={0.8} />
-                <stop offset="95%" stopColor="#8B5CF6" stopOpacity={0} />
-              </linearGradient>
-            </defs>
-
-            <CartesianGrid
-              strokeDasharray="3 3"
-              vertical={false}
-              stroke="#f0f0f0"
-            />
-            <XAxis
-              dataKey={getXAxisKey()}
-              axisLine={false}
-              tickLine={false}
-              tick={{ fill: "#969696" }}
-              padding={{ left: 20 }}
-            />
-            <YAxis
-              axisLine={false}
-              tickLine={false}
-              tick={{ fill: "#969696" }}
-              tickFormatter={(value) =>
-                timeRange === "year" ? `$${value / 1000}k` : value
-              }
-            />
-            <Tooltip
-              contentStyle={{
-                borderRadius: "8px",
-                boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
-                border: "none",
-              }}
-              formatter={formatTooltip}
-              labelFormatter={(label) =>
-                `${
-                  timeRange === "year"
-                    ? "Month"
-                    : timeRange === "month"
-                    ? "Week"
-                    : "Day"
-                }: ${label}`
-              }
-            />
-
-            {/* Actual Data Series */}
-            <Area
-              type="monotone"
-              dataKey="views"
-              stroke="#9747FF"
-              fill="url(#colorViews)"
-              strokeWidth={2}
-              name="Product View"
-            />
-            <Area
-              type="monotone"
-              dataKey="inquiries"
-              stroke="#62B2FD"
-              fill="url(#colorInquiries)"
-              strokeWidth={2}
-              name="Inquiries"
-            />
-            <Area
-              type="monotone"
-              dataKey="revenue"
-              stroke="#3B82F6"
-              fill="url(#colorRevenue)"
-              strokeWidth={2}
-              name="Revenue"
-            />
-          </AreaChart>
-        </ResponsiveContainer>
-      </div>
-    </div>
+    </DashboardCommonSpace>
   );
 };
 

@@ -9,6 +9,7 @@ import profile from "../../../../assets/landing/profile.png";
 import CustomerInformation from "./CustomerInformation";
 import OrderAction from "./OrderAction";
 import PaymentInformation from "./PaymentInformation";
+import CommonWrapper from "@/common/CommonWrapper";
 
 export const originalTitle = (slug: string): string => {
   return slug.replace(/-/g, " ").replace(/\b\w/g, (char) => char.toUpperCase());
@@ -103,7 +104,7 @@ const OrderDetails = () => {
     currency: "$",
   };
   return (
-    <div className="">
+    <CommonWrapper className="">
       <div className="pb-6">
         <Breadcrumbs title="Orders" subtitle={`${originalTitle(id || "")}`} />
       </div>
@@ -121,7 +122,7 @@ const OrderDetails = () => {
           <PaymentInformation payment={paymentData} />
         </div>
       </div>
-    </div>
+    </CommonWrapper>
   );
 };
 

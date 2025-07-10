@@ -28,20 +28,20 @@ const DashboardCard: FC<CardProps> = ({ data }) => {
   const { title, value, icon, trend, iconBgColor, titleColor, unit } = data;
 
   return (
-    <Card className="w-full lg:max-w-[358px] h-[187px]  bg-white rounded-[16px] border border-[#E0E0E0]  ">
+    <Card className="w-full max-h-[187px]  bg-white rounded-[16px] border border-[#E0E0E0]  ">
       <CardContent className="">
-        <div className="flex  items-center gap-4 ">
+        <div className="flex items-center gap-4 ">
           {icon && (
             <div className={`p-3 rounded-lg ${iconBgColor}`}>{icon}</div>
           )}
-          <CommonHeader className={`!text-lg font-medium mb-2  `}>
+          <CommonHeader className={`!text-base md:!text-lg font-medium   `}>
             {title}
           </CommonHeader>
         </div>
 
-        <div className="mt-4">
+        <div className="">
           <p
-            className={`text-[32px] font-bold  text-center mb-3  ${titleColor}`}
+            className={`text-[32px] font-bold  text-center py-2  ${titleColor}`}
           >
             {value}
             <span className="text-[#969696] text-[12px]">{unit}</span>
