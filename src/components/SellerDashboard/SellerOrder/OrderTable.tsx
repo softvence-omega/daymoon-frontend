@@ -1,20 +1,10 @@
-import { useState } from "react";
-import { ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+
 import image1 from "../../../assets/landing/product2.png";
 import image2 from "../../../assets/landing/product3.png";
 import image3 from "../../../assets/landing/image1.png";
 import image4 from "../../../assets/landing/products.png";
-import { FaSearch } from "react-icons/fa";
 
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import {
   Table,
   TableBody,
@@ -24,7 +14,8 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import Pagination from "../../../common/Pagination";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import SearchFilter from "./SearchFilter";
 
 interface Order {
   id: string;
@@ -189,11 +180,16 @@ const getStatusColor = (status: Order["status"]) => {
   }
 };
 
-const OrderTable = () => {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [statusFilter, setStatusFilter] = useState("all");
-  const [dateFilter, setDateFilter] = useState("30days");
+export const slugify = (text: string) => {
+  return text
+    ?.toLowerCase()
+    .replace(/[^\w\s-]/g, "")
+    .trim()
+    .replace(/\s+/g, "-");
+};
 
+const OrderTable = () => {
+  const { pathname } = useLocation();
   const handleMarkAsDelivered = (orderId: string) => {
     console.log("Mark as delivered:", orderId);
   };
@@ -209,67 +205,17 @@ const OrderTable = () => {
     "Date",
     "Status",
     "Price",
-    "Date",
     "Action",
   ];
 
-  const slugify = (text: string) => {
-    return text
-      .toLowerCase()
-      .replace(/[^\w\s-]/g, "")
-      .trim()
-      .replace(/\s+/g, "-");
-  };
   return (
     <div className="w-full ">
-      <div className="flex flex-col sm:flex-row gap-4 items-center max-w-6xl w-full mx-auto mb-6 border border-foundation-white rounded-full p-4">
-        <div className="relative  flex-1 ">
-          <span className="bg-sunset-orange rounded-full p-2.5 absolute right-3 top-1/2 transform -translate-y-1/2">
-            <FaSearch className=" text-white h-3 w-3  " />
-          </span>
-
-          <Input
-            placeholder="Search orders by number, product and suppliers"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="px-4 py-5 border border-foundation-white rounded-full outline-none"
-          />
-        </div>
-
-        <div className="flex gap-3">
-          <Select value={statusFilter} onValueChange={setStatusFilter}>
-            <SelectTrigger className="w-[228px]  py-5  border border-foundation-white rounded-full">
-              <SelectValue placeholder="All Status" />
-              <ChevronDown className="w-4 h-4 text-sunset-orange" />
-            </SelectTrigger>
-            <SelectContent className="bg-white">
-              <SelectItem value="all">All Status</SelectItem>
-              <SelectItem value="delivered">Delivered</SelectItem>
-              <SelectItem value="shipped">Shipped</SelectItem>
-              <SelectItem value="pending">Pending</SelectItem>
-            </SelectContent>
-          </Select>
-
-          <Select value={dateFilter} onValueChange={setDateFilter}>
-            <SelectTrigger className="w-[228px] border py-5 border-foundation-white rounded-full">
-              <SelectValue placeholder="Last 30 Days" />{" "}
-              <ChevronDown className="w-4 h-4 text-sunset-orange" />
-            </SelectTrigger>
-            <SelectContent className="bg-white">
-              <SelectItem value="30days">Last 30 Days</SelectItem>
-              <SelectItem value="7days">Last 7 Days</SelectItem>
-              <SelectItem value="90days">Last 90 Days</SelectItem>
-              <SelectItem value="1year">Last Year</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-      </div>
-
+      <SearchFilter />
       <div className="p-2 overflow-hidden border border-[#E0E0E1] rounded-xl bg-white">
         <Table>
           <TableHeader className=" pb-5">
             <TableRow className="first:border-none ">
-              {headList.map((item, i) => (
+              {headList?.map((item, i) => (
                 <TableHead
                   key={i}
                   className="font-medium text-sm first:text-start nth-[2]:text-start  text-center text-foundation-gray bg-foundation-white  first:rounded-l-xl last:rounded-r-xl py-4 "
@@ -280,7 +226,7 @@ const OrderTable = () => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {mockOrders.map((order) => (
+            {mockOrders?.map((order) => (
               <TableRow key={order.id} className=" hover:bg-gray-50  ">
                 <TableCell className="font-medium py-6 ">
                   {order.orderNo}
@@ -323,9 +269,6 @@ const OrderTable = () => {
                 <TableCell className="font-medium text-center">
                   ${order.price}
                 </TableCell>
-                <TableCell className="font-medium text-center">
-                  ${order.date}
-                </TableCell>
 
                 <TableCell>
                   <div className="flex items-center justify-center gap-2">
@@ -338,7 +281,7 @@ const OrderTable = () => {
                         Mark As Delivered
                       </Button>
                     )}
-                    {order.status === "Pending" ? (
+                    {order?.status === "Pending" ? (
                       <>
                         <Button
                           size="sm"
@@ -357,8 +300,8 @@ const OrderTable = () => {
                     ) : (
                       <Link
                         className="text-sunset-orange hover:text-red-700 transition  cursor-pointer   py-5 rounded-2xl"
-                        to={`/seller-dashboard/orders/${slugify(
-                          order.orderNo
+                        to={`/seller-dashboard/all-orders/${slugify(
+                          order?.orderNo
                         )}`}
                       >
                         View
@@ -371,13 +314,15 @@ const OrderTable = () => {
           </TableBody>
         </Table>
       </div>
-
-      <div className="py-6">
-        <Pagination
-          title="All Orders"
-          showText="Showing 1 to 10 of 24 orders "
-        />
-      </div>
+      {pathname !== "/seller-dashboard/all-orders" && (
+        <div className="py-6">
+          <Pagination
+            title="All Orders"
+            showText="Showing 1 to 10 of 24 orders "
+            path="/seller-dashboard/all-orders"
+          />
+        </div>
+      )}
     </div>
   );
 };
