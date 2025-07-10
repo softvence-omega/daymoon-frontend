@@ -22,11 +22,13 @@ const BuyerHome = () => {
       icon: productIcon,
       content: (
         <>
-          <div className="lg:w-3/4 mx-auto">
+          <div className="md:w-3/4 lg:w-3/4 mx-auto">
             <GlobalSearchBar />
           </div>
           <ShopCategories number={8} />
-          <NewArrivalBanner />
+          <div className="md:w-3/4 lg:w-3/4 mx-auto">
+            <NewArrivalBanner />
+          </div>
           <HomeProducts
             cols={{ mobile: 2, md: 4, lg: 6 }}
             rows={{ mobile: 2, md: 4, lg: 8 }}
