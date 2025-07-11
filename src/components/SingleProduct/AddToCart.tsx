@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
@@ -12,12 +13,120 @@ import {
 import { Input } from "@/components/ui/input";
 import { IProduct } from "@/types";
 import { motion } from "motion/react";
+import { useState } from "react";
 
 function AddToCart({ productData }: { productData: IProduct }) {
+  // Track selected customizations and variant quantities
+  const [selectedCustomizations, setSelectedCustomizations] = useState<
+    string[]
+  >([]);
+
+  const [variantQuantities, setVariantQuantities] = useState(
+    productData.variants.reduce((acc, variant) => {
+      acc[variant.color] = 0;
+      return acc;
+    }, {} as Record<string, number>)
+  );
+
+  const handleCustomizationChange = (option: string) => {
+    setSelectedCustomizations((prev) => {
+      const updated = prev.includes(option)
+        ? prev.filter((item) => item !== option)
+        : [...prev, option];
+      console.log("Selected Customizations: ", updated);
+      return updated;
+    });
+  };
+
+  // Handle the change in quantity for each variant (via input or buttons)
+  const handleQuantityChange = (action: string, variant: string) => {
+    setVariantQuantities((prev) => {
+      let newQuantity = prev[variant] + (action === "increase" ? 1 : -1);
+      if (newQuantity < 0) newQuantity = 0;
+      console.log("Updated quantity: ", { ...prev, [variant]: newQuantity });
+      return { ...prev, [variant]: newQuantity };
+    });
+  };
+  // Handle manual quantity input
+  const handleQuantityInput = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    variant: string
+  ) => {
+    let value = parseInt(e.target.value, 10);
+    if (isNaN(value) || value < 0) value = 0;
+    setVariantQuantities((prev) => {
+      console.log(`Updated quantity for ${variant}: ${value}`);
+      return { ...prev, [variant]: value };
+    });
+  };
+
+  // Calculate total quantity of all variants selected
+  const calculateTotalQuantity = () => {
+    return Object.values(variantQuantities).reduce(
+      (total, quantity) => total + quantity,
+      0
+    );
+  };
+  //  customization and product quantities will be multiplied by the price per unit
+
+  const calculateVariantPrice = (variant: any) => {
+    const selectedQuantity = variantQuantities[variant.color];
+
+    const priceTier = productData.moq.find((tier) => {
+      const [minQty, maxQty] = tier.range.split("-").map(Number);
+      return selectedQuantity >= minQty && selectedQuantity <= maxQty;
+    });
+
+    // Get the price from the corresponding MOQ range, if available
+    const variantPrice = priceTier ? parseFloat(priceTier.price.slice(1)) : 0;
+
+    return variantPrice;
+  };
+
+  const calculateCustomizationPrice = () => {
+    const customizationTotal = selectedCustomizations.reduce(
+      (total, option) => {
+        const customization = productData.customizations.find(
+          (item) => item.option === option
+        );
+        return (
+          total + (customization ? parseFloat(customization.price.slice(1)) : 0)
+        );
+      },
+      0
+    );
+
+    return customizationTotal;
+  };
+
+  // Final price calculation
+  const calculateTotalPrice = () => {
+    return productData.variants.reduce((total, variant) => {
+      const variantPrice = calculateVariantPrice(variant);
+
+      //
+      const customizationPrice = calculateCustomizationPrice();
+
+      const variantTotalPrice =
+        variantPrice * variantQuantities[variant.color] +
+        customizationPrice * variantQuantities[variant.color];
+
+      return total + variantTotalPrice; // Add variant total to the overall total
+    }, 0);
+  };
+
+  // Check if the total quantity meets the minimum order quantity
+  const isQuantityValid =
+    calculateTotalQuantity() >= productData.minOrderQuantity;
+
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <motion.button className="px-10 py-3 rounded-3xl border-[#F04436] border-1 hover:bg-[#F04436] hover:text-white text-[#F04436] transition-colors duration-200 font-semibold">
+        <motion.button
+          whileTap={{ scale: 0.95 }}
+          whileHover={{ scale: 1.03 }}
+          className="px-10 py-3 rounded-3xl border-[#F04436] border-1 hover:bg-[#F04436] hover:text-white text-[#F04436] transition-colors duration-200 font-semibold"
+        >
           Add to Cart
         </motion.button>
       </DialogTrigger>
@@ -31,6 +140,7 @@ function AddToCart({ productData }: { productData: IProduct }) {
         </DialogHeader>
 
         <div className="grid gap-6 mt-4">
+          {/* Display MOQ Range and Prices */}
           <div>
             <div className="flex justify-between flex-wrap items-center gap-5">
               {productData.moq.map((tier, i) => (
@@ -50,16 +160,17 @@ function AddToCart({ productData }: { productData: IProduct }) {
             </p>
           </div>
 
+          {/* Variant Selection and Quantity Input */}
           {productData.variants.map((variant, index) => (
             <div
               key={index}
-              className="flex justify-between items-start gap-4 mt-6"
+              className="flex flex-col md:flex-row justify-between items-start gap-4 mb-16 md:mb-0 md:mt-6"
             >
-              <div className="flex items-center gap-4">
+              <div className="flex flex-col md:flex-row items-center gap-4">
                 <img
                   src={variant.image}
                   alt={variant.color}
-                  className="w-20 h-20 object-cover rounded-md"
+                  className="md:w-20 w-full h-[40dvh] md:h-20 object-cover rounded-md"
                 />
                 <div className="flex flex-col">
                   <span className="text-base font-medium text-gray-800">
@@ -69,30 +180,30 @@ function AddToCart({ productData }: { productData: IProduct }) {
                 </div>
               </div>
 
-              <div className="flex items-center ">
-                <div className="flex items-center  shadow-[0_0_0_1px_#E5E5E5] rounded-xl p-2 border-gray-300 gap-2">
+              <div className="flex items-center">
+                <div className="flex items-center shadow-[0_0_0_1px_#E5E5E5] rounded-xl p-2 border-gray-300 gap-2">
                   <Button
                     size="sm"
-                    // onClick={() =>
-                    // //   handleQuantityChange("decrease", variant.color)
-                    // }
+                    onClick={() =>
+                      handleQuantityChange("decrease", variant.color)
+                    }
                     className="text-[#F04436] bg-[#FEECEB] rounded-full"
                   >
                     -
                   </Button>
                   <Input
                     id={`quantity-${variant.color}`}
-                    // value={variantQuantities[variant.color]}
-                    // onChange={(e) => handleQuantityInput(e, variant.color)}
-                    className=" text-center text-gray-700 bg-[#EAEAEA] rounded-full border-none "
+                    value={variantQuantities[variant.color]}
+                    onChange={(e) => handleQuantityInput(e, variant.color)}
+                    className="text-center text-gray-700 bg-[#EAEAEA] rounded-full border-none focus:ring-[#F04436] focus:ring-1 "
                   />
                   <Button
                     variant="outline"
                     size="sm"
-                    // onClick={() =>
-                    //   handleQuantityChange("increase", variant.color)
-                    // }
-                    className="text-[#F04436] bg-[#FEECEB] rounded-full"
+                    onClick={() =>
+                      handleQuantityChange("increase", variant.color)
+                    }
+                    className="text-[#F04436] bg-[#FEECEB] rounded-full border-none"
                   >
                     +
                   </Button>
@@ -101,70 +212,67 @@ function AddToCart({ productData }: { productData: IProduct }) {
             </div>
           ))}
 
+          {/* Customization Options */}
           <div className="mt-6">
-            <h4 className="font-semibold      text-2xl">
+            <h4 className="font-semibold text-lg md:text-2xl">
               Customization Options
             </h4>
             <div className="space-y-4 mt-4">
               {productData.customizations.map((item, index) => (
                 <div
                   key={index}
-                  className="flex items-center space-x-4   text-gray-600 p-4 rounded-lg cursor-pointer transition-all duration-200 bg-[#E5E5E5] text-lg "
+                  className="flex items-center space-x-4 text-gray-600 p-4 rounded-lg cursor-pointer transition-all duration-200 bg-[#E5E5E5] text-lg"
                 >
                   <Checkbox
                     id={item.option}
-                    // checked={selectedCustomizations.includes(item.option)}
-                    // onCheckedChange={() =>
-                    //   handleCustomizationChange(item.option)
-                    // }
-                    className=" h-5 w-5 cursor-pointer transition-colors duration-200 ease-in-out border 
-                    data-[state=checked]:bg-[#f04436] 
-                    data-[state=checked]:border-[#f04436] 
-                    data-[state=checked]:text-white 
-                    data-[state=unchecked]:bg-transparent 
-                    data-[state=unchecked]:border-[#f04436] 
-                    data-[state=unchecked]:border-2"
+                    checked={selectedCustomizations.includes(item.option)}
+                    onCheckedChange={() =>
+                      handleCustomizationChange(item.option)
+                    }
+                    className="h-5 w-5 cursor-pointer transition-colors duration-200 ease-in-out border 
+                      data-[state=checked]:bg-[#f04436] 
+                      data-[state=checked]:border-[#f04436] 
+                      data-[state=checked]:text-white 
+                      data-[state=unchecked]:bg-transparent 
+                      data-[state=unchecked]:border-[#f04436] 
+                      data-[state=unchecked]:border-2"
                   />
-                  <span className="">{item.option}</span>
+                  <span>{item.option}</span>
                   <span>{item.price}</span>
                 </div>
               ))}
             </div>
           </div>
-          <hr className="border-gray-200 mt-4 w-full" />
+
           {/* Subtotal */}
-          <div className="flex justify-between text-sm font-semibold ">
+          <div className="mt-6 flex justify-between text-sm font-semibold">
             <span>Subtotal</span>
-            {/* <span>${calculateSubtotal().toFixed(2)}</span> */}
             <span className="font-semibold text-2xl text-[#D1512D]">
-              {" "}
-              2141$
+              ${calculateTotalPrice().toFixed(2)}
             </span>
           </div>
         </div>
 
+        {/* Dialog Footer */}
         <DialogFooter className="mt-6">
           <DialogClose asChild>
-            <Button
-              variant="outline"
-              className="px-6 py-2 rounded-lg text-gray-700 hover:bg-gray-200"
+            <motion.button
+              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.03 }}
+              className={`px-10 py-3 rounded-lg border-1`}
             >
               Cancel
-            </Button>
+            </motion.button>
           </DialogClose>
-          <Button
-            type="submit"
-            // disabled={!isQuantityValid}
-            className={`px-6 py-2 rounded-lg bg-[#F04436] text-white hover:bg-[#D7362F] `}
-            //     className={`px-6 py-2 rounded-lg bg-[#F04436] text-white hover:bg-[#D7362F]
-            //         ${
-            //       !isQuantityValid ? "opacity-50 cursor-not-allowed" : ""
-            //     }
-            // `}
-            // onClick={handleCheckout}
+          <motion.button
+            whileTap={{ scale: 0.95 }}
+            whileHover={{ scale: 1.03 }}
+            className={`px-10 py-3 rounded-lg bg-[#F04436] text-white hover:bg-[#D7362F] ${
+              !isQuantityValid ? "opacity-50 cursor-not-allowed" : ""
+            }`}
           >
             Continue to Checkout
-          </Button>
+          </motion.button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
