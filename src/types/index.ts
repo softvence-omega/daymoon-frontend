@@ -39,36 +39,64 @@ export interface IFilterProps {
 }
 export interface IProduct {
   productId: string;
-  name: string;
-  brand: string;
-  category: string;
-  rating: {
-    score: number;
-    reviews: number;
-  };
-  minimumOrderQuantity: number;
-  priceTiers: IPriceTier[];
-  sample: {
-    available: boolean;
-    price: number;
-  };
-  variants: IVariant[];
-  shipping: {
-    type: string;
-    description: string;
-  };
-  actions: ("Add_To_Cart" | "Chat_Now" | "Buy_Now")[];
+  minOrderQuantity: number;
+  productSlug: string;
+  productName: string;
+  productCategory: string;
+  brandName: string;
+  skuNo: string;
   description: string;
-  images: string[];
-  productDetails: {
-    keyFeatures: string[];
-    additionalFeatures: string[];
-    keyAttributes: {
-      [key: string]: string;
-    };
+  aboutProduct: string;
+  vendorInfo: {
+    vendorId: string;
+    vendorName: string;
+    storeUrl: string;
+    contactEmail: string;
+    verified: boolean;
   };
+  samplePrice: string;
+  moq: {
+    range: string;
+    price: string;
+  }[];
+  discounts?: {
+    type: "bulk";
+    minQty: number;
+    discountPercent: number;
+  }[];
+  inventory: {
+    stock: number;
+    inStock: boolean;
+    lowStockThreshold?: number;
+  };
+  variants: {
+    color: string;
+    image: string;
+  }[];
+  sizes: string[];
+  keyFeatures: string[];
+  additionalFeatures: {
+    title: string;
+    description: string;
+  }[];
+  keyAttributes: {
+    [key: string]: string;
+  };
+  ratings: {
+    score: number;
+    totalReviews: number;
+  };
+  reviews?: {
+    userId: string;
+    rating: number;
+    comment: string;
+    date: string;
+  }[];
+  customizations: {
+    option: string;
+    price: string;
+  }[];
 }
-
 export interface IPriceTier {
   quantityRange: string;
   price: number;
