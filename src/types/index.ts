@@ -39,6 +39,7 @@ export interface IFilterProps {
 }
 export interface IProduct {
   productId: string;
+
   minOrderQuantity: number;
   productSlug: string;
   productName: string;
@@ -47,13 +48,27 @@ export interface IProduct {
   skuNo: string;
   description: string;
   aboutProduct: string;
+
   vendorInfo: {
     vendorId: string;
     vendorName: string;
     storeUrl: string;
     contactEmail: string;
     verified: boolean;
+    vendorLogo: string;
+    vendorBanner?: string;
+    vendorRating?: number;
+    vendorTotalReviews?: number;
+    vendorLocation?: string;
+    vendorEmail?: string;
+    vendorPhone?: string;
+    vendorDescription?: string;
+    vendorFeatures?: {
+      title: string;
+      description: string;
+    }[];
   };
+
   samplePrice: string;
   moq: {
     range: string;

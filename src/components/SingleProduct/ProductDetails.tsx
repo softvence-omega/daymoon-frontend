@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { ChevronRight, Truck } from "lucide-react";
+import { ChevronRight, StarIcon, Truck } from "lucide-react";
 import { useState } from "react";
 import image3 from "../../assets/landing/product2.png";
 import image2 from "../../assets/landing/product3.png";
@@ -7,6 +7,7 @@ import image1 from "../../assets/landing/products.png";
 
 import { IProduct } from "@/types";
 import { motion } from "motion/react";
+import { Link } from "react-router-dom";
 import Breadcrumbs from "../SellerDashboard/SellerProducts/Breadcrumbs";
 import SingleProductImage from "../SellerDashboard/SellerProducts/ProductDetails/SingleProductImage";
 import { StarRating } from "../SellerDashboard/SellerProducts/ProductDetails/StarRating";
@@ -30,6 +31,9 @@ const dummyProduct: IProduct = {
     storeUrl: "/vendors/electromart",
     contactEmail: "sales@electromart.com",
     verified: true,
+    vendorLogo: "https://example.com/vendor-shop-image.jpg",
+    vendorRating: 4.5,
+    vendorTotalReviews: 7457,
   },
 
   samplePrice: "$1.50",
@@ -38,7 +42,7 @@ const dummyProduct: IProduct = {
     { range: "10-199", price: "$5.34" },
     { range: "200-499", price: "$3.45" },
     { range: "500-999", price: "$1.56" },
-    { range: "1000+", price: "$0.56" },
+    { range: "1000-10000", price: "$0.56" },
   ],
   discounts: [{ type: "bulk", minQty: 500, discountPercent: 15 }],
   inventory: {
@@ -96,7 +100,7 @@ const dummyProduct: IProduct = {
 };
 
 export default function ProductDetails() {
-  const [product] = useState<IProduct>(dummyProduct);
+  const [product, setProduct] = useState<IProduct>(dummyProduct);
 
   const [selectedColor, setSelectedColor] = useState<string>(
     product.variants[0].color
@@ -109,7 +113,28 @@ export default function ProductDetails() {
         subtitle="Products"
         subtitle2={product.productName}
       />
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-6">
+      <Link to="/manufacturers">
+        <div className="flex items-center mt-7  rounded-lg shadow-none border-none gap-2">
+          <img
+            src={product.vendorInfo.vendorLogo}
+            alt="Vendor Logo"
+            className="w-8 h-8 rounded-full border-2 border-gray-300"
+          />
+
+          <div className="flex flex-row items-center space-x-2">
+            <p className="text-sm font-semibold underline text-[#FCAB3F]">
+              {product.vendorInfo.vendorName}
+            </p>
+            <StarIcon className="h-4 w-4 mx-1 text-yellow-400" />
+
+            <span className="text-sm mr-1 text-gray-600">
+              {product.vendorInfo.vendorRating} (
+              {product.vendorInfo.vendorTotalReviews})
+            </span>
+          </div>
+        </div>
+      </Link>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-10">
         <div className="relative">
           <SingleProductImage />
         </div>

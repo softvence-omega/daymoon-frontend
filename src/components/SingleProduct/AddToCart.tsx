@@ -253,7 +253,6 @@ function AddToCart({ productData }: { productData: IProduct }) {
           </div>
         </div>
 
-        {/* Dialog Footer */}
         <DialogFooter className="mt-6">
           <DialogClose asChild>
             <motion.button
