@@ -98,15 +98,14 @@ const ReviewedCard: React.FC<ReviewedCardProps> = ({
         </div>
       </div>
 
-      {/* User Review Section */}
       <div className="mt-4 flex-grow">
-        <p className="text-[#666] text-sm mb-2">
+        <p className="text-[#666] bg-[#E5E5E5] text-sm mb-2 p-3 rounded-md">
           <span className="font-semibold">Your Review:</span> {userReview}
         </p>
-        <div className="flex items-center gap-2 px-4 py-2 mt-4 shadow w-fit rounded-md ">
-          <span className="font-semibold"> {userRating} </span>
-          <Star className="w-4 h-4 text-amber-400" />
-        </div>
+      </div>
+      <div className="flex items-center gap-2 px-4 py-2 mt-4 shadow w-fit rounded-md ">
+        <span className="font-semibold"> {userRating} </span>
+        <Star className="w-4 h-4 text-amber-400" />
       </div>
     </div>
   );

@@ -5,47 +5,103 @@ import StyledSelect from "@/components/ReUseable/StyledSelect";
 import { BuyerOrderTableData } from "@/lib/Buyer/BuyerOrderTable";
 import { OrdersTableProps } from "@/types/Buyer/BuyerOrderTypes";
 import { Search } from "lucide-react";
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const BuyerOrdersTable: React.FC<OrdersTableProps> = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState("All Status");
   const [dateFilter, setDateFilter] = useState("Last 30 Days");
+  const [filteredOrders, setFilteredOrders] = useState(BuyerOrderTableData);
+
+  // Debounced search term
+  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
+
+  // Helper function to filter orders based on date
+  const filterByDate = useCallback(
+    (orderDate: string) => {
+      const orderDateObj = new Date(orderDate);
+      const currentDate = new Date();
+
+      orderDateObj.setHours(0, 0, 0, 0);
+      currentDate.setHours(0, 0, 0, 0);
+
+      const diffTime = currentDate.getTime() - orderDateObj.getTime();
+      const diffDays = Math.floor(diffTime / (1000 * 3600 * 24));
+
+      switch (dateFilter) {
+        case "Last 7 Days":
+          return diffDays <= 7;
+        case "Last 30 Days":
+          return diffDays <= 30;
+        case "Last 90 Days":
+          return diffDays <= 90;
+        case "Last Year":
+          return diffDays <= 365;
+        default:
+          return true;
+      }
+    },
+    [dateFilter]
+  );
+
+  // Apply filters with debouncing
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedSearchTerm(searchTerm);
+    }, 300);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [searchTerm]);
+
+  useEffect(() => {
+    const filtered = BuyerOrderTableData.filter((order) => {
+      const matchesSearch =
+        debouncedSearchTerm === "" ||
+        order.id.toLowerCase().includes(debouncedSearchTerm.toLowerCase()) ||
+        order.product.name
+          .toLowerCase()
+          .includes(debouncedSearchTerm.toLowerCase()) ||
+        order.supplier
+          .toLowerCase()
+          .includes(debouncedSearchTerm.toLowerCase());
+
+      const matchesStatus =
+        statusFilter === "All Status" || order.status === statusFilter;
+
+      const matchesDate = filterByDate(order.date);
+
+      return matchesSearch && matchesStatus && matchesDate;
+    });
+
+    setFilteredOrders(filtered);
+  }, [debouncedSearchTerm, statusFilter, dateFilter, filterByDate]);
 
   const getStatusColor = (status: string) => {
     switch (status) {
       case "Delivered":
-        return "bg-green-100 text-green-800";
+        return "bg-[#10b98133] text-[#10B981]";
       case "Pending":
-        return "bg-orange-100 text-orange-800";
+        return "bg-[#f59e4233] text-[#F59E42]";
       case "Shipped":
-        return "bg-blue-100 text-blue-800";
+        return "bg-[#1565d833] text-[#1565D8]";
       default:
         return "bg-gray-100 text-gray-800";
     }
   };
+
   const handleSearch = () => {
     if (searchTerm.trim()) {
       console.log("Searching for:", searchTerm);
     }
   };
-  const filteredOrders = BuyerOrderTableData.filter((order) => {
-    const matchesSearch =
-      order.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      order.product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      order.supplier.toLowerCase().includes(searchTerm.toLowerCase());
-
-    const matchesStatus =
-      statusFilter === "All Status" || order.status === statusFilter;
-
-    return matchesSearch && matchesStatus;
-  });
 
   return (
-    <div className="max-w-76xl mx-auto p-6 ">
+    <div className="mx-auto p-6 ">
       {/* Header */}
-      <div className="flex justify-between items-center mb-6">
+      <div className="flex justify-between items-center mb-6 flex-wrap md:flex-nowrap">
         <div>
           <h1 className="text-xl lg:text-3xl font-medium text-[#484848]">
             My Orders
@@ -54,28 +110,27 @@ const BuyerOrdersTable: React.FC<OrdersTableProps> = () => {
             Manage and track your order history
           </p>
         </div>
-        <div className="flex gap-3">
+        <div className="flex gap-3 mt-4 md:mt-0 flex-wrap md:flex-nowrap">
           <Link
             to="reviews"
-            className="flex items-center cursor-pointer gap-2 px-4 py-2 text-sm font-medium text-gray-700   hover:bg-gray-50 transition-colors"
+            className="flex items-center cursor-pointer gap-2 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
           >
             <span className="border-b border-catalien-blue text-lg">
               Reviews
             </span>
-            {/* <MessageSquare className="w-4 h-4 " /> */}
-            <img src={reviews} alt="" />
+            <img src={reviews} alt="" className="w-5 h-5" />
           </Link>
           <Link to="refund">
             <button className="flex cursor-pointer items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700  transition-colors">
               <span className="border-b border-catalien-blue text-lg">
                 Refund
               </span>
-              <img src={refund} alt="" />
+              <img src={refund} alt="" className="w-5 h-5" />
             </button>
           </Link>
           <Link to="refund">
-            <button className="flex items-center gap-2 px-4 cursor-pointer py-2 text-sm font-medium text-white bg-red-500 rounded-full hover:bg-red-600 transition-colors">
-              <img src={coupon} alt="" />
+            <button className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-red-500 rounded-full hover:bg-red-600 transition-colors">
+              <img src={coupon} alt="" className="w-5 h-5" />
               Coupons
             </button>
           </Link>
@@ -83,37 +138,35 @@ const BuyerOrdersTable: React.FC<OrdersTableProps> = () => {
       </div>
 
       {/* Search and Filters */}
-      <div className="p-4 xl:border my-10 xl:border-[#E5E5E5] rounded-full max-w-7xl mx-auto bg-transparent">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-4 items-center">
-          {/* Search Bar - Takes full width on smaller screens */}
-          <div className="relative md:col-span-2 lg:col-span-1">
-            <div className="relative">
-              <Search
-                className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white w-6 p-1 rounded-full h-auto"
-                style={{
-                  background:
-                    "linear-gradient(270deg, #F7813B 0%, #F46A39 100%)",
-                }}
-              />
-              <input
-                type="text"
-                placeholder="Search orders by number, product, and suppliers"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") {
-                    handleSearch();
-                  }
-                }}
-                className="w-full rounded-full border border-[#E5E5E5] bg-white text-[#1A1A1A] placeholder:text-[#666666] pl-6 pr-12 py-3 text-base focus:outline-none focus:ring-2 focus:ring-[#F04436] focus:border-transparent h-auto"
-              />
-            </div>
+
+      <div className="p-4 pl-8 xl:border my-10 xl:border-[#E5E5E5] rounded-full max-w-7xl mx-auto bg-transparent">
+        <div className="flex flex-col lg:flex-row gap-4 items-center">
+          {/* Search Bar */}
+          <div className="relative flex-1 w-full">
+            <input
+              type="text"
+              placeholder="Search orders by number, product and suppliers"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  handleSearch();
+                }
+              }}
+              className="w-full rounded-full border border-gray-300 bg-white text-gray-900 placeholder:text-gray-500 pl-4 pr-12 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+            />
+            <button
+              onClick={handleSearch}
+              className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-gradient-to-r from-orange-500 to-orange-600 text-white p-1.5 rounded-full hover:from-orange-600 hover:to-orange-700 transition-colors"
+            >
+              <Search className="w-4 h-4" />
+            </button>
           </div>
 
-          {/* Filter Selects - Takes other half on large screens */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:col-span-2 lg:col-span-1">
+          {/* Filter Dropdowns */}
+          <div className="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
             {/* Status Filter */}
-            <div className="relative">
+            <div className="relative w-full md:w-40">
               <StyledSelect
                 placeholder={statusFilter}
                 defaultValue={statusFilter}
@@ -128,7 +181,7 @@ const BuyerOrdersTable: React.FC<OrdersTableProps> = () => {
             </div>
 
             {/* Date Filter */}
-            <div className="relative">
+            <div className="relative w-full md:w-48">
               <StyledSelect
                 placeholder={dateFilter}
                 defaultValue={dateFilter}
@@ -147,88 +200,96 @@ const BuyerOrdersTable: React.FC<OrdersTableProps> = () => {
 
       {/* Orders Table */}
       <div className="overflow-x-auto bg-white rounded-lg border border-gray-200">
-        <table className="w-full">
-          <thead className="bg-[#E5E5E5]">
-            <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Order ID
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Supplier
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Product
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Quantity
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Date
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Status
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Amount
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Action
-              </th>
-            </tr>
-          </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
-            {filteredOrders.map((order) => (
-              <tr key={order.id} className="hover:bg-gray-50 transition-colors">
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                  {order.id}
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                  {order.supplier}
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="flex items-center">
-                    <div className="h-10 w-10 rounded-lg bg-gray-100 flex items-center justify-center mr-3">
-                      <img
-                        src={order.product.image}
-                        alt={order.product.name}
-                        className="h-8 w-8 rounded object-cover"
-                      />
-                    </div>
-                    <div className="text-sm font-medium text-gray-900">
-                      {order.product.name}
-                    </div>
-                  </div>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                  {order.quantity}
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                  {order.date}
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <span
-                    className={`inline-flex px-2 py-1 text-xs font-medium rounded-full ${getStatusColor(
-                      order.status
-                    )}`}
-                  >
-                    {order.status}
-                  </span>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                  {order.amount}
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                  <button className="text-red-600 hover:text-red-900 transition-colors">
-                    View
-                  </button>
-                </td>
+        {filteredOrders.length > 0 ? (
+          <table className="w-full">
+            <thead className="bg-[#E5E5E5]">
+              <tr>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Order ID
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Supplier
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Product
+                </th>
+                <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Quantity
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Date
+                </th>
+                <th className="px-6 py-3 text-center text-xs font-medium text-gray-500  uppercase tracking-wider">
+                  Status
+                </th>
+                <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider ">
+                  Amount
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Action
+                </th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="bg-white divide-y divide-gray-200">
+              {filteredOrders.map((order) => (
+                <tr
+                  key={order.id}
+                  className="hover:bg-gray-50 transition-colors"
+                >
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    {order.id}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    {order.supplier}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <div className="flex items-center">
+                      <div className="h-10 w-10 rounded-lg bg-gray-100 flex items-center justify-center mr-3">
+                        <img
+                          src={order.product.image}
+                          alt={order.product.name}
+                          className="h-8 w-8 rounded object-cover"
+                        />
+                      </div>
+                      <div className="text-sm font-medium text-gray-900">
+                        {order.product.name}
+                      </div>
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
+                    {order.quantity}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    {order.date}
+                  </td>
+                  <td className="px-4 py-4 whitespace-nowrap">
+                    <span
+                      className={`block px-2 py-2 text-sm font-medium rounded-full text-center ${getStatusColor(
+                        order.status
+                      )}`}
+                    >
+                      {order.status}
+                    </span>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 text-center">
+                    {order.amount}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                    <button className="text-red-600 hover:text-red-900 transition-colors">
+                      View
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <div className="text-center text-lg font-semibold text-gray-500 py-10">
+            No orders found matching your filters.
+          </div>
+        )}
       </div>
 
-      {/* Pagination */}
       <div className="flex items-center justify-between mt-6">
         <div className="text-sm text-gray-700">
           Showing 1 to 10 of {filteredOrders.length} orders

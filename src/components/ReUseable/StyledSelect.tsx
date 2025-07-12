@@ -32,24 +32,24 @@ const StyledSelect = ({
     <Select defaultValue={defaultValue} onValueChange={onValueChange}>
       <SelectTrigger
         className={classNames(
-          "w-full cursor-pointer rounded-full border border-[#E5E5E5] focus:ring-[#E5E5E5] bg-white text-[#1A1A1A] placeholder:text-[#1A1A1A] px-5 py-3 data-[size=default]:h-auto text-base [&>svg]:text-[#F04436] [&>svg]:opacity-100",
+          "w-full  rounded-full border border-[#E5E5E5] focus:ring-[#E5E5E5] bg-white text-[#1A1A1A] placeholder:text-[#1A1A1A] px-5 py-3 data-[size=default]:h-auto text-base [&>svg]:text-[#F04436] [&>svg]:opacity-100",
           className
         )}
       >
-        <SelectValue placeholder={placeholder} />
+        <SelectValue placeholder={placeholder} />{" "}
+        <ChevronDown className="relative right-0 top-2 -translate-y-1/2 text-[#1A1A1A]  w-4 h-4 pointer-events-none" />
       </SelectTrigger>
       <SelectContent className="bg-white border-none ">
         {options.map((option) => (
           <SelectItem
-            className="hover:bg-[#E5E5E5]"
+            className="hover:bg-[#E5E5E5] "
             key={option.value}
             value={option.value}
           >
-            {option.label}
+            {option.label}{" "}
           </SelectItem>
         ))}
       </SelectContent>
-      <ChevronDown className="absolute right-2 top-1/2   w-4 h-4 pointer-events-none" />
     </Select>
   );
 };

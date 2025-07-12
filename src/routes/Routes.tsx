@@ -157,7 +157,7 @@ const routes = createBrowserRouter([
             element: <BuyerReview />,
           },
           {
-            path: "refund",
+            path: "orders/refund",
             element: <BuyerRefund />,
           },
           {

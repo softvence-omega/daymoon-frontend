@@ -1,3 +1,4 @@
+import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
@@ -5,9 +6,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 interface FilterOption {
   value: string;
@@ -41,12 +41,16 @@ const FilterSelect = ({
 }: FilterSelectProps) => {
   return (
     <Select defaultValue={defaultValue} onValueChange={onValueChange}>
-      <SelectTrigger className="w-full rounded-full border border-[#E5E5E5] bg-white text-[#1A1A1A] placeholder:text-[#1A1A1A] px-5 py-3 data-[size=default]:h-auto text-base [&>svg]:text-[#F04436] [&>svg]:opacity-100">
+      <SelectTrigger className="w-full  rounded-full border border-[#E5E5E5] focus:ring-[#E5E5E5] bg-white text-[#1A1A1A] placeholder:text-[#1A1A1A] px-5 py-3 data-[size=default]:h-auto text-base [&>svg]:text-[#F04436] [&>svg]:opacity-100">
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>
-      <SelectContent className="bg-white">
+      <SelectContent className="bg-white border-none cursor-pointer">
         {options.map((option) => (
-          <SelectItem key={option.value} value={option.value}>
+          <SelectItem
+            className="hover:bg-[#E5E5E5] cursor-pointer"
+            key={option.value}
+            value={option.value}
+          >
             {option.label}
           </SelectItem>
         ))}
@@ -149,7 +153,6 @@ const PaymentsFilters = ({ onFilterChange = () => {} }: RFQFilterProps) => {
           </div>
         </div>
 
-        {/* Filter Selects - Takes other half on large screens */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:col-span-2 lg:col-span-1">
           {filterConfigs.map((config) => (
             <FilterSelect
