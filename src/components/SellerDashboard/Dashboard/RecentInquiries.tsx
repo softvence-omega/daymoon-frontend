@@ -53,12 +53,12 @@ function InquiryCard({
       <div className="flex flex-wrap gap-2 ">
         {status === "Pending" ? (
           <>
-            <Button className="h-12 px-10 rounded-xl bg-[#192D4E] text-white text-base font-medium hover:bg-[#14233a] transition">
+            <Button className="h-12 px-10 rounded-xl bg-[#192D4E] text-white text-base font-medium hover:bg-[#14233a] transition cursor-pointer">
               Respond
             </Button>
             <Button
               variant="outline"
-              className="h-12 px-10 rounded-xl border border-[#192D4E] text-[#192D4E] hover:bg-[#f4f4f4] transition"
+              className="h-12 px-10 rounded-xl border border-[#192D4E] text-[#192D4E] hover:bg-[#f4f4f4] transition cursor-pointer"
             >
               Mark as Resolved
             </Button>
@@ -66,7 +66,7 @@ function InquiryCard({
         ) : (
           <Button
             variant="outline"
-            className="h-12 px-10 rounded-xl border border-[#192D4E] text-[#192D4E] hover:bg-[#f4f4f4] transition"
+            className="h-12 px-10 rounded-xl border border-[#192D4E] text-[#192D4E] hover:bg-[#f4f4f4] transition cursor-pointer"
           >
             View Details
           </Button>

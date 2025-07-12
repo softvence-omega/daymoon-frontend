@@ -179,7 +179,7 @@ const columns: ColumnDef<Inquiry>[] = [
       const status = row.original.status;
       return (
         <span
-          className={`flex h-8 px-5 justify-center items-center gap-1 rounded-full font-semibold text-sm capitalize ${statusClassNames[status]}`}
+          className={`flex w-24 h-8 px-5 justify-center items-center gap-1 rounded-full font-semibold text-sm capitalize ${statusClassNames[status]}`}
         >
           {statusLabels[status]}
         </span>

@@ -156,7 +156,7 @@ const InquiryDetails = () => {
             {/* Buyer Message */}
             <div>
               <h3 className="text-2xl font-sans mb-4">Buyers Messages</h3>
-              <div className="bg-white rounded-xl shadow p-4 border border-[#E5E5E5] h-[386px] overflow-hidden">
+              <div className="bg-[#E5E5E5] rounded-xl shadow p-4 border border-[#E5E5E5] h-[386px] overflow-hidden">
                 {/* Scrollable message content */}
                 <div className="overflow-y-auto h-full space-y-3">
                   <div className="w-full text-lg text-gray-700 leading-loose whitespace-pre-line">

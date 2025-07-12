@@ -71,7 +71,7 @@ export function CustomersReview() {
         <h1 className="text-2xl font-medium text-[#484848] leading-tight">
           Customers Review
         </h1>
-        <button className="underline text-[#F04436] text-base font-medium hover:text-[#d6332a] transition-colors">
+        <button className="underline text-[#F04436] text-base font-medium hover:text-[#d6332a] transition-colors cursor-pointer">
           View All
         </button>
       </div>
