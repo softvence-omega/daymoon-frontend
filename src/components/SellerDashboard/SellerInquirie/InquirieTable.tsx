@@ -66,7 +66,7 @@ const data: Inquiry[] = [
   {
     id: "3",
     inquiryId: "INQ-123789",
-    productName: "Bluetooth Headphones",
+    productName: " Headphones",
     sku: "HD-X300-BLU",
     photo: samplePhoto,
     buyerName: "Emily Davis",
@@ -88,7 +88,7 @@ const data: Inquiry[] = [
   {
     id: "5",
     inquiryId: "INQ-847362",
-    productName: "Mechanical Keyboard",
+    productName: " Keyboard",
     sku: "MK-9000-RED",
     photo: samplePhoto,
     buyerName: "Linda Martinez",
@@ -183,6 +183,7 @@ const columns: ColumnDef<Inquiry>[] = [
     id: "select",
     header: ({ table }) => (
       <Checkbox
+        className="cursor-pointer"
         checked={
           table.getIsAllPageRowsSelected() ||
           (table.getIsSomePageRowsSelected() && "indeterminate")
@@ -193,6 +194,7 @@ const columns: ColumnDef<Inquiry>[] = [
     ),
     cell: ({ row }) => (
       <Checkbox
+        className="cursor-pointer"
         checked={row.getIsSelected()}
         onCheckedChange={(value) => row.toggleSelected(!!value)}
         aria-label="Select row"
@@ -216,7 +218,7 @@ const columns: ColumnDef<Inquiry>[] = [
         <img
           src={row.original.photo}
           alt={row.original.productName}
-          className="w-10 h-10 rounded object-cover"
+          className="w-10 h-10 rounded object-cover cursor-pointer"
         />
         <div>
           <div className="font-medium text-sm">{row.original.productName}</div>
@@ -247,7 +249,7 @@ const columns: ColumnDef<Inquiry>[] = [
       const status = row.original.status;
       return (
         <span
-          className={`flex h-8 px-5 justify-center items-center gap-1 rounded-full font-semibold text-sm capitalize ${statusClassNames[status]}`}
+          className={`flex w-[99px] h-8 px-5 justify-center items-center gap-1 rounded-full font-semibold text-sm capitalize ${statusClassNames[status]}`}
         >
           {statusLabels[status]}
         </span>

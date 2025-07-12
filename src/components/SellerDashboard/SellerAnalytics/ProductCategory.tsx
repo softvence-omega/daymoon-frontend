@@ -289,12 +289,12 @@ export function ProductCategory() {
           <Table className="w-full">
             <TableHeader>
               <TableRow className="bg-[#E5E5E5] text-[#666666] text-sm rounded-2xl border">
-                <TableHead className="px-4 py-2">Product</TableHead>
-                <TableHead className="px-4 py-2">Category</TableHead>
-                <TableHead className="px-4 py-2">Unit Sold</TableHead>
-                <TableHead className="px-4 py-2">Revenue</TableHead>
-                <TableHead className="px-4 py-2">Return (%)</TableHead>
-                <TableHead className="px-4 py-2 text-right">Rating</TableHead>
+                <TableHead className="px-4 h-12">Product</TableHead>
+                <TableHead className="px-4 h-12">Category</TableHead>
+                <TableHead className="px-4 h-12">Unit Sold</TableHead>
+                <TableHead className="px-4 h-12">Revenue</TableHead>
+                <TableHead className="px-4 h-12">Return (%)</TableHead>
+                <TableHead className="px-4 h-12 text-center">Rating</TableHead>
               </TableRow>
             </TableHeader>
 
@@ -317,8 +317,9 @@ export function ProductCategory() {
                   <TableCell className="px-4 py-3">
                     {product.returnRate}
                   </TableCell>
-                  <TableCell className="text-right px-4 py-3">
-                    {product.rating} <span className="text-yellow-500">★</span>
+                  <TableCell className="text-center px-4 py-3 text-yellow-500">
+                    {product.rating}{" "}
+                    <span className="text-yellow-500 h-6 w-6">★</span>
                   </TableCell>
                 </TableRow>
               ))}
