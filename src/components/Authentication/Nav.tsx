@@ -1,11 +1,12 @@
-import { FaGlobe, FaChevronDown } from "react-icons/fa";
+import { useEffect, useState } from "react";
+import { FaChevronDown, FaGlobe } from "react-icons/fa";
+import { Link, useLocation } from "react-router-dom";
 import buyer from "../../assets/Icon/cart.png";
 import seller from "../../assets/Icon/truck.png";
-import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
 
 const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [selectedRole, setSelectedRole] = useState("Buyer"); // New state to track selected role
   const location = useLocation();
 
   // Close dropdown when clicking outside
@@ -48,8 +49,12 @@ const Nav = () => {
             }}
           >
             <span className="flex items-center gap-2">
-              <img src={buyer} alt="" className="w-5 h-5" />
-              <span>Buyer</span>
+              <img
+                src={selectedRole === "Buyer" ? buyer : seller}
+                alt=""
+                className="w-5 h-5"
+              />
+              <span>{selectedRole}</span>
             </span>
             <FaChevronDown className="text-[#F14141] text-xs" />
           </button>
@@ -59,17 +64,20 @@ const Nav = () => {
               className="absolute top-full left-0 right-0 mt-1 bg-white border border-foundation-gray rounded-lg shadow-sm z-10"
               onClick={(e) => e.stopPropagation()}
             >
-              <p className="w-full text-left flex items-center gap-2 px-5 py-3 border-b border-foundation-gray cursor-pointer">
+              <p
+                className="w-full text-left flex items-center gap-2 px-5 py-3 border-b border-foundation-gray cursor-pointer"
+                onClick={() => setSelectedRole("Buyer")} // Set role to "Buyer"
+              >
                 <img src={buyer} alt="" className="w-5 h-5" />
                 <span>Buyer</span>
               </p>
-              <Link
-                to="/signup-seller"
+              <p
                 className="w-full text-left flex items-center gap-2 px-5 py-3 cursor-pointer"
+                onClick={() => setSelectedRole("Seller")} // Set role to "Seller"
               >
                 <img src={seller} alt="" className="w-5 h-5" />
                 <span>Seller</span>
-              </Link>
+              </p>
             </div>
           )}
         </div>

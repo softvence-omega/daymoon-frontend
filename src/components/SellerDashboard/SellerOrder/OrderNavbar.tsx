@@ -18,13 +18,13 @@ const OrderNavbar = () => {
           />
         </div>
 
-        <div>
+        <div className="">
           <Select>
-            <SelectTrigger className="min-w-[220px] outline bg-[#FCFCFC] border border-[#B3B3B3] px-3 py-5 rounded-xl outline-none flex justify-between items-center cursor-pointer ">
+            <SelectTrigger className=" sm:min-w-[220px] bg-[#FCFCFC] border border-[#B3B3B3] px-3 py-5 rounded-xl text-left text-gray-700">
               <SelectValue placeholder="Select a category" />
-              <ChevronDown className="w-4 h-4 text-gray-500" />
+              <ChevronDown className="w-4 h-4 text-gray-500 ml-auto" />
             </SelectTrigger>
-            <SelectContent className="bg-white text-lg">
+            <SelectContent className="bg-white text-base">
               <SelectItem value="30days">Last 30 Days</SelectItem>
               <SelectItem value="7days">Last 7 Days</SelectItem>
               <SelectItem value="90days">Last 90 Days</SelectItem>

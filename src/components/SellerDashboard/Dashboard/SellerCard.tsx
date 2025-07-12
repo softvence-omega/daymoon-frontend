@@ -1,8 +1,8 @@
-import Title from "../Shared/Title";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
 import { Plus } from "lucide-react";
 import { TfiImport } from "react-icons/tfi";
+import { Link } from "react-router-dom";
+import Title from "../Shared/Title";
 import Card from "./Card";
 
 const SellerCard = () => {

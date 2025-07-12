@@ -4,8 +4,8 @@ import img1 from "../../assets/Shop/newArrival.png";
 
 export function NewArrivalBanner() {
   return (
-    <div className="relative rounded-2xl mt-16  w-full max-w-[1080px] mx-auto  overflow-hidden bg-gradient-to-r from-gray-50 to-gray-100 border-0 shadow-lg">
-      <p className="hidden lg:block absolute top-0 left-0 w-full h-full text-[140px] leading-[120%] font-semibold uppercase text-[#FCFCFC] [text-shadow:0px_4px_40.5px_rgba(0,0,0,0.1)] font-poppins text-center opacity-50">
+    <div className="relative rounded-2xl mt-16  w-full mx-auto  overflow-hidden bg-gradient-to-r from-gray-50 to-gray-100 border-0 shadow-lg">
+      <p className="hidden lg:block absolute top-0 left-0 w-full h-full text-[128px] leading-[120%] font-semibold uppercase text-[#FCFCFC] [text-shadow:0px_4px_40.5px_rgba(0,0,0,0.1)] font-poppins text-center opacity-50">
         New Arrivals
       </p>
 

@@ -14,7 +14,7 @@ const MoreButton: React.FC<ExploreMoreButtonProps> = ({
       <button
         onClick={onClick}
         className="flex h-[50px] px-5 gap-3 items-center rounded-[20px] bg-white shadow-[3px_4px_14.6px_0_rgba(0,0,0,0.12)]
-          text-sunset-orange font-medium md:font-semibold text-base text-[18px] not-italic 
+          text-sunset-orange font-medium md:font-semibold text-base text-[16px] md:text-[18px] lg:text-[18px] not-italic 
           hover:shadow-xl transition-shadow cursor-pointer"
       >
         {text}

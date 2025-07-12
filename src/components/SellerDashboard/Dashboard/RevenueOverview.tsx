@@ -99,7 +99,7 @@ const RevenueOverview = () => {
             <SelectTrigger className="w-[221px] h-[48px] border border-[#B3B3B3] rounded-[12px] px-[20px] py-[10px] flex items-center justify-between text-[#484848]">
               <SelectValue placeholder="Last 6 Months" />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="bg-white border-none ">
               <SelectGroup>
                 <SelectLabel>Months</SelectLabel>
                 <SelectItem value="1">Last 1 Month</SelectItem>

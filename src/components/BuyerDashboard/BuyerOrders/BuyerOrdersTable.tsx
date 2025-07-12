@@ -49,7 +49,7 @@ const BuyerOrdersTable: React.FC<OrdersTableProps> = () => {
         </div>
         <div className="flex gap-3">
           <Link
-            to="/reviews"
+            to="/buyer/dashboard/reviews"
             className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700   hover:bg-gray-50 transition-colors"
           >
             <span className="border-b border-catalien-blue text-lg">

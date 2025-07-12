@@ -165,6 +165,136 @@ const mockOrders: Order[] = [
     status: "Delivered",
     price: 89.99,
   },
+  {
+    id: "11",
+    orderNo: "011-OFFICE",
+    product: {
+      name: "Business Pro Display",
+      sku: "SP-X2023-BLK",
+      image: image2,
+    },
+    buyer: { name: "Jane Smith", company: "XYZ Company" },
+    date: "10/01/23",
+    status: "Pending",
+    price: 74.99,
+  },
+  {
+    id: "12",
+    orderNo: "012-SPORTS",
+    product: {
+      name: "Wide Angle Display",
+      sku: "SP-X2023-BLK",
+      image: image3,
+    },
+    buyer: { name: "Jane Smith", company: "XYZ Company" },
+    date: "12/03/24",
+    status: "Delivered",
+    price: 64.99,
+  },
+  {
+    id: "13",
+    orderNo: "013-KITCHEN",
+    product: {
+      name: "Smart Kitchen Display",
+      sku: "SP-X2023-BLK",
+      image: image4,
+    },
+    buyer: { name: "Jane Smith", company: "XYZ Company" },
+    date: "18/06/25",
+    status: "Shipped",
+    price: 54.99,
+  },
+  {
+    id: "14",
+    orderNo: "014-PETS",
+    product: {
+      name: "Pet-Friendly Monitor",
+      sku: "SP-X2023-BLK",
+      image: image1,
+    },
+    buyer: { name: "Jane Smith", company: "XYZ Company" },
+    date: "21/04/25",
+    status: "Delivered",
+    price: 44.99,
+  },
+  {
+    id: "15",
+    orderNo: "015-TECH2",
+    product: {
+      name: "AI Ready Display",
+      sku: "SP-X2023-BLK",
+      image: image2,
+    },
+    buyer: { name: "Jane Smith", company: "XYZ Company" },
+    date: "02/09/23",
+    status: "Pending",
+    price: 94.99,
+  },
+  {
+    id: "16",
+    orderNo: "016-KIDS",
+    product: {
+      name: "Colorful Learning Monitor",
+      sku: "SP-X2023-BLK",
+      image: image3,
+    },
+    buyer: { name: "Jane Smith", company: "XYZ Company" },
+    date: "13/11/23",
+    status: "Delivered",
+    price: 39.99,
+  },
+  {
+    id: "17",
+    orderNo: "017-AUTO",
+    product: {
+      name: "In-Car Entertainment Display",
+      sku: "SP-X2023-BLK",
+      image: image4,
+    },
+    buyer: { name: "Jane Smith", company: "XYZ Company" },
+    date: "29/06/24",
+    status: "Shipped",
+    price: 59.99,
+  },
+  {
+    id: "18",
+    orderNo: "018-HEALTH",
+    product: {
+      name: "Medical-Grade Display",
+      sku: "SP-X2023-BLK",
+      image: image1,
+    },
+    buyer: { name: "Jane Smith", company: "XYZ Company" },
+    date: "03/02/25",
+    status: "Delivered",
+    price: 109.99,
+  },
+  {
+    id: "19",
+    orderNo: "019-EDU",
+    product: {
+      name: "Smart Classroom Display",
+      sku: "SP-X2023-BLK",
+      image: image2,
+    },
+    buyer: { name: "Jane Smith", company: "XYZ Company" },
+    date: "16/10/23",
+    status: "Delivered",
+    price: 84.99,
+  },
+  {
+    id: "20",
+    orderNo: "020-ARTS",
+    product: {
+      name: "Creative Studio Monitor",
+      sku: "SP-X2023-BLK",
+      image: image3,
+    },
+    buyer: { name: "Jane Smith", company: "XYZ Company" },
+    date: "07/07/25",
+    status: "Pending",
+    price: 77.99,
+  },
 ];
 
 const getStatusColor = (status: Order["status"]) => {
@@ -211,7 +341,7 @@ const OrderTable = () => {
   return (
     <div className="w-full ">
       <SearchFilter />
-      <div className="p-2 overflow-hidden border border-[#E0E0E1] rounded-xl bg-white">
+      <div className="p-2  border border-[#E0E0E1] rounded-xl bg-white">
         <Table>
           <TableHeader className=" pb-5">
             <TableRow className="first:border-none ">
