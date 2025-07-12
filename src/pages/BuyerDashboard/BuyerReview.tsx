@@ -18,6 +18,8 @@ const BuyerReview = () => {
       new Date("2025-06-20")
   );
 
+  console.log(reviewed, "mmmmmm");
+
   return (
     <Tabs defaultValue="pending" className="space-y-8 w-full">
       <TabsList className="flex space-x-16 w-full">
@@ -28,38 +30,18 @@ const BuyerReview = () => {
       </TabsList>
 
       <TabsContent value="pending">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {pendingReviews.map((review, index) =>
-            review.products.map((product, productIndex) => (
-              <ReviewCard
-                key={`${index}-${productIndex}`}
-                store={review.store}
-                product={product.name}
-                price={product.price}
-                quantity={product.quantity}
-                date={review.date}
-                rating={review.rating}
-              />
-            ))
-          )}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
+          {pendingReviews.map((review, index) => (
+            <ReviewCard key={index} products={review} />
+          ))}
         </div>
       </TabsContent>
 
       <TabsContent value="reviewed">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {reviewed.map((review, index) =>
-            review.products.map((product, productIndex) => (
-              <ReviewCard
-                key={`${index}-${productIndex}`}
-                store={review.store}
-                product={product.name}
-                price={product.price}
-                quantity={product.quantity}
-                date={review.date}
-                rating={review.rating}
-              />
-            ))
-          )}
+          {reviewed.map((review, index) => (
+            <ReviewCard key={index} products={review} />
+          ))}
         </div>
       </TabsContent>
     </Tabs>
