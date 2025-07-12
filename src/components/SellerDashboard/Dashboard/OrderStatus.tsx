@@ -10,6 +10,7 @@ import {
   SelectLabel,
   SelectItem,
 } from "@/components/ui/select";
+import { ChevronDown } from "lucide-react";
 
 const EnquiriesByStatus: React.FC = () => {
   const dataByFilter: Record<string, number[]> = {
@@ -113,20 +114,40 @@ const EnquiriesByStatus: React.FC = () => {
             Order Status
           </h1>
         </div>
+        <div className="w-full sm:w-[250px] md:w-[221px]">
+          <Select onValueChange={handleFilterChange} defaultValue="this-month">
+            <SelectTrigger className="w-full h-[48px] border border-[#B3B3B3] rounded-[12px] px-[20px] py-[10px] bg-[#FCFCFC] text-[#484848] text-sm flex items-center justify-between hover:border-gray-400 transition-all duration-200 cursor-pointer">
+              <SelectValue placeholder="Select Time" />
+              <ChevronDown className="w-4 h-4 ml-auto text-gray-500" />
+            </SelectTrigger>
 
-        <Select onValueChange={handleFilterChange} defaultValue="this-month">
-          <SelectTrigger className="w-[221px] h-[48px] border border-[#B3B3B3] rounded-[12px] px-[20px] py-[10px] flex items-center justify-between text-sm text-[#484848] bg-[#FCFCFC]">
-            <SelectValue placeholder="Select Time" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              <SelectLabel>Filter</SelectLabel>
-              <SelectItem value="this-month">This Month</SelectItem>
-              <SelectItem value="last-month">Last Month</SelectItem>
-              <SelectItem value="this-year">This Year</SelectItem>
-            </SelectGroup>
-          </SelectContent>
-        </Select>
+            <SelectContent className="bg-white border border-[#B3B3B3] rounded-md shadow-md">
+              <SelectGroup>
+                <SelectLabel className="px-4 pt-2 text-gray-500 text-sm">
+                  Filter
+                </SelectLabel>
+                <SelectItem
+                  value="this-month"
+                  className="cursor-pointer px-4 py-2 hover:bg-gray-100 transition-colors rounded"
+                >
+                  This Month
+                </SelectItem>
+                <SelectItem
+                  value="last-month"
+                  className="cursor-pointer px-4 py-2 hover:bg-gray-100 transition-colors rounded"
+                >
+                  Last Month
+                </SelectItem>
+                <SelectItem
+                  value="this-year"
+                  className="cursor-pointer px-4 py-2 hover:bg-gray-100 transition-colors rounded"
+                >
+                  This Year
+                </SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+        </div>
       </div>
 
       {/* Donut Chart */}

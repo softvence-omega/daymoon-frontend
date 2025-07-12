@@ -11,6 +11,7 @@ import {
 import { useState } from "react";
 import ReactApexChart from "react-apexcharts";
 import type { ApexOptions } from "apexcharts";
+import { ChevronDown } from "lucide-react";
 
 const RevenueOverview = () => {
   const [selectedFilter, setSelectedFilter] = useState("6");
@@ -96,16 +97,40 @@ const RevenueOverview = () => {
             onValueChange={(value) => setSelectedFilter(value)}
             defaultValue="6"
           >
-            <SelectTrigger className="w-[221px] h-[48px] border border-[#B3B3B3] rounded-[12px] px-[20px] py-[10px] flex items-center justify-between text-[#484848]">
+            <SelectTrigger className="w-full h-[48px] border border-[#B3B3B3] rounded-[12px] px-[20px] py-[10px] bg-[#FCFCFC] text-[#484848] text-sm flex items-center justify-between hover:border-gray-400 transition-all duration-200 cursor-pointer">
               <SelectValue placeholder="Last 6 Months" />
+              <ChevronDown className="w-4 h-4 ml-auto text-gray-500" />
             </SelectTrigger>
-            <SelectContent className="bg-white border-none ">
+
+            <SelectContent className="bg-white border border-[#B3B3B3] rounded-md shadow-md">
               <SelectGroup>
-                <SelectLabel>Months</SelectLabel>
-                <SelectItem value="1">Last 1 Month</SelectItem>
-                <SelectItem value="2">Last 2 Months</SelectItem>
-                <SelectItem value="3">Last 3 Months</SelectItem>
-                <SelectItem value="6">Last 6 Months</SelectItem>
+                <SelectLabel className="px-4 pt-2 text-gray-500 text-sm">
+                  Months
+                </SelectLabel>
+                <SelectItem
+                  value="1"
+                  className="cursor-pointer px-4 py-2 hover:bg-gray-100 transition-colors rounded"
+                >
+                  Last 1 Month
+                </SelectItem>
+                <SelectItem
+                  value="2"
+                  className="cursor-pointer px-4 py-2 hover:bg-gray-100 transition-colors rounded"
+                >
+                  Last 2 Months
+                </SelectItem>
+                <SelectItem
+                  value="3"
+                  className="cursor-pointer px-4 py-2 hover:bg-gray-100 transition-colors rounded"
+                >
+                  Last 3 Months
+                </SelectItem>
+                <SelectItem
+                  value="6"
+                  className="cursor-pointer px-4 py-2 hover:bg-gray-100 transition-colors rounded"
+                >
+                  Last 6 Months
+                </SelectItem>
               </SelectGroup>
             </SelectContent>
           </Select>
