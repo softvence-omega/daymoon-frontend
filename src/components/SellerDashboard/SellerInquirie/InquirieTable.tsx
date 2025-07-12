@@ -384,7 +384,7 @@ export function InquirieTable() {
         </div>
         <div className="flex gap-1">
           <button
-            className="px-3 py-1 rounded border text-sm hover:bg-gray-200 disabled:opacity-40 cursor-pointer"
+            className="px-3 py-1 rounded border border-[#EAEAEA] text-sm hover:bg-gray-200 disabled:opacity-40 cursor-pointer"
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
           >
