@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -144,32 +145,53 @@ const OverViewTab = () => {
           </div>
         )}
 
-        {/* Products Content */}
-        <TabsContent value="product" className="mt-6">
-          <ProductsComponent
-            selectedCategory={selectedCategory}
-            selectedPrice={selectedPrice}
-            showAll={showAll}
-            cols={{ mobile: 1, md: 2, lg: 3 }}
-            rows={
-              showAll
-                ? { mobile: 100, md: 100, lg: 100 }
-                : { mobile: 1, md: 4, lg: 4 }
-            }
-          />
+        {/* Animate switching tab content */}
+        <AnimatePresence mode="wait">
+          {activeTab === "product" && (
+            <TabsContent value="product" className="mt-6" forceMount>
+              <motion.div
+                key="product"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.35 }}
+              >
+                <ProductsComponent
+                  selectedCategory={selectedCategory}
+                  selectedPrice={selectedPrice}
+                  showAll={showAll}
+                  cols={{ mobile: 1, md: 2, lg: 3 }}
+                  rows={
+                    showAll
+                      ? { mobile: 100, md: 100, lg: 100 }
+                      : { mobile: 1, md: 4, lg: 4 }
+                  }
+                />
 
-          {!showAll && filteredProducts.length > 0 && (
-            <MoreButton
-              onClick={() => setShowAll(true)}
-              text={`View All (${filteredProducts.length}) Products`}
-            />
+                {!showAll && filteredProducts.length > 0 && (
+                  <MoreButton
+                    onClick={() => setShowAll(true)}
+                    text={`View All (${filteredProducts.length}) Products`}
+                  />
+                )}
+              </motion.div>
+            </TabsContent>
           )}
-        </TabsContent>
 
-        {/* Reviews Content */}
-        <TabsContent value="reviews" className="mt-6">
-          <Reviews />
-        </TabsContent>
+          {activeTab === "reviews" && (
+            <TabsContent value="reviews" className="mt-6" forceMount>
+              <motion.div
+                key="reviews"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.35 }}
+              >
+                <Reviews />
+              </motion.div>
+            </TabsContent>
+          )}
+        </AnimatePresence>
       </Tabs>
     </div>
   );
