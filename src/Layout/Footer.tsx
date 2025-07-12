@@ -75,7 +75,7 @@ export function Footer() {
   ];
 
   return (
-    <footer className="bg-[#0B1321] pb-20 mt-20 sm:pb-32 text-white py-12 ">
+    <footer className="bg-[#0B1321] pb-20  sm:pb-32 text-white py-12 ">
       <CommonWrapper>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {footerSections.map((section, index) => (
