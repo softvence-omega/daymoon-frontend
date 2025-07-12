@@ -23,6 +23,7 @@ import {
 } from "@/components/ui/table";
 import samplePhoto from "@/assets/image/product.png";
 import { Link } from "react-router-dom";
+import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 
 // Type
 type Inquiry = {
@@ -65,7 +66,7 @@ const data: Inquiry[] = [
   {
     id: "3",
     inquiryId: "INQ-123789",
-    productName: "Bluetooth Headphones",
+    productName: " Headphones",
     sku: "HD-X300-BLU",
     photo: samplePhoto,
     buyerName: "Emily Davis",
@@ -87,7 +88,7 @@ const data: Inquiry[] = [
   {
     id: "5",
     inquiryId: "INQ-847362",
-    productName: "Mechanical Keyboard",
+    productName: " Keyboard",
     sku: "MK-9000-RED",
     photo: samplePhoto,
     buyerName: "Linda Martinez",
@@ -182,6 +183,7 @@ const columns: ColumnDef<Inquiry>[] = [
     id: "select",
     header: ({ table }) => (
       <Checkbox
+        className="cursor-pointer"
         checked={
           table.getIsAllPageRowsSelected() ||
           (table.getIsSomePageRowsSelected() && "indeterminate")
@@ -192,6 +194,7 @@ const columns: ColumnDef<Inquiry>[] = [
     ),
     cell: ({ row }) => (
       <Checkbox
+        className="cursor-pointer"
         checked={row.getIsSelected()}
         onCheckedChange={(value) => row.toggleSelected(!!value)}
         aria-label="Select row"
@@ -215,7 +218,7 @@ const columns: ColumnDef<Inquiry>[] = [
         <img
           src={row.original.photo}
           alt={row.original.productName}
-          className="w-10 h-10 rounded object-cover"
+          className="w-10 h-10 rounded object-cover cursor-pointer"
         />
         <div>
           <div className="font-medium text-sm">{row.original.productName}</div>
@@ -246,7 +249,7 @@ const columns: ColumnDef<Inquiry>[] = [
       const status = row.original.status;
       return (
         <span
-          className={`flex h-8 px-5 justify-center items-center gap-1 rounded-full font-semibold text-sm capitalize ${statusClassNames[status]}`}
+          className={`flex w-[99px] h-8 px-5 justify-center items-center gap-1 rounded-full font-semibold text-sm capitalize ${statusClassNames[status]}`}
         >
           {statusLabels[status]}
         </span>
@@ -373,44 +376,71 @@ export function InquirieTable() {
       </div>
 
       {/* Pagination Footer */}
-      <div className="flex flex-col sm:flex-row items-center justify-between mt-4 px-2">
-        <div className="text-sm text-gray-600 mb-2 sm:mb-0">
+      {/* Pagination Footer - Styled Version */}
+      <div className="flex items-center justify-between pt-4 px-4 text-sm text-[#666] mt-4">
+        {/* Data Count */}
+        <p className="text-base text-gray-600">
           Showing {pagination.pageIndex * pagination.pageSize + 1} to{" "}
           {Math.min(
             (pagination.pageIndex + 1) * pagination.pageSize,
             data.length
           )}{" "}
           of {data.length} orders
-        </div>
-        <div className="flex gap-1">
-          <button
-            className="px-3 py-1 rounded border text-sm hover:bg-gray-200 disabled:opacity-40 cursor-pointer"
-            onClick={() => table.previousPage()}
-            disabled={!table.getCanPreviousPage()}
-          >
-            Previous
-          </button>
-          {Array.from({ length: table.getPageCount() }).map((_, index) => (
+        </p>
+
+        {/* Styled Pagination Buttons */}
+        <ul className="flex items-center border border-foundation-white rounded-xl overflow-hidden text-base cursor-pointer">
+          {/* Previous Button */}
+          <li>
             <button
-              key={index}
-              onClick={() => table.setPageIndex(index)}
-              className={`px-3 py-1 rounded border text-sm ${
-                table.getState().pagination.pageIndex === index
-                  ? "bg-[#192D4E] text-white"
-                  : "hover:bg-gray-100"
+              onClick={() => table.previousPage()}
+              disabled={!table.getCanPreviousPage()}
+              aria-label="Previous Page"
+              className={`text-xl p-2 sm:p-4 border-r border-foundation-white text-[#FCAB3F] ${
+                !table.getCanPreviousPage()
+                  ? "cursor-not-allowed text-gray-300"
+                  : "hover:bg-[#FCAB3F] hover:text-white"
               }`}
             >
-              {index + 1}
+              <FaAngleLeft />
             </button>
-          ))}
-          <button
-            className="px-3 py-1 rounded border text-sm hover:bg-gray-200 disabled:opacity-40 cursor-pointer"
-            onClick={() => table.nextPage()}
-            disabled={!table.getCanNextPage()}
-          >
-            Next
-          </button>
-        </div>
+          </li>
+
+          {/* Page Number Buttons */}
+          {Array.from({ length: table.getPageCount() }).map((_, index) => {
+            const isActive = table.getState().pagination.pageIndex === index;
+            return (
+              <li key={index}>
+                <button
+                  onClick={() => table.setPageIndex(index)}
+                  className={`p-3 sm:p-4 w-12 border-r border-foundation-white transition-colors duration-150 ${
+                    isActive
+                      ? "bg-[#FCAB3F] text-white"
+                      : "text-black hover:bg-[#FCAB3F] hover:text-white"
+                  }`}
+                >
+                  {index + 1}
+                </button>
+              </li>
+            );
+          })}
+
+          {/* Next Button */}
+          <li>
+            <button
+              onClick={() => table.nextPage()}
+              disabled={!table.getCanNextPage()}
+              aria-label="Next Page"
+              className={`text-xl p-2 sm:p-4 text-[#FCAB3F] ${
+                !table.getCanNextPage()
+                  ? "cursor-not-allowed text-gray-300"
+                  : "hover:bg-[#FCAB3F] hover:text-white"
+              }`}
+            >
+              <FaAngleRight />
+            </button>
+          </li>
+        </ul>
       </div>
     </div>
   );

@@ -7,8 +7,8 @@ import SellerHeader from "./SellerHeader";
 const ConsultationSection = () => {
   return (
     <CommonSpace>
-      <div className="flex flex-col md:flex-row items-center gap-10">
-        <div className="w-2/3">
+      <div className="flex flex-col md:flex-row  items-start gap-10">
+        <div className="w-full md:w-2/3">
           <div className="relative w-fit mx-auto">
             {/* Main Image */}
             <img
@@ -21,20 +21,20 @@ const ConsultationSection = () => {
             <img
               src={consultationImg1}
               alt="Consultation Detail"
-              className="absolute top-12 left-0 -translate-x-1/2 w-[260px] h-[175px] rounded-xl shadow-lg border border-white"
+              className="absolute top-12 left-0 -translate-x-1/2 w-[260px] h-[175px] rounded-xl shadow-lg border border-white hidden xl:block"
             />
 
             {/* Right Floating Image */}
             <img
               src={consultationImg2}
               alt="Consultation Detail"
-              className="absolute bottom-12 right-0 translate-x-1/2 w-[260px] h-[175px] rounded-xl shadow-lg border border-white"
+              className="absolute bottom-12 right-0 translate-x-1/2 w-[260px] h-[175px] rounded-xl shadow-lg border border-white hidden xl:block"
             />
           </div>
         </div>
 
-        <div className=" w-1/3">
-          <SellerHeader className=" !text-2xl !capitalize">
+        <div className="w-full  md:w-1/3">
+          <SellerHeader className=" xl:!text-2xl !capitalize">
             Our Core Values For Seller
           </SellerHeader>
           <p className="text-[#484848] pb-8 text-[20px] leading-relaxed">

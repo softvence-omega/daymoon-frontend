@@ -1,3 +1,4 @@
+import CommonWrapper from "@/common/CommonWrapper";
 import Breadcrumbs from "@/components/SellerDashboard/SellerProducts/Breadcrumbs";
 import ProductCard from "@/components/SellerDashboard/SellerProducts/ProductCard";
 import ProductNavbar from "@/components/SellerDashboard/SellerProducts/ProductNavbar";
@@ -8,8 +9,9 @@ import { useLocation } from "react-router-dom";
 
 const SellerProductsPage = () => {
   const { pathname } = useLocation();
-  return (
-    <div>
+
+  const content = (
+    <>
       {pathname === "/seller-dashboard/all-products" ? (
         <Breadcrumbs title="Products" subtitle="All Products" />
       ) : (
@@ -19,9 +21,18 @@ const SellerProductsPage = () => {
       <ProductCard />
       <ProductSearch />
       <ProductTable />
+
       {pathname !== "/seller-dashboard/all-products" && <RevenueOverview />}
-    </div>
+    </>
   );
+
+  // If on /seller-dashboard/products, return content directly (no wrapper)
+  if (pathname === "/seller-dashboard/products") {
+    return content;
+  }
+
+  // Otherwise wrap in CommonWrapper
+  return <CommonWrapper>{content}</CommonWrapper>;
 };
 
 export default SellerProductsPage;

@@ -15,6 +15,7 @@ const SellerLayout = () => {
       "/seller-dashboard/add-product",
       "/seller-dashboard/all-products",
       "/seller-dashboard/all-orders",
+      "/seller-dashboard/inquiries-details",
     ];
 
     const pathnameSegments = pathname.split("/");
@@ -53,7 +54,14 @@ const SellerLayout = () => {
         pathnameSegments.length === 5 &&
         pathname.endsWith("/buyer-profile"));
 
-    setIsSidebarOpen(isDetailView);
+    const isAddProduct = pathname === "/seller-dashboard/add-product";
+    const isAllProduct = pathname === "/seller-dashboard/all-products";
+    const isAllOrder = pathname === "/seller-dashboard/all-orders";
+    const isInquiries = pathname === "/seller-dashboard/inquiries-details";
+
+    setIsSidebarOpen(
+      isDetailView || isAddProduct || isAllProduct || isAllOrder || isInquiries
+    );
   }, [pathname]);
 
   const handleMobileMenuToggle = () => {

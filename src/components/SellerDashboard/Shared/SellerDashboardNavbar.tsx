@@ -28,17 +28,17 @@ const SellerDashboardNavbar: React.FC<NavbarProps> = ({
   console.log("isSidebarOpen", isSidebarOpen);
   return (
     <div
-      className={` bg-white border-b border-foundation-white
+      className={` bg-white border-b border-foundation-white  
       `}
     >
       <header
         className={` ${
           isSidebarOpen
-            ? " w-full max-w-[1400px] mx-auto my-auto   py-3  px-4 md:px-10  "
-            : ""
+            ? " w-full max-w-[1400px] mx-auto my-auto   px-4 md:px-10  "
+            : " px-4"
         }`}
       >
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between py-3">
           {/* Left Side - Mobile Menu & Title */}
           <div className="flex items-center space-x-2 sm:space-x-4">
             {/* Mobile Menu Button */}

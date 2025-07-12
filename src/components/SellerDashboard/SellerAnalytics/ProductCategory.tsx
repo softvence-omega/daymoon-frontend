@@ -289,12 +289,12 @@ export function ProductCategory() {
           <Table className="w-full">
             <TableHeader>
               <TableRow className="bg-[#E5E5E5] text-[#666666] text-sm rounded-2xl border">
-                <TableHead className="px-4 py-2">Product</TableHead>
-                <TableHead className="px-4 py-2">Category</TableHead>
-                <TableHead className="px-4 py-2">Unit Sold</TableHead>
-                <TableHead className="px-4 py-2">Revenue</TableHead>
-                <TableHead className="px-4 py-2">Return (%)</TableHead>
-                <TableHead className="px-4 py-2 text-right">Rating</TableHead>
+                <TableHead className="px-4 h-12">Product</TableHead>
+                <TableHead className="px-4 h-12">Category</TableHead>
+                <TableHead className="px-4 h-12">Unit Sold</TableHead>
+                <TableHead className="px-4 h-12">Revenue</TableHead>
+                <TableHead className="px-4 h-12">Return (%)</TableHead>
+                <TableHead className="px-4 h-12 text-center">Rating</TableHead>
               </TableRow>
             </TableHeader>
 
@@ -317,8 +317,9 @@ export function ProductCategory() {
                   <TableCell className="px-4 py-3">
                     {product.returnRate}
                   </TableCell>
-                  <TableCell className="text-right px-4 py-3">
-                    {product.rating} <span className="text-yellow-500">★</span>
+                  <TableCell className="text-center px-4 py-3 text-yellow-500">
+                    {product.rating}{" "}
+                    <span className="text-yellow-500 h-6 w-6">★</span>
                   </TableCell>
                 </TableRow>
               ))}
@@ -327,57 +328,67 @@ export function ProductCategory() {
         </div>
       </div>
       {/* Pagination Controls */}
-      <div className="flex items-center justify-between pt-4 px-2 text-sm text-[#666]">
+      <div className="flex items-center justify-between pt-4 px-4 text-sm text-[#666] mt-4">
         {/* Data Count */}
-        <p>
+        <p className="text-base text-gray-600">
           Showing {startIdx + 1} to {startIdx + currentData.length} of{" "}
-          {productData.length}
+          {productData.length} entries
         </p>
-        {/* Pagination Buttons */}
-        <div className="flex items-center gap-1">
-          <button
-            onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
-            disabled={currentPage === 1}
-            aria-label="Previous Page"
-            className={`px-3 py-1 rounded-lg border cursor-pointer ${
-              currentPage === 1
-                ? "text-gray-400 border-gray-200 cursor-not-allowed"
-                : "hover:bg-gray-100"
-            } flex items-center justify-center`}
-          >
-            <FaAngleLeft size={18} className="text-[#FCAB3F]" />
-          </button>
 
+        {/* Pagination Buttons Styled Like List */}
+        <ul className="flex items-center border border-foundation-white rounded-xl overflow-hidden text-base cursor-pointer">
+          {/* Previous Arrow */}
+          <li>
+            <button
+              onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
+              disabled={currentPage === 1}
+              aria-label="Previous Page"
+              className={`text-xl p-2  sm:p-4 border-r border-foundation-white text-[#FCAB3F]  cursor-pointer ${
+                currentPage === 1
+                  ? "cursor-not-allowed text-gray-300"
+                  : "hover:bg-[#FCAB3F] hover:text-white"
+              }`}
+            >
+              <FaAngleLeft />
+            </button>
+          </li>
+
+          {/* Page Numbers */}
           {[...Array(totalPages)].map((_, index) => {
             const page = index + 1;
+            const isActive = currentPage === page;
             return (
-              <button
-                key={page}
-                onClick={() => setCurrentPage(page)}
-                className={`px-3 py-1 rounded-lg border  ${
-                  currentPage === page
-                    ? "bg-black text-white border-[#E5E5E5]"
-                    : "hover:bg-gray-100"
-                }`}
-              >
-                {page}
-              </button>
+              <li key={page}>
+                <button
+                  onClick={() => setCurrentPage(page)}
+                  className={`p-3 sm:p-4 w-12 border-r border-foundation-white transition-colors duration-150 ${
+                    isActive
+                      ? "bg-[#FCAB3F] text-white"
+                      : "text-black hover:bg-[#FCAB3F] hover:text-white"
+                  }`}
+                >
+                  {page}
+                </button>
+              </li>
             );
           })}
 
-          <button
-            onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
-            disabled={currentPage === totalPages}
-            aria-label="Next Page"
-            className={`px-3 py-1 rounded-lg border cursor-pointer ${
-              currentPage === totalPages
-                ? "text-gray-400 border-gray-200 cursor-not-allowed"
-                : "hover:bg-gray-100"
-            } flex items-center justify-center`}
-          >
-            <FaAngleRight size={18} className="text-[#FCAB3F]" />
-          </button>
-        </div>
+          {/* Next Arrow */}
+          <li>
+            <button
+              onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
+              disabled={currentPage === totalPages}
+              aria-label="Next Page"
+              className={`text-xl p-2  sm:p-4 text-[#FCAB3F] cursor-pointer ${
+                currentPage === totalPages
+                  ? "cursor-not-allowed text-gray-300"
+                  : "hover:bg-[#FCAB3F] hover:text-white"
+              }`}
+            >
+              <FaAngleRight />
+            </button>
+          </li>
+        </ul>
       </div>
     </div>
   );
