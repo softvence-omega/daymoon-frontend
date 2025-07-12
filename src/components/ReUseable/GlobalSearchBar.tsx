@@ -10,6 +10,7 @@ import { motion } from "framer-motion";
 import { Search } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import arrow from "../../assets/Navbar/arrow.svg";
+import MobileFilterSection from "../Shop/MobileFilterSection";
 import SearchByImage from "./SearchByImage";
 
 const GlobalSearchBar = () => {
@@ -68,9 +69,9 @@ const GlobalSearchBar = () => {
   const suggestedTags = ["smart watch", "Tractors", "Fertilizers"];
 
   return (
-    <div className="max-w-[1000px] mx-auto hidden lg:flex flex-col md:flex-row items-center justify-between gap-4 h-[80px] mt-12">
+    <div className="max-w-[1000px] mx-auto  flex flex-col lg:flex-row items-center justify-between mb-12 gap-4 h-[80px] mt-12">
       <div className="w-full flex-1 relative" ref={wrapperRef}>
-        <div className="w-full flex items-center rounded-full shadow-[0_0_1px_0px_#F46A39] bg-white px-2 py-4">
+        <div className="w-full flex items-center  rounded-full shadow-[0_0_1px_0px_#F46A39] bg-white px-2 py-4">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button
@@ -103,7 +104,7 @@ const GlobalSearchBar = () => {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <div className="flex-1 mx-2 relative rounded-full overflow-hidden">
+          <div className="flex-1  relative rounded-full overflow-hidden">
             <Input
               type="text"
               onKeyDown={(e) => {
@@ -119,13 +120,15 @@ const GlobalSearchBar = () => {
             />
             <Button
               onClick={handleSearch}
-              className="absolute right-2 top-1/2 -translate-y-1/2 bg-orange-500 hover:bg-orange-600 text-white rounded-full w-8 h-8 md:w-9 md:h-9"
+              className="absolute right-2 top-1/2 -translate-y-1/2 bg-orange-500 hover:bg-orange-600 text-white rounded-full w-8 h-8 md:w-9 md:h-9 "
             >
               <Search className="w-4 h-4" />
             </Button>
           </div>
+          <div className=" lg:hidden bg-[#fff7ec] rounded-full ">
+            <MobileFilterSection />
+          </div>
         </div>
-
         {focused && (
           <div className="absolute top-full left-0 w-full bg-white shadow-[0_0_1px_0px_#F46A39] rounded-xl mt-2 z-50 p-4 space-y-6">
             <div className="my-2">
@@ -166,7 +169,10 @@ const GlobalSearchBar = () => {
         )}
       </div>
 
-      <SearchByImage />
+      <div className="hidden lg:block">
+        {" "}
+        <SearchByImage />
+      </div>
     </div>
   );
 };
