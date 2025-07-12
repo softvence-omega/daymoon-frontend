@@ -68,13 +68,13 @@ const PersonalInformation = () => {
   }, [formData]);
 
   // Reusable components
-  const FormField = ({ 
-    id, 
-    label, 
-    value, 
-    onChange, 
+  const FormField = ({
+    id,
+    label,
+    value,
+    onChange,
     type = "text",
-    className = ""
+    className = "",
   }: {
     id: string;
     label: string;
@@ -97,14 +97,14 @@ const PersonalInformation = () => {
     </div>
   );
 
-  const SelectField = ({ 
-    id, 
-    label, 
-    value, 
-    onChange, 
+  const SelectField = ({
+    id,
+    label,
+    value,
+    onChange,
     options,
     placeholder,
-    className = ""
+    className = "",
   }: {
     id: string;
     label: string;
@@ -136,13 +136,13 @@ const PersonalInformation = () => {
     </div>
   );
 
-  const MobileFormField = ({ 
-    id, 
-    label, 
-    value, 
-    onChange, 
+  const MobileFormField = ({
+    id,
+    label,
+    value,
+    onChange,
     type = "text",
-    showEdit = true
+    showEdit = true,
   }: {
     id: string;
     label: string;
@@ -153,7 +153,10 @@ const PersonalInformation = () => {
   }) => (
     <div className="flex items-center justify-between bg-white border border-[#B3B3B3] rounded-xl px-4 py-3 h-auto">
       <div className="flex-1">
-        <Label htmlFor={id} className="text-[#666666] text-sm font-normal block mb-1">
+        <Label
+          htmlFor={id}
+          className="text-[#666666] text-sm font-normal block mb-1"
+        >
           {label}
         </Label>
         <Input
@@ -175,13 +178,13 @@ const PersonalInformation = () => {
     </div>
   );
 
-  const MobileSelectField = ({ 
-    id, 
-    label, 
-    value, 
-    onChange, 
+  const MobileSelectField = ({
+    id,
+    label,
+    value,
+    onChange,
     options,
-    placeholder
+    placeholder,
   }: {
     id: string;
     label: string;
@@ -192,7 +195,10 @@ const PersonalInformation = () => {
   }) => (
     <div className="flex items-center justify-between bg-white border border-[#B3B3B3] rounded-xl px-4 py-3 h-auto">
       <div className="flex-1">
-        <Label htmlFor={id} className="text-[#666666] text-sm font-normal block mb-1">
+        <Label
+          htmlFor={id}
+          className="text-[#666666] text-sm font-normal block mb-1"
+        >
           {label}
         </Label>
         <Select onValueChange={onChange}>
@@ -284,11 +290,11 @@ const PersonalInformation = () => {
           <div className="space-y-6 lg:col-span-7 xl:col-span-8">
             <div className="hidden md:block">
               <PageHeader
-              title="Personal Details"
-              onEdit={handleSubmit}
-              buttonTitle="Edit"
-              icon={<ImPencil />}
-            />
+                title="Personal Details"
+                onButtonClick={handleSubmit}
+                buttonTitle="Edit"
+                icon={<ImPencil />}
+              />
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

@@ -4,8 +4,6 @@ import { ImPencil } from "react-icons/im";
 import { MdOutlineDelete } from "react-icons/md";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import {
   Drawer,
   DrawerClose,
@@ -13,16 +11,9 @@ import {
   DrawerHeader,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+
 import { useState } from "react";
+import ShippingModal from "./ShippingModal";
 
 const ShippingAddress = () => {
   const [addresses, setAddresses] = useState([
@@ -64,15 +55,13 @@ const ShippingAddress = () => {
     setAddresses(updatedAddresses);
   };
 
-  const handleSubmit = () => {
-    console.log("Submitting addresses:", addresses);
-  };
-
   const handleAddAddress = () => {
     if (newAddress.address && newAddress.city && newAddress.country) {
       // Create a formatted address string from the individual fields
-      const formattedAddress = `${newAddress.address}${newAddress.apartment ? ', ' + newAddress.apartment : ''}, ${newAddress.city}, ${newAddress.postalCode}, ${newAddress.country}`;
-      
+      const formattedAddress = `${newAddress.address}${
+        newAddress.apartment ? ", " + newAddress.apartment : ""
+      }, ${newAddress.city}, ${newAddress.postalCode}, ${newAddress.country}`;
+
       const addressToAdd = {
         title: newAddress.city, // Use city as title for now
         address: formattedAddress,
@@ -107,7 +96,7 @@ const ShippingAddress = () => {
             title="Shipping Addresses"
             icon={<FaPlus />}
             buttonTitle="Add New Address"
-            onEdit={handleSubmit}
+            onButtonClick={() => setIsAddModalOpen(true)} // <-- open modal
           />
         </div>
       </div>
@@ -151,6 +140,15 @@ const ShippingAddress = () => {
           </div>
         ))}
       </div>
+
+      {/* Add New Address Button */}
+      <ShippingModal
+        isOpen={isAddModalOpen}
+        onClose={() => setIsAddModalOpen(false)}
+        newAddress={newAddress}
+        setNewAddress={setNewAddress}
+        handleAddAddress={handleAddAddress}
+      />
 
       {/* Mobile View */}
       <div className="md:hidden">
@@ -207,7 +205,9 @@ const ShippingAddress = () => {
                 >
                   <div className="flex justify-between items-start">
                     <div className="flex-1">
-                      <h3 className="font-medium text-base md:text-lg text-[#1A1A1A]">{address.title}</h3>
+                      <h3 className="font-medium text-base md:text-lg text-[#1A1A1A]">
+                        {address.title}
+                      </h3>
                       <p className="text-[#484848] text-sm md:text-base mt-2">
                         {address.address}
                       </p>
@@ -238,134 +238,15 @@ const ShippingAddress = () => {
                   </div>
                 </div>
               ))}
-              {/* Add New Address Button */}
-              <Dialog open={isAddModalOpen} onOpenChange={setIsAddModalOpen}>
-                <DialogTrigger asChild>
-                  <Button 
-                  variant="outline"
-                  className="w-full text-[#FCAB3F] rounded-xl py-3 md:py-4 px-4 md:px-6 font-medium flex items-center justify-center gap-2 text-sm md:text-base">
-                    <FaPlus className="w-4 h-4 md:w-5 md:h-5" />
-                    Add New Address
-                  </Button>
-                </DialogTrigger>
 
-                <DialogContent className="bg-white rounded-xl max-w-md md:max-w-lg">
-                  <DialogHeader className="px-4 md:px-6 py-4 md:py-6">
-                    <DialogTitle className="text-lg md:text-xl">Shipping Address</DialogTitle>
-                    <DialogDescription className="text-sm md:text-base">
-                      Enter your shipping address details
-                    </DialogDescription>
-                  </DialogHeader>
-
-                  <div className="space-y-4 md:space-y-6 px-4 md:px-6">
-                    <div className="space-y-2">
-                      <Label htmlFor="address" className="text-[#666666] text-sm md:text-base font-normal">
-                        Address
-                      </Label>
-                      <Input
-                        id="address"
-                        value={newAddress.address}
-                        onChange={(e) =>
-                          setNewAddress((prev) => ({
-                            ...prev,
-                            address: e.target.value,
-                          }))
-                        }
-                        placeholder="Enter street address"
-                        className="border border-[#666666] rounded-xl px-4 py-3 md:py-4 text-sm md:text-base"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="apartment" className="text-[#666666] text-sm md:text-base font-normal">
-                        Apartment, suite, etc.
-                      </Label>
-                      <Input
-                        id="apartment"
-                        value={newAddress.apartment || ""}
-                        onChange={(e) =>
-                          setNewAddress((prev) => ({
-                            ...prev,
-                            apartment: e.target.value,
-                          }))
-                        }
-                        placeholder="Apartment, suite, etc. (optional)"
-                        className="border border-[#666666] rounded-xl px-4 py-3 md:py-4 text-sm md:text-base"
-                      />
-                    </div>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="city" className="text-[#666666] text-sm md:text-base font-normal">
-                          City
-                        </Label>
-                        <Input
-                          id="city"
-                          value={newAddress.city || ""}
-                          onChange={(e) =>
-                            setNewAddress((prev) => ({
-                              ...prev,
-                              city: e.target.value,
-                            }))
-                          }
-                          placeholder="City"
-                          className="border border-[#666666] rounded-xl px-4 py-3 md:py-4 text-sm md:text-base"
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="postalCode" className="text-[#666666] text-sm md:text-base font-normal">
-                          Postal Code
-                        </Label>
-                        <Input
-                          id="postalCode"
-                          value={newAddress.postalCode || ""}
-                          onChange={(e) =>
-                            setNewAddress((prev) => ({
-                              ...prev,
-                              postalCode: e.target.value,
-                            }))
-                          }
-                          placeholder="Postal Code"
-                          className="border border-[#666666] rounded-xl px-4 py-3 md:py-4 text-sm md:text-base"
-                        />
-                      </div>
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="country" className="text-[#666666] text-sm md:text-base font-normal">
-                        Country
-                      </Label>
-                      <select
-                        id="country"
-                        value={newAddress.country || ""}
-                        onChange={(e) =>
-                          setNewAddress((prev) => ({
-                            ...prev,
-                            country: e.target.value,
-                          }))
-                        }
-                        className="w-full border border-[#666666] rounded-xl px-4 py-3 md:py-4 bg-white text-sm md:text-base"
-                      >
-                        <option value="">Select Country</option>
-                        <option value="US">United States</option>
-                        <option value="CA">Canada</option>
-                        <option value="UK">United Kingdom</option>
-                        <option value="AU">Australia</option>
-                        <option value="DE">Germany</option>
-                        <option value="FR">France</option>
-                        <option value="JP">Japan</option>
-                        <option value="IN">India</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <DialogFooter className="px-4 md:px-6 py-4 md:py-6">
-                    <Button
-                      onClick={handleAddAddress}
-                      className="w-full bg-[#F04436] text-white rounded-xl py-3 md:py-4 px-4 md:px-6 font-medium mt-4 text-sm md:text-base"
-                    >
-                      Save Changes
-                    </Button>
-                  </DialogFooter>
-                </DialogContent>
-              </Dialog>
+              <Button
+                onClick={() => setIsAddModalOpen(true)}
+                variant="outline"
+                className="w-full text-[#FCAB3F] rounded-xl py-3 md:py-4 px-4 md:px-6 font-medium flex items-center justify-center gap-2 text-sm md:text-base"
+              >
+                <FaPlus className="w-4 h-4 md:w-5 md:h-5" />
+                Add New Address
+              </Button>
             </div>
           </DrawerContent>
         </Drawer>

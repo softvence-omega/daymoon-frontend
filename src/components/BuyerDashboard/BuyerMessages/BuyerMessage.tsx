@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import ConversationsList from "./ConversationsList";
 import ChatArea from "./ChatArea";
 
+import { Conversation, Message } from "./types";
+
 // Sample conversation data
-const conversations = [
+const conversations: Conversation[] = [
   {
     id: 1,
     name: "ElectroHub",
@@ -13,7 +15,7 @@ const conversations = [
     avatar:
       "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=40&h=40&fit=crop&crop=face",
     online: true,
-    type: "supplier" as const,
+    type: "supplier",
     rating: 4.5,
   },
   {
@@ -25,7 +27,7 @@ const conversations = [
     avatar:
       "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=40&h=40&fit=crop&crop=face",
     online: false,
-    type: "support" as const,
+    type: "support",
     rating: 4.8,
   },
   {
@@ -37,7 +39,7 @@ const conversations = [
     avatar:
       "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face",
     online: true,
-    type: "supplier" as const,
+    type: "supplier",
     rating: 4.2,
   },
   {
@@ -49,13 +51,15 @@ const conversations = [
     avatar:
       "https://images.unsplash.com/photo-1494790108755-2616b67fcfd4?w=40&h=40&fit=crop&crop=face",
     online: false,
-    type: "support" as const,
+    type: "support",
     rating: 4.9,
   },
 ];
 
 // Sample messages for each conversation
-const conversationMessages = {
+const conversationMessages: {
+  [key: number]: Message[];
+} = {
   1: [
     // ElectroHub
     {
@@ -238,9 +242,8 @@ const conversationMessages = {
 };
 
 const BuyerMessage = () => {
-  const [selectedConversation, setSelectedConversation] = useState(
-    conversations[0]
-  );
+  const [selectedConversation, setSelectedConversation] =
+    useState<Conversation>(conversations[0]);
   const [messageInput, setMessageInput] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [showSidebar, setShowSidebar] = useState(false);
@@ -263,9 +266,7 @@ const BuyerMessage = () => {
     }
   };
 
-  const handleSelectConversation = (
-    conversation: (typeof conversations)[0]
-  ) => {
+  const handleSelectConversation = (conversation: Conversation) => {
     setSelectedConversation(conversation);
     setCurrentView("chat"); // Switch to chat view on mobile
     setShowSidebar(false);

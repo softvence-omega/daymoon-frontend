@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Card } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
+  import{ Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { ImPencil } from "react-icons/im";
-import { IoIosArrowBack,IoIosArrowForward } from "react-icons/io";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { TbBriefcase2 } from "react-icons/tb";
 import {
   Select,
@@ -76,14 +76,14 @@ const BusinessInformation = () => {
   return (
     <Card className="mx-auto mt-8 md:p-10 bg-[#FFFFFF] border border-[#E5E5E5] rounded-[20px] py-0 md:py-6 shadow-none ">
       <div className="space-y-6 lg:col-span-8">
-       <div className="hidden md:block">
-         <PageHeader
-          title="Business Details"
-          onEdit={handleSubmit}
-          buttonTitle="Edit"
-          icon={<ImPencil />}
-        />
-       </div>
+        <div className="hidden md:block">
+          <PageHeader
+            title="Business Details"
+            onButtonClick={handleSubmit}
+            buttonTitle="Edit"
+            icon={<ImPencil />}
+          />
+        </div>
 
         {/* Desktop Form */}
         <div className="hidden md:block">
@@ -254,14 +254,12 @@ const BusinessInformation = () => {
         <div className="md:hidden ">
           <Drawer>
             <DrawerTrigger asChild>
-              <Button
-                className="w-full border border-[#E5E5E5] bg-white rounded-xl text-base p-3 font-medium flex justify-between items-center shadow-none h-auto"
-              >
+              <Button className="w-full border border-[#E5E5E5] bg-white rounded-xl text-base p-3 font-medium flex justify-between items-center shadow-none h-auto">
                 <div className="flex items-center text-[#484848]">
                   <TbBriefcase2 className="inline-block mr-2 w-6 h-6 " />
                   Business Information
                 </div>
-                <IoIosArrowForward  className="text-  [#F04436]"/>
+                <IoIosArrowForward className="text-  [#F04436]" />
               </Button>
             </DrawerTrigger>
             <DrawerContent className="bg-white rounded-xl">
