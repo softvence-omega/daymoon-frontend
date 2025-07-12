@@ -2,7 +2,7 @@ import img from "../../assets/About/joinUs.png";
 
 const JoinUs = () => {
   return (
-    <div className="h-auto lg:h-[466px] my-[60px] md:my-[80px] lg:mt-[120px] lg:mb-[80px] bg-my-gradient rounded-lg md:rounded-xl lg:rounded-[16px] flex flex-col-reverse lg:flex-row items-center justify-between overflow-hidden">
+    <div className="w-full h-auto lg:h-[466px]  bg-my-gradient rounded-lg md:rounded-xl lg:rounded-[16px] flex flex-col-reverse lg:flex-row items-center justify-between overflow-hidden">
       {/* Content Section - Comes second on mobile, first on desktop */}
       <div className="text-[#FCFCFC] w-full lg:w-1/2 py-8 md:py-10 lg:py-0 lg:pl-[60px] lg:pr-[20px] text-center lg:text-left">
         <h2 className="text-[32px] md:text-[48px] lg:text-[67.36px] font-semibold leading-[1.2] md:leading-[1.25] lg:leading-[80.832px] tracking-[-0.05em] md:tracking-[-0.07em] lg:tracking-[-0.084em] uppercase mb-3 md:mb-4">
@@ -17,7 +17,6 @@ const JoinUs = () => {
         </button>
       </div>
 
-      {/* Image Section - Shows first on mobile, second on desktop */}
       <div className="w-full lg:w-1/2 flex justify-center lg:justify-end pt-8 md:pt-10 lg:pt-0 lg:pr-[60px]">
         <img
           className="h-[200px] sm:h-[250px] md:h-[300px] lg:h-[401px] w-auto max-w-full object-contain"

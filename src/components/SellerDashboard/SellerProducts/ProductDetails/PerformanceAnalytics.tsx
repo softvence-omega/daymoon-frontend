@@ -2,7 +2,6 @@ import CommonHeader from "@/common/CommonHeader";
 import SubHeader from "@/common/SubHeader";
 import ProgressBar from "./ProgressBar";
 import MonthlyRevenue from "./MonthlyRevenue";
-import SmallCard from "./SmallCard";
 
 const analytic = [
   { title: "Total Enquiries", quantity: "300" },
