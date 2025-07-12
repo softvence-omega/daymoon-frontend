@@ -1,13 +1,18 @@
-import { ChevronDown } from "lucide-react";
 import Title from "../Shared/Title";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+
+import CommonSelect from "@/common/CommonSelect";
+import { useState } from "react";
+
+const listItem2 = [
+  { label: "Last 30 Days", value: "30days" },
+  { label: "Last 7 Days", value: "7days" },
+  { label: "Last 90 Days", value: "90days" },
+  { label: "Last Year", value: "1year" },
+] as const;
+
+type RangeValue = (typeof listItem2)[number]["value"];
 const OrderNavbar = () => {
+  const [dateFilter, setDateFilter] = useState<RangeValue>("30days");
   return (
     <div className="w-full ">
       <div className="flex flex-col lg:flex-row justify-between gap-6 lg:gap-8 items-start lg:items-center w-full">
@@ -19,18 +24,14 @@ const OrderNavbar = () => {
         </div>
 
         <div className="">
-          <Select>
-            <SelectTrigger className=" sm:min-w-[220px] bg-[#FCFCFC] border border-[#B3B3B3] px-3 py-5 rounded-xl text-left text-gray-700">
-              <SelectValue placeholder="Select a category" />
-              <ChevronDown className="w-4 h-4 text-gray-500 ml-auto" />
-            </SelectTrigger>
-            <SelectContent className="bg-white text-base">
-              <SelectItem value="30days">Last 30 Days</SelectItem>
-              <SelectItem value="7days">Last 7 Days</SelectItem>
-              <SelectItem value="90days">Last 90 Days</SelectItem>
-              <SelectItem value="1year">Last Year</SelectItem>
-            </SelectContent>
-          </Select>
+          <CommonSelect
+            value={dateFilter}
+            onValueChange={setDateFilter}
+            item={listItem2}
+            w={228}
+            className=""
+            arrow="text-gray-500"
+          />
         </div>
       </div>
     </div>

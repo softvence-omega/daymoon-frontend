@@ -209,7 +209,7 @@ export default function AddNewPromotion() {
         <SubTitle miniTitle="Terms & Conditions" />
         <div>
           <label className="text-base font-medium text-[#484848]">
-            Terms & Conditions (Optional)
+            Terms & Conditions (Optionals)
           </label>
           <textarea
             placeholder="Enter any terms, conditions and restrictions apply for this promotion"

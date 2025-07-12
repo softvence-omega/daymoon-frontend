@@ -33,7 +33,7 @@ const features = [
 
 const SellWithUsSection = () => {
   return (
-    <section className="max-w-7xl mx-auto px-6 py-12 flex flex-col md:flex-row gap-10">
+    <section className="flex flex-col lg:flex-row gap-10 ">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 flex-1">
         {features.map(({ id, title, description, icon }) => (
           <div
@@ -61,7 +61,7 @@ const SellWithUsSection = () => {
           From secure payments and shipping support to expert guidance and
           global exposure — we empower you to sell smarter, faster, and bigger.
         </p>
-        <CommonButton className=" !w-fit">Get Started</CommonButton>
+        <CommonButton className=" sm:!w-fit">Get Started</CommonButton>
       </div>
     </section>
   );
