@@ -1,9 +1,10 @@
+import coupon from "@/assets/coupon 1.svg";
+import refund from "@/assets/refund 1.svg";
+import reviews from "@/assets/reviews.svg";
+import StyledSelect from "@/components/ReUseable/StyledSelect";
 import { BuyerOrderTableData } from "@/lib/Buyer/BuyerOrderTable";
 import { OrdersTableProps } from "@/types/Buyer/BuyerOrderTypes";
-import { ChevronDown, Search } from "lucide-react";
-import reviews from "@/assets/reviews.svg";
-import refund from "@/assets/refund 1.svg";
-import coupon from "@/assets/coupon 1.svg";
+import { Search } from "lucide-react";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -24,7 +25,11 @@ const BuyerOrdersTable: React.FC<OrdersTableProps> = () => {
         return "bg-gray-100 text-gray-800";
     }
   };
-
+  const handleSearch = () => {
+    if (searchTerm.trim()) {
+      console.log("Searching for:", searchTerm);
+    }
+  };
   const filteredOrders = BuyerOrderTableData.filter((order) => {
     const matchesSearch =
       order.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -42,15 +47,17 @@ const BuyerOrdersTable: React.FC<OrdersTableProps> = () => {
       {/* Header */}
       <div className="flex justify-between items-center mb-6">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">My Orders</h1>
-          <p className="text-sm text-gray-600 mt-1">
+          <h1 className="text-xl lg:text-3xl font-medium text-[#484848]">
+            My Orders
+          </h1>
+          <p className="text-base text-[#666] mt-1">
             Manage and track your order history
           </p>
         </div>
         <div className="flex gap-3">
           <Link
-            to="/reviews"
-            className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700   hover:bg-gray-50 transition-colors"
+            to="reviews"
+            className="flex items-center cursor-pointer gap-2 px-4 py-2 text-sm font-medium text-gray-700   hover:bg-gray-50 transition-colors"
           >
             <span className="border-b border-catalien-blue text-lg">
               Reviews
@@ -58,65 +65,90 @@ const BuyerOrdersTable: React.FC<OrdersTableProps> = () => {
             {/* <MessageSquare className="w-4 h-4 " /> */}
             <img src={reviews} alt="" />
           </Link>
-          <button className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700  transition-colors">
-            <span className="border-b border-catalien-blue text-lg">
-              Refund
-            </span>
-            <img src={refund} alt="" />
-          </button>
-          <button className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-red-500 rounded-full hover:bg-red-600 transition-colors">
-            <img src={coupon} alt="" />
-            Coupons
-          </button>
+          <Link to="refund">
+            <button className="flex cursor-pointer items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700  transition-colors">
+              <span className="border-b border-catalien-blue text-lg">
+                Refund
+              </span>
+              <img src={refund} alt="" />
+            </button>
+          </Link>
+          <Link to="refund">
+            <button className="flex items-center gap-2 px-4 cursor-pointer py-2 text-sm font-medium text-white bg-red-500 rounded-full hover:bg-red-600 transition-colors">
+              <img src={coupon} alt="" />
+              Coupons
+            </button>
+          </Link>
         </div>
       </div>
 
       {/* Search and Filters */}
-      <div className="flex justify-center gap-4 mb-6">
-        <div className=" relative">
-          <div className="absolute bg-sunset-orange p-1 rounded-full right-2 top-1/2 transform -translate-y-1/2">
-            <Search className=" text-white" />
+      <div className="p-4 xl:border my-10 xl:border-[#E5E5E5] rounded-full max-w-7xl mx-auto bg-transparent">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-4 items-center">
+          {/* Search Bar - Takes full width on smaller screens */}
+          <div className="relative md:col-span-2 lg:col-span-1">
+            <div className="relative">
+              <Search
+                className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white w-6 p-1 rounded-full h-auto"
+                style={{
+                  background:
+                    "linear-gradient(270deg, #F7813B 0%, #F46A39 100%)",
+                }}
+              />
+              <input
+                type="text"
+                placeholder="Search orders by number, product, and suppliers"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    handleSearch();
+                  }
+                }}
+                className="w-full rounded-full border border-[#E5E5E5] bg-white text-[#1A1A1A] placeholder:text-[#666666] pl-6 pr-12 py-3 text-base focus:outline-none focus:ring-2 focus:ring-[#F04436] focus:border-transparent h-auto"
+              />
+            </div>
           </div>
-          <input
-            type="text"
-            placeholder="Search orders by number, product, and suppliers"
-            className="w-full lg:w-[748px] pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </div>
-        <div className="relative">
-          <select
-            className="appearance-none bg-white border border-gray-300 rounded-full px-4 py-2 pr-8 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none"
-            value={statusFilter}
-            onChange={(e) => setStatusFilter(e.target.value)}
-          >
-            <option>All Status</option>
-            <option>Delivered</option>
-            <option>Pending</option>
-            <option>Shipped</option>
-          </select>
-          <ChevronDown className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 pointer-events-none" />
-        </div>
-        <div className="relative">
-          <select
-            className="appearance-none bg-white border border-gray-300 rounded-full px-4 py-2 pr-8 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none"
-            value={dateFilter}
-            onChange={(e) => setDateFilter(e.target.value)}
-          >
-            <option>Last 30 Days</option>
-            <option>Last 7 Days</option>
-            <option>Last 90 Days</option>
-            <option>Last Year</option>
-          </select>
-          <ChevronDown className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 pointer-events-none" />
+
+          {/* Filter Selects - Takes other half on large screens */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:col-span-2 lg:col-span-1">
+            {/* Status Filter */}
+            <div className="relative">
+              <StyledSelect
+                placeholder={statusFilter}
+                defaultValue={statusFilter}
+                onValueChange={(value) => setStatusFilter(value)}
+                options={[
+                  { label: "All Status", value: "All Status" },
+                  { label: "Delivered", value: "Delivered" },
+                  { label: "Pending", value: "Pending" },
+                  { label: "Shipped", value: "Shipped" },
+                ]}
+              />
+            </div>
+
+            {/* Date Filter */}
+            <div className="relative">
+              <StyledSelect
+                placeholder={dateFilter}
+                defaultValue={dateFilter}
+                onValueChange={(value) => setDateFilter(value)}
+                options={[
+                  { label: "Last 30 Days", value: "Last 30 Days" },
+                  { label: "Last 7 Days", value: "Last 7 Days" },
+                  { label: "Last 90 Days", value: "Last 90 Days" },
+                  { label: "Last Year", value: "Last Year" },
+                ]}
+              />
+            </div>
+          </div>
         </div>
       </div>
 
       {/* Orders Table */}
       <div className="overflow-x-auto bg-white rounded-lg border border-gray-200">
         <table className="w-full">
-          <thead className="bg-gray-300">
+          <thead className="bg-[#E5E5E5]">
             <tr>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Order ID
