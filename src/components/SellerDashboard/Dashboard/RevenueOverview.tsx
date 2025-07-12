@@ -94,7 +94,7 @@ const RevenueOverview = () => {
   };
 
   return (
-    <div className="w-full max:w-[748px] h-full max:h-[555px] bg-white p-4 rounded-xl shadow">
+    <div className="w-full max:w-[748px] h-full max:h-[555px] bg-white p-6 rounded-xl shadow">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 md:gap-8 lg:gap-12 mb-8 w-full">
         {/* Title */}
         <div className="w-full md:flex-1">

@@ -1,5 +1,3 @@
-"use client";
-
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 import { TrendingUp } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";

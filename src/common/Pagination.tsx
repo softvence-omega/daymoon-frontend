@@ -7,16 +7,17 @@ import { Link } from "react-router-dom";
 interface PaginationProps {
   title: string;
   showText: string;
+  path?: string;
 }
 
-const Pagination: FC<PaginationProps> = ({ title, showText }) => {
+const Pagination: FC<PaginationProps> = ({ title, showText, path }) => {
   return (
     <div className=" flex justify-between items-center  text-jet-black text-base">
       <div>
         <p>{showText}</p>
       </div>
       <Link
-        to="/seller-dashboard/all-products"
+        to={path!}
         className=" flex text-sunset-orange items-center   underline text-lg cursor-pointer gap-1"
       >
         <p>{title}</p>

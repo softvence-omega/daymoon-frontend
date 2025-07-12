@@ -8,7 +8,7 @@ import {
   ResponsiveContainer,
   Area,
 } from "recharts";
-import Card from "../../Dashboard/Card";
+
 import CommonHeader from "@/common/CommonHeader";
 import {
   Select,
@@ -17,6 +17,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import DashboardCard from "@/common/DashboardCard";
+import DashboardCommonSpace from "@/common/DashboardCommonSpace";
 
 type RevenueData = {
   month: string;
@@ -56,6 +58,33 @@ const weeklyData: RevenueData[] = [
   { month: "Jan", week: "Fri", revenue: 700, inquiries: 18, views: 75 },
   { month: "Jan", week: "Sat", revenue: 500, inquiries: 13, views: 55 },
   { month: "Jan", week: "Sun", revenue: 400, inquiries: 10, views: 45 },
+];
+
+const cardData = [
+  {
+    title: "Total Sales",
+    value: "1,200",
+
+    trend: { percentage: 12, isPositive: true },
+  },
+  {
+    title: "Total Variations",
+    value: "12,500",
+
+    trend: { percentage: 12, isPositive: true },
+  },
+  {
+    title: "Active Products",
+    value: "15,000",
+
+    trend: { percentage: 12, isPositive: true },
+  },
+  {
+    title: "Conversion Rate",
+    value: "8%",
+    unit: "/Variations",
+    trend: { percentage: 12, isPositive: true },
+  },
 ];
 
 const MonthlyRevenue = () => {
@@ -108,9 +137,13 @@ const MonthlyRevenue = () => {
         </Select>
       </div>
 
-      <div className="py-10">
-        <Card />
-      </div>
+      <DashboardCommonSpace>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {cardData.map((data, index) => (
+            <DashboardCard key={index} data={data} />
+          ))}
+        </div>
+      </DashboardCommonSpace>
 
       <div className="flex justify-center items-center mb-6">
         <div className="flex gap-6 text-[#484848] text-base">
