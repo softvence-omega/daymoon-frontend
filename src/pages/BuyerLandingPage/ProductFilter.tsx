@@ -18,7 +18,7 @@ const ProductFilter = () => {
   return (
     <CommonWrapper>
       <div className="lg:flex lg:justify-between lg:gap-[102px] md:gap-[102px]">
-        <div className="lg:w-1/4">
+        <div className="lg:w-1/4 hidden lg:block">
           <FilterSection />
         </div>
         <div className="lg:w-3/4">
@@ -33,7 +33,7 @@ const ProductFilter = () => {
               rows={
                 showAllProducts
                   ? { mobile: 100, md: 100, lg: 100 } // Show all products
-                  : { mobile: 3, md: 4, lg: 4 }       // Show limited initially
+                  : { mobile: 3, md: 4, lg: 4 } // Show limited initially
               }
             />
             {!showAllProducts && (
@@ -53,7 +53,7 @@ const ProductFilter = () => {
             rows={
               showAllTopRated
                 ? { mobile: 100, md: 100, lg: 100 } // Show all top rated
-                : { mobile: 2, md: 2, lg: 2 }       // Show initial few
+                : { mobile: 2, md: 2, lg: 2 } // Show initial few
             }
           />
           {!showAllTopRated && (
@@ -64,7 +64,7 @@ const ProductFilter = () => {
           )}
         </div>
       </div>
-      <JoinUs/>
+      <JoinUs />
     </CommonWrapper>
   );
 };

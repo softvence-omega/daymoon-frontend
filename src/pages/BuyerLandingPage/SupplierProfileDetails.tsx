@@ -12,7 +12,7 @@ const SupplierProfileDetails = () => {
   return (
     <CommonWrapper>
       <div className="lg:flex lg:justify-between lg:gap-[102px] md:gap-[102px]">
-        <div className="lg:w-1/4">
+        <div className="hidden lg:flex lg:w-1/4">
           <FilterSection />
         </div>
         <div className="lg:3/4">

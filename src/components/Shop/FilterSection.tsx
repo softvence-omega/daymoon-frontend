@@ -2,7 +2,7 @@ import ReusableFilter from "../ReUseable/ReusbaleFilter";
 
 const FilterSection = () => {
   return (
-    <div className="mt-20 hidden lg:block">
+    <div className="lg:mt-20 w-full">
       <ReusableFilter
         title="Price"
         options={[
