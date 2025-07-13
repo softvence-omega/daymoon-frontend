@@ -1,5 +1,6 @@
 import React from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Link } from 'react-router-dom';
 
 // Messages Data
 const messages = [
@@ -71,9 +72,9 @@ export function RecentMessages() {
         <h1 className="text-2xl font-medium text-[#484848] leading-tight">
           Recent Messages
         </h1>
-        <button className="underline text-[#F04436] text-base font-medium hover:text-[#d6332a] transition-colors">
+        <Link to="/buyer/dashboard/messages" className="underline text-[#F04436] text-base font-medium hover:text-[#d6332a] transition-colors">
           View All
-        </button>
+        </Link>
       </div>
 
       {/* Cards stacked vertically */}

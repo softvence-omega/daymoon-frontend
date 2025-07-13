@@ -142,7 +142,6 @@ const SellerInquireFilter = ({ onFilterChange = () => {} }: RFQFilterProps) => {
       search: e.target.value,
     }));
   };
-
   return (
     <div className="p-4 xl:border xl:border-[#E5E5E5] rounded-full max-w-7xl mx-auto bg-transparent">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-4 items-center">
