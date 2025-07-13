@@ -1,10 +1,11 @@
+import CommonWrapper from "@/common/CommonWrapper";
 import InvoiceForm from "@/components/SellerDashboard/SellerInquirie/InvoiceForm";
 
 const SellerInvoiceFormPage = () => {
   return (
-    <div>
+    <CommonWrapper>
       <InvoiceForm />
-    </div>
+    </CommonWrapper>
   );
 };
 
