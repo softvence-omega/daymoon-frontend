@@ -1,3 +1,4 @@
+import CommonWrapper from "@/common/CommonWrapper";
 import Breadcrumbs from "./Breadcrumbs";
 import ProductImage from "./ProductImage";
 import ProductInformation from "./ProductInformation";
@@ -17,7 +18,7 @@ const AddProductForm = () => {
   };
 
   return (
-    <div className="  ">
+    <CommonWrapper className="">
       <div className="pb-6">
         <Breadcrumbs title="Products" subtitle="Add New Product" />
       </div>
@@ -30,7 +31,7 @@ const AddProductForm = () => {
           <ProductInformation />
         </div>
       </div>
-    </div>
+    </CommonWrapper>
   );
 };
 

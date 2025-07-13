@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC, useState } from "react";
 import {
   AreaChart,
   XAxis,
@@ -10,16 +10,9 @@ import {
 } from "recharts";
 
 import CommonHeader from "@/common/CommonHeader";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { ChevronDown } from "lucide-react";
 import SmallCard from "./SmallCard";
 import { useLocation } from "react-router-dom";
+import CommonSelect from "@/common/CommonSelect";
 
 type RevenueData = {
   month: string;
@@ -66,14 +59,22 @@ interface MonthlyRevenueProps {
   subtitle1?: string;
   subtitle2?: string;
 }
+
+const listItem = [
+  { label: "Weekly", value: "week" },
+  { label: "Monthly", value: "month" },
+  { label: "Yearly", value: "year" },
+] as const;
+
+type TimeRange = (typeof listItem)[number]["value"];
+
 const MonthlyRevenue: FC<MonthlyRevenueProps> = ({
   title,
   subtitle1,
   subtitle2,
 }) => {
-  const [timeRange, setTimeRange] = React.useState<"week" | "month" | "year">(
-    "year"
-  );
+  const [timeRange, setTimeRange] = useState<TimeRange>("year");
+
   const { pathname } = useLocation();
 
   const getData = () => {
@@ -104,31 +105,22 @@ const MonthlyRevenue: FC<MonthlyRevenueProps> = ({
   const productSlug = pathname.startsWith("/seller-dashboard/all-products/")
     ? pathname.split("/")[3]
     : null;
+
   return (
     <div>
       <div
-        className={`flex justify-between items-center ${
+        className={`flex flex-col sm:flex-row gap-6 justify-between items-center ${
           !(subtitle1 || subtitle2) && "pb-6"
         }`}
       >
         <CommonHeader>{title}</CommonHeader>
 
-        <Select
+        <CommonSelect
           value={timeRange}
           onValueChange={(val: "week" | "month" | "year") => setTimeRange(val)}
-        >
-          <SelectTrigger
-            className={` sm:min-w-[200px] bg-[#FCFCFC] border border-[#B3B3B3] px-3 py-5 cursor-pointer rounded-md outline-none text-sm `}
-          >
-            <SelectValue placeholder="Select Range" />
-            <ChevronDown className="w-4 h-4 " />
-          </SelectTrigger>
-          <SelectContent className="bg-white">
-            <SelectItem value="week">Weekly</SelectItem>
-            <SelectItem value="month">Monthly</SelectItem>
-            <SelectItem value="year">Yearly</SelectItem>
-          </SelectContent>
-        </Select>
+          item={listItem}
+          w={200}
+        />
       </div>
 
       {productSlug && <SmallCard />}

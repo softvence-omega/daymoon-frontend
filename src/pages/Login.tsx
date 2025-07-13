@@ -1,9 +1,9 @@
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useNavigate } from "react-router-dom";
-import img from "../assets/SignUp/signup.png"; // Adjust the path as necessary
 import Nav from "@/components/Authentication/Nav";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { z } from "zod";
+import img from "../assets/SignUp/signup.png"; // Adjust the path as necessary
 
 const loginSchema = z.object({
   email: z.string().email("Invalid email format"),
@@ -40,7 +40,8 @@ const Login = () => {
     label: "block text-sm font-medium text-gray-700 mb-[14px]",
     error: "text-sm text-red-500",
     rememberText: "text-sm text-gray-700",
-    forgot: "text-sm text-[#FCAB3F] text-right block cursor-pointer",
+    forgot:
+      "text-sm text-[#FCAB3F] text-right block cursor-pointer  hover:underline cursor-pointer transition",
   };
 
   return (
@@ -93,10 +94,11 @@ const Login = () => {
                 <label className="flex items-center gap-2">
                   <input
                     type="checkbox"
-                    className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                    className="h-4 w-4 rounded border-gray-300 accent-[#F14141] focus:ring-[#F14141]"
                   />
                   <span className={styles.rememberText}>Remember Me</span>
                 </label>
+
                 <span className={styles.forgot}>Forget Password?</span>
               </div>
 

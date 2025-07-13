@@ -10,7 +10,7 @@ const InquirieCard = () => {
         <div className="w-full lg:flex-1">
           <Title
             title="Product Enquiries!"
-            subTitle="View and manage all your product inquiries from potential buyers."
+            subTitle="View and manage all your product inquirie from potential buyers."
           />
         </div>
       </div>

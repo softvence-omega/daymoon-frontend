@@ -1,10 +1,11 @@
+import CommonWrapper from "@/common/CommonWrapper";
 import InquiryDetails from "@/components/SellerDashboard/SellerInquirie/InquiryDetails";
 
 const SellerInquiriesDetails = () => {
   return (
-    <div>
+    <CommonWrapper>
       <InquiryDetails />
-    </div>
+    </CommonWrapper>
   );
 };
 

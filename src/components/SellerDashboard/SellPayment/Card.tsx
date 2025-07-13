@@ -70,7 +70,7 @@ const Card = () => {
             {/* Bottom Row */}
             {isLast ? (
               <div className="flex justify-start">
-                <button className="px-4 py-1  bg-[#F04436] hover:bg-[#F04436] h-10 text-lg text-white rounded-md transition">
+                <button className="px-4 py-1  bg-[#F04436] hover:bg-[#F04436] h-10 text-lg text-white rounded-md transition cursor-pointer">
                   Withdraw Fund
                 </button>
               </div>

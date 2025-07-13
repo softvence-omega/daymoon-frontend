@@ -22,7 +22,7 @@ const ReusableFilter = ({ title, options }: IFilterProps) => {
   };
 
   return (
-    <div className="bg-[#FFF7EC] w-full lg:mx-auto border-none mx-5 lg:w-[286px]  rounded-xl px-[9px] py-3 mb-5 border-1 border-[#E5E5E5] ">
+    <div className="bg-[#FFF7EC] w-full lg:mx-auto border-none mx-2 lg:w-[286px]   rounded-xl  px-4 lg:px-[9px] py-3 mb-5 border-1 border-[#E5E5E5] ">
       <h3 className="font-medium text-xl text-[#1A1A1A] mb-2">{title}</h3>
       <ul className="space-y-2">
         {options.map((option) => (

@@ -5,7 +5,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 interface FilterOption {
   value: string;
@@ -38,12 +38,16 @@ const FilterSelect = ({
 }: FilterSelectProps) => {
   return (
     <Select defaultValue={defaultValue} onValueChange={onValueChange}>
-      <SelectTrigger className="w-full rounded-full border border-[#E5E5E5] bg-white text-[#1A1A1A] placeholder:text-[#1A1A1A] px-5 py-3 data-[size=default]:h-auto text-base [&>svg]:text-[#F04436] [&>svg]:opacity-100">
+      <SelectTrigger className="w-full  rounded-full border border-[#E5E5E5] focus:ring-[#E5E5E5] bg-white text-[#1A1A1A] placeholder:text-[#1A1A1A] px-5 py-3 data-[size=default]:h-auto text-base [&>svg]:text-[#F04436] [&>svg]:opacity-100">
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>
-      <SelectContent className="bg-white">
+      <SelectContent className="bg-white border-none cursor-pointer">
         {options.map((option) => (
-          <SelectItem key={option.value} value={option.value}>
+          <SelectItem
+            className="hover:bg-[#E5E5E5] cursor-pointer"
+            key={option.value}
+            value={option.value}
+          >
             {option.label}
           </SelectItem>
         ))}

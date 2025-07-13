@@ -26,6 +26,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { ChevronDown } from "lucide-react";
 
 // Type
 type Inquiry = {
@@ -179,7 +180,7 @@ const columns: ColumnDef<Inquiry>[] = [
       const status = row.original.status;
       return (
         <span
-          className={`flex h-8 px-5 justify-center items-center gap-1 rounded-full font-semibold text-sm capitalize ${statusClassNames[status]}`}
+          className={`flex w-24 h-8 px-5 justify-center items-center gap-1 rounded-full font-semibold text-sm capitalize ${statusClassNames[status]}`}
         >
           {statusLabels[status]}
         </span>
@@ -249,22 +250,39 @@ export function PromotionTable() {
     <div>
       {/* Header and Filter */}
       <div className="flex flex-wrap justify-between items-center mb-6 gap-4">
-        <h1 className="text-2xl font-medium text-[#484848]">
-          Promotions Performance
-        </h1>
+        <h1 className="text-2xl font-medium text-[#484848]">Promotions</h1>
         <Select
           value={filterValue}
           onValueChange={(value) => setFilterValue(value)}
         >
-          <SelectTrigger className="w-[180px] border border-[#B3B3B3] text-[#484848] rounded-xl px-4 py-2.5 text-sm bg-[#FCFCFC]">
+          <SelectTrigger className="w-[180px] h-[48px] border border-[#B3B3B3] bg-[#FCFCFC] text-[#484848] text-sm rounded-[12px] px-4 py-[10px] flex items-center justify-between hover:border-gray-400 transition-all duration-200 cursor-pointer">
             <SelectValue placeholder="All Promotions" />
+            <ChevronDown className="w-4 h-4 ml-auto text-gray-500" />
           </SelectTrigger>
-          <SelectContent>
+
+          <SelectContent className="bg-white border border-[#B3B3B3] rounded-md shadow-md">
             <SelectGroup>
-              <SelectLabel>All Promotions</SelectLabel>
-              <SelectItem value="week">This Week</SelectItem>
-              <SelectItem value="month">This Month</SelectItem>
-              <SelectItem value="year">Last 6 Months</SelectItem>
+              <SelectLabel className="px-4 pt-2 text-gray-500 text-sm">
+                All Promotions
+              </SelectLabel>
+              <SelectItem
+                value="week"
+                className="cursor-pointer px-4 py-2 hover:bg-gray-100 transition-colors rounded"
+              >
+                This Week
+              </SelectItem>
+              <SelectItem
+                value="month"
+                className="cursor-pointer px-4 py-2 hover:bg-gray-100 transition-colors rounded"
+              >
+                This Month
+              </SelectItem>
+              <SelectItem
+                value="year"
+                className="cursor-pointer px-4 py-2 hover:bg-gray-100 transition-colors rounded"
+              >
+                Last 6 Months
+              </SelectItem>
             </SelectGroup>
           </SelectContent>
         </Select>

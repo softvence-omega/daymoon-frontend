@@ -1,24 +1,40 @@
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-
-import React from "react";
+import React, { useState } from "react";
 import ReactApexChart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectGroup,
+  SelectLabel,
+  SelectItem,
+} from "@/components/ui/select";
+import { ChevronDown } from "lucide-react";
 
-const OrderStatus: React.FC = () => {
-  const series = [44, 55, 13, 33]; // Delivered, Shipped, Processing, Cancelled
+const EnquiriesByStatus: React.FC = () => {
+  const dataByFilter: Record<string, number[]> = {
+    "This Month": [44, 55, 13, 33],
+    "Last Month": [30, 40, 10, 20],
+    "This Year": [300, 320, 100, 110],
+  };
+
+  const [selectedFilter, setSelectedFilter] = useState("This Month");
+  const [series, setSeries] = useState(dataByFilter[selectedFilter]);
+
+  const handleFilterChange = (value: string) => {
+    let label = "";
+
+    if (value === "this-month") label = "This Month";
+    else if (value === "last-month") label = "Last Month";
+    else if (value === "this-year") label = "This Year";
+
+    setSelectedFilter(label);
+    setSeries(dataByFilter[label]);
+  };
 
   const options: ApexOptions = {
     chart: {
-      width: 393,
-      height: 393,
       type: "donut",
     },
     labels: ["Delivered", "Shipped", "Processing", "Cancelled"],
@@ -30,30 +46,56 @@ const OrderStatus: React.FC = () => {
         startAngle: 90,
         endAngle: 450,
         donut: {
-          size: "64%", // ~70.74px ring thickness for 393px circle
+          size: "64%",
         },
       },
     },
     legend: {
       position: "right",
-      offsetY: 50, // Push the legend down
-      offsetX: -90, // Slightly to the right if needed
+      offsetY: 50,
+      offsetX: -60,
       fontSize: "16px",
       labels: {
         colors: ["#484848"],
         useSeriesColors: false,
       },
-      height: 330,
+      height: 230,
     },
-
     colors: ["#9BDFC4", "#62B2FD", "#FFB450", "#FF676E"],
     responsive: [
+      {
+        breakpoint: 1200,
+        options: {
+          legend: {
+            offsetX: -10,
+          },
+        },
+      },
+      {
+        breakpoint: 1024,
+        options: {
+          legend: {
+            offsetX: -40,
+          },
+        },
+      },
+      {
+        breakpoint: 768,
+        options: {
+          legend: {
+            offsetX: 0,
+            position: "bottom",
+            offsetY: 20,
+            height: undefined,
+          },
+        },
+      },
       {
         breakpoint: 480,
         options: {
           chart: {
-            width: 320,
-            height: 320,
+            width: 300,
+            height: 300,
           },
           legend: {
             show: false,
@@ -64,29 +106,44 @@ const OrderStatus: React.FC = () => {
   };
 
   return (
-    <div className="w-full max-w-[748px] h-full max-h-[555px] p-6 bg-white rounded-xl shadow-md">
+    <div className="w-full h-full max-h-[555px] p-6 bg-white rounded-xl shadow-md">
       {/* Top Section: Title & Dropdown */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
-        {/* Title */}
-        <h1 className="text-[24px] leading-[130%] font-medium text-[#484848]">
-          Order Status
-        </h1>
-
-        {/* Dropdown */}
+        <div className="w-full md:flex-1">
+          <h1 className="text-[24px] leading-[130%] font-medium text-[#484848] mb-4">
+            Order Status
+          </h1>
+        </div>
         <div className="w-full sm:w-[250px] md:w-[221px]">
-          <Select>
-            <SelectTrigger className="w-full h-[48px] border border-[#B3B3B3] rounded-[12px] px-[20px] py-[10px] flex items-center justify-between text-[#484848]">
-              <SelectValue placeholder="Last 6 Months" />
+          <Select onValueChange={handleFilterChange} defaultValue="this-month">
+            <SelectTrigger className="w-full h-[48px] border border-[#B3B3B3] rounded-[12px] px-[20px] py-[10px] bg-[#FCFCFC] text-[#484848] text-sm flex items-center justify-between hover:border-gray-400 transition-all duration-200 cursor-pointer">
+              <SelectValue placeholder="Select Time" />
+              <ChevronDown className="w-4 h-4 ml-auto text-gray-500" />
             </SelectTrigger>
-            <SelectContent>
+
+            <SelectContent className="bg-white border border-[#B3B3B3] rounded-md shadow-md">
               <SelectGroup>
-                <SelectLabel>Months</SelectLabel>
-                <SelectItem value="1">Last 1 Month</SelectItem>
-                <SelectItem value="2">Last 2 Months</SelectItem>
-                <SelectItem value="3">Last 3 Months</SelectItem>
-                <SelectItem value="4">Last 4 Months</SelectItem>
-                <SelectItem value="5">Last 5 Months</SelectItem>
-                <SelectItem value="6">Last 6 Months</SelectItem>
+                <SelectLabel className="px-4 pt-2 text-gray-500 text-sm">
+                  Filter
+                </SelectLabel>
+                <SelectItem
+                  value="this-month"
+                  className="cursor-pointer px-4 py-2 hover:bg-gray-100 transition-colors rounded"
+                >
+                  This Month
+                </SelectItem>
+                <SelectItem
+                  value="last-month"
+                  className="cursor-pointer px-4 py-2 hover:bg-gray-100 transition-colors rounded"
+                >
+                  Last Month
+                </SelectItem>
+                <SelectItem
+                  value="this-year"
+                  className="cursor-pointer px-4 py-2 hover:bg-gray-100 transition-colors rounded"
+                >
+                  This Year
+                </SelectItem>
               </SelectGroup>
             </SelectContent>
           </Select>
@@ -94,17 +151,17 @@ const OrderStatus: React.FC = () => {
       </div>
 
       {/* Donut Chart */}
-      <div className="flex justify-center mt-20">
+      <div className="flex justify-center items-center">
         <ReactApexChart
           options={options}
           series={series}
           type="donut"
-          width={393}
-          height={393}
+          width={400}
+          height={400}
         />
       </div>
     </div>
   );
 };
 
-export default OrderStatus;
+export default EnquiriesByStatus;

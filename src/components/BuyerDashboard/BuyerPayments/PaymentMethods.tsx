@@ -28,7 +28,6 @@ const cardDetails = [
 ];
 
 const PaymentMethods = () => {
-
   const handleEdit = (id: string) => {
     console.log(`Editing payment method with ID: ${id}`);
     // Example: Open a modal or navigate to an edit page

@@ -1,9 +1,8 @@
+
 import * as React from "react";
 import { MdEdit, MdDelete } from "react-icons/md";
+
 import { Button } from "@/components/ui/button";
-import { useMemo } from "react";
-import { FilterState } from "./RFQFilter";
-import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import {
   Table,
   TableBody,
@@ -13,8 +12,13 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import * as React from "react";
+import { useMemo } from "react";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { MdDelete, MdEdit } from "react-icons/md";
+import { FilterState } from "./RFQFilter";
 
-interface RFQTableProps { 
+interface RFQTableProps {
   filters?: FilterState;
 }
 
@@ -310,10 +314,7 @@ export const RFQTable = ({
               ))
             ) : (
               <TableRow>
-                <TableCell
-                  colSpan={7}
-                  className="h-24 text-center"
-                >
+                <TableCell colSpan={7} className="h-24 text-center">
                   No RFQ leads found.
                 </TableCell>
               </TableRow>

@@ -35,25 +35,23 @@ import Shop from "@/components/Shop/Shop";
 import SellerInvoiceFormPage from "@/pages/SellerDashboard/SellerInvoiceFormPage";
 // import BuyerOrdersPage from "@/pages/BuyerDashboard/BuyerOrdersPage";
 import IndividualProduct from "@/components/SingleProduct/IndividualProduct";
-import BuyerRFQ from "../pages/BuyerDashboard/BuyerRFQ";
 import BuyerHome from "@/pages/BuyerLandingPage/BuyerHome";
 import ProductCategories from "@/pages/BuyerLandingPage/ProductCategories";
 import ProductFilter from "@/pages/BuyerLandingPage/ProductFilter";
+import BuyerRFQ from "../pages/BuyerDashboard/BuyerRFQ";
 
 import OrderDetails from "@/components/SellerDashboard/SellerOrder/OrderDetails/OrderDetails";
 
-import BuyerOrdersPage from "@/pages/BuyerDashboard/BuyerOrdersPage";
-import BuyerReview from "@/pages/BuyerDashboard/BuyerReview";
-import BuyerRefund from "@/pages/BuyerDashboard/BuyerRefund";
-import BuyerOrderDetails from "@/pages/BuyerDashboard/BuyerOrderDetails";
-import BuyerPayments from "@/pages/BuyerDashboard/BuyerPayments";
-import BuyerMessages from "@/pages/BuyerDashboard/BuyerMessages";
-import BuyerFavorites from "@/pages/BuyerDashboard/BuyerFavorites";
-import SupplierProfileDetails from "@/pages/BuyerLandingPage/SupplierProfileDetails";
 import BuyerProfile from "@/components/SellerDashboard/SellerOrder/Profile/BuyerProfile";
+import BuyerFavorites from "@/pages/BuyerDashboard/BuyerFavorites";
+import BuyerMessages from "@/pages/BuyerDashboard/BuyerMessages";
+import BuyerOrderDetails from "@/pages/BuyerDashboard/BuyerOrderDetails";
+import BuyerOrdersPage from "@/pages/BuyerDashboard/BuyerOrdersPage";
+import BuyerPayments from "@/pages/BuyerDashboard/BuyerPayments";
+import BuyerRefund from "@/pages/BuyerDashboard/BuyerRefund";
+import BuyerReview from "@/pages/BuyerDashboard/BuyerReview";
+import SupplierProfileDetails from "@/pages/BuyerLandingPage/SupplierProfileDetails";
 import CreatePromotionPage from "@/pages/SellerDashboard/CreatePromotionPage";
-
-
 
 const routes = createBrowserRouter([
   {
@@ -103,8 +101,8 @@ const routes = createBrowserRouter([
         element: <ProductFilter />,
       },
       {
-        path:"/suppliersDetails",
-        element: <SupplierProfileDetails/>
+        path: "/suppliersDetails",
+        element: <SupplierProfileDetails />,
       },
       // -----------
       // -------------------
@@ -126,12 +124,12 @@ const routes = createBrowserRouter([
     element: <Signup />,
   },
   {
-    path: "signup-buyer",
+    path: "buyer-signup",
     element: <BuyerSignup />,
   },
 
   {
-    path: "signup-seller",
+    path: "seller-signup",
     element: <SellerRegistration />,
   },
   {
@@ -155,11 +153,11 @@ const routes = createBrowserRouter([
             element: <BuyerOrdersPage />,
           },
           {
-            path: "reviews",
+            path: "orders/reviews",
             element: <BuyerReview />,
           },
           {
-            path: "refund",
+            path: "orders/refund",
             element: <BuyerRefund />,
           },
           {

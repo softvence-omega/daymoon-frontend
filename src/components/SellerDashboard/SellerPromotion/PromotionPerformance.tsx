@@ -19,6 +19,7 @@ import {
   SelectLabel,
   SelectItem,
 } from "@/components/ui/select";
+import { ChevronDown } from "lucide-react";
 
 type RevenueData = {
   month: string;
@@ -126,15 +127,34 @@ const PromotionPerformance = () => {
             setTimeRange(value as "week" | "month" | "year")
           }
         >
-          <SelectTrigger className="w-[180px] border border-[#B3B3B3] text-[#484848] rounded-xl px-4 py-2.5 text-sm bg-[#FCFCFC]">
+          <SelectTrigger className="w-[180px] h-[48px] border border-[#B3B3B3] text-[#484848] bg-[#FCFCFC] rounded-[12px] px-4 py-[10px] text-sm flex items-center justify-between hover:border-gray-400 transition-all duration-200 cursor-pointer">
             <SelectValue placeholder="Select Time Range" />
+            <ChevronDown className="w-4 h-4 ml-auto text-gray-500" />
           </SelectTrigger>
-          <SelectContent>
+
+          <SelectContent className="bg-white border border-[#B3B3B3] rounded-md shadow-md">
             <SelectGroup>
-              <SelectLabel>Time Range</SelectLabel>
-              <SelectItem value="week">This Week</SelectItem>
-              <SelectItem value="month">This Month</SelectItem>
-              <SelectItem value="year">Last 6 Months</SelectItem>
+              <SelectLabel className="px-4 pt-2 text-gray-500 text-sm">
+                Time Range
+              </SelectLabel>
+              <SelectItem
+                value="week"
+                className="cursor-pointer px-4 py-2 hover:bg-gray-100 transition-colors rounded"
+              >
+                This Week
+              </SelectItem>
+              <SelectItem
+                value="month"
+                className="cursor-pointer px-4 py-2 hover:bg-gray-100 transition-colors rounded"
+              >
+                This Month
+              </SelectItem>
+              <SelectItem
+                value="year"
+                className="cursor-pointer px-4 py-2 hover:bg-gray-100 transition-colors rounded"
+              >
+                Last 6 Months
+              </SelectItem>
             </SelectGroup>
           </SelectContent>
         </Select>
