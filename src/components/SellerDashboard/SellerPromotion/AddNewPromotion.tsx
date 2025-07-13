@@ -4,7 +4,7 @@ import upload from "@/assets/Icon/upload.png";
 import product from "@/assets/image/product1.png";
 import { FiChevronDown } from "react-icons/fi";
 import SubTitle from "../Shared/SubTitle";
-import { RxCross2, RxCrossCircled } from "react-icons/rx";
+import { RxCross2 } from "react-icons/rx";
 
 export default function AddNewPromotion() {
   const [promotionType, setPromotionType] = useState("");
