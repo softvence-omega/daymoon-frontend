@@ -124,12 +124,12 @@ const routes = createBrowserRouter([
     element: <Signup />,
   },
   {
-    path: "signup-buyer",
+    path: "buyer-signup",
     element: <BuyerSignup />,
   },
 
   {
-    path: "signup-seller",
+    path: "seller-signup",
     element: <SellerRegistration />,
   },
   {

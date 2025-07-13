@@ -1,12 +1,5 @@
 import CommonHeader from "@/common/CommonHeader";
 import React, { useState } from "react";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { FaCheck } from "react-icons/fa6";
 
 import product from "../../../assets/landing/products.png";
@@ -46,6 +39,7 @@ import CommonButton from "@/common/CommonButton";
 import Customization from "./Customization";
 import AddMore from "./AddMore";
 import { Link } from "react-router-dom";
+import CommonSelect from "@/common/CommonSelect";
 
 const ProductInformation = () => {
   const [formData, setFormData] = useState<ProductFormData>({
@@ -125,6 +119,24 @@ const ProductInformation = () => {
     { name: "Forest Teal", hex: "#346457" },
   ];
 
+  const [category, setCategory] = useState<Category>("electronics");
+  const listItem2 = [
+    { label: "Electronics", value: "electronics" },
+    { label: "Clothing", value: "clothing" },
+    { label: "Accessories", value: "accessories" },
+  ] as const;
+
+  type Category = (typeof listItem2)[number]["value"];
+
+  const [gender, setGender] = useState<SexType>("male");
+
+  const listItem = [
+    { label: "Male", value: "male" },
+    { label: "Female", value: "female" },
+  ] as const;
+
+  type SexType = (typeof listItem)[number]["value"];
+
   return (
     <div className="flex-1 w-full  flex flex-col gap-12">
       <div className=" p-6 border border-dashed border-[#B3B3B3] rounded-lg ">
@@ -177,16 +189,15 @@ const ProductInformation = () => {
                 <label className="block text-sm text-[#969696] mb-2.5">
                   Product Category
                 </label>
-                <Select>
-                  <SelectTrigger className="w-full bg-[#FCFCFC] border border-[#B3B3B3] px-3 cursor-pointer  rounded-md outline-none  py-5">
-                    <SelectValue placeholder="Select a category" />
-                  </SelectTrigger>
-                  <SelectContent className="bg-white">
-                    <SelectItem value="electronics">Electronics</SelectItem>
-                    <SelectItem value="clothing">Clothing</SelectItem>
-                    <SelectItem value="accessories">Accessories</SelectItem>
-                  </SelectContent>
-                </Select>
+                <CommonSelect
+                  value={category}
+                  onValueChange={(
+                    val: "electronics" | "clothing" | "accessories"
+                  ) => setCategory(val)}
+                  item={listItem2}
+                  className="w-full"
+                  arrow="text-gray-600"
+                />
               </div>
               <div>
                 <label className="block text-sm  text-[#969696] mb-2.5">
@@ -228,15 +239,14 @@ const ProductInformation = () => {
                 <label className="block text-sm text-[#969696] mb-2.5">
                   Gender
                 </label>
-                <Select>
-                  <SelectTrigger className="w-full bg-[#FCFCFC] border border-[#B3B3B3] px-3  cursor-pointer rounded-md outline-none py-5">
-                    <SelectValue placeholder="Select gender" />
-                  </SelectTrigger>
-                  <SelectContent className="bg-white">
-                    <SelectItem value="male">Male</SelectItem>
-                    <SelectItem value="female">Female</SelectItem>
-                  </SelectContent>
-                </Select>
+
+                <CommonSelect
+                  value={gender}
+                  onValueChange={(val: "male" | "female") => setGender(val)}
+                  item={listItem}
+                  className="w-full"
+                  arrow="text-gray-600"
+                />
               </div>
             </div>
           </div>
@@ -361,7 +371,7 @@ const ProductInformation = () => {
 
         <Customization />
       </div>
-      <div className="flex flex-col sm:flex-row justify-center sm:justify-end gap-4 ">
+      <div className="flex flex-col sm:flex-row justify-center sm:justify-end gap-4  pb-10">
         <Link
           to="/seller-dashboard/products"
           className="px-10 py-2.5 border border-sunset-orange text-sunset-orange rounded-[20px]  hover:bg-gray-50 transition cursor-pointer"
