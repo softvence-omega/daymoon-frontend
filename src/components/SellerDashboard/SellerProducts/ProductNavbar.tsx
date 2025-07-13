@@ -21,7 +21,7 @@ const ProductNavbar = () => {
         </div>
 
         <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 w-full lg:w-auto">
-          <ButtonWithIcon className="  justify-center flex flex-row-reverse ">
+          <ButtonWithIcon className=" !bg-gray-100 border-none  justify-center flex flex-row-reverse ">
             <TfiImport />
             Export Data
           </ButtonWithIcon>

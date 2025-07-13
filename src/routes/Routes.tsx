@@ -53,8 +53,6 @@ import SupplierProfileDetails from "@/pages/BuyerLandingPage/SupplierProfileDeta
 import BuyerProfile from "@/components/SellerDashboard/SellerOrder/Profile/BuyerProfile";
 import CreatePromotionPage from "@/pages/SellerDashboard/CreatePromotionPage";
 
-
-
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -103,8 +101,8 @@ const routes = createBrowserRouter([
         element: <ProductFilter />,
       },
       {
-        path:"/suppliersDetails",
-        element: <SupplierProfileDetails/>
+        path: "/suppliersDetails",
+        element: <SupplierProfileDetails />,
       },
       // -----------
       // -------------------
@@ -126,12 +124,12 @@ const routes = createBrowserRouter([
     element: <Signup />,
   },
   {
-    path: "signup-buyer",
+    path: "buyer-signup",
     element: <BuyerSignup />,
   },
 
   {
-    path: "signup-seller",
+    path: "seller-signup",
     element: <SellerRegistration />,
   },
   {

@@ -109,7 +109,7 @@ const MonthlyRevenue: FC<MonthlyRevenueProps> = ({
   return (
     <div>
       <div
-        className={`flex justify-between items-center ${
+        className={`flex flex-col sm:flex-row gap-6 justify-between items-center ${
           !(subtitle1 || subtitle2) && "pb-6"
         }`}
       >

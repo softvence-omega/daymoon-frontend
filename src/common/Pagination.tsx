@@ -1,52 +1,75 @@
 import { FC } from "react";
 import { FaLongArrowAltRight } from "react-icons/fa";
-import { IoIosArrowForward } from "react-icons/io";
-import { IoIosArrowBack } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 
 interface PaginationProps {
   title: string;
   showText: string;
-  path?: string;
+  totalPages: number;
+  currentPage: number;
+  onPageChange: (page: number) => void;
+  onToggleShowAll: () => void;
+  showAll: boolean;
 }
 
-const Pagination: FC<PaginationProps> = ({ title, showText, path }) => {
+const Pagination: FC<PaginationProps> = ({
+  title,
+  showText,
+  totalPages,
+  currentPage,
+  onPageChange,
+  showAll,
+  onToggleShowAll,
+}) => {
+  const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
+
   return (
-    <div className=" flex justify-between items-center  text-jet-black text-base">
-      <div className=" hidden md:block">
+    <div className="flex justify-between items-center text-jet-black text-base">
+      <div className="hidden md:block">
         <p>{showText}</p>
       </div>
-      <Link
-        to={path!}
-        className=" flex text-sunset-orange items-center  underline md:text-sm sm:text-lg cursor-pointer gap-1 "
+
+      <button
+        onClick={onToggleShowAll}
+        className="flex items-center underline text-sunset-orange md:text-sm sm:text-lg gap-1 cursor-pointer"
       >
-        <p>{title}</p>
-        <p className=" hidden sm:block">
+        <p className="text-base sm:text-lg ">{title}</p>
+        <span className="hidden sm:block">
           <FaLongArrowAltRight />
-        </p>
-      </Link>
-      <div>
-        <ul className="flex items-center border border-foundation-white rounded-xl overflow-hidden">
-          {/* Previous arrow */}
-          <li className="border-r border-foundation-white text-sunset-orange  text-2xl cursor-pointer  p-2 sm:p-4">
-            <IoIosArrowBack />
-          </li>
+        </span>
+      </button>
 
-          {/* Page numbers */}
-          {["1", "2", "3", "4"].map((item, index) => (
-            <li
-              key={index}
-              className="border-r border-foundation-white p-2 sm:p-4 cursor-pointer hover:bg-foundation-white transition-colors duration-150"
-            >
-              {item}
-            </li>
-          ))}
+      <div className="flex items-center border border-foundation-white rounded-xl overflow-hidden">
+        <button
+          onClick={() => onPageChange(Math.max(1, currentPage - 1))}
+          disabled={currentPage === 1 || showAll}
+          className="border-r border-foundation-white text-sunset-orange text-2xl cursor-pointer p-2 sm:p-4 disabled:cursor-not-allowed"
+        >
+          <IoIosArrowBack />
+        </button>
 
-          {/* Next arrow */}
-          <li className="text-sunset-orange  text-2xl cursor-pointer  p-2 sm:p-4">
-            <IoIosArrowForward />
-          </li>
-        </ul>
+        {pages.map((page) => (
+          <button
+            key={page}
+            disabled={showAll}
+            onClick={() => onPageChange(page)}
+            className={`p-2 sm:p-4 border-foundation-white cursor-pointer ${
+              currentPage === page
+                ? "bg-foundation-white text-sunset-orange font-bold"
+                : "border-r border-foundation-white"
+            }`}
+          >
+            {page}
+          </button>
+        ))}
+
+        <button
+          onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
+          disabled={currentPage === totalPages || showAll}
+          className="text-sunset-orange text-2xl cursor-pointer p-2 sm:p-4 disabled:cursor-not-allowed"
+        >
+          <IoIosArrowForward />
+        </button>
       </div>
     </div>
   );

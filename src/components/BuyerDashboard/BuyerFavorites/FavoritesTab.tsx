@@ -1,19 +1,17 @@
-import React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import FavoriteProducts from './FavoriteProducts';
-import FavoriteSuppliers from './FavoriteSuppliers';
+import FavoriteProducts from "./FavoriteProducts";
+import FavoriteSuppliers from "./FavoriteSuppliers";
 const tabsData = [
   {
     value: "products",
     label: "Products",
-    component: <FavoriteProducts/>,
+    component: <FavoriteProducts />,
   },
   {
     value: "suppliers",
     label: "Suppliers",
-    component: <FavoriteSuppliers/>,
+    component: <FavoriteSuppliers />,
   },
-  
 ];
 const FavoritesTab = () => {
   return (
