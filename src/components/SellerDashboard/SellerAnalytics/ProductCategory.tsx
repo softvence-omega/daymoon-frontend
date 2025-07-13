@@ -375,7 +375,7 @@ export function ProductCategory() {
                 className={`text-xl p-2  sm:p-4 border-r border-foundation-white text-[#FCAB3F]  cursor-pointer ${
                   currentPage === 1
                     ? "cursor-not-allowed text-gray-300"
-                    : "hover:bg-[#FCAB3F] hover:text-white"
+                    : "hover:bg-[#E5E7EB] hover:text-black"
                 }`}
               >
                 <FaAngleLeft />
@@ -390,10 +390,10 @@ export function ProductCategory() {
                 <li key={page}>
                   <button
                     onClick={() => setCurrentPage(page)}
-                    className={`p-3 sm:p-4 w-12 border-r border-foundation-white transition-colors duration-150 ${
+                    className={`p-3 sm:p-4 w-12 border-r border-foundation-white transition-colors duration-150 cursor-pointer ${
                       isActive
-                        ? "bg-[#FCAB3F] text-white"
-                        : "text-black hover:bg-[#FCAB3F] hover:text-white"
+                        ? "bg-[#E5E7EB] text-black"
+                        : "text-black hover:bg-[#E5E7EB] hover:text-black"
                     }`}
                   >
                     {page}
@@ -413,7 +413,7 @@ export function ProductCategory() {
                 className={`text-xl p-2  sm:p-4 text-[#FCAB3F] cursor-pointer ${
                   currentPage === totalPages
                     ? "cursor-not-allowed text-gray-300"
-                    : "hover:bg-[#FCAB3F] hover:text-white"
+                    : "hover:bg-[#E5E7EB] hover:text-black"
                 }`}
               >
                 <FaAngleRight />

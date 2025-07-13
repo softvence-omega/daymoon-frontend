@@ -24,7 +24,7 @@ type FilterSelectProps = {
 
 type FilterState = {
   status: string;
-  category: string;
+  products: string;
   time: string;
   sortBy: string;
   search: string;
@@ -77,7 +77,7 @@ const FilterSelect = ({
 const SellerInquireFilter = ({ onFilterChange = () => {} }: RFQFilterProps) => {
   const [filters, setFilters] = useState<FilterState>({
     status: "all",
-    category: "all",
+    products: "all",
     time: "all",
     sortBy: "newest",
     search: "",
@@ -95,32 +95,31 @@ const SellerInquireFilter = ({ onFilterChange = () => {} }: RFQFilterProps) => {
       filterKey: "status",
       options: [
         { value: "all", label: "All Status" },
-        { value: "completed", label: "Completed" },
-        { value: "pending", label: "Pending" },
-        { value: "failed", label: "Failed" },
-        { value: "processing", label: "Processing" },
+        { value: "new", label: "New" },
+        { value: "resolved", label: "Resolved" },
+        { value: "closed", label: "Closed" },
       ],
     },
     {
-      label: "Category",
-      placeholder: "All Categories",
+      label: "Products",
+      placeholder: "All Products",
       defaultValue: "all",
-      filterKey: "category",
+      filterKey: "products",
       options: [
-        { value: "all", label: "All Categories" },
-        { value: "subscription", label: "Subscription" },
-        { value: "purchase", label: "Purchase" },
-        { value: "refund", label: "Refund" },
-        { value: "transfer", label: "Transfer" },
+        { value: "all", label: "All Products" },
+        { value: "Ultra HD Display", label: "Ultra HD Display" },
+        { value: "Smart Watch 5", label: "Smart Watch 5" },
+        { value: "Webcam", label: "Webcam" },
       ],
     },
+
     {
       label: "Time",
-      placeholder: "All Time",
+      placeholder: "Last 30 Days",
       defaultValue: "all",
       filterKey: "time",
       options: [
-        { value: "all", label: "All Time" },
+        { value: "all", label: "Last 30 Days" },
         { value: "today", label: "Today" },
         { value: "week", label: "This Week" },
         { value: "month", label: "This Month" },

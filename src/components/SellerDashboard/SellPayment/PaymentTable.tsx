@@ -499,10 +499,10 @@ export function PaymentTable() {
               onClick={() => table.previousPage()}
               disabled={!table.getCanPreviousPage()}
               aria-label="Previous Page"
-              className={`text-xl p-2 sm:p-4 border-r border-foundation-white text-[#FCAB3F] ${
+              className={`text-xl p-2 sm:p-4 border-r border-foundation-white text-[#FCAB3F] cursor-pointer ${
                 !table.getCanPreviousPage()
                   ? "cursor-not-allowed text-gray-300"
-                  : "hover:bg-[#FCAB3F] hover:text-white"
+                  : "hover:bg-[#E5E7EB] hover:text-black"
               }`}
             >
               <FaAngleLeft />
@@ -518,7 +518,7 @@ export function PaymentTable() {
                   onClick={() => table.setPageIndex(index)}
                   className={`p-3 sm:p-4 w-12 border-r border-foundation-white transition-colors duration-150 cursor-pointer ${
                     isActive
-                      ? " text-[#FCAB3F]"
+                      ? " bg-[#E5E7EB] text-black"
                       : "text-black hover:bg-[#E5E5E5] hover:text-black"
                   }`}
                 >
@@ -534,10 +534,10 @@ export function PaymentTable() {
               onClick={() => table.nextPage()}
               disabled={!table.getCanNextPage()}
               aria-label="Next Page"
-              className={`text-xl p-2 sm:p-4 text-[#FCAB3F] ${
+              className={`text-xl p-2 sm:p-4 text-[#FCAB3F] cursor-pointer ${
                 !table.getCanNextPage()
                   ? "cursor-not-allowed text-gray-300"
-                  : "hover:bg-[#FCAB3F] hover:text-white"
+                  : "hover:bg-[#E5E7EB] hover:text-black"
               }`}
             >
               <FaAngleRight />

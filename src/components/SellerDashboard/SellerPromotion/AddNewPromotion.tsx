@@ -4,6 +4,7 @@ import upload from "@/assets/Icon/upload.png";
 import product from "@/assets/image/product1.png";
 import { FiChevronDown } from "react-icons/fi";
 import SubTitle from "../Shared/SubTitle";
+import { RxCross2, RxCrossCircled } from "react-icons/rx";
 
 export default function AddNewPromotion() {
   const [promotionType, setPromotionType] = useState("");
@@ -40,6 +41,21 @@ export default function AddNewPromotion() {
 
   return (
     <div className="mx-auto space-y-6">
+      <div className="flex flex-col lg:flex-row justify-between gap-6 lg:gap-8 items-start lg:items-center mb-5 w-full">
+        <div className="w-full lg:flex-1 space-y-3">
+          <h1 className="text-[24px] font-semibold leading-[120%] text-[#1A1A1A] font-poppins">
+            Add New Promotion
+          </h1>
+        </div>
+
+        <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 w-full lg:w-auto">
+          <div className="flex justify-center items-center w-12 h-12 p-3 flex-shrink-0 aspect-square rounded-full bg-[#FEECEB] cursor-pointer">
+            <RxCross2 className="text-[#F04436] w-6 h-6" />
+          </div>
+        </div>
+      </div>
+      <hr className="text-[#E5E5E5] p-1" />
+
       {/* Upload Image */}
       <div className="p-5 border border-dashed border-gray-300 bg-white rounded-xl">
         <div
