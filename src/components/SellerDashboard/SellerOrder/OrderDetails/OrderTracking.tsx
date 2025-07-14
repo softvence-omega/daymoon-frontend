@@ -67,12 +67,12 @@ const OrderTracking: FC<OrderTrackingProps> = ({ data }) => {
   return (
     <div className="w-full bg-white p-10 rounded-2xl border border-foundation-white">
       {/* Header */}
-      <div className="flex items-start sm:items-center  justify-between mb-8">
-        <div className="flex flex-col sm:flex-row  gap-4">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center  justify-between gap-6 mb-8">
+        <div className="flex flex-col items-start xl:items-center    xl:flex-row  gap-4">
           <ButtonWithIcon
             className={`${getStatusBadgeColor(
               currentStatus
-            )} border-transparent !bg-goldenrod`}
+            )} border-transparent !bg-goldenrod !text-xl`}
           >
             <Truck className="w-4 h-4" />
             {currentStatus}
