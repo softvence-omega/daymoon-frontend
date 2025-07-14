@@ -36,7 +36,7 @@ const MultiStepTracker: React.FC<MultiStepTrackerProps> = ({
         })}
       </div>
 
-      <div className="w-full max-w-md mx-auto text-center py-4  text-jet-black font-semibold text-balance">
+      <div className="w-full max-w-md mx-auto text-center py-10  text-jet-black font-semibold text-3xl">
         <h2>{title}</h2>
       </div>
     </>

@@ -71,7 +71,8 @@ const RFQModal: React.FC<RFQModalProps> = ({ isOpen, onClose }) => {
   const handleFileUpload = (files: FileList | null) => {
     if (files) {
       const newFiles = Array.from(files).filter(
-        (file) => file.type.startsWith("image/") && file.size <= 5 * 1024 * 1024 // 5MB limit
+        (file) =>
+          file.type.startsWith("image/") && file.size <= 10 * 1024 * 1024 // 5MB limit
       );
       setFormData((prev) => ({
         ...prev,
@@ -125,6 +126,15 @@ const RFQModal: React.FC<RFQModalProps> = ({ isOpen, onClose }) => {
       photos: [],
     });
     onClose();
+  };
+
+  const handleDivClick = () => {
+    const fileInput = document.getElementById(
+      "photo-upload"
+    ) as HTMLInputElement;
+    if (fileInput) {
+      fileInput.click();
+    }
   };
 
   return (
@@ -295,41 +305,37 @@ const RFQModal: React.FC<RFQModalProps> = ({ isOpen, onClose }) => {
           {/* Right Column - Photo Upload & Buttons */}
           <div className="space-y-6">
             {/* Photo Upload */}
-            <div>
-              <label className="text-lg font-medium text-[#484848]">
-                Product Photos (Optional)
-              </label>
-              <div
-                className={`border-1 border-dashed rounded-[20px] p-4 text-center transition-colors mt-2 ${
-                  dragActive
-                    ? "border-blue-500 bg-blue-50"
-                    : "border-gray-300 hover:border-gray-400"
-                }`}
-                onDragEnter={handleDrag}
-                onDragLeave={handleDrag}
-                onDragOver={handleDrag}
-                onDrop={handleDrop}
-              >
-                <div className="max-h-[300px] bg-[#EFEFEF] rounded-[16px] p-4 py-10">
-                  <MdOutlineCloudUpload className="w-8 h-8 mx-auto mb-2 text-gray-400" />
-                  <p className="px-10">
-                    <span className="text-[#F04436]">Upload an image</span> or
-                    drag and drop PNG, JPG,PDF up to 10 mb
-                  </p>
-                  <input
-                    id="photo-upload"
-                    type="file"
-                    accept="image/*"
-                    multiple
-                    onChange={(e) => handleFileUpload(e.target.files)}
-                    className="hidden"
-                  />
-                </div>
+            <div
+              className={`border-1 border-dashed rounded-[20px] p-4 text-center transition-colors mt-2 cursor-pointer ${
+                dragActive
+                  ? "border-blue-500 bg-blue-50"
+                  : "border-gray-300 hover:border-gray-400"
+              }`}
+              onDragEnter={handleDrag}
+              onDragLeave={handleDrag}
+              onDragOver={handleDrag}
+              onDrop={handleDrop}
+              onClick={handleDivClick}
+            >
+              <div className="max-h-[300px] bg-[#EFEFEF] rounded-[16px] p-4 py-10 pointer-events-none">
+                <MdOutlineCloudUpload className="w-8 h-8 mx-auto mb-2 text-gray-400" />
+                <p className="px-10">
+                  <span className="text-[#F04436]">Upload an image</span> or
+                  drag and drop PNG, JPG,PDF up to 10 mb
+                </p>
+                <input
+                  id="photo-upload"
+                  type="file"
+                  accept="image/*"
+                  multiple
+                  onChange={(e) => handleFileUpload(e.target.files)}
+                  className="hidden"
+                />
               </div>
 
               {/* Uploaded Photos Preview */}
               {formData.photos.length > 0 && (
-                <div className="grid grid-cols-3 gap-2 mt-4">
+                <div className="grid grid-cols-3 gap-2 mt-4 pointer-events-auto">
                   {formData.photos.map((photo, index) => (
                     <div key={index} className="relative group">
                       <img
@@ -338,7 +344,10 @@ const RFQModal: React.FC<RFQModalProps> = ({ isOpen, onClose }) => {
                         className="w-full h-16 object-cover rounded-md border"
                       />
                       <button
-                        onClick={() => removePhoto(index)}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          removePhoto(index);
+                        }}
                         className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs hover:bg-red-600 transition-colors"
                       >
                         <X className="w-3 h-3" />

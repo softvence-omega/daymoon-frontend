@@ -1,6 +1,5 @@
 import DashboardCommonSpace from "@/common/DashboardCommonSpace";
 import DashboardSpaceBottom from "@/common/DashboardSpaceBottom";
-import SearchFilter from "@/components/SellerDashboard/SellerOrder/SearchFilter";
 import MonthlyRevenue from "@/components/SellerDashboard/SellerProducts/ProductDetails/MonthlyRevenue";
 import ReviewFeedback from "@/components/SellerDashboard/SellerProducts/ProductDetails/ReviewFeedback";
 import ReviewCard from "@/components/SellerDashboard/SellerReview/ReviewCard";
@@ -10,9 +9,6 @@ const SellerReviewPage = () => {
   return (
     <div>
       <ReviewNavbar />
-      <DashboardCommonSpace>
-        <SearchFilter />
-      </DashboardCommonSpace>
       <DashboardSpaceBottom>
         <ReviewCard />
       </DashboardSpaceBottom>

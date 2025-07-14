@@ -10,12 +10,20 @@ const SellerLayout = () => {
 
   const { pathname } = useLocation();
 
+  const shouldHideNavbar =
+    pathname === "/seller-dashboard/invoice-form" ||
+    pathname === "/seller-dashboard/create-promotion" ||
+    pathname === "/seller-dashboard/inquiries-details";
+
+  // ---- Logic to hide only the sidebar
   const shouldHideSidebar = () => {
     const hideExact = [
       "/seller-dashboard/add-product",
       "/seller-dashboard/all-products",
       "/seller-dashboard/all-orders",
       "/seller-dashboard/inquiries-details",
+      "/seller-dashboard/invoice-form", // still hide sidebar here
+      "/seller-dashboard/create-promotion", // still hide sidebar here
     ];
 
     const pathnameSegments = pathname.split("/");
@@ -41,7 +49,7 @@ const SellerLayout = () => {
     );
   };
 
-  // Update sidebar open state for special detail pages
+  // ---- Set sidebar open for padding control
   useEffect(() => {
     const pathnameSegments = pathname.split("/");
 
@@ -58,9 +66,15 @@ const SellerLayout = () => {
     const isAllProduct = pathname === "/seller-dashboard/all-products";
     const isAllOrder = pathname === "/seller-dashboard/all-orders";
     const isInquiries = pathname === "/seller-dashboard/inquiries-details";
+    const isInvoice = pathname === "/seller-dashboard/invoice-form";
 
     setIsSidebarOpen(
-      isDetailView || isAddProduct || isAllProduct || isAllOrder || isInquiries
+      isDetailView ||
+        isAddProduct ||
+        isAllProduct ||
+        isAllOrder ||
+        isInquiries ||
+        isInvoice
     );
   }, [pathname]);
 
@@ -69,26 +83,32 @@ const SellerLayout = () => {
   };
 
   return (
-    <div className="flex min-h-screen bg-gray-50">
-      {/* Desktop Sidebar */}
+    <div className="flex h-screen overflow-hidden bg-gray-50">
+      {/* Sidebar - Fixed on Desktop */}
       {!shouldHideSidebar() && (
-        <div className="hidden lg:flex md:w-64 md:flex-col">
-          <div className="border-r border-gray-200 h-full">
-            <SellerSidebar />
-          </div>
+        <div className="hidden lg:flex w-64 flex-col fixed inset-y-0 z-30 border-r border-gray-200 bg-white">
+          <SellerSidebar />
         </div>
       )}
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col overflow-hidden">
-        {/* Top Navbar */}
-        <SellerDashboardNavbar
-          onMobileMenuToggle={handleMobileMenuToggle}
-          notificationCount={3}
-          isSidebarOpen={isSidebarOpen}
-        />
+      <div
+        className={`flex flex-col flex-1 transition-all duration-200 ease-in-out ${
+          !shouldHideSidebar() ? "lg:ml-64" : ""
+        }`}
+      >
+        {/* Navbar - Fixed */}
+        {!shouldHideNavbar && (
+          <div className="fixed top-0 left-0 right-0 z-20 bg-white border-b border-gray-200">
+            <SellerDashboardNavbar
+              onMobileMenuToggle={handleMobileMenuToggle}
+              notificationCount={3}
+              isSidebarOpen={isSidebarOpen}
+            />
+          </div>
+        )}
 
-        {/* Mobile SellerSidebar */}
+        {/* Mobile Sidebar */}
         <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
           <SheetTrigger asChild>
             <div className="hidden" />
@@ -98,10 +118,10 @@ const SellerLayout = () => {
           </SheetContent>
         </Sheet>
 
-        {/* Page Content */}
+        {/* Scrollable Page Content */}
         <main
-          className={`flex-1 overflow-auto   ${
-            isSidebarOpen ? " pt-4 md:pt-10" : "p-4 md:p-10 "
+          className={`flex-1 overflow-y-auto mt-16 ${
+            isSidebarOpen ? "pt-4 md:pt-10" : "p-4 md:p-10"
           }`}
         >
           <Outlet />
