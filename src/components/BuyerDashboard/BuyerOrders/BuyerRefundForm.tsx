@@ -25,7 +25,7 @@ interface RefundFormProps {
 export function RefundForm({ order }: RefundFormProps) {
   const [selectedReason, setSelectedReason] = useState("");
   const [issueDescription, setIssueDescription] = useState("");
-  const [preferredResolution, setPreferredResolution] = useState("");
+  // const [preferredResolution, setPreferredResolution] = useState("");
   const [uploadedImages, setUploadedImages] = useState<string[]>([]);
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {

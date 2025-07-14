@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { FC, useState } from "react";
 import { TfiPlus } from "react-icons/tfi";
 import { FiTrash2 } from "react-icons/fi";
 
@@ -6,8 +6,11 @@ interface CustomizationOption {
   name: string;
   price: number;
 }
+interface AddMoreProps {
+  width?: string | number;
+}
 
-export default function AddMore() {
+const AddMore: FC<AddMoreProps> = ({ width }) => {
   const [options, setOptions] = useState<CustomizationOption[]>([
     { name: "Colour customization", price: 0 },
   ]);
@@ -35,11 +38,13 @@ export default function AddMore() {
   };
 
   return (
-    <div className="border border-foundation-white rounded-xl p-4 flex flex-col gap-4 w-full transition-all duration-300 ease-in-out">
+    <div
+      className={`w-full flex flex-col  gap-4 p-4 transition-all duration-300 ease-in-out border border-foundation-white rounded-xl`}
+    >
       {options.map((option, index) => (
         <div
           key={index}
-          className="grid grid-cols-1 sm:grid-cols-2 gap-4 group relative transition-all duration-300 ease-in-out"
+          className="relative grid grid-cols-1 gap-4 transition-all duration-300 ease-in-out sm:grid-cols-2 "
         >
           <div className="hover:bg-[#F8F8F8] rounded-md transition-colors">
             <label className="block text-sm text-[#969696] mb-2.5">
@@ -77,7 +82,7 @@ export default function AddMore() {
             {options.length > 1 && (
               <button
                 onClick={() => removeOption(index)}
-                className=" cursor-pointer hover:text-sunset-orange ml-auto block text-[#969696] opacity-0 group-hover:opacity-100 transition-opacity text-xl"
+                className="block ml-auto text-xl cursor-pointer !text-sunset-orange "
                 aria-label="Remove option"
               >
                 <FiTrash2 />
@@ -89,7 +94,9 @@ export default function AddMore() {
 
       <div
         onClick={addNewOption}
-        className="flex justify-center items-center gap-2 border border-dashed border-[#FCFCFC] bg-[#FFF7EC] text-[#FCAB3F] px-10 py-3 cursor-pointer rounded-xl transition-all duration-300 ease-in-out"
+        className={`${
+          width && "w-full xl:w-[50%] mx-auto"
+        }  flex justify-center items-center gap-2 border border-dashed border-[#FCFCFC] bg-[#FFF7EC] text-[#FCAB3F] px-10 py-3 cursor-pointer rounded-xl transition-all duration-300 ease-in-out`}
       >
         <button className="cursor-pointer">Add More</button>
         <span>
@@ -98,4 +105,5 @@ export default function AddMore() {
       </div>
     </div>
   );
-}
+};
+export default AddMore;

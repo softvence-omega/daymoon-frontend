@@ -36,6 +36,7 @@ const ReviewedCard: React.FC<ReviewedCardProps> = ({
   userReview,
   userRating,
 }) => {
+  console.log("productId", productId);
   return (
     <div className="border border-gray-200 rounded-md p-4 mb-6 flex flex-col justify-between h-full">
       <div className="border-1 border-[#E5E5E5] rounded-xl p-4 mb-4 flex-grow">

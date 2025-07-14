@@ -89,128 +89,136 @@ export const ProductTable: React.FC<Props> = ({
 
   return (
     <div className="w-full">
-      <div className="p-2 border border-[#E0E0E1] rounded-xl bg-white mb-5">
-        <Table>
-          <TableHeader>
-            <TableRow className="first:border-none">
-              <TableHead className="py-4 h-full bg-foundation-white text-foundation-gray rounded-l-xl">
-                <input
-                  type="checkbox"
-                  className="accent-[#F14141] focus:ring-[#F14141]"
-                  checked={
-                    displayList.length > 0 &&
-                    selectedIds.length === displayList.length
-                  }
-                  onChange={toggleSelectAll}
-                />
-              </TableHead>
-              {tableHead.map((header, idx) => (
-                <TableHead
-                  key={header}
-                  className={`
+      <div className="p-2 border border-[#E0E0E1] rounded-xl bg-white mb-5 w-full">
+        <div className="overflow-x-auto ">
+          <Table className="w-full table-auto ">
+            <TableHeader>
+              <TableRow className="first:border-none">
+                <TableHead className="h-full py-4 bg-foundation-white text-foundation-gray rounded-l-xl ">
+                  <input
+                    type="checkbox"
+                    className="accent-[#F14141] focus:ring-[#F14141] w-fit"
+                    checked={
+                      displayList.length > 0 &&
+                      selectedIds.length === displayList.length
+                    }
+                    onChange={toggleSelectAll}
+                  />
+                </TableHead>
+                {tableHead.map((header, idx) => (
+                  <TableHead
+                    key={header}
+                    className={`
                     font-medium text-sm text-center last:pr-2
                     ${idx === 0 || idx === 1 ? "text-start" : ""}
                     ${idx === 1 || idx === 6 ? "hidden xl:table-cell" : ""}
                     ${idx === 3 || idx === 5 ? "hidden md:table-cell" : ""}
                     ${idx === tableHead.length - 1 ? "rounded-r-xl" : ""}
-                    py-4 h-full bg-foundation-white text-foundation-gray
+                    py-4 h-full bg-foundation-white text-foundation-gray 
                   `}
-                >
-                  {header}
-                </TableHead>
-              ))}
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {displayList.map((p) => (
-              <TableRow key={p.id} className="hover:bg-gray-50">
-                <TableCell>
-                  <input
-                    type="checkbox"
-                    checked={selectedIds.includes(p.id)}
-                    onChange={() => toggleSelect(p.id)}
-                    className="accent-[#F14141] focus:ring-[#F14141]"
-                  />
-                </TableCell>
-                <TableCell className="flex items-center py-4">
-                  <img
-                    src={p.img}
-                    alt={p.name}
-                    className="w-10 h-10 rounded mr-3"
-                  />
-                  <div className="hidden xl:block">
-                    <div className="font-medium text-gray-800">{p.name}</div>
-                    <div className="text-xs text-gray-500">
-                      SKU: SP‑X2023‑BLK
-                    </div>
-                  </div>
-                </TableCell>
-                <TableCell className="text-gray-700 hidden xl:table-cell">
-                  {p.category}
-                </TableCell>
-                <TableCell className="text-gray-700 text-center">
-                  {p.price}
-                </TableCell>
-                <TableCell className="font-medium text-center hidden md:table-cell">
-                  <Button
-                    size="sm"
-                    className={`p-5 text-sm font-semibold rounded-xl ${
-                      statusColor[p.status]
-                    }`}
                   >
-                    {p.status}
-                  </Button>
-                </TableCell>
-                <TableCell>
-                  <div className="flex items-center justify-center">
-                    <span className="text-gray-700 mr-2">
-                      {p.stock.toString().padStart(2, "0")}
-                    </span>
-                    <div className="w-24 h-2 bg-gray-200 rounded overflow-hidden">
-                      <div
-                        className="h-full bg-green-500"
-                        style={{ width: `${p.stock}%` }}
-                      />
-                    </div>
-                  </div>
-                </TableCell>
-                <TableCell className="hidden md:table-cell">
-                  <div className="flex space-x-4 items-center justify-center">
-                    <div>
-                      <div className="flex items-center gap-1 text-[#666] pb-1">
-                        <MdOutlineRemoveRedEye className="text-2xl" />
-                        <span>View</span>
-                      </div>
-                      <span className="text-jet-black font-medium">
-                        {p.views}
-                      </span>
-                    </div>
-                    <div>
-                      <div className="flex items-center gap-1 text-[#666] pb-1">
-                        <LuFileText className="text-2xl" />
-                        <span>Inquiries</span>
-                      </div>
-                      <span className="text-jet-black font-medium">
-                        {p.inquiries}
-                      </span>
-                    </div>
-                  </div>
-                </TableCell>
-                <TableCell className="text-gray-700 text-center hidden xl:table-cell">
-                  {p.date}
-                </TableCell>
-                <TableCell className="text-center">
-                  <Link
-                    to={`/seller-dashboard/all-products/${slugify(p.name)}`}
-                    className="text-sunset-orange cursor-pointer"
-                  >
-                    View
-                  </Link>
-                </TableCell>
+                    {header}
+                  </TableHead>
+                ))}
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+            </TableHeader>
+            <TableBody>
+              {displayList.map((p) => (
+                <TableRow key={p.id} className="hover:bg-gray-50">
+                  <TableCell>
+                    <input
+                      type="checkbox"
+                      checked={selectedIds.includes(p.id)}
+                      onChange={() => toggleSelect(p.id)}
+                      className="accent-[#F14141] focus:ring-[#F14141]"
+                    />
+                  </TableCell>
+
+                  <TableCell className="w-fit !px-0 py-4">
+                    <div className="flex items-center">
+                      <img
+                        src={p.img}
+                        alt={p.name}
+                        className="w-8 h-8 rounded sm:w-10 sm:h-10 xl:mr-3"
+                      />
+                      <div className="hidden xl:block">
+                        <div className="font-medium text-gray-800">
+                          {p.name}
+                        </div>
+                        <div className="text-xs text-gray-500">
+                          SKU: SP‑X2023‑BLK
+                        </div>
+                      </div>
+                    </div>
+                  </TableCell>
+
+                  <TableCell className="hidden text-gray-700 xl:table-cell">
+                    {p.category}
+                  </TableCell>
+                  <TableCell className="text-center text-gray-700">
+                    {p.price}
+                  </TableCell>
+                  <TableCell className="hidden font-medium text-center md:table-cell">
+                    <Button
+                      size="sm"
+                      className={`p-5 text-sm font-semibold rounded-xl ${
+                        statusColor[p.status]
+                      }`}
+                    >
+                      {p.status}
+                    </Button>
+                  </TableCell>
+                  <TableCell>
+                    <div className="flex items-center justify-center">
+                      <span className="text-gray-700 sm:mr-2 ">
+                        {p.stock.toString().padStart(2, "0")}
+                      </span>
+                      <div className="w-24 h-1.5 overflow-hidden bg-gray-200 rounded hidden sm:block">
+                        <div
+                          className="h-full bg-green-500"
+                          style={{ width: `${p.stock}%` }}
+                        />
+                      </div>
+                    </div>
+                  </TableCell>
+                  <TableCell className="hidden md:table-cell">
+                    <div className="flex items-center justify-center ">
+                      <div>
+                        <div className="flex items-center gap-1 text-[#666] pb-1">
+                          <MdOutlineRemoveRedEye className="text-2xl" />
+                          <span>View</span>
+                        </div>
+                        <span className="font-medium text-jet-black">
+                          {p.views}
+                        </span>
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-1 text-[#666] pb-1">
+                          <LuFileText className="text-2xl" />
+                          <span>Inquiries</span>
+                        </div>
+                        <span className="font-medium text-jet-black">
+                          {p.inquiries}
+                        </span>
+                      </div>
+                    </div>
+                  </TableCell>
+                  <TableCell className="hidden text-center text-gray-700 xl:table-cell">
+                    {p.date}
+                  </TableCell>
+                  <TableCell className="text-center">
+                    <Link
+                      to={`/seller-dashboard/all-products/${slugify(p.name)}`}
+                      className="cursor-pointer text-sunset-orange"
+                    >
+                      View
+                    </Link>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
       </div>
 
       {!showAll && (

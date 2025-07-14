@@ -7,7 +7,7 @@ const Customization = () => {
   const [on, setOn] = useState(false);
   return (
     <div className="">
-      <div className=" flex justify-between pb-6">
+      <div className="flex justify-between pb-6 ">
         <CommonHeader className="text-[#484848] ">Customization</CommonHeader>
         <Toggle on={on} setOn={setOn} />
       </div>
@@ -21,7 +21,7 @@ const Customization = () => {
           }
         `}
       >
-        <AddMore />
+        <AddMore width={"50%"} />
       </div>
     </div>
   );
