@@ -24,7 +24,6 @@ const ProductDetails = () => {
   const [lensPos, setLensPos] = useState({ x: 0, y: 0 });
   const [imageSrc, setImageSrc] = useState<string>("");
 
-  // Ref to image element inside SingleProductImage
   const imgRef = useRef<HTMLImageElement>(null);
 
   return (

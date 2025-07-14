@@ -1,5 +1,3 @@
-"use client";
-
 import { FC, ReactNode } from "react";
 import { TrendingUp, TrendingDown } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
@@ -49,9 +47,9 @@ const DashboardCard: FC<CardProps> = ({ data }) => {
 
           <div className="flex items-center gap-1">
             {trend.isPositive ? (
-              <TrendingUp className="h-4 w-4 text-green-500" />
+              <TrendingUp className="w-4 h-4 text-green-500" />
             ) : (
-              <TrendingDown className="h-4 w-4 text-red-500" />
+              <TrendingDown className="w-4 h-4 text-red-500" />
             )}
             <span
               className={`text-sm font-medium ${

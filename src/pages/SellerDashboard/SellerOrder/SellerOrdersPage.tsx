@@ -9,7 +9,7 @@ const SellerOrdersPage = () => {
   const { pathname } = useLocation();
 
   const content = (
-    <>
+    <div>
       {pathname === "/seller-dashboard/all-orders" ? (
         <Breadcrumbs title="Orders" subtitle="All Orders" />
       ) : (
@@ -18,7 +18,7 @@ const SellerOrdersPage = () => {
 
       <OrderCard />
       <OrderTable />
-    </>
+    </div>
   );
 
   if (pathname === "/seller-dashboard/orders") {
