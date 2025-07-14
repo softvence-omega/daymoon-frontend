@@ -95,7 +95,7 @@ export function RefundForm({ order }: RefundFormProps) {
             <img
               src={order.image || "/placeholder.svg"}
               alt={order.productName}
-              className="w-full h-24 lg:w-20 lg:h-20 rounded-lg object-cover bg-gray-100"
+              className="w-full h-40 lg:w-20 lg:h-20 rounded-lg object-cover bg-gray-100"
             />
             <div className="flex-1 min-w-0">
               <h3 className="font-medium text-sm lg:text-xl">
@@ -196,7 +196,7 @@ export function RefundForm({ order }: RefundFormProps) {
           </div>
 
           <div className="mt-6">
-            <h4 className="text-lg font-medium">Customization Options</h4>
+            <h4 className="text-lg font-medium">Preferred resolution</h4>
             <div className="space-y-4 mt-4">
               {resolution.map((item, index) => (
                 <div

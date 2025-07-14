@@ -161,7 +161,7 @@ const routes = createBrowserRouter([
             element: <BuyerRefund />,
           },
           {
-            path: "orders/:id",
+            path: "orders/oderDetails/:id",
             element: <BuyerOrderDetails />,
           },
           {

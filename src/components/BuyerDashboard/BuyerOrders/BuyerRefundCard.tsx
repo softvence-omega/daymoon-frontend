@@ -82,11 +82,11 @@ export function RefundCard({ order, isSelected, onSelect }: RefundCardProps) {
             <p className="text-xs text-[#666] mt-1">Qty: {order.quantity}</p>
 
             {/* Refund Button */}
-            <div className="mt-3 pt-3 border-t border-gray-100">
+            <div className="mt-4  border-t border-gray-100">
               <Button
                 variant="outline"
                 size="sm"
-                className="w-full lg:w-auto shadow-none border-none text-lg font-medium text-[#192D4E] bg-transparent mt-3"
+                className="w-full lg:w-auto shadow-none border-none text-lg font-medium text-[#192D4E] bg-transparent "
                 onClick={(e) => {
                   e.stopPropagation();
                   onSelect(order.id);
