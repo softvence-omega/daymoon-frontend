@@ -27,12 +27,12 @@ const OrderSummary: React.FC<SummaryProps> = ({ product, shipping, tax }) => {
   const total = subtotal + shipping + tax;
 
   return (
-    <div className="w-full bg-white p-10 rounded-2xl border border-foundation-white">
+    <div className="w-full bg-white md:p-10 p-2 rounded-2xl border border-foundation-white">
       <CommonHeader className="!text-2xl font-semibold pb-6">
         Products
       </CommonHeader>
 
-      <div className="border border-foundation-white rounded-2xl overflow-hidden bg-ghost px-10 py-6">
+      <div className="md:border border-foundation-white rounded-2xl overflow-hidden md:bg-ghost md:px-10 md:py-6">
         <div className="grid grid-cols-4 py-4 font-medium border-foundation-white border-b">
           <SubHeader>Product</SubHeader>
           <SubHeader className="text-center">Qty</SubHeader>
@@ -40,23 +40,29 @@ const OrderSummary: React.FC<SummaryProps> = ({ product, shipping, tax }) => {
           <SubHeader className="text-end">Total</SubHeader>
         </div>
 
-        <div className="grid grid-cols-4 py-6 text-sm place-items-start justify-items-center ">
-          <div>
-            <div className="border border-foundation-white rounded-xl p-4">
-              <CommonHeader className="font-semibold  mb-1">
+        <div className="grid grid-cols-4 py-6 text-sm place-items-start justify-items-center w-full ">
+          <div className="w-full">
+            <div className="md:border border-foundation-white rounded-xl md:p-4 w-full">
+              <CommonHeader className="font-semibold  mb-1 hidden md:block">
                 {product.name}
               </CommonHeader>
-              <SubHeader className="mb-2">SKU : {product.sku}</SubHeader>
+              <SubHeader className="mb-2 hidden md:block">
+                SKU : {product.sku}
+              </SubHeader>
 
-              <SubHeader className="mb-1">Variants</SubHeader>
-              <img
-                src={product.variant.imageUrl}
-                alt="Variant"
-                className="w-20 h-20 border border-sunset-orange rounded-md mb-3 object-cover"
-              />
+              <SubHeader className="mb-1 hidden md:block ">Variants</SubHeader>
+              <div className=" flex items-center justify-start w-full h-full">
+                <img
+                  src={product.variant.imageUrl}
+                  alt="Variant"
+                  className=" w-10 h-10 md:w-20 md:h-20 border border-sunset-orange rounded-md mb-3 object-cover"
+                />
+              </div>
 
-              <SubHeader className=" mb-1">Customization</SubHeader>
-              <div className="flex items-start gap-2 text-gray-700">
+              <SubHeader className=" mb-1 hidden md:block">
+                Customization
+              </SubHeader>
+              <div className=" items-start gap-2 text-gray-700 hidden md:flex">
                 <span className="text-sunset-orange mt-1 text-2xl  ">
                   <FaRegCircleDot />
                 </span>
@@ -80,8 +86,8 @@ const OrderSummary: React.FC<SummaryProps> = ({ product, shipping, tax }) => {
           </div>
         </div>
 
-        <div className=" grid grid-cols-4">
-          <div className="col-start-2 col-span-3 pl-20  ">
+        <div className=" grid md:grid-cols-4">
+          <div className="md:col-start-2 col-span-3 md:pl-20  ">
             <div className="flex justify-between">
               <SubHeader>Subtotal</SubHeader>
               <CommonHeader className="font-medium">

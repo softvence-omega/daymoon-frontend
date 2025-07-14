@@ -10,29 +10,29 @@ const ShippingInformation = () => {
       </h1>
 
       <div className="space-y-6">
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center gap-6 ">
           <SubHeader>Shipping Method</SubHeader>
           <CommonHeader className=" font-medium">Express Shipping</CommonHeader>
         </div>
 
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center gap-6 ">
           <SubHeader>Tracking Information</SubHeader>
           <CommonHeader className="font-medium">
             Tracking : <span className="text-blue-600 "> #LX123456789</span>
           </CommonHeader>
         </div>
 
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center gap-6 ">
           <SubHeader>Shipping Method</SubHeader>
           <CommonHeader className=" font-medium">Express Shipping</CommonHeader>
         </div>
 
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center gap-6 ">
           <SubHeader>Estimated Delivery</SubHeader>
           <CommonHeader className="font-medium">21 june, 2025</CommonHeader>
         </div>
 
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center gap-6 ">
           <SubHeader>Carrier</SubHeader>
           <CommonHeader className="font-medium">UPS</CommonHeader>
         </div>
