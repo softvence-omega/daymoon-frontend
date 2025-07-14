@@ -13,19 +13,24 @@ export default function BuyerRefundPage() {
   );
 
   return (
-    <div className="">
-      <h1 className="text-xl font-semibold text-gray-900 mb-4">
+    <div className="mt-12">
+      <h1 className="text-2xl font-semibold text-[#1A1A1A] mb-4">
         Recent Orders
       </h1>
       <div className="">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Left Side - Order List */}
+        <div className="grid mt-8 grid-cols-1 xl:grid-cols-2 gap-6">
           <div className="space-y-4">
             <div className="space-y-3">
               {refundOrdersData.map((order) => (
                 <RefundCard
                   key={order.id}
-                  order={order}
+                  order={{
+                    ...order,
+                    status: order.status as
+                      | "delivered"
+                      | "processing"
+                      | "shipped",
+                  }}
                   isSelected={selectedOrderId === order.id}
                   onSelect={setSelectedOrderId}
                 />
@@ -33,10 +38,17 @@ export default function BuyerRefundPage() {
             </div>
           </div>
 
-          {/* Right Side - Refund Form */}
           <div className="lg:sticky lg:top-6">
             {selectedOrder ? (
-              <RefundForm order={selectedOrder} />
+              <RefundForm
+                order={{
+                  ...selectedOrder,
+                  status: selectedOrder.status as
+                    | "delivered"
+                    | "processing"
+                    | "shipped",
+                }}
+              />
             ) : (
               <div className="flex items-center justify-center h-64 bg-white rounded-lg border border-gray-200">
                 <p className="text-gray-500">
