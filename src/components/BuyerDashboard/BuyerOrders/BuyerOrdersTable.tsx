@@ -81,11 +81,11 @@ const BuyerOrdersTable: React.FC<OrdersTableProps> = () => {
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case "Delivered":
+      case "delivered":
         return "bg-[#10b98133] text-[#10B981]";
-      case "Pending":
+      case "pending":
         return "bg-[#f59e4233] text-[#F59E42]";
-      case "Shipped":
+      case "shipped":
         return "bg-[#1565d833] text-[#1565D8]";
       default:
         return "bg-gray-100 text-gray-800";
@@ -99,7 +99,7 @@ const BuyerOrdersTable: React.FC<OrdersTableProps> = () => {
   };
 
   return (
-    <div className="mx-auto p-6 ">
+    <div className="mx-auto  ">
       {/* Header */}
       <div className="flex justify-between items-center mb-6 flex-wrap md:flex-nowrap">
         <div>
@@ -268,16 +268,24 @@ const BuyerOrdersTable: React.FC<OrdersTableProps> = () => {
                         order.status
                       )}`}
                     >
-                      {order.status}
+                      {order.status === "delivered"
+                        ? "Delivered"
+                        : order.status === "pending"
+                        ? "Pending"
+                        : order.status === "shipped"
+                        ? "Shipped"
+                        : ""}
                     </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 text-center">
                     {order.amount}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                    <button className="text-red-600 hover:text-red-900 transition-colors">
-                      View
-                    </button>
+                    <Link to="oderDetails/:id">
+                      <button className="text-[#F04436] cursor-pointer hover:text-red-600 transition-colors">
+                        View
+                      </button>
+                    </Link>
                   </td>
                 </tr>
               ))}

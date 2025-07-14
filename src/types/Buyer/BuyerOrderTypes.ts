@@ -7,10 +7,8 @@ export interface BuyerOrder {
   };
   quantity: number;
   date: string;
-  status: "Delivered" | "Pending" | "Shipped";
+
+  status: "delivered" | "pending" | "shipped";
   amount: string;
 }
 
-export interface OrdersTableProps {
-  orders: BuyerOrder[];
-}
