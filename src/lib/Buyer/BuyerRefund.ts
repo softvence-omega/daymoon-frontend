@@ -1,24 +1,16 @@
-export interface RefundOrder {
-    id: string
-    productName: string
-    orderNumber: string
-    orderDate: string
-    price: number
-    image: string
-    status: "delivered" | "processing" | "shipped"
-    description?: string
-}
 
-export const refundOrdersData: RefundOrder[] = [
+
+export const refundOrdersData = [
     {
         id: "1",
         productName: "Bluetooth Wireless Earbuds",
         orderNumber: "#REF-2024",
         orderDate: "Jan 5, 2025",
         price: 23.345,
-        image: "/placeholder.svg?height=60&width=60",
+        image: "https://images.pexels.com/photos/777001/pexels-photo-777001.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&dpr=1",
         status: "delivered",
         description: "High-quality wireless earbuds with noise cancellation",
+        quantity: 20,
     },
     {
         id: "2",
@@ -26,9 +18,10 @@ export const refundOrdersData: RefundOrder[] = [
         orderNumber: "#REF-2024",
         orderDate: "Jan 5, 2025",
         price: 15.0,
-        image: "/placeholder.svg?height=60&width=60",
-        status: "delivered",
+        image: "https://images.pexels.com/photos/777001/pexels-photo-777001.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&dpr=1",
         description: "Premium over-ear headphones with active noise cancellation",
+        quantity: 10,
+        status: "delivered",
     },
     {
         id: "3",
@@ -36,9 +29,10 @@ export const refundOrdersData: RefundOrder[] = [
         orderNumber: "#REF-2024",
         orderDate: "May 20, 2024",
         price: 1200,
-        image: "/placeholder.svg?height=60&width=60",
-        status: "delivered",
+        image: "https://images.pexels.com/photos/777001/pexels-photo-777001.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&dpr=1",
+        status: "shipped",
         description: "4K ultrawide monitor perfect for productivity and gaming",
+        quantity: 400,
     },
     {
         id: "4",
@@ -46,19 +40,22 @@ export const refundOrdersData: RefundOrder[] = [
         orderNumber: "#REF-2024",
         orderDate: "N/A",
         price: 89,
-        image: "/placeholder.svg?height=60&width=60",
-        status: "processing",
         description: "RGB mechanical keyboard with blue switches",
+        quantity: 50,
+        image: "https://images.pexels.com/photos/777001/pexels-photo-777001.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&dpr=1",
+        status: "processing",
     },
+
     {
         id: "5",
         productName: "4K HD Projector",
         orderNumber: "#REF-2024",
         orderDate: "Jan 1, 2025",
         price: 799,
-        image: "/placeholder.svg?height=60&width=60",
-        status: "delivered",
+        image: "https://images.pexels.com/photos/777001/pexels-photo-777001.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&dpr=1",
+        status: "shipped",
         description: "Portable 4K projector for home entertainment",
+        quantity: 200,
     },
     {
         id: "6",
@@ -66,9 +63,10 @@ export const refundOrdersData: RefundOrder[] = [
         orderNumber: "#REF-2024",
         orderDate: "Jan 2, 2025",
         price: 299,
-        image: "/placeholder.svg?height=60&width=60",
+        image: "https://images.pexels.com/photos/777001/pexels-photo-777001.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&dpr=1",
         status: "delivered",
         description: "Advanced fitness tracking and health monitoring",
+        quantity: 230,
     },
     {
         id: "7",
@@ -76,8 +74,9 @@ export const refundOrdersData: RefundOrder[] = [
         orderNumber: "#REF-2024",
         orderDate: "Jan 4, 2025",
         price: 45,
-        image: "/placeholder.svg?height=60&width=60",
+        image: "https://images.pexels.com/photos/777001/pexels-photo-777001.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&dpr=1",
         status: "delivered",
         description: "Fast-charging portable battery pack",
+        quantity: 1000,
     },
 ]
