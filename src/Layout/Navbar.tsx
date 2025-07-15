@@ -161,14 +161,17 @@ const Navbar = () => {
                 whileHover={{ scale: 1.01 }}
                 whileTap={{ scale: 0.5 }}
               >
-                <Button variant="ghost" size="icon" className="relative">
-                  <img alt="cart" src={shopping} className="w-6 h-6" />
-                  {cartCount > 0 && (
-                    <Badge className="absolute -top-2 -right-2 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs text-white bg-red-500">
-                      {cartCount}
-                    </Badge>
-                  )}
-                </Button>
+                <Link to="/cart">
+                  {" "}
+                  <Button variant="ghost" size="icon" className="relative">
+                    <img alt="cart" src={shopping} className="w-6 h-6" />
+                    {cartCount > 0 && (
+                      <Badge className="absolute -top-2 -right-2 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs text-white bg-red-500">
+                        {cartCount}
+                      </Badge>
+                    )}
+                  </Button>
+                </Link>
               </motion.div>
 
               <motion.div
