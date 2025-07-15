@@ -1,14 +1,14 @@
-import { useState } from "react";
 import CommonWrapper from "@/common/CommonWrapper";
+import { useState } from "react";
 import GlobalSearchBar from "../ReUseable/GlobalSearchBar";
 import JoinUs from "../ReUseable/JoinUs";
-import ShopCategories from "./ShopCategories";
-import ProductsComponent from "../ReUseable/ProductsComponent";
 import MoreButton from "../ReUseable/MoreButton";
-import TopManufacturer from "./TopManufacturer";
-import { NewArrivalBanner } from "./NewArrival";
+import ProductsComponent from "../ReUseable/ProductsComponent";
 import { BestSellingBanner } from "./BestSale";
 import { FlashSaleBanner } from "./FlashSale";
+import { NewArrivalBanner } from "./NewArrival";
+import ShopCategories from "./ShopCategories";
+import TopManufacturer from "./TopManufacturer";
 
 const Shop = () => {
   // State for ProductsComponent showAll
@@ -43,7 +43,7 @@ const Shop = () => {
             rows={
               showAllProducts
                 ? { mobile: 100, md: 100, lg: 100 } // Show all products
-                : { mobile: 3, md: 4, lg: 4 }       // Show limited initially
+                : { mobile: 4, md: 4, lg: 4 } // Show limited initially
             }
           />
           {!showAllProducts && (
@@ -63,7 +63,7 @@ const Shop = () => {
           rows={
             showAllTopRated
               ? { mobile: 100, md: 100, lg: 100 } // Show all top rated
-              : { mobile: 2, md: 2, lg: 2 } // Show initial few
+              : { mobile: 4, md: 2, lg: 2 } // Show initial few
           }
         />
         {!showAllTopRated && (
@@ -91,7 +91,10 @@ const Shop = () => {
           />
         )} */}
 
-        <JoinUs />
+        <div className="my-20">
+          {" "}
+          <JoinUs />
+        </div>
       </CommonWrapper>
     </div>
   );

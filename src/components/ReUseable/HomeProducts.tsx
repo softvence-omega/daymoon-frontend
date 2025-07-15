@@ -1,5 +1,3 @@
-// components/HomeProduct/HomeProducts.tsx
-
 import { products } from "@/lib/productCard/cardData";
 import { useCallback, useEffect, useState } from "react";
 import HomeProductCard from "./HomeProductCard";
@@ -10,16 +8,19 @@ interface HomeProductsProps {
     mobile: number;
     md: number;
     lg: number;
+    xl: number;
   };
   rows: {
     mobile: number;
     md: number;
     lg: number;
+    xl: number;
   };
 }
 
 const isMobileWidth = (width: number) => width < 768;
 const isMdWidth = (width: number) => width >= 768 && width < 1024;
+const isXlWidth = (width: number) => width >= 1280; // For XL screens
 
 const HomeProducts = ({ cols, rows }: HomeProductsProps) => {
   const [windowWidth, setWindowWidth] = useState(
@@ -36,6 +37,7 @@ const HomeProducts = ({ cols, rows }: HomeProductsProps) => {
   const getVisibleCount = useCallback(() => {
     if (isMobileWidth(windowWidth)) return cols.mobile * rows.mobile;
     if (isMdWidth(windowWidth)) return cols.md * rows.md;
+    if (isXlWidth(windowWidth)) return cols.xl * rows.xl; // Handle XL breakpoint
     return cols.lg * rows.lg;
   }, [windowWidth, cols, rows]);
 
@@ -53,6 +55,8 @@ const HomeProducts = ({ cols, rows }: HomeProductsProps) => {
     ? cols.mobile
     : isMdWidth(windowWidth)
     ? cols.md
+    : isXlWidth(windowWidth)
+    ? cols.xl // Set XL breakpoint columns
     : cols.lg;
 
   const rowsCount = Math.ceil(displayedProducts.length / currentCols);
@@ -101,15 +105,6 @@ const HomeProducts = ({ cols, rows }: HomeProductsProps) => {
       {visibleCount < products.length && (
         <MoreButton onClick={handleExploreMore} text="Explore More" />
       )}
-      {/* Explore More Button */}
-      {/* {hasMore && (
-        <Link to="/products">
-
-          <div className="max-w-[1520px] mx-auto flex justify-center mt-12 ">
-            <SharedButton></SharedButton>
-          </div>
-        </Link>
-      )} */}
     </div>
   );
 };

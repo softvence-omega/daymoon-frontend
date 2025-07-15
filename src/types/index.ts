@@ -96,6 +96,8 @@ export interface Product {
 export interface VendorInfo {
   vendorName: string;
   vendorLocation: string;
+  vendorTotalReviews: number;
+  vendorRating: number;
   vendorLogo: string;
 }
 

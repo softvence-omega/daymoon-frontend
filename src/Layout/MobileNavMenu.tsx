@@ -36,7 +36,7 @@ const MobileSidebar = () => {
             <Menu className="h-6 w-6 text-[#1A1A1A]" />
           </motion.button>
         </SheetTrigger>
-        <SheetContent side="left" className="bg-white  w-64 p-6">
+        <SheetContent side="left" className="bg-white border-none  w-64 p-6">
           <SheetHeader>
             <SheetTitle className=" text-xl font-semibold mb-4">
               <Link to="/">

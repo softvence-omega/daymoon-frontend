@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
-import ManufacturerCard from "../ReUseable/ManufacturerCard";
 import { Manufacturer, manufacturers } from "@/lib/Manufacturer/manufacturer";
+import { useEffect, useState } from "react";
+import ManufacturerCard from "../ReUseable/ManufacturerCard";
 
 interface TopRatedManufacturersProps {
   title?: string; // <-- add title prop here
@@ -24,7 +24,7 @@ const isMobileWidth = (width: number) => width < 768;
 const isMdWidth = (width: number) => width >= 768 && width < 1024;
 
 const TopManufacturer = ({
-  title,                  // receive title from props
+  title,
   showTopRatedOnly = false,
   showAll = true,
   cols = { mobile: 1, md: 2, lg: 3, xl: 3 },
@@ -71,13 +71,20 @@ const TopManufacturer = ({
 
   const getColsClass = (num: number) => {
     switch (num) {
-      case 1: return "grid-cols-1";
-      case 2: return "grid-cols-2";
-      case 3: return "grid-cols-3";
-      case 4: return "grid-cols-4";
-      case 5: return "grid-cols-5";
-      case 6: return "grid-cols-6";
-      default: return "";
+      case 1:
+        return "grid-cols-1";
+      case 2:
+        return "grid-cols-2";
+      case 3:
+        return "grid-cols-3";
+      case 4:
+        return "grid-cols-4";
+      case 5:
+        return "grid-cols-5";
+      case 6:
+        return "grid-cols-6";
+      default:
+        return "";
     }
   };
 
@@ -85,9 +92,9 @@ const TopManufacturer = ({
   const gridClass = `grid gap-4 md:gap-6 lg:gap-8 mt-12 ${colClass}`;
 
   return (
-    <section className="mt-10 md:mt-18 max-w-full mx-auto">
+    <section className="mt-18 max-w-full mx-auto">
       {title && (
-        <h2 className="text-[24px] lg:text-[32px] text-center md:text-left lg:text-left pt-6 md:pt-0 lg:pt-0 font-semibold mb-6 uppercase">
+        <h2 className="text-2xl lg:text-[32px] text-center md:text-left lg:text-left pt-6 md:pt-0 lg:pt-0 font-semibold mb-6 uppercase">
           {title}
         </h2>
       )}
@@ -102,4 +109,3 @@ const TopManufacturer = ({
 };
 
 export default TopManufacturer;
- 

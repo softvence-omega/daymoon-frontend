@@ -2,17 +2,20 @@ import { founders } from "@/lib/about/card";
 
 const Founders = () => {
   return (
-    <div className="w-full max-w-[1400px] mx-auto">
+    <>
       <h5
-        className="text-[32px] font-semibold leading-[38.4px] uppercase 
+        className="text-2xl md:text-[32px] font-semibold leading-[38.4px] uppercase 
                    text-center md:text-left"
       >
         founders
       </h5>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-[32px]">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 ">
         {founders.map((founder, idx) => (
-          <div key={idx} className="flex flex-col rounded-[12px] bg-white">
+          <div
+            key={idx}
+            className="flex mt-10 flex-col rounded-[12px] bg-white"
+          >
             {/* Image */}
             <img
               src={founder.image}
@@ -32,7 +35,7 @@ const Founders = () => {
           </div>
         ))}
       </div>
-    </div>
+    </>
   );
 };
 

@@ -32,7 +32,7 @@ export default function SourceDirectSection() {
     >
       <CommonWrapper>
         <div className="">
-          <h2 className="text-white text-3xl md:text-[48px] font-semibold leading-[1.2] mb-10">
+          <h2 className="text-white text-2xl md:text-[48px] font-semibold leading-[1.2] mb-10">
             SOURCE DIRECT FROM <br className="hidden md:block" />
             MANUFACTURERS
           </h2>
@@ -52,7 +52,7 @@ export default function SourceDirectSection() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
                 <div className="absolute bottom-0 left-0 w-full px-6 pb-5 pt-10 flex items-end">
-                  <span className="text-xl font-semibold text-[#FF8700] drop-shadow-md">
+                  <span className="text-sm md:text-lg  font-semibold text-[#FF8700] drop-shadow-md">
                     {card.title}
                   </span>
                 </div>

@@ -92,7 +92,7 @@ export default function CartPage() {
   if (Data.cart.length === 0) {
     return (
       <div className="min-h-[50dvh] bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 py-8">
+        <CommonWrapper>
           <div className="text-center py-16">
             <ShoppingCart className="w-16 h-16 text-gray-300 mx-auto mb-4" />
             <h2 className="text-2xl font-semibold text-gray-900 mb-2">
@@ -108,7 +108,7 @@ export default function CartPage() {
               </Button>
             </Link>
           </div>
-        </div>
+        </CommonWrapper>
       </div>
     );
   }
@@ -134,7 +134,7 @@ export default function CartPage() {
               </h2>
             </div>
 
-            <div className="space-y-4 mt-10">
+            <div className="space-y-6 mt-10">
               {Data.cart.map((vendor, vendorIndex) =>
                 vendor.products.map((product, productIndex) =>
                   product.variants.map((variant, variantIndex) => (
@@ -167,14 +167,7 @@ export default function CartPage() {
           </div>
         </div>
 
-        <div className="hidden lg:block mt-8">
-          <Link to="/shop">
-            <Button variant="outline">
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Continue Shopping
-            </Button>
-          </Link>
-        </div>
+        <div className="hidden lg:block my-8"></div>
       </div>
     </CommonWrapper>
   );

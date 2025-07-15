@@ -1,5 +1,5 @@
-import { Heart } from "lucide-react";
 import star from "@/assets/Icon/star_rate.svg";
+import { Heart } from "lucide-react";
 import elli from "../../assets/Icon/ellipse.svg";
 
 interface ProductProps {
@@ -47,12 +47,17 @@ const HomeProductCard = ({
           </div>
         </div>
 
-        <div className="flex items-center gap-2 pb-[12px]">
+        <div className="flex justify-between  mb-6 flex-row md:items-center gap-2 md:pb-[12px]">
           <span className="text-[12px] lg:text-[14px] font-medium leading-[130%] text-[#FCAB3F]">
             {priceRange}
           </span>
-          <img src={elli} alt="" />
-          <span className="text-[12px] lg:text-[14px] font-medium leading-[130%] text-[#484848]">{moq}</span>
+          <div className="flex  items-center gap-1">
+            {" "}
+            <img src={elli} alt="" className="w-4 md:w-2 h-4" />
+            <span className="text-[12px] lg:text-[14px] font-medium leading-[130%] text-[#484848]">
+              {moq}
+            </span>
+          </div>
         </div>
       </div>
     </div>

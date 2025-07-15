@@ -1,14 +1,12 @@
-import CommonWrapper from "@/common/CommonWrapper"
-import Help from "@/components/contact/Help"
+import CommonWrapper from "@/common/CommonWrapper";
+import Help from "@/components/contact/Help";
 
 const Contact = () => {
   return (
     <CommonWrapper>
-      <div className="">
-        <Help/>
-      </div>
+      <Help />
     </CommonWrapper>
-  )
-}
+  );
+};
 
-export default Contact
+export default Contact;
