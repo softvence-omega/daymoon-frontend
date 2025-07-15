@@ -11,10 +11,7 @@ import InventoryManagement from "./InventoryManagement";
 import PriceMoqCard from "./PriceMoqCard";
 import ShippingDetails from "./ShippingDetails";
 import CommonWrapper from "@/common/CommonWrapper";
-
-const originalTitle = (slug: string): string => {
-  return slug.replace(/-/g, " ").replace(/\b\w/g, (char) => char.toUpperCase());
-};
+import { originalTitle } from "../../Help/help";
 
 const ProductDetails = () => {
   const { title } = useParams<{ title: string }>();
@@ -31,7 +28,8 @@ const ProductDetails = () => {
       <div className="pb-6 md:pb-10">
         <Breadcrumbs
           title="Products"
-          subtitle={`All Product > ${originalTitle(title || "")}`}
+          subtitle={`All Products`}
+          subtitle2={`${originalTitle(title || "")}`}
         />
       </div>
       <ProductBar />

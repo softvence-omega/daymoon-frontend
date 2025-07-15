@@ -112,9 +112,9 @@ const SingleProductImage: React.FC<SingleProductImageProps> = ({
           </div>
         </div>
 
-        <div className="flex-1 flex items-center justify-center rounded-3xl border border-foundation-white min-h-[300px] relative">
+        <div className="flex-1 flex items-center justify-center rounded-3xl border border-foundation-white min-h-[300px] relative overflow-hidden">
           <div
-            className="relative lg:cursor-cell"
+            className="relative lg:cursor-cell "
             onMouseEnter={() => setLensVisible(true)}
             onMouseLeave={() => setLensVisible(false)}
             onMouseMove={handleMouseMove}

@@ -53,7 +53,7 @@ const InventoryManagement = ({
     <>
       {/* Zoom Preview */}
       {zoom?.lensVisible ? (
-        <div className="hidden md:block w-full h-[600px]  border border-foundation-white rounded-3xl shadow-lg overflow-hidden ">
+        <div className="hidden lg:block w-full h-[600px]  border border-foundation-white rounded-3xl shadow-lg overflow-hidden ">
           <div
             style={{
               width: zoom.imgRef.current?.width! * 2,

@@ -64,7 +64,7 @@ const ReviewFeedback = ({ summary, reviews }: ReviewFeedbackProps) => {
   const reviewList = reviews || defaultReviews;
 
   return (
-    <div className="bg-white border border-foundation-white rounded-2xl p-6">
+    <div className="bg-white border border-foundation-white rounded-2xl p-6 lg:mb-10">
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <CommonHeader>Review & Feedback</CommonHeader>
