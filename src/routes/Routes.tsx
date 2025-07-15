@@ -42,6 +42,7 @@ import BuyerRFQ from "../pages/BuyerDashboard/BuyerRFQ";
 
 import OrderDetails from "@/components/SellerDashboard/SellerOrder/OrderDetails/OrderDetails";
 
+import CartPage from "@/components/Cart/Cart";
 import BuyerProfile from "@/components/SellerDashboard/SellerOrder/Profile/BuyerProfile";
 import BuyerFavorites from "@/pages/BuyerDashboard/BuyerFavorites";
 import BuyerMessages from "@/pages/BuyerDashboard/BuyerMessages";
@@ -77,6 +78,10 @@ const routes = createBrowserRouter([
       {
         path: "/seller",
         element: <Seller />,
+      },
+      {
+        path: "/cart",
+        element: <CartPage />,
       },
       {
         path: "/single",
