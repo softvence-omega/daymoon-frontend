@@ -53,6 +53,8 @@ import BuyerRefund from "@/pages/BuyerDashboard/BuyerRefund";
 import BuyerReview from "@/pages/BuyerDashboard/BuyerReview";
 import SupplierProfileDetails from "@/pages/BuyerLandingPage/SupplierProfileDetails";
 import CreatePromotionPage from "@/pages/SellerDashboard/CreatePromotionPage";
+import Checkout from "@/pages/Checkout";
+import PaymentSummary from "@/components/Checkout/PaymentSummary";
 
 const routes = createBrowserRouter([
   {
@@ -86,6 +88,14 @@ const routes = createBrowserRouter([
       {
         path: "/single",
         element: <IndividualProduct />,
+      },
+      {
+        path: "checkout",
+        element: <Checkout />,
+      },
+      {
+        path: "payment",
+        element: <PaymentSummary />,
       },
 
       {
@@ -137,6 +147,7 @@ const routes = createBrowserRouter([
     path: "seller-signup",
     element: <SellerRegistration />,
   },
+
   {
     path: "*",
     element: <NotFound />,
