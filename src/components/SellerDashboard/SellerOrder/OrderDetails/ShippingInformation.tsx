@@ -4,7 +4,7 @@ import { ExternalLink } from "lucide-react";
 
 const ShippingInformation = () => {
   return (
-    <div className=" w-full bg-white p-10 rounded-2xl border border-foundation-white">
+    <div className=" w-full bg-white p-10 rounded-2xl border border-foundation-white lg:mb-10 ">
       <h1 className="text-2xl font-semibold text-gray-800 mb-8">
         Shipping Information
       </h1>

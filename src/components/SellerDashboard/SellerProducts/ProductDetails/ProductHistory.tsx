@@ -41,7 +41,7 @@ const ProductHistory = ({ events }: ProductHistoryProps) => {
   const historyEvents = events || defaultEvents;
 
   return (
-    <div className=" bg-white border border-foundation-white rounded-2xl">
+    <div className=" bg-white border border-foundation-white rounded-2xl mb-10">
       <CommonHeader className="!text-header p-6  border-b border-foundation-white">
         Product History
       </CommonHeader>

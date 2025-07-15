@@ -21,7 +21,6 @@ const SellerProductsPage: React.FC = () => {
     null
   );
   const [searchText, setSearchText] = useState("");
-
   const [modalOpen, setModalOpen] = useState(false);
 
   const handleEdit = () => {
@@ -31,16 +30,18 @@ const SellerProductsPage: React.FC = () => {
     const prod = productsList.find((p) => p.id === selectedIds[0]);
     if (!prod) return;
     setEditingProduct(prod);
-
     setModalOpen(true);
   };
 
   const handleDelete = () => {
-    if (window.confirm("Delete selected products?")) {
+    try {
       setProductsList((prev) =>
         prev.filter((p) => !selectedIds.includes(p.id))
       );
       setSelectedIds([]);
+      toast.success("Product delete successfully.");
+    } catch (error) {
+      console.error("Failed to delete products:", error);
     }
   };
 
