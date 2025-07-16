@@ -16,7 +16,7 @@ const Analytics = () => {
       <div className="space-y-8">
         <AnalyticsCard />
         {/* part-2 */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4  gap-5">
+        <div className="grid grid-cols-1 lg:grid-cols-1 xl:grid-cols-4  gap-5">
           <div className="xl:col-span-4 w-full">
             <SaleTrends />
           </div>
@@ -32,7 +32,7 @@ const Analytics = () => {
             <PurchaseBehaviour />
           </div>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4  gap-5">
+        <div className="grid grid-cols-1 lg:grid-cols-1 xl:grid-cols-4  gap-5">
           <div className="xl:col-span-4 w-full">
             <ProductCategory />
           </div>
@@ -55,12 +55,12 @@ const Analytics = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4  gap-5">
+        <div className="grid grid-cols-1 lg:grid-cols-1 xl:grid-cols-4  gap-5">
           <div className="xl:col-span-4 w-full">
             <PromotionsAnalytics />
           </div>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4  gap-5">
+        <div className="grid grid-cols-1 lg:grid-cols-1 xl:grid-cols-4  gap-5">
           <div className="xl:col-span-4 w-full">
             <CampaignTable />
           </div>

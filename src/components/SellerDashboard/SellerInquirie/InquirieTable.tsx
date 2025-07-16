@@ -532,7 +532,7 @@ export function InquirieTable() {
 
       {/* Table */}
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4  gap-5">
+      <div className="grid grid-cols-1 lg:grid-cols-1 xl:grid-cols-4  gap-5">
         <div className="xl:col-span-4 w-full">
           {/* Table Main Code */}
           <div className="w-full bg-white rounded-xl shadow-md p-2">
