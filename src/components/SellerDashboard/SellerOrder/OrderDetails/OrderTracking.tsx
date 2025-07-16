@@ -29,20 +29,20 @@ interface OrderTrackingProps {
 const getStepIcon = (step: TrackingStep) => {
   if (step?.status === "completed") {
     return (
-      <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
-        <Check className="w-6 h-6 text-white" />
+      <div className="w-6 h-6 sm:w-12 sm:h-12 bg-green-500 rounded-full flex items-center justify-center">
+        <Check className="w-3 h-3 sm:w-6 sm:h-6 text-white" />
       </div>
     );
   } else if (step?.status === "current") {
     return (
-      <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center">
-        <Truck className="w-6 h-6 text-white" />
+      <div className="w-6 h-6 sm:w-12 sm:h-12 bg-orange-500 rounded-full flex items-center justify-center">
+        <Truck className="w-3 h-3 sm:w-6 sm:h-6 text-white" />
       </div>
     );
   } else {
     return (
-      <div className="w-12 h-12 bg-[#B3B3B3] rounded-full flex items-center justify-center">
-        <Package className="w-6 h-6 text-black" />
+      <div className="w-6 h-6 sm:w-12 sm:h-12 bg-[#B3B3B3] rounded-full flex items-center justify-center">
+        <Package className="w-3 h-3 sm:w-6 sm:h-6 text-black" />
       </div>
     );
   }
@@ -65,8 +65,7 @@ const OrderTracking: FC<OrderTrackingProps> = ({ data }) => {
   const { currentStatus, orderDate, trackingSteps } = data;
 
   return (
-    <div className="w-full bg-white p-10 rounded-2xl border border-foundation-white">
-      {/* Header */}
+    <div className="w-full bg-white p-4 sm:p-10 rounded-2xl border border-foundation-white">
       <div className="flex flex-col sm:flex-row items-start sm:items-center  justify-between gap-6 mb-8">
         <div className="flex flex-col items-start xl:items-center    xl:flex-row  gap-4">
           <ButtonWithIcon
@@ -87,27 +86,30 @@ const OrderTracking: FC<OrderTrackingProps> = ({ data }) => {
         {/* onClick={onUpdateStatus} */}
       </div>
 
-      {/* Timeline */}
       <div className="relative">
         {trackingSteps?.map((step, index) => {
           const isLast = index === trackingSteps.length - 1;
 
           return (
-            <div key={step.id} className="flex gap-4 pb-8 last:pb-0 relative">
+            <div
+              key={step.id}
+              className="flex items-start gap-4 pb-8 last:pb-0 relative"
+            >
               <div className="relative z-10">{getStepIcon(step)}</div>
 
-              {/* Vertical line, only if not the last step */}
               {!isLast && (
-                <div className="absolute left-6 top-12 w-0.5 h-full bg-gray-200" />
+                <div className="absolute left-2.5 sm:left-6 top-6 sm:top-12 w-0.5 h-full bg-gray-200" />
               )}
 
-              <div className="flex-1 pt-2">
+              <div className="flex-1 pt-1 sm:pt-2">
                 <div className="flex items-center gap-2 mb-1">
-                  <CommonHeader className="!text-lg">{step.title}</CommonHeader>
+                  <CommonHeader className="!text-lg !pt-0">
+                    {step.title}
+                  </CommonHeader>
                 </div>
                 <SubHeader className="text-sm mb-2">{step.date}</SubHeader>
                 {step.description && (
-                  <SubHeader className="t mb-2">{step.description}</SubHeader>
+                  <SubHeader className="mb-2">{step.description}</SubHeader>
                 )}
                 {step.trackingNumber && (
                   <SubHeader className="text-gray-600">

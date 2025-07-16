@@ -154,8 +154,8 @@ export const ProductTable: React.FC<Props> = ({
                           alt={p.name}
                           className="w-8 h-8 rounded sm:w-10 sm:h-10 xl:mr-3"
                         />
-                        <div className="hidden xl:block">
-                          <div className="font-medium text-gray-800">
+                        <div className="hidden  xl:table-cell ">
+                          <div className="font-medium text-gray-800 ">
                             {p.name}
                           </div>
                           <div className="text-xs text-gray-500">
@@ -186,7 +186,7 @@ export const ProductTable: React.FC<Props> = ({
                         <span className="text-gray-700 sm:mr-2 ">
                           {p.stock.toString().padStart(2, "0")}
                         </span>
-                        <div className="w-24 h-1.5 overflow-hidden bg-gray-200 rounded hidden sm:block">
+                        <div className="w-24 h-1.5 overflow-hidden bg-gray-200 rounded hidden sm:table-cell">
                           <div
                             className="h-full bg-green-500"
                             style={{ width: `${p.stock}%` }}

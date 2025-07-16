@@ -27,8 +27,8 @@ const OrderSummary: React.FC<SummaryProps> = ({ product, shipping, tax }) => {
   const total = subtotal + shipping + tax;
 
   return (
-    <div className="w-full bg-white md:p-10 p-2 rounded-2xl border border-foundation-white">
-      <CommonHeader className="!text-2xl font-semibold pb-6">
+    <div className="w-full bg-white md:p-10 p-4 rounded-2xl border border-foundation-white">
+      <CommonHeader className="sm:*:!text-2xl font-semibold sm:pb-6">
         Products
       </CommonHeader>
 
