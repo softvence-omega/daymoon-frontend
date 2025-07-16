@@ -9,11 +9,16 @@ const Promotion = () => {
       <div className="space-y-8">
         <PromotionCard />
         {/* part-2 */}
-        <div>
-          <PromotionPerformance />
+
+        <div className="grid grid-cols-1 lg:grid-cols-1 xl:grid-cols-4  gap-5">
+          <div className="xl:col-span-4 w-full">
+            <PromotionPerformance />
+          </div>
         </div>
-        <div>
-          <PromotionTable />
+        <div className="grid grid-cols-1 lg:grid-cols-1 xl:grid-cols-4  gap-5">
+          <div className="xl:col-span-4 w-full">
+            <PromotionTable />
+          </div>
         </div>
       </div>
     </Wrapper>

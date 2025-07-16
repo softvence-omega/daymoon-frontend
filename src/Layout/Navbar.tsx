@@ -8,7 +8,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { motion } from "framer-motion";
-import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
@@ -52,7 +51,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="w-full bg-white shadow py-4">
+    <nav className="w-full bg-white shadow sticky top-0 z-50 py-2 ">
       <div className="lg:hidden flex items-center justify-between w-full px-4">
         <Link to="/">
           <img
@@ -76,29 +75,7 @@ const Navbar = () => {
           </Link>
 
           <section className="flex items-center justify-center gap-7 xl:ml-52">
-            <DropdownMenu>
-              <DropdownMenuTrigger className="border-none p-2" asChild>
-                <div className="flex items-center bg-transparent text-lg text-[#666] hover:bg-white space-x-1 hover:text-[#F04436] cursor-pointer ">
-                  <span>Categories</span>
-                  <ChevronDown className="h-4 w-4" />
-                </div>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="start" className=" bg-white border-0">
-                <NavCatgegory />
-                {/* {categories.map((category, idx) => (
-                  <motion.div dia
-                    whileHover={{ scale: 1.01 }}
-                    whileTap={{ scale: 0.8 }}
-                    key={idx}
-                  >
-                    <DropdownMenuItem className="text-lg px-4 py-2 rounded-md hover:bg-gray-100 cursor-pointer text-[#1A1A1A]">
-                      {category}
-                    </DropdownMenuItem>
-                    <div className="border-t border-[#E5E5E5] my-1" />
-                  </motion.div>
-                ))} */}
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <NavCatgegory />
 
             {["shop", "about", "contact"].map((page) => (
               <Link key={page} to={`/${page}`}>

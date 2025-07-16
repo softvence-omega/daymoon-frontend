@@ -15,15 +15,14 @@ const SellerLayout = () => {
     pathname === "/seller-dashboard/create-promotion" ||
     pathname === "/seller-dashboard/inquiries-details";
 
-  // ---- Logic to hide only the sidebar
   const shouldHideSidebar = () => {
     const hideExact = [
       "/seller-dashboard/add-product",
       "/seller-dashboard/all-products",
       "/seller-dashboard/all-orders",
       "/seller-dashboard/inquiries-details",
-      "/seller-dashboard/invoice-form", // still hide sidebar here
-      "/seller-dashboard/create-promotion", // still hide sidebar here
+      "/seller-dashboard/invoice-form",
+      "/seller-dashboard/create-promotion",
     ];
 
     const pathnameSegments = pathname.split("/");
@@ -49,7 +48,6 @@ const SellerLayout = () => {
     );
   };
 
-  // ---- Set sidebar open for padding control
   useEffect(() => {
     const pathnameSegments = pathname.split("/");
 
@@ -97,7 +95,7 @@ const SellerLayout = () => {
           !shouldHideSidebar() ? "lg:ml-64" : ""
         }`}
       >
-        {/* Navbar - Fixed */}
+        {/* Navbar */}
         {!shouldHideNavbar && (
           <div className="fixed top-0 left-0 right-0 z-20 bg-white border-b border-gray-200">
             <SellerDashboardNavbar
@@ -114,7 +112,7 @@ const SellerLayout = () => {
             <div className="hidden" />
           </SheetTrigger>
           <SheetContent side="left" className="w-64 p-0">
-            <SellerSidebar />
+            <SellerSidebar onItemClick={() => setIsMobileMenuOpen(false)} />
           </SheetContent>
         </Sheet>
 

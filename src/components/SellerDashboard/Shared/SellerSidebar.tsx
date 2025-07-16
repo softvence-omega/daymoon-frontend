@@ -13,7 +13,6 @@ import {
 } from "react-icons/md";
 import { Link, useLocation } from "react-router-dom";
 
-// Define types for better reusability
 export interface SidebarItem {
   icon: React.ComponentType<{ className?: string }>;
   label: string;
@@ -28,31 +27,19 @@ export interface SidebarProps {
   userEmail?: string;
   userAvatar?: string;
   userInitials?: string;
+  onItemClick?: () => void;
 }
 
-// Updated sidebar items to match your route structure
 const defaultSidebarItems: SidebarItem[] = [
   { icon: MdGridView, label: "Dashboard", href: "/seller-dashboard/dashboard" },
-  {
-    icon: FaTruck,
-    label: "Products",
-    href: "/seller-dashboard/products",
-  },
-  {
-    icon: MdOutlineMessage,
-    label: "Orders",
-    href: "/seller-dashboard/orders",
-  },
+  { icon: FaTruck, label: "Products", href: "/seller-dashboard/products" },
+  { icon: MdOutlineMessage, label: "Orders", href: "/seller-dashboard/orders" },
   {
     icon: MdOutlineCreditCard,
     label: "Inquiries",
     href: "/seller-dashboard/inquiries",
   },
-  {
-    icon: FaRegHeart,
-    label: "Payments",
-    href: "/seller-dashboard/payments",
-  },
+  { icon: FaRegHeart, label: "Payments", href: "/seller-dashboard/payments" },
   {
     icon: MdOutlineRateReview,
     label: "Analytics",
@@ -63,11 +50,7 @@ const defaultSidebarItems: SidebarItem[] = [
     label: "Promotions",
     href: "/seller-dashboard/promotions",
   },
-  {
-    icon: FaRegStar,
-    label: "Reviews",
-    href: "/seller-dashboard/reviews",
-  },
+  { icon: FaRegStar, label: "Reviews", href: "/seller-dashboard/reviews" },
   {
     icon: IoSettingsOutline,
     label: "Settings",
@@ -82,6 +65,7 @@ const defaultSidebarItems: SidebarItem[] = [
 
 const SellerSidebar: React.FC<SidebarProps> = ({
   items = defaultSidebarItems,
+  onItemClick,
 }) => {
   const location = useLocation();
 
@@ -104,6 +88,7 @@ const SellerSidebar: React.FC<SidebarProps> = ({
               <Link
                 key={item.label}
                 to={item.href}
+                onClick={onItemClick}
                 className={`flex items-center justify-between w-full px-3 py-2 text-sm font-normal rounded-none transition-colors border-b-2 ${
                   isActive
                     ? "text-[#F7813B] border-[#F7813B]"
