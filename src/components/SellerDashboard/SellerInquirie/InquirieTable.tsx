@@ -531,59 +531,67 @@ export function InquirieTable() {
       </div>
 
       {/* Table */}
-      <div className="w-full bg-white rounded-xl shadow-md p-2">
-        <Table>
-          <TableHeader className="h-[56px]">
-            {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow
-                key={headerGroup.id}
-                className="bg-[#E5E5E5] text-[#666666] text-sm"
-              >
-                {headerGroup.headers.map((header) => (
-                  <TableHead key={header.id}>
-                    {header.isPlaceholder
-                      ? null
-                      : flexRender(
-                          header.column.columnDef.header,
-                          header.getContext()
-                        )}
-                  </TableHead>
-                ))}
-              </TableRow>
-            ))}
-          </TableHeader>
-          <TableBody>
-            {table.getRowModel().rows.length ? (
-              table.getRowModel().rows.map((row) => (
-                <TableRow key={row.id}>
-                  {row.getVisibleCells().map((cell) => (
-                    <TableCell className="p-3" key={cell.id}>
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext()
-                      )}
-                    </TableCell>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4  gap-5">
+        <div className="xl:col-span-4 w-full">
+          {/* Table Main Code */}
+          <div className="w-full bg-white rounded-xl shadow-md p-2">
+            <div className="w-full overflow-x-auto">
+              <Table className="min-w-[800px]">
+                <TableHeader className="h-[56px]">
+                  {table.getHeaderGroups().map((headerGroup) => (
+                    <TableRow
+                      key={headerGroup.id}
+                      className="bg-[#E5E5E5] text-[#666666] text-sm"
+                    >
+                      {headerGroup.headers.map((header) => (
+                        <TableHead key={header.id}>
+                          {header.isPlaceholder
+                            ? null
+                            : flexRender(
+                                header.column.columnDef.header,
+                                header.getContext()
+                              )}
+                        </TableHead>
+                      ))}
+                    </TableRow>
                   ))}
-                </TableRow>
-              ))
-            ) : (
-              <TableRow>
-                <TableCell
-                  colSpan={columns.length}
-                  className="h-24 text-center"
-                >
-                  No inquiries found.
-                </TableCell>
-              </TableRow>
-            )}
-          </TableBody>
-        </Table>
+                </TableHeader>
+                <TableBody>
+                  {table.getRowModel().rows.length ? (
+                    table.getRowModel().rows.map((row) => (
+                      <TableRow key={row.id}>
+                        {row.getVisibleCells().map((cell) => (
+                          <TableCell className="p-3" key={cell.id}>
+                            {flexRender(
+                              cell.column.columnDef.cell,
+                              cell.getContext()
+                            )}
+                          </TableCell>
+                        ))}
+                      </TableRow>
+                    ))
+                  ) : (
+                    <TableRow>
+                      <TableCell
+                        colSpan={columns.length}
+                        className="h-24 text-center"
+                      >
+                        No inquiries found.
+                      </TableCell>
+                    </TableRow>
+                  )}
+                </TableBody>
+              </Table>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Pagination Footer */}
-      <div className="flex items-center justify-between pt-4 px-4 text-sm text-[#666] mt-4">
+      <div className="flex flex-col md:flex-row items-center justify-between md:pt-4 px-4 text-sm text-[#666] mt-4 gap-2 md:gap-0">
         {/* Data Count */}
-        <p className="text-base text-gray-600">
+        <p className="hidden md:block text-base text-gray-600">
           Showing {pagination.pageIndex * pagination.pageSize + 1} to{" "}
           {Math.min(
             (pagination.pageIndex + 1) * pagination.pageSize,
@@ -593,7 +601,7 @@ export function InquirieTable() {
         </p>
 
         {/* Styled Pagination Buttons */}
-        <ul className="flex items-center border border-foundation-white rounded-xl overflow-hidden text-base cursor-pointer">
+        <ul className="flex items-center border border-foundation-white rounded-xl overflow-hidden text-base cursor-pointer self-end md:self-auto">
           {/* Previous Button */}
           <li>
             <button

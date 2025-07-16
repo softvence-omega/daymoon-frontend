@@ -16,8 +16,13 @@ const Analytics = () => {
       <div className="space-y-8">
         <AnalyticsCard />
         {/* part-2 */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4  gap-5">
+          <div className="xl:col-span-4 w-full">
+            <SaleTrends />
+          </div>
+        </div>
 
-        <SaleTrends />
+        {/* <SaleTrends /> */}
         {/* Part-3 */}
         <div className="flex flex-col lg:flex-row w-full gap-5">
           <div className="w-full lg:w-1/2">
@@ -27,7 +32,12 @@ const Analytics = () => {
             <PurchaseBehaviour />
           </div>
         </div>
-        <ProductCategory />
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4  gap-5">
+          <div className="xl:col-span-4 w-full">
+            <ProductCategory />
+          </div>
+        </div>
+
         <div className="flex flex-col lg:flex-row w-full gap-5">
           <div className="w-full lg:w-1/2">
             <CustomerInsights />
@@ -44,8 +54,17 @@ const Analytics = () => {
             <ConversionFunnel />
           </div>
         </div>
-        <PromotionsAnalytics />
-        <CampaignTable />
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4  gap-5">
+          <div className="xl:col-span-4 w-full">
+            <PromotionsAnalytics />
+          </div>
+        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4  gap-5">
+          <div className="xl:col-span-4 w-full">
+            <CampaignTable />
+          </div>
+        </div>
       </div>
     </Wrapper>
   );

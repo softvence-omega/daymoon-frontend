@@ -106,7 +106,7 @@ const SellerPersonalInformation = () => {
                 htmlFor="firstName"
                 className="text-[#666666] text-sm font-normal"
               >
-                First Namee
+                First Name
               </Label>
               <Input
                 id="firstName"
