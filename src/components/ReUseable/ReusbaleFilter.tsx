@@ -1,6 +1,16 @@
 import { Checkbox } from "@/components/ui/checkbox";
-import { IFilterOption, IFilterProps } from "@/types";
+
 import { useState } from "react";
+
+interface IFilterOption {
+  label: string;
+  value: string;
+}
+
+interface IFilterProps {
+  title: string;
+  options: IFilterOption[];
+}
 
 const ReusableFilter = ({ title, options }: IFilterProps) => {
   const [selectedValues, setSelectedValues] = useState<string[]>([]);

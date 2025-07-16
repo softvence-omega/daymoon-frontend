@@ -43,7 +43,6 @@ export function RefundCard({ order, isSelected, onSelect }: RefundCardProps) {
     >
       <CardContent className="p-2 ">
         <div className="flex flex-col lg:flex-row lg:justify-between gap-4">
-          {/* Product Image */}
           <img
             src={order.image || "/placeholder.svg"}
             alt={order.productName}
@@ -57,8 +56,7 @@ export function RefundCard({ order, isSelected, onSelect }: RefundCardProps) {
             <p className="text-xs text-[#666] mt-1">
               Order {order.orderNumber}
             </p>
-            <div className="flex flex-col lg:flex-row lg:items-center gap-2 lg:gap-4 mt-2">
-              {/* Badge for Status */}
+            <div className="flex flex-col-reverse lg:flex-row lg:items-center gap-2 lg:gap-4  mt-6 md:mt-2">
               <Badge
                 className={`text-sm font-medium px-4 py-1 ${getStatusColor(
                   order.status
@@ -67,21 +65,18 @@ export function RefundCard({ order, isSelected, onSelect }: RefundCardProps) {
                 {order.status}
               </Badge>
 
-              {/* Order Date for Large Devices, fixed for small devices */}
               <span className="text-sm text-[#666] lg:block md:hidden">
                 {order.orderDate}
               </span>
             </div>
           </div>
 
-          {/* Price and Quantity - Right side for small devices */}
-          <div className="text-right mt-4 lg:mt-0 md:flex md:flex-col md:items-end md:text-right">
-            <p className="lg:text-2xl font-semibold text-[#F04436]">
+          <div className="text-right md:mt-4 lg:mt-0 md:flex md:flex-col md:items-end md:text-right">
+            <p className="text-lg lg:text-2xl font-semibold text-[#F04436]">
               ${order.price.toLocaleString()}
             </p>
             <p className="text-xs text-[#666] mt-1">Qty: {order.quantity}</p>
 
-            {/* Refund Button */}
             <div className="mt-4  border-t border-gray-100">
               <Button
                 variant="outline"

@@ -1,4 +1,9 @@
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
+export interface ICategory {
+  name: string;
+  image: string;
+  slug: string
+}
 
 interface Inventory {
   stock: number;
@@ -68,13 +73,13 @@ export interface Customization {
 }
 
 export interface Variant {
-  variantId: string;
-  color: string;
+  variantId?: string;
+  color?: string;
   size?: string;
-  image: string;
-  quantity: number;
-  priceRange: PriceRange[];
-  customizations: Customization[];
+  image: string | any;
+  quantity?: number;
+  priceRange?: PriceRange[];
+  customizations?: Customization[];
 }
 
 export interface Customization {
@@ -95,10 +100,16 @@ export interface Product {
 
 export interface VendorInfo {
   vendorName: string;
+  vendorId?: string;
   vendorLocation: string;
-  vendorLogo: string;
-}
+  vendorTotalReviews?: number;
+  vendorRating?: number;
+  vendorLogo?: string;
+  storeUrl?: string;
+  contactEmail?: "sales@electromart.com",
+  verified?: true,
 
+}
 export interface Vendor {
   vendorInfo: VendorInfo;
   products: Product[];

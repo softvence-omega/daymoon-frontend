@@ -91,7 +91,7 @@ export function RefundForm({ order }: RefundFormProps) {
   return (
     <div className="space-y-6">
       <Card className="border-1 border-[#E5E5E5] bg-[#FFF7EC]">
-        <CardContent className="mx-4 bg-white p-4 rounded-2xl border-1 border-[#E5E5E5]">
+        <CardContent className="md:mx-4 md:bg-white md:p-4 md:rounded-2xl md:border-1 border-[#E5E5E5]">
           <div className="flex flex-col lg:flex-row lg:justify-between gap-4">
             <img
               src={order.image || "/placeholder.svg"}
@@ -105,8 +105,7 @@ export function RefundForm({ order }: RefundFormProps) {
               <p className="text-xs text-[#666] mt-1">
                 Order {order.orderNumber}
               </p>
-              <div className="flex flex-col lg:flex-row lg:items-center gap-2 lg:gap-4 mt-2">
-                {/* Badge for Status */}
+              <div className="flex flex-col-reverse  lg:flex-row lg:items-center gap-2 lg:gap-4 mt-4 md:mt-2">
                 <Badge
                   className={`text-xs lg:text-sm font-medium px-4 py-1 ${getStatusColor(
                     order.status
@@ -115,16 +114,17 @@ export function RefundForm({ order }: RefundFormProps) {
                   {order.status}
                 </Badge>
 
-                {/* Order Date */}
                 <span className="text-xs text-[#666]">{order.orderDate}</span>
               </div>
             </div>
-            {/* Price and Quantity */}
-            <div className="text-right mt-4 lg:mt-0">
-              <p className="lg:text-2xl font-semibold text-[#F04436]">
+
+            <div className="text-right lg:flex-col flex justify-between items-center">
+              <p className="text-xl lg:text-2xl font-semibold text-[#F04436]">
                 ${order.price.toLocaleString()}
               </p>
-              <p className="text-xs text-[#666] mt-1">Qty: {order.quantity}</p>
+              <p className="text-base md:text-sm text-[#666] mt-1">
+                Qty: {order.quantity}
+              </p>
             </div>
           </div>
         </CardContent>

@@ -12,19 +12,19 @@ import paypal from "../../assets/dashboard/buyer-dashboard/paypal.svg";
 import refund from "../../assets/dashboard/buyer-dashboard/refund.svg";
 import visa from "../../assets/dashboard/buyer-dashboard/visa.svg";
 
-const getPaymentMethodIcon = (method: string) => {
-  switch (method) {
-    case "Visa":
-      return <img src={visa} alt="Visa" className="w-6 h-6" />;
-    case "MasterCard":
-      return <img src={mastercard} alt="MasterCard" className="w-6 h-6" />;
-    case "PayPal":
-      return <img src={paypal} alt="PayPal" className="w-6 h-6" />;
+// const getPaymentMethodIcon = (method: string) => {
+//   switch (method) {
+//     case "Visa":
+//       return <img src={visa} alt="Visa" className="w-6 h-6" />;
+//     case "MasterCard":
+//       return <img src={mastercard} alt="MasterCard" className="w-6 h-6" />;
+//     case "PayPal":
+//       return <img src={paypal} alt="PayPal" className="w-6 h-6" />;
 
-    default:
-      return <CreditCard className="w-6 h-6 text-gray-400" />;
-  }
-};
+//     default:
+//       return <CreditCard className="w-6 h-6 text-gray-400" />;
+//   }
+// };
 
 export default function OrderDetails() {
   const orderData = BuyerOrderDetails;
@@ -138,23 +138,25 @@ export default function OrderDetails() {
 
           <Card className="border-[#e5e5e5] md:border-1">
             <CardHeader>
-              <CardTitle className="text-2xl font-medium md:border-b md:border-[#e5e5e5] pb-4">
+              <CardTitle className="text-2xl font-medium border-b border-[#e5e5e5] pb-4">
                 Products
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              {orderData.orderItems.map((item, index) => (
+              {orderData.orderItems.map((item) => (
                 <div
                   key={item.id}
-                  className="flex flex-col md:flex-row justify-between items-center gap-4 p-4 border border-gray-200 rounded-lg"
+                  className="flex flex-col md:flex-row justify-between md:items-center gap-4 py-4 md:p-4 md:border border-b border-gray-200 md:rounded-lg"
                 >
                   <img
                     src={item.image}
                     alt={item.name}
-                    className="w-20 h-20 rounded-lg object-cover bg-gray-100"
+                    className="w-full md:w-20 h-40 md:h-20 rounded-lg object-cover "
                   />
                   <div className="flex-1">
-                    <h3 className="font-medium text-[#1A1A1A]">{item.name}</h3>
+                    <h3 className="md:font-medium text-[#1A1A1A]">
+                      {item.name}
+                    </h3>
                     <p className="text-sm text-[#666]">
                       Quantity: {item.quantity}
                     </p>
@@ -293,7 +295,7 @@ export default function OrderDetails() {
             <motion.button
               whileHover={{ scale: 1.01 }}
               whileTap={{ scale: 0.8 }}
-              className="w-full text-white bg-[#F04436] mt-6 hover:bg-red-500 flex justify-center items-center gap-2 text-lg font-medium py-3 rounded-2xl cursor-pointer"
+              className="w-full text-white bg-[#F04436] mt-6 hover:bg-red-500 flex justify-center items-center gap-2 text-sm md:text-lg font-medium  py-3 rounded-2xl cursor-pointer"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

@@ -8,30 +8,30 @@ import MassageForm from "./MassageForm";
 
 const Help = () => {
   return (
-    <div className="pt-20">
+    <div className="mt-20">
       <div className="flex flex-col items-center justify-center gap-y-5">
-        <p className="text-5xl font-semibold">We’re here to help</p>
-        <p className="text-xl font-normal text-gray-400">
+        <p className="text-3xl lg:text-5xl font-semibold">We’re here to help</p>
+        <p className="text-base md:text-lg mt-4 text-[#7E7E7E]">
           Whether you have a question or need assistance, getting in touch with
           us is simple.
         </p>
       </div>
-      <div className="py-5">
+      <div className="my-20">
         <SearchBar />
       </div>
-      <div>
+      <div className="my-20">
         <Categories />
       </div>
-      <div className="py-5">
+      <div className="my-20">
         <ContactOptions />
       </div>
-      <div className="py-5">
+      <div className="my-20">
         <MassageForm />
       </div>
-      <div className="py-5">
+      <div className="my-20">
         <Faq />
       </div>
-      <div className="py-5">
+      <div className="my-20">
         <JoinUs />
       </div>
     </div>

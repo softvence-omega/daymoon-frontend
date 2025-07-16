@@ -76,7 +76,7 @@ const GlobalSearchBar = () => {
             <DropdownMenuTrigger asChild>
               <Button
                 variant="ghost"
-                className="text-[#F46A39] font-normal px-2 sm:px-4 text-sm md:text-base lg:text-lg"
+                className="text-[#F46A39] font-normal px-2 sm:px-4 text-sm md:text-base cursor-pointer lg:text-lg"
               >
                 {selectedCategory.label}
                 <img alt="arrow" src={arrow} className="w-fit h-fit ml-2" />
@@ -120,7 +120,7 @@ const GlobalSearchBar = () => {
             />
             <Button
               onClick={handleSearch}
-              className="absolute right-2 top-1/2 -translate-y-1/2 bg-orange-500 hover:bg-orange-600 text-white rounded-full w-8 h-8 md:w-9 md:h-9 "
+              className="absolute right-2 top-1/2 -translate-y-1/2 bg-orange-500 hover:bg-orange-600 text-white rounded-full w-8 h-8 md:w-9 md:h-9 cursor-pointer "
             >
               <Search className="w-4 h-4" />
             </Button>
@@ -169,7 +169,7 @@ const GlobalSearchBar = () => {
         )}
       </div>
 
-      <div className="hidden lg:block">
+      <div className="hidden cursor-pointer lg:block">
         {" "}
         <SearchByImage />
       </div>

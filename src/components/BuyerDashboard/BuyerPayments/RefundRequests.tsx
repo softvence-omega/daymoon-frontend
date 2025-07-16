@@ -8,10 +8,11 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-import visa from "@/assets/dashboard/buyer-dashboard/visa.svg";
+import card from "@/assets/dashboard/buyer-dashboard/card.svg";
 import mastercard from "@/assets/dashboard/buyer-dashboard/mastercard.svg";
 import paypal from "@/assets/dashboard/buyer-dashboard/paypal.svg";
-import card from "@/assets/dashboard/buyer-dashboard/card.svg";
+import visa from "@/assets/dashboard/buyer-dashboard/visa.svg";
+import { Link } from "react-router-dom";
 
 // Status configuration for refund statuses
 const statusConfig = {
@@ -125,7 +126,7 @@ const RefundRequestsTable = () => {
             <TableHead className="px-4 py-2">Refund Method</TableHead>
             <TableHead className="px-4 py-2">Status</TableHead>
             <TableHead className="px-4 py-2">Reason</TableHead>
-              <TableHead className="text-center px-4 py-2">Invoice</TableHead>
+            <TableHead className="text-center px-4 py-2">Invoice</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody className="text-[#1A1A1A] text-base font-normal">
@@ -156,12 +157,15 @@ const RefundRequestsTable = () => {
                 {renderStatus(refund.status)}
               </TableCell>
               <TableCell className="px-4 py-4">
-                <span className="text-sm text-gray-600 max-w-[200px] truncate" title={refund.reason}>
+                <span
+                  className="text-sm text-gray-600 max-w-[200px] truncate"
+                  title={refund.reason}
+                >
                   {refund.reason}
                 </span>
               </TableCell>
               <TableCell className="text-center px-4 py-4 text-[#F04436]">
-                View Details
+                <Link to="/buyer/dashboard/orders/refund">View Details</Link>
               </TableCell>
             </TableRow>
           ))}
@@ -179,7 +183,9 @@ const RefundRequestsTable = () => {
 const RefundRequests = () => {
   return (
     <div className="mt-8 md:mt-10 lg:mt-20">
-      <h2 className="text-[#1A1A1A] font-medium text-2xl mb-6">Refund Requests</h2>
+      <h2 className="text-[#1A1A1A] font-medium text-2xl mb-6">
+        Refund Requests
+      </h2>
       <RefundRequestsTable />
     </div>
   );
