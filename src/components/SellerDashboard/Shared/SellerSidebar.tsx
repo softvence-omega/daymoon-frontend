@@ -13,10 +13,6 @@ import {
 } from "react-icons/md";
 import { Link, useLocation } from "react-router-dom";
 
-import logo from "@/assets/dashboard/buyer-dashboard/logo.png";
-import { GrAnnounce } from "react-icons/gr";
-import { IoSettingsOutline } from "react-icons/io5";
-
 export interface SidebarItem {
   icon: React.ComponentType<{ className?: string }>;
   label: string;
