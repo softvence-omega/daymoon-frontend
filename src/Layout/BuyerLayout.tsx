@@ -1,18 +1,24 @@
-import { useState } from "react";
-import { Outlet } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Outlet, useLocation } from "react-router-dom";
 import Sidebar from "@/Layout/reusable-component/Sidebar";
 import DashboardNavbar from "@/Layout/reusable-component/DashboardNavbar";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const BuyerLayout = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-   const handleMobileMenuToggle = () => {
+  const location = useLocation();
+
+  const handleMobileMenuToggle = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
+
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [location.pathname]);
+
   return (
     <div className="flex min-h-screen bg-gray-50">
       {/* Desktop Sidebar */}
-
       <div className="hidden lg:flex md:w-64 md:flex-col">
         <div className="border-r border-gray-200 h-full">
           <Sidebar />
@@ -27,7 +33,7 @@ const BuyerLayout = () => {
           notificationCount={3}
         />
 
-        {/* Mobile SellerSidebar */}
+        {/* Mobile Sidebar */}
         <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
           <SheetTrigger asChild>
             <div className="hidden" />
