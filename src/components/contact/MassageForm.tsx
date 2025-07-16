@@ -1,7 +1,8 @@
-import contactImage from '../../assets/contactImage.png';
+import contactImage from "../../assets/contactImage.png";
+import RedButton from "../ReUseable/RedButton";
 const MassageForm = () => {
   return (
-    <div className="max-w-full mx-auto rounded-md px-4 py-10 space-y-16 bg-gray-100">
+    <div className="max-w-full mx-auto rounded-md px-4 py-10 space-y-16 bg-[#E5E5E5]">
       {/* Contact Form & Image */}
       <div className="grid md:grid-cols-2 gap-8 items-center">
         <div className=" p-6 rounded-md space-y-4">
@@ -20,14 +21,12 @@ const MassageForm = () => {
             className="w-full border border-gray-300 bg-white px-4 py-2 rounded-md focus:outline-orange-400"
             rows={4}
           />
-          <button className="bg-red-500 text-white px-6 py-2 rounded-md hover:bg-red-600">
-            Submit Message
-          </button>
+          <RedButton title="Submit Message" />
         </div>
         <img src={contactImage} alt="Contact" className="rounded-md" />
       </div>
-      </div>
-  )
-}
+    </div>
+  );
+};
 
 export default MassageForm;

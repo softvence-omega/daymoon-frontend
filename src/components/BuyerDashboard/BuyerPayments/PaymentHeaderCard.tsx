@@ -19,7 +19,8 @@ interface CardProps {
 }
 
 const PaymentHeaderCard: FC<CardProps> = ({ data }) => {
-  const { title, value, icon, iconBgColor, titleColor, unit, bottomSection } = data;
+  const { title, value, icon, iconBgColor, titleColor, unit, bottomSection } =
+    data;
 
   return (
     <div className="w-full p-4 md:p-5  bg-white rounded-[16px] border border-[#E0E0E0]  ">
@@ -30,7 +31,9 @@ const PaymentHeaderCard: FC<CardProps> = ({ data }) => {
         </div>
 
         <div className="mt-2 md:mt-4">
-          <p className={`text-[48px] font-semibold text-center mb-3  ${titleColor}`}>
+          <p
+            className={`text-3xl md:text-[48px] font-semibold text-center mb-3  ${titleColor}`}
+          >
             {value}
             <span className="text-[#969696] font-normal text-sm ml-2">
               {unit}
@@ -39,7 +42,9 @@ const PaymentHeaderCard: FC<CardProps> = ({ data }) => {
 
           {/* Only render bottom section if it exists */}
           {bottomSection && (
-            <div className={`flex items-center gap-2 text-base font-normal ${bottomSection.color}`}>
+            <div
+              className={`flex items-center gap-2 text-base font-normal ${bottomSection.color}`}
+            >
               <div>{bottomSection.icon}</div>
               <p>{bottomSection.text}</p>
             </div>

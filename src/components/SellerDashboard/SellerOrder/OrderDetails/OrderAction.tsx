@@ -2,8 +2,8 @@ import ButtonWithIcon from "@/common/ButtonWithIcon";
 import { Mail, Truck } from "lucide-react";
 const OrderAction = () => {
   return (
-    <div className="w-full bg-white p-10 rounded-2xl border border-foundation-white">
-      <div className=" flex flex-col gap-6 pt-12">
+    <div className="w-full bg-white p-4 sm:p-10 rounded-2xl border border-foundation-white">
+      <div className=" flex flex-col gap-6 lg:pt-12">
         <ButtonWithIcon
           className=" bg-sunset-orange text-white border-transparent   w-full flex justify-center"
           icon={Truck}

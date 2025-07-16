@@ -4,10 +4,10 @@ import { ExternalLink } from "lucide-react";
 
 const ShippingInformation = () => {
   return (
-    <div className=" w-full bg-white p-10 rounded-2xl border border-foundation-white lg:mb-10 ">
-      <h1 className="text-2xl font-semibold text-gray-800 mb-8">
+    <div className=" w-full bg-white p-4 sm:p-10 rounded-2xl border border-foundation-white lg:mb-10 ">
+      <CommonHeader className="sm:!text-2xl font-semibold mb-4 sm:mb-6 text-[#484848]">
         Shipping Information
-      </h1>
+      </CommonHeader>
 
       <div className="space-y-6">
         <div className="flex justify-between items-center gap-6 ">

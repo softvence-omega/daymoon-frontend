@@ -48,7 +48,7 @@ const SearchByImage = () => {
     <motion.div
       whileTap={{ scale: 0.95 }}
       whileHover={{ scale: 1.05 }}
-      className="flex items-center lg:ml-4 w-fit   px-6 rounded-full shadow-[0_0_1px_0px_#F46A39] h-17 bg-white"
+      className="flex items-center lg:ml-4 w-fit   px-6 rounded-full  shadow-[0_0_1px_0px_#F46A39] h-17  cursor-pointer "
     >
       <button
         type="button"
@@ -61,7 +61,7 @@ const SearchByImage = () => {
           src={fileSearch}
           className="w-10  h-10 lg:w-5 lg:h-5"
         />
-        <span className="hidden sm:inline">
+        <span className="hidden cursor-pointer sm:inline">
           {loading ? "Searching..." : "Search by Image"}
         </span>
         <input

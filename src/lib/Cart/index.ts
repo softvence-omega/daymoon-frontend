@@ -1,4 +1,5 @@
 import { CartData } from "@/types";
+import img from '../../assets/landing/profile.png';
 
 export const cartData: CartData = {
     cart: [
@@ -6,7 +7,7 @@ export const cartData: CartData = {
             vendorInfo: {
                 vendorName: "ElectroMart",
                 vendorLocation: "123 Tech Street, San Francisco, CA, USA",
-                vendorLogo: "https://example.com/vendor-shop-image.jpg",
+                vendorLogo: img,
             },
             products: [
                 {
@@ -71,7 +72,7 @@ export const cartData: CartData = {
             vendorInfo: {
                 vendorName: "TechGear",
                 vendorLocation: "456 Electronic Blvd, Los Angeles, CA, USA",
-                vendorLogo: "https://example.com/techgear-logo.jpg",
+                vendorLogo: img,
             },
             products: [
                 {

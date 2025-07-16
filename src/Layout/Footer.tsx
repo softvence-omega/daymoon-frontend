@@ -6,7 +6,7 @@ import apple from "../assets/footer/apple.svg";
 import facebook from "../assets/footer/facebook.svg";
 import instagram from "../assets/footer/instagram.svg";
 import linkedin from "../assets/footer/linkedin.svg";
-import logo from "../assets/footer/logo.jpg";
+import logo from "../assets/footer/logo.png";
 import playstore from "../assets/footer/playstore.svg";
 import tiktok from "../assets/footer/tiktok.svg";
 import twitter from "../assets/footer/twitter.svg";
@@ -77,10 +77,19 @@ export function Footer() {
   return (
     <footer className="bg-[#0B1321] pb-20  sm:pb-32 text-white py-12 ">
       <CommonWrapper>
+        <div className="w-full  md:block flex justify-center items-center mb-12">
+          <img
+            className="h-[52px] md:hidden w-[128px] object-cover rounded-md"
+            src={logo}
+            alt="logo"
+          />
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {footerSections.map((section, index) => (
-            <div key={index} className="space-y-4">
-              <h3 className="text-2xl font-medium pb-2">{section.title}</h3>
+            <div key={index} className="md:space-y-4">
+              <h3 className="text-xl md:text-2xl font-medium md:pb-2">
+                {section.title}
+              </h3>
               <ul className="space-y-4 mt-6">
                 {section.links.map((link, linkIndex) => (
                   <li key={linkIndex}>
@@ -90,7 +99,7 @@ export function Footer() {
                     >
                       <Link
                         to={link.href}
-                        className="text-[#E5E5E5] hover:text-[#FCAB3F] font-medium  transition-colors duration-200 text-md"
+                        className="text-[#E5E5E5] hover:text-[#FCAB3F] font-medium  transition-colors duration-200 text-sm md:text-md"
                       >
                         {link.label}
                       </Link>
@@ -109,7 +118,7 @@ export function Footer() {
                 <Link
                   key={index}
                   to={social.href}
-                  className="w-10  rounded-full flex items-center justify-start transition-colors duration-200"
+                  className=" w-10  rounded-full flex items-center justify-start transition-colors duration-200"
                 >
                   <motion.div
                     whileHover={{ scale: 1.2 }}
@@ -124,9 +133,9 @@ export function Footer() {
         </div>
 
         <div className="lg:flex justify-between items-center mt-10 w-full">
-          <div className="w-full">
+          <div className="w-full  md:block flex justify-center items-center ">
             <img
-              className="h-[52px] w-[128px] object-cover rounded-md"
+              className="h-[52px] hidden md:block w-[128px] object-cover rounded-md"
               src={logo}
               alt="logo"
             />
@@ -135,8 +144,9 @@ export function Footer() {
             <motion.button
               whileTap={{ scale: 0.95 }}
               whileHover={{ scale: 1.02 }}
-              className="bg-[#0D8EF6] text-white  transition-colors duration-200  text-sm md:text-md  px-10 py-3
-             rounded-4xl flex items-center md:font-semibold gap-2"
+              className="bg-[#0D8EF6] text-white  transition-colors duration-200  text-sm md:text-md  w-full md:w-fit   px-10 py-3
+             rounded-4xl flex items-center justify-center 
+         md:font-semibold gap-2 cursor-pointer"
             >
               Download For iOS
               <img
@@ -148,8 +158,8 @@ export function Footer() {
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.95 }}
-              className=" text-[#E5E5E5] mt-4 sm:mt-0 text-md  bg-black hover:text-white px-10  py-3 rounded-4xl flex items-center gap-2 text-sm
-md:text-md md:font-semibold"
+              className=" text-[#E5E5E5] mt-4 sm:mt-0 text-md  w-full md:w-fit bg-black hover:text-white px-10 justify-center  py-3 rounded-4xl flex items-center gap-2 text-sm
+md:text-md md:font-semibold cursor-pointer"
             >
               Download for Android
               <img

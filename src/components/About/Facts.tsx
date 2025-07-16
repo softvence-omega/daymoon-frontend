@@ -2,7 +2,7 @@ import { factsData } from "@/lib/about/stats";
 
 const Facts = () => {
   return (
-    <div className="my-[60px] md:my-[80px] lg:my-[120px] w-full">
+    <div className="my-[120px] w-full">
       <h5 className="text-[24px] md:text-[28px] lg:text-[32px] font-semibold leading-[1.2] md:leading-[1.25] lg:leading-[38.4px] uppercase text-center md:text-left ld:text-left">
         Fast facts
       </h5>

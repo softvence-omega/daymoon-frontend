@@ -1,17 +1,17 @@
+import logo from "@/assets/dashboard/buyer-dashboard/logo.png"; // Adjust the path to your logo image
+import { Badge } from "@/components/ui/badge";
+import { FaRegHeart, FaRegStar } from "react-icons/fa";
+import { FaTruck } from "react-icons/fa6";
+import { GrAnnounce } from "react-icons/gr";
+import { IoMdHelpCircleOutline } from "react-icons/io";
+import { IoSettingsOutline } from "react-icons/io5";
 import {
   MdGridView,
-  MdOutlineMessage,
   MdOutlineCreditCard,
+  MdOutlineMessage,
   MdOutlineRateReview,
 } from "react-icons/md";
-import { FaTruck } from "react-icons/fa6";
-import { FaRegHeart, FaRegStar } from "react-icons/fa";
-import { IoMdHelpCircleOutline } from "react-icons/io";
-import { Badge } from "@/components/ui/badge";
 import { Link, useLocation } from "react-router-dom";
-import logo from "@/assets/dashboard/buyer-dashboard/logo.png";
-import { GrAnnounce } from "react-icons/gr";
-import { IoSettingsOutline } from "react-icons/io5";
 
 export interface SidebarItem {
   icon: React.ComponentType<{ className?: string }>;

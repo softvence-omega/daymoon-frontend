@@ -1,20 +1,14 @@
+import CommonWrapper from "@/common/CommonWrapper";
 import { Tabs, TabsList, TabsTrigger } from "@radix-ui/react-tabs";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import manu from "../../assets/Home/manu.png";
 import product from "../../assets/Home/products.png";
-import Categories from "../Shop/ShopCategories";
 import GlobalSearchBar from "../ReUseable/GlobalSearchBar";
 import HomeProducts from "../ReUseable/HomeProducts";
-import TopManufacturer from "../Shop/TopManufacturer";
-import WhyChooseUs from "./WhyChooseUs";
-import TradeWithConfidence from "./TradeWithConfident";
-import SourceDirectSection from "./SourceDirection";
-import HowItWorks from "./HowItWorks";
-import TestimonialCarousel from "./WhatPeopleSays";
-import JoinUs from "../ReUseable/JoinUs";
-import CommonWrapper from "@/common/CommonWrapper";
 import MoreButton from "../ReUseable/MoreButton";
+import Categories from "../Shop/ShopCategories";
+import TopManufacturer from "../Shop/TopManufacturer";
 
 const contentVariants = {
   initial: { opacity: 0, x: 20 },
@@ -67,7 +61,6 @@ const HomeTabs = () => {
         </CommonWrapper>
 
         <AnimatePresence mode="wait" initial={false}>
-          {/* Products tap related component  */}
           {tabValue === "product" && (
             <motion.div
               key="product"
@@ -83,22 +76,13 @@ const HomeTabs = () => {
                   <GlobalSearchBar />
                 </div>
                 <HomeProducts
-                  cols={{ mobile: 2, md: 4, lg: 6 }}
-                  rows={{ mobile: 2, md: 3, lg: 5 }}
+                  cols={{ mobile: 1, md: 3, lg: 4, xl: 6 }}
+                  rows={{ mobile: 4, md: 3, lg: 5, xl: 6 }}
                 />
-                <WhyChooseUs />
-                <TradeWithConfidence />
-              </CommonWrapper>
-              <SourceDirectSection />
-              <CommonWrapper>
-                <HowItWorks />
-                <TestimonialCarousel />
-                <JoinUs />
               </CommonWrapper>
             </motion.div>
           )}
 
-          {/* Products tap related component  */}
           {tabValue === "reviews" && (
             <motion.div
               key="reviews"
@@ -109,7 +93,6 @@ const HomeTabs = () => {
               transition={{ duration: 0.3 }}
               className=""
             >
-
               <CommonWrapper>
                 <div className="lg:w-3/4 mx-auto">
                   <GlobalSearchBar />
@@ -141,7 +124,7 @@ const HomeTabs = () => {
                   rows={
                     showAllManufacturers
                       ? { mobile: 100, md: 100, lg: 100 } // show all when true
-                      : { mobile: 3, md: 5, lg: 5 }       // initial few
+                      : { mobile: 3, md: 5, lg: 5 } // initial few
                   }
                 />
                 {!showAllManufacturers && (

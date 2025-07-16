@@ -72,11 +72,11 @@ const InventoryManagement = ({
         </div>
       ) : (
         <div className=" bg-white border border-foundation-white  rounded-2xl ">
-          <CommonHeader className="!text-header p-6  border-b border-foundation-white">
+          <CommonHeader className="!text-header p-4 border-b border-foundation-white">
             Inventory Management
           </CommonHeader>
 
-          <div className="space-y-8 p-6 ">
+          <div className="space-y-8 p-4 ">
             {/* Available Stock */}
             <div className="space-y-4">
               <div className="flex items-center justify-between">
@@ -123,7 +123,7 @@ const InventoryManagement = ({
             </div>
 
             {/* Action Buttons */}
-            <div className="flex gap-4 pt-8">
+            <div className="flex flex-col sm:flex-row gap-4 pt-8">
               <ButtonWithIcon
                 onClick={handleUpdateStock}
                 icon={Plus}
