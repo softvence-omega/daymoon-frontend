@@ -33,15 +33,16 @@ const dummyProduct: IProduct = {
     vendorLogo: "https://example.com/vendor-shop-image.jpg",
     vendorRating: 4.5,
     vendorTotalReviews: 7457,
+    vendorLocation: "123 Tech Street, San Francisco, CA, USA",
   },
 
   samplePrice: "$1.50",
   minOrderQuantity: 10,
   moq: [
-    { range: "10-199", price: "$5.34" },
-    { range: "200-499", price: "$3.45" },
-    { range: "500-999", price: "$1.56" },
-    { range: "1000-10000", price: "$0.56" },
+    { range: "10-199", price: 5.34 },
+    { range: "200-499", price: 3.45 },
+    { range: "500-999", price: 1.56 },
+    { range: "1000-10000", price: 0.56 },
   ],
   discounts: [{ type: "bulk", minQty: 500, discountPercent: 15 }],
   inventory: {
@@ -92,9 +93,9 @@ const dummyProduct: IProduct = {
     },
   ],
   customizations: [
-    { option: "Logo/graphic design", price: "$0.20" },
-    { option: "Extended Battery (10+ hours)", price: "$3" },
-    { option: "Wireless Charging Case", price: "$4" },
+    { option: "Logo/graphic design", price: 0.2 },
+    { option: "Extended Battery (10+ hours)", price: 3 },
+    { option: "Wireless Charging Case", price: 4 },
   ],
 };
 
@@ -104,7 +105,7 @@ export default function ProductDetails() {
   console.log("setProduct", setProduct);
 
   const [selectedColor, setSelectedColor] = useState<string>(
-    product.variants[0].color
+    product.variants[0]?.color || ""
   );
 
   return (
@@ -183,7 +184,7 @@ export default function ProductDetails() {
                   src={variant.image}
                   alt={variant.color}
                   onClick={() => {
-                    setSelectedColor(variant.color);
+                    setSelectedColor(variant.color!);
                   }}
                   className={classNames(
                     "w-14 h-14 object-cover border-[#b5b5b5] border-1 rounded-lg cursor-pointer p-1",

@@ -57,67 +57,53 @@ function AddToCart({ productData }: { productData: IProduct }) {
     });
   };
 
-  // Calculate total quantity of all variants selected
   const calculateTotalQuantity = () => {
     return Object.values(variantQuantities).reduce(
       (total, quantity) => (total || 0) + (quantity || 0),
       0
     );
   };
-  //  customization and product quantities will be multiplied by the price per unit
 
   const calculateVariantPrice = (variant: any) => {
     const selectedQuantity = variantQuantities[variant.color];
 
-    // Find the price tier based on quantity
     const priceTier = productData.moq.find((tier) => {
       const [minQty, maxQty] = tier.range.split("-").map(Number);
       return selectedQuantity >= minQty && selectedQuantity <= maxQty;
     });
 
-    // Ensure priceTier and price are defined before using .slice
-    const variantPrice =
-      priceTier && priceTier.price
-        ? typeof priceTier.price === "string"
-          ? parseFloat(priceTier.price.slice(1)) // Remove the '$' symbol if price is a string
-          : priceTier.price // If price is a number, use it directly
-        : 0; // Return 0 if priceTier is not found or price is undefined
+    const variantPrice = priceTier ? priceTier.price : 0;
 
     return variantPrice;
   };
-
   const calculateCustomizationPrice = () => {
     const customizationTotal = selectedCustomizations.reduce(
       (total, option) => {
         const customization = productData.customizations.find(
           (item) => item.option === option
         );
-        return (
-          total + (customization ? parseFloat(customization.price.slice(1)) : 0)
-        );
+        return total + (customization ? customization.price : 0);
       },
       0
     );
 
     return customizationTotal;
   };
-  // Final price calculation
+
   const calculateTotalPrice = () => {
     return productData.variants.reduce((total, variant) => {
       const variantPrice = calculateVariantPrice(variant);
 
-      //
       const customizationPrice = calculateCustomizationPrice();
 
       const variantTotalPrice =
-        variantPrice * variantQuantities[variant.color] +
-        customizationPrice * variantQuantities[variant.color];
+        variantPrice * variantQuantities[variant.color!] +
+        customizationPrice * variantQuantities[variant.color!];
 
-      return total + variantTotalPrice; // Add variant total to the overall total
+      return total + variantTotalPrice;
     }, 0);
   };
 
-  // Check if the total quantity meets the minimum order quantity
   const isQuantityValid =
     calculateTotalQuantity() >= productData.minOrderQuantity;
 
@@ -187,7 +173,7 @@ function AddToCart({ productData }: { productData: IProduct }) {
                   <Button
                     size="sm"
                     onClick={() =>
-                      handleQuantityChange("decrease", variant.color)
+                      handleQuantityChange("decrease", variant.color!)
                     }
                     className="text-[#F04436] bg-[#FEECEB] rounded-full"
                   >
@@ -195,15 +181,15 @@ function AddToCart({ productData }: { productData: IProduct }) {
                   </Button>
                   <Input
                     id={`quantity-${variant.color}`}
-                    value={variantQuantities[variant.color]}
-                    onChange={(e) => handleQuantityInput(e, variant.color)}
+                    value={variantQuantities[variant.color!]}
+                    onChange={(e) => handleQuantityInput(e, variant.color!)}
                     className="text-center text-gray-700 bg-[#EAEAEA] rounded-full border-none focus:ring-[#F04436] focus:ring-1 "
                   />
                   <Button
                     variant="outline"
                     size="sm"
                     onClick={() =>
-                      handleQuantityChange("increase", variant.color)
+                      handleQuantityChange("increase", variant.color!)
                     }
                     className="text-[#F04436] bg-[#FEECEB] rounded-full border-none"
                   >

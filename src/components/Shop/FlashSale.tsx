@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 import img from "../../assets/Shop/flashSale.png";
 export function FlashSaleBanner() {
   return (
-    <div className="relative rounded-2xl lg:w-1/2 md:mx-0 overflow-hidden shadow-lg border-0 h-72 md:h-80 bg-gradient-to-r from-gray-50 to-gray-100 mt-8 p-0">
+    <div className="relative rounded-2xl xl:w-1/2 md:mx-0 overflow-hidden shadow-lg border-0 h-72  lg:h-92 bg-gradient-to-r from-gray-50 to-gray-100 mt-8 p-0">
       <p className="hidden lg:block absolute top-5 text-start left-0 w-full h-full text-[75px] leading-[120%] font-semibold uppercase text-[#FCFCFC]  [text-shadow:0px_4px_40.5px_rgba(0,0,0,0.1)] font-poppins opacity-50 tracking-widest">
         Flash Sale
       </p>
 
       <div className="flex   flex-col sm:flex-row">
-        <div className=" flex-1 p-6 pt-6 lg:pt-0 lg:p-8  py-0 flex flex-col  ">
+        <div className=" flex-1 p-6 pt-6  lg:p-8  py-0 flex flex-col  ">
           <h3 className="text-lg text-[#1A1A1A] lg:text-xl font-semibold mb-4  z-50 ">
             Flash Sale: 24 Hours Only!
           </h3>
@@ -36,7 +36,7 @@ export function FlashSaleBanner() {
         </div>
 
         {/* Right Image */}
-        <div className="hidden md:flex md:flex-1 relative h-[200px] sm:h-[250px] lg:h-[300px]">
+        <div className="hidden md:flex lg:flex-1 relative h-[200px] sm:h-[250px] lg:h-[300px]">
           <img
             src={img}
             alt="Flash Sale Clothing Items on Hangers"

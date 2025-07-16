@@ -21,7 +21,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { ICategory } from "@/types";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const ShopCategories = ({ number }: { number: number }) => {
   const numberOfCategories = number || 8;
@@ -30,11 +30,11 @@ const ShopCategories = ({ number }: { number: number }) => {
   const getResponsiveBasisClass = (number: number) => {
     switch (number) {
       case 6:
-        return "lg:basis-1/6";
+        return "lg:basis-1/6 xl:basis-1/6";
       case 8:
-        return "lg:basis-1/8";
+        return "lg:basis-1/6 xl:basis-1/8";
       default:
-        return "lg:basis-1/2";
+        return "lg:basis-1/6 xl:basis-1/6";
     }
   };
   const responsiveBasis = getResponsiveBasisClass(numberOfCategories);
@@ -45,14 +45,14 @@ const ShopCategories = ({ number }: { number: number }) => {
   };
   const categoriesData: ICategory[] = [
     { name: "Electronics", image: img1, slug: "electronics" },
-    { name: "Home & Living", image: img13, slug: "home-and-living"},
-    { name: "Fashion & Apparel", image: img2, slug: "fashion-and-apparel"},
-    { name: "Beauty", image: img3, slug: "beauty"},
-    { name: "Industrial ", image: img4, slug: "industrial"},
-    { name: "Health & Wellness", image: img5, slug: "health"},
-    { name: " Furniture", image: img6, slug: "furniture"},
-    { name: " Kids", image: img6, slug: "kids"},
-    { name: " Jewellery", image: img6, slug: "jewellery"},
+    { name: "Home & Living", image: img13, slug: "home-and-living" },
+    { name: "Fashion & Apparel", image: img2, slug: "fashion-and-apparel" },
+    { name: "Beauty", image: img3, slug: "beauty" },
+    { name: "Industrial ", image: img4, slug: "industrial" },
+    { name: "Health & Wellness", image: img5, slug: "health" },
+    { name: " Furniture", image: img6, slug: "furniture" },
+    { name: " Kids", image: img6, slug: "kids" },
+    { name: " Jewellery", image: img6, slug: "jewellery" },
     // { name: "Men's Clothing", image: img7, slug: ""},
     // { name: "Women's Clothing", image: img8, slug: ""},
     // { name: "Footwear", image: img9, slug: ""},
@@ -61,14 +61,14 @@ const ShopCategories = ({ number }: { number: number }) => {
     // { name: "Outwear & Jackets", image: img12, slug: ""},
   ];
   return (
-    <div >
+    <div>
       <div className=" relative   mt-10 md:mt-20">
         <Carousel className="w-full  ">
           <CarouselContent className=" ">
             {categoriesData.map((category, index) => (
               <CarouselItem
                 key={index}
-                className={`basis-1/2 md:basis-1/4 lg:basis-1/6  ${responsiveBasis}`}
+                className={`basis-1/2 md:basis-1/4  ${responsiveBasis}`}
               >
                 <div className="">
                   <Card
@@ -100,7 +100,8 @@ const ShopCategories = ({ number }: { number: number }) => {
             <CarouselNext className="bg-white border-none rounded-full w-12 h-12 flex justify-center items-center text-[#f04436] hover:bg-gray-100" />
           </div>
         </Carousel>
-      </div></div>
+      </div>
+    </div>
   );
 };
 

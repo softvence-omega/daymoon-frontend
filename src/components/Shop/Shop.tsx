@@ -26,7 +26,7 @@ const Shop = () => {
         <div className="lg:w-3/4 mx-auto">
           <GlobalSearchBar />
           <NewArrivalBanner />
-          <div className="lg:flex items-center lg:gap-6">
+          <div className="xl:flex items-center lg:gap-6">
             <FlashSaleBanner />
             <BestSellingBanner />
           </div>

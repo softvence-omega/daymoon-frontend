@@ -82,7 +82,7 @@ const TestimonialCarousel = () => {
                   md:w-1/2 
                   xl:w-1/3 
                  
-                   md:min-w-[450px]          
+                   md:min-w-[424px]          
                 "
                 >
                   <Card
@@ -115,8 +115,8 @@ const TestimonialCarousel = () => {
             ))}
           </CarouselContent>
 
-          <CarouselPrevious className="!absolute  -left-6 xl:-left-14 top-1/3 md:top-1/2 -translate-y-1/2 rounded-full border  shadow bg-white border-none  w-12 h-12 md:flex justify-center items-center text-[#f04436] hover:bg-gray-100 p-2 " />
-          <CarouselNext className="!absolute  border-none  w-12 h-12  top-1/3 md:top-1/2 md:flex justify-center items-center text-[#f04436] hover:bg-gray-100 -right-5 xl:-right-12  -translate-y-1/2 rounded-full border bg-white shadow p-2 " />
+          <CarouselPrevious className="!absolute  -left-6 xl:-left-14 top-1/3 md:top-1/2 -translate-y-1/2 rounded-full border  cursor-pointer shadow bg-white border-none  w-12 h-12 md:flex justify-center items-center text-[#f04436] hover:bg-gray-100 p-2 " />
+          <CarouselNext className="!absolute  border-none  w-12 h-12  top-1/3 md:top-1/2 md:flex justify-center items-center cursor-pointer text-[#f04436] hover:bg-gray-100 -right-5 xl:-right-12  -translate-y-1/2 rounded-full border bg-white shadow p-2 " />
         </Carousel>
       </div>
     </section>

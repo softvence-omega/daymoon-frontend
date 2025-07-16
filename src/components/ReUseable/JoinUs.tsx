@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import img from "../../assets/About/joinUs.png";
 
 const JoinUs = () => {
@@ -12,12 +13,14 @@ const JoinUs = () => {
           Start your journey with Us and experience a platform designed for
           trust, quality, and convenience.
         </p>
-        <button className="px-6 md:px-8 lg:px-[40px] py-2 md:py-[8px] lg:py-[10px] rounded-full md:rounded-[20px] bg-catalien-blue text-white font-medium hover:opacity-90 transition text-sm md:text-base cursor-pointer">
-          Sign Up Now
-        </button>
+        <Link to="/signup">
+          <button className="px-6 md:px-8 lg:px-[40px] py-2 md:py-[8px] lg:py-[10px] rounded-full md:rounded-[20px] bg-catalien-blue text-white font-medium hover:opacity-90  transition text-sm md:text-base cursor-pointer">
+            Sign Up Now
+          </button>
+        </Link>
       </div>
 
-      <div className="w-full lg:w-1/2 flex justify-center lg:justify-end pt-8 md:pt-10 lg:pt-0 lg:pr-[60px]">
+      <div className="w-full lg:w-1/2 flex justify-center lg:justify-end  pt-8 md:pt-10 lg:pt-0 lg:pr-[60px]">
         <img
           className="h-[200px] sm:h-[250px] md:h-[300px] lg:h-[401px] w-auto max-w-full object-contain"
           src={img}

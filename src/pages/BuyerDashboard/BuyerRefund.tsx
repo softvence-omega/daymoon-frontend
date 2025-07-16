@@ -18,7 +18,7 @@ const BuyerRefund = () => {
   return (
     <div>
       <Breadcrumbs title="Orders" subtitle="Refund Requests" />
-      <div className="p-4 pl-8 xl:border my-10 xl:border-[#E5E5E5] rounded-full max-w-7xl mx-auto bg-transparent">
+      <div className="md:p-4 md:pl-8 xl:border my-10 xl:border-[#E5E5E5] rounded-full max-w-7xl mx-auto bg-transparent">
         <div className="flex flex-col lg:flex-row gap-4 items-center">
           {/* Search Bar */}
           <div className="relative flex-1 w-full">
@@ -42,9 +42,7 @@ const BuyerRefund = () => {
             </button>
           </div>
 
-          {/* Filter Dropdowns */}
           <div className="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
-            {/* Status Filter */}
             <div className="relative w-full md:w-40">
               <StyledSelect
                 placeholder={statusFilter}
@@ -59,7 +57,6 @@ const BuyerRefund = () => {
               />
             </div>
 
-            {/* Date Filter */}
             <div className="relative w-full md:w-48">
               <StyledSelect
                 placeholder={dateFilter}

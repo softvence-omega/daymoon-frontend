@@ -3,12 +3,14 @@ import refund from "@/assets/refund 1.svg";
 import reviews from "@/assets/reviews.svg";
 import StyledSelect from "@/components/ReUseable/StyledSelect";
 import { BuyerOrderTableData } from "@/lib/Buyer/BuyerOrderTable";
-import { OrdersTableProps } from "@/types/Buyer/BuyerOrderTypes";
+import { BuyerOrder } from "@/types/Buyer/BuyerOrderTypes";
 import { Search } from "lucide-react";
 import React, { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
-const BuyerOrdersTable: React.FC<OrdersTableProps> = () => {
+interface BuyerOrdersTableProps {
+  orders: BuyerOrder[];
+}
+const BuyerOrdersTable: React.FC<BuyerOrdersTableProps> = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState("All Status");
   const [dateFilter, setDateFilter] = useState("Last 30 Days");
@@ -100,7 +102,6 @@ const BuyerOrdersTable: React.FC<OrdersTableProps> = () => {
 
   return (
     <div className="mx-auto  ">
-      {/* Header */}
       <div className="flex justify-between items-center mb-6 flex-wrap md:flex-nowrap">
         <div>
           <h1 className="text-xl lg:text-3xl font-medium text-[#484848]">
@@ -113,7 +114,7 @@ const BuyerOrdersTable: React.FC<OrdersTableProps> = () => {
         <div className="flex gap-3 mt-4 md:mt-0 flex-wrap md:flex-nowrap">
           <Link
             to="reviews"
-            className="flex items-center cursor-pointer gap-2 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+            className="flex items-center cursor-pointer gap-2 md:px-4 md:py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
           >
             <span className="border-b border-catalien-blue text-lg">
               Reviews
@@ -128,18 +129,18 @@ const BuyerOrdersTable: React.FC<OrdersTableProps> = () => {
               <img src={refund} alt="" className="w-5 h-5" />
             </button>
           </Link>
-          <Link to="refund">
-            <button className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-red-500 rounded-full hover:bg-red-600 transition-colors">
-              <img src={coupon} alt="" className="w-5 h-5" />
-              Coupons
-            </button>
-          </Link>
+          {/* <Link to="refund"> */}
+          <button className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-red-500 rounded-full hover:bg-red-600 transition-colors">
+            <img src={coupon} alt="" className="w-5 h-5" />
+            Coupons
+          </button>
+          {/* </Link> */}
         </div>
       </div>
 
       {/* Search and Filters */}
 
-      <div className="p-4 pl-8 xl:border my-10 xl:border-[#E5E5E5] rounded-full max-w-7xl mx-auto bg-transparent">
+      <div className="md:p-4 md:pl-8 xl:border my-10 xl:border-[#E5E5E5] rounded-full max-w-7xl mx-auto bg-transparent">
         <div className="flex flex-col lg:flex-row gap-4 items-center">
           {/* Search Bar */}
           <div className="relative flex-1 w-full">

@@ -56,7 +56,7 @@ const Navbar = () => {
       <div className="lg:hidden flex items-center justify-between w-full px-4">
         <Link to="/">
           <img
-            className="w-[100px] h-[40px] object-contain"
+            className="w-[100px] cursor-pointer h-[40px] object-contain"
             src={logo}
             alt="logo"
           />
@@ -69,7 +69,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center max-w-[1400px] mx-auto px-4 lg:px-0 py-4">
           <Link to="/">
             <img
-              className="w-[124px] h-[48px] object-cover"
+              className="w-[124px] cursor-pointer h-[48px] object-cover"
               src={logo}
               alt="logo"
             />
@@ -78,7 +78,7 @@ const Navbar = () => {
           <section className="flex items-center justify-center gap-7 xl:ml-52">
             <DropdownMenu>
               <DropdownMenuTrigger className="border-none p-2" asChild>
-                <div className="flex items-center bg-transparent text-lg text-[#666] hover:bg-white space-x-1">
+                <div className="flex items-center bg-transparent text-lg text-[#666] hover:bg-white space-x-1 hover:text-[#F04436] cursor-pointer ">
                   <span>Categories</span>
                   <ChevronDown className="h-4 w-4" />
                 </div>
@@ -86,7 +86,7 @@ const Navbar = () => {
               <DropdownMenuContent align="start" className=" bg-white border-0">
                 <NavCatgegory />
                 {/* {categories.map((category, idx) => (
-                  <motion.div
+                  <motion.div dia
                     whileHover={{ scale: 1.01 }}
                     whileTap={{ scale: 0.8 }}
                     key={idx}
@@ -105,7 +105,7 @@ const Navbar = () => {
                 <motion.button
                   whileTap={{ scale: 0.75 }}
                   whileHover={{ scale: 1.03 }}
-                  className={`text-lg hover:text-[#F04436] ${
+                  className={`text-lg cursor-pointer hover:text-[#F04436] ${
                     isActive(`/${page}`) ? "text-[#F04436]" : "text-[#666]"
                   }`}
                 >
@@ -163,10 +163,14 @@ const Navbar = () => {
               >
                 <Link to="/cart">
                   {" "}
-                  <Button variant="ghost" size="icon" className="relative">
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="relative cursor-pointer"
+                  >
                     <img alt="cart" src={shopping} className="w-6 h-6" />
                     {cartCount > 0 && (
-                      <Badge className="absolute -top-2 -right-2 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs text-white bg-red-500">
+                      <Badge className="absolute  -top-2 -right-2 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs text-white bg-red-500">
                         {cartCount}
                       </Badge>
                     )}

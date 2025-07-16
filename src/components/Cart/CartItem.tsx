@@ -77,7 +77,7 @@ export default function CartItemComponent({
   };
 
   const calculateVariantTotal = () => {
-    const price = getPriceBasedOnQuantity(variant?.priceRange, quantity);
+    const price = getPriceBasedOnQuantity(variant.priceRange!, quantity);
 
     const result = price * quantity;
     return result.toFixed(2);
@@ -136,7 +136,7 @@ export default function CartItemComponent({
                     <span className="text-[#FCAB3F] font-medium text-sm">
                       $$
                       {getPriceBasedOnQuantity(
-                        variant?.priceRange,
+                        variant.priceRange!,
                         quantity
                       ).toFixed(2)}{" "}
                       /piece

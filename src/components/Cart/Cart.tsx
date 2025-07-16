@@ -60,7 +60,7 @@ export default function CartPage() {
           const updatedProducts = vendor.products.map((product, pIndex) => {
             if (pIndex === productIndex) {
               const updatedVariants = product.variants.filter(
-                (variant, vIndex) => vIndex !== variantIndex
+                (_, vIndex) => vIndex !== variantIndex
               );
               return { ...product, variants: updatedVariants };
             }
@@ -81,7 +81,7 @@ export default function CartPage() {
         (productSum, product) =>
           productSum +
           product.variants.reduce(
-            (variantSum, variant) => variantSum + variant.quantity,
+            (variantSum, variant) => variantSum + variant.quantity!,
             0
           ),
         0

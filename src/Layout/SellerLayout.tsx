@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import { Outlet, useLocation } from "react-router-dom";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import SellerDashboardNavbar from "@/components/SellerDashboard/Shared/SellerDashboardNavbar";
 import SellerSidebar from "@/components/SellerDashboard/Shared/SellerSidebar";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { useEffect, useState } from "react";
+import { Outlet, useLocation } from "react-router-dom";
 
 const SellerLayout = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

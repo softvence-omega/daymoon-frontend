@@ -146,7 +146,7 @@ export function Footer() {
               whileHover={{ scale: 1.02 }}
               className="bg-[#0D8EF6] text-white  transition-colors duration-200  text-sm md:text-md  w-full md:w-fit   px-10 py-3
              rounded-4xl flex items-center justify-center 
-         md:font-semibold gap-2"
+         md:font-semibold gap-2 cursor-pointer"
             >
               Download For iOS
               <img
@@ -159,7 +159,7 @@ export function Footer() {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.95 }}
               className=" text-[#E5E5E5] mt-4 sm:mt-0 text-md  w-full md:w-fit bg-black hover:text-white px-10 justify-center  py-3 rounded-4xl flex items-center gap-2 text-sm
-md:text-md md:font-semibold"
+md:text-md md:font-semibold cursor-pointer"
             >
               Download for Android
               <img

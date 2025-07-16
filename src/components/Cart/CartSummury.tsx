@@ -38,10 +38,10 @@ export function CartSummary({ cartData }: CartSummaryProps) {
       vendor.products.forEach((product) => {
         product.variants.forEach((variant) => {
           const price = getPriceBasedOnQuantity(
-            variant.priceRange,
-            variant.quantity
+            variant.priceRange!,
+            variant.quantity!
           );
-          total += price * variant.quantity;
+          total += price * variant.quantity!;
         });
       });
     });
@@ -68,8 +68,8 @@ export function CartSummary({ cartData }: CartSummaryProps) {
                   <span className="text-gray-900 font-medium">
                     ${" "}
                     {getPriceBasedOnQuantity(
-                      variant.priceRange,
-                      variant.quantity
+                      variant.priceRange!,
+                      variant.quantity!
                     ).toFixed(2)}
                   </span>
                 </div>

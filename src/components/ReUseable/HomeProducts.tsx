@@ -8,13 +8,13 @@ interface HomeProductsProps {
     mobile: number;
     md: number;
     lg: number;
-    xl: number;
+    xl?: number;
   };
   rows: {
     mobile: number;
     md: number;
     lg: number;
-    xl: number;
+    xl?: number;
   };
 }
 
@@ -37,7 +37,7 @@ const HomeProducts = ({ cols, rows }: HomeProductsProps) => {
   const getVisibleCount = useCallback(() => {
     if (isMobileWidth(windowWidth)) return cols.mobile * rows.mobile;
     if (isMdWidth(windowWidth)) return cols.md * rows.md;
-    if (isXlWidth(windowWidth)) return cols.xl * rows.xl; // Handle XL breakpoint
+    if (isXlWidth(windowWidth)) return cols.xl! * rows.xl!; // Handle XL breakpoint
     return cols.lg * rows.lg;
   }, [windowWidth, cols, rows]);
 
@@ -59,7 +59,7 @@ const HomeProducts = ({ cols, rows }: HomeProductsProps) => {
     ? cols.xl // Set XL breakpoint columns
     : cols.lg;
 
-  const rowsCount = Math.ceil(displayedProducts.length / currentCols);
+  const rowsCount = Math.ceil(displayedProducts.length / currentCols!);
 
   const getColsClass = (num: number) => {
     switch (num) {
@@ -80,11 +80,11 @@ const HomeProducts = ({ cols, rows }: HomeProductsProps) => {
     }
   };
 
-  const colClass = getColsClass(currentCols);
+  const colClass = getColsClass(currentCols!);
   const gridClass = `grid gap-8 ${colClass}`;
 
   const gridStyle =
-    currentCols > 6
+    currentCols! > 6
       ? { gridTemplateColumns: `repeat(${currentCols}, minmax(0, 1fr))` }
       : {};
 
