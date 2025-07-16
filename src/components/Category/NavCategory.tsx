@@ -150,6 +150,7 @@ const NavCatgegory = ({ data = categories }: { data?: typeof categories }) => {
 
   const handleOpen = () => {
     setOpen(true);
+    console.log(open);
   };
 
   const handleClose = () => {
