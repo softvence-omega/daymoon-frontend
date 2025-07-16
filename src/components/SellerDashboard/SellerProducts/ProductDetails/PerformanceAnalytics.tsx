@@ -12,7 +12,7 @@ const analytic = [
 
 const PerformanceAnalytics = () => {
   return (
-    <div className=" border border-foundation-white rounded-2xl p-6 bg-white">
+    <div className=" border border-foundation-white rounded-2xl p-4 bg-white">
       <MonthlyRevenue
         title="Performance Analytics"
         subtitle1="Product View"
