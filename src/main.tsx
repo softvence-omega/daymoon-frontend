@@ -7,8 +7,6 @@ import "react-toastify/dist/ReactToastify.css";
 import "./index.css";
 import routes from "./routes/Routes.tsx";
 import { store } from "./store/store.ts";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

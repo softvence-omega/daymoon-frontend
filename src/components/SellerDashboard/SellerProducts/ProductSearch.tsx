@@ -44,6 +44,7 @@ const ProductSearch: React.FC<Props> = ({
         Edit Selected
       </ButtonWithIcon>
       <ButtonWithIcon
+        className=" hover:bg-sunset-orange hover:border-transparent hover:text-white"
         icon={MdDeleteOutline}
         disabled={!onDeleteClick}
         onClick={onDeleteClick}

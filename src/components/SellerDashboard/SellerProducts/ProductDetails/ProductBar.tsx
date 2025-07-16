@@ -96,19 +96,19 @@ const ProductBar = () => {
 
           <div className="flex flex-wrap items-center gap-3">
             <ButtonWithIcon
-              className=" not-lg:w-full flex justify-center  "
+              className="flex justify-center hover:text-white hover:bg-catalien-blue      "
               icon={EyeOff}
             >
               Unpublish
             </ButtonWithIcon>
             <ButtonWithIcon
-              className=" not-lg:w-full flex justify-center  "
+              className="flex justify-center hover:text-white hover:bg-catalien-blue  "
               icon={Trash2}
             >
               Delete
             </ButtonWithIcon>
             <ButtonWithIcon
-              className="text-white bg-catalien-blue border-transparent  not-lg:w-full flex justify-center"
+              className="hover:text-white hover:bg-catalien-blue   flex justify-center "
               icon={Pencil}
             >
               Edit

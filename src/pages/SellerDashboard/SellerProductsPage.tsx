@@ -21,7 +21,6 @@ const SellerProductsPage: React.FC = () => {
     null
   );
   const [searchText, setSearchText] = useState("");
-
   const [modalOpen, setModalOpen] = useState(false);
 
   const handleEdit = () => {
@@ -31,25 +30,33 @@ const SellerProductsPage: React.FC = () => {
     const prod = productsList.find((p) => p.id === selectedIds[0]);
     if (!prod) return;
     setEditingProduct(prod);
-    toast.error("Product updated successfully.");
     setModalOpen(true);
   };
 
   const handleDelete = () => {
-    if (window.confirm("Delete selected products?")) {
+    try {
       setProductsList((prev) =>
         prev.filter((p) => !selectedIds.includes(p.id))
       );
       setSelectedIds([]);
+      toast.success("Product delete successfully.");
+    } catch (error) {
+      console.error("Failed to delete products:", error);
     }
   };
 
-  const handleFormSubmit = (data: ProductFormData) => {
-    setProductsList((prev) =>
-      prev.map((p) => (p.id === data.id ? { ...p, ...data } : p))
-    );
-    setSelectedIds([]);
-    setModalOpen(false);
+  const handleFormSubmit = async (data: ProductFormData) => {
+    try {
+      setProductsList((prev) =>
+        prev.map((p) => (p.id === data.id ? { ...p, ...data } : p))
+      );
+      toast.success("Product updated successfully.");
+
+      setSelectedIds([]);
+      setModalOpen(false);
+    } catch (err) {
+      console.error("Error updating product:", err);
+    }
   };
 
   const content = (
@@ -61,7 +68,7 @@ const SellerProductsPage: React.FC = () => {
       )}
       <ProductCard />
       <ProductSearch
-        searchText=""
+        searchText={searchText}
         onSearchChange={setSearchText}
         onEditClick={handleEdit}
         onDeleteClick={handleDelete}
@@ -74,16 +81,16 @@ const SellerProductsPage: React.FC = () => {
       />
       {pathname !== "/seller-dashboard/all-products" && <RevenueOverview />}
 
-      {modalOpen && editingProduct && (
-        <div className="w-full fixed inset-0 bg-black/80 bg-opacity-50 flex items-center justify-center">
-          <div className="bg-white p-6 rounded-lg w-[50%] mx-auto">
-            <CommonWrapper>
+      {modalOpen && editingProduct && selectedIds.length === 1 && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center w-full bg-opacity-50 bg-black/80">
+          <div className="bg-white p-4 sm:p-6 rounded-lg  overflow-y-auto max-h-[90vh] sm:w-[70%] md:w-[60%] lg:w-[50%] xl:w-[40%] mx-auto">
+            <>
               <SellerOrderUpdateForm
                 defaultValues={editingProduct}
                 onSubmit={handleFormSubmit}
                 onCancel={() => setModalOpen(false)}
               />
-            </CommonWrapper>
+            </>
           </div>
         </div>
       )}

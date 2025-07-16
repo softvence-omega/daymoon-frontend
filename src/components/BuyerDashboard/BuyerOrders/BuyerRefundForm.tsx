@@ -33,6 +33,7 @@ export function RefundForm({ order }: RefundFormProps) {
   const [selectedCustomizations, setSelectedCustomizations] = useState<
     string[]
   >([]);
+
   const [uploadedImages, setUploadedImages] = useState<string[]>([]);
 
   const reasonOptions = [
