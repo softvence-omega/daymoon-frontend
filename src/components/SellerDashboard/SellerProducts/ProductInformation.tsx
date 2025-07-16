@@ -1,12 +1,5 @@
 import CommonHeader from "@/common/CommonHeader";
 import React, { useState } from "react";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { FaCheck } from "react-icons/fa6";
 
 import product from "../../../assets/landing/products.png";
@@ -46,6 +39,7 @@ import CommonButton from "@/common/CommonButton";
 import Customization from "./Customization";
 import AddMore from "./AddMore";
 import { Link } from "react-router-dom";
+import CommonSelect from "@/common/CommonSelect";
 
 const ProductInformation = () => {
   const [formData, setFormData] = useState<ProductFormData>({
@@ -125,10 +119,28 @@ const ProductInformation = () => {
     { name: "Forest Teal", hex: "#346457" },
   ];
 
+  const [category, setCategory] = useState<Category>("electronics");
+  const listItem2 = [
+    { label: "Electronics", value: "electronics" },
+    { label: "Clothing", value: "clothing" },
+    { label: "Accessories", value: "accessories" },
+  ] as const;
+
+  type Category = (typeof listItem2)[number]["value"];
+
+  const [gender, setGender] = useState<SexType>("male");
+
+  const listItem = [
+    { label: "Male", value: "male" },
+    { label: "Female", value: "female" },
+  ] as const;
+
+  type SexType = (typeof listItem)[number]["value"];
+
   return (
-    <div className="flex-1 w-full  flex flex-col gap-12">
+    <div className="flex flex-col flex-1 w-full gap-12">
       <div className=" p-6 border border-dashed border-[#B3B3B3] rounded-lg ">
-        <div className=" rounded-lg text-center sm:p-20 ">
+        <div className="text-center rounded-lg sm:p-20">
           <input
             type="file"
             id="product-images"
@@ -143,7 +155,7 @@ const ProductInformation = () => {
                 <MdOutlineCloudUpload />
               </span>
               <p className="text-base text-[#6A6A6A]">
-                <span className="font-medium text-sunset-orange pr-1">
+                <span className="pr-1 font-medium text-sunset-orange">
                   Upload an image
                 </span>
                 or drag and drop PNG, JPG, PDF up to 10MB (800 x 1200
@@ -154,12 +166,12 @@ const ProductInformation = () => {
         </div>
       </div>
 
-      <div className=" lg:border lg:border-foundation-white rounded-xl lg:p-6 flex flex-col gap-10">
+      <div className="flex flex-col gap-10 lg:border lg:border-foundation-white rounded-xl lg:p-6">
         <div className=" text-foundation-gray">
           <CommonHeader className="text-[#484848] border-b border-[#E5E5E5] pb-6">
             Product Information
           </CommonHeader>
-          <div className=" flex flex-col gap-5 pt-5">
+          <div className="flex flex-col gap-5 pt-5 ">
             <div>
               <label className="block text-sm  text-[#969696] mb-2.5">
                 Product Name
@@ -172,21 +184,20 @@ const ProductInformation = () => {
               />
             </div>
 
-            <div className="grid  grid-cols-1 lg:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
               <div>
                 <label className="block text-sm text-[#969696] mb-2.5">
                   Product Category
                 </label>
-                <Select>
-                  <SelectTrigger className="w-full bg-[#FCFCFC] border border-[#B3B3B3] px-3 cursor-pointer  rounded-md outline-none  py-5">
-                    <SelectValue placeholder="Select a category" />
-                  </SelectTrigger>
-                  <SelectContent className="bg-white">
-                    <SelectItem value="electronics">Electronics</SelectItem>
-                    <SelectItem value="clothing">Clothing</SelectItem>
-                    <SelectItem value="accessories">Accessories</SelectItem>
-                  </SelectContent>
-                </Select>
+                <CommonSelect
+                  value={category}
+                  onValueChange={(
+                    val: "electronics" | "clothing" | "accessories"
+                  ) => setCategory(val)}
+                  item={listItem2}
+                  className="w-full"
+                  arrow="text-gray-600"
+                />
               </div>
               <div>
                 <label className="block text-sm  text-[#969696] mb-2.5">
@@ -201,7 +212,7 @@ const ProductInformation = () => {
               </div>
             </div>
 
-            <div className="grid  grid-cols-1    lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
               <div>
                 <label className="block text-sm  text-[#969696] mb-2.5">
                   Brand
@@ -228,15 +239,14 @@ const ProductInformation = () => {
                 <label className="block text-sm text-[#969696] mb-2.5">
                   Gender
                 </label>
-                <Select>
-                  <SelectTrigger className="w-full bg-[#FCFCFC] border border-[#B3B3B3] px-3  cursor-pointer rounded-md outline-none py-5">
-                    <SelectValue placeholder="Select gender" />
-                  </SelectTrigger>
-                  <SelectContent className="bg-white">
-                    <SelectItem value="male">Male</SelectItem>
-                    <SelectItem value="female">Female</SelectItem>
-                  </SelectContent>
-                </Select>
+
+                <CommonSelect
+                  value={gender}
+                  onValueChange={(val: "male" | "female") => setGender(val)}
+                  item={listItem}
+                  className="w-full"
+                  arrow="text-gray-600"
+                />
               </div>
             </div>
           </div>
@@ -246,7 +256,7 @@ const ProductInformation = () => {
           <label className="block text-sm  text-[#969696] mb-4">
             Select Available Size (if available)
           </label>
-          <div className="flex flex-wrap gap-2 text-base  ">
+          <div className="flex flex-wrap gap-2 text-base ">
             {["S", "M", "L", "XL", "XXL"].map((size) => (
               <button
                 key={size}
@@ -268,7 +278,7 @@ const ProductInformation = () => {
           <label className="block text-sm  text-[#969696] mb-4">
             Select Colors (if available)
           </label>
-          <div className=" flex items-center flex-wrap gap-4">
+          <div className="flex flex-wrap items-center gap-4 ">
             {colorOptions.map((color, index) => {
               const isSelected = formData.colors.includes(index.toString());
 
@@ -282,7 +292,7 @@ const ProductInformation = () => {
                     style={{ backgroundColor: color.hex }}
                     title={color.name}
                   >
-                    {isSelected && <FaCheck className="text-white text-xs" />}
+                    {isSelected && <FaCheck className="text-xs text-white" />}
                   </button>
                 </div>
               );
@@ -311,7 +321,7 @@ const ProductInformation = () => {
             Quantity & Pricing
           </CommonHeader>
 
-          <div className="grid   grid-cols-1 lg:grid-cols-2 gap-6 pt-5">
+          <div className="grid grid-cols-1 gap-6 pt-5 lg:grid-cols-2">
             <div>
               <label className="block text-sm  text-[#969696] mb-2.5 line-clamp-1">
                 Minimum Order Quantity (MOQ)
@@ -361,10 +371,10 @@ const ProductInformation = () => {
 
         <Customization />
       </div>
-      <div className="flex flex-col sm:flex-row justify-center sm:justify-end gap-4 ">
+      <div className="flex flex-col justify-center gap-4 pb-10 sm:flex-row sm:justify-end">
         <Link
           to="/seller-dashboard/products"
-          className="px-10 py-2.5 border border-sunset-orange text-sunset-orange rounded-[20px]  hover:bg-gray-50 transition cursor-pointer"
+          className="px-10 py-2.5 border border-sunset-orange text-sunset-orange rounded-[20px]  hover:bg-gray-50 transition cursor-pointer text-center"
         >
           Cancel
         </Link>

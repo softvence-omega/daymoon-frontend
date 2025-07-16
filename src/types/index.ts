@@ -1,46 +1,41 @@
-// Define a type for your user (example)
-export interface User {
-  id: string;
-  name: string;
-  email: string;
+
+
+interface Inventory {
+  stock: number;
+  inStock: boolean;
+  lowStockThreshold: number;
 }
 
-// Define a type for your app's theme (example)
-export type Theme = 'light' | 'dark';
-
-// Define a type for your app's routes (example)
-export type Route = {
-  path: string;
-  component: React.ComponentType;
-  exact?: boolean;
-};
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
-export interface ICategory {
-  name: string;
-  image: string;
-  slug: string;
-}
-export interface ISlider {
-  images: string[];
-  instanceRef: any;
-  sliderRef: any;
-}
-export interface IFilterOption {
-  label: string;
-  value: string;
+interface Discount {
+  type: "bulk";
+  minQty: number;
+  discountPercent: number;
 }
 
-export interface IFilterProps {
+
+
+interface AdditionalFeature {
   title: string;
-  options: IFilterOption[];
+  description: string;
+}
 
-  onChange?: (selected: string[]) => void;
+interface Ratings {
+  score: number;
+  totalReviews: number;
+}
+
+interface Review {
+  userId: string;
+  rating: number;
+  comment: string;
+  date: string;
+}
+
+export interface VariantQuantities {
+  [variant: string]: number;
 }
 export interface IProduct {
   productId: string;
-
-  minOrderQuantity: number;
   productSlug: string;
   productName: string;
   productCategory: string;
@@ -48,86 +43,67 @@ export interface IProduct {
   skuNo: string;
   description: string;
   aboutProduct: string;
-
-  vendorInfo: {
-    vendorId: string;
-    vendorName: string;
-    storeUrl: string;
-    contactEmail: string;
-    verified: boolean;
-    vendorLogo: string;
-    vendorBanner?: string;
-    vendorRating?: number;
-    vendorTotalReviews?: number;
-    vendorLocation?: string;
-    vendorEmail?: string;
-    vendorPhone?: string;
-    vendorDescription?: string;
-    vendorFeatures?: {
-      title: string;
-      description: string;
-    }[];
-  };
-
+  vendorInfo: VendorInfo;
   samplePrice: string;
-  moq: {
-    range: string;
-    price: string;
-  }[];
-  discounts?: {
-    type: "bulk";
-    minQty: number;
-    discountPercent: number;
-  }[];
-  inventory: {
-    stock: number;
-    inStock: boolean;
-    lowStockThreshold?: number;
-  };
-  variants: {
-    color: string;
-    image: string;
-  }[];
+  minOrderQuantity: number;
+  moq: PriceRange[];
+  discounts: Discount[];
+  inventory: Inventory;
+  variants: Variant[];
   sizes: string[];
   keyFeatures: string[];
-  additionalFeatures: {
-    title: string;
-    description: string;
-  }[];
-  keyAttributes: {
-    [key: string]: string;
-  };
-  ratings: {
-    score: number;
-    totalReviews: number;
-  };
-  reviews?: {
-    userId: string;
-    rating: number;
-    comment: string;
-    date: string;
-  }[];
-  customizations: {
-    option: string;
-    price: string;
-  }[];
+  additionalFeatures: AdditionalFeature[];
+  keyAttributes: { [key: string]: string };
+  ratings: Ratings;
+  reviews: Review[];
+  customizations: Customization[];
 }
-export interface IPriceTier {
-  quantityRange: string;
+
+export interface Customization {
+  option: string;
+  price: number;
+}export interface PriceRange {
+  range: string;
   price: number;
 }
 
-export interface IVariant {
+export interface Variant {
+  variantId: string;
   color: string;
+  size?: string;
   image: string;
+  quantity: number;
+  priceRange: PriceRange[];
+  customizations: Customization[];
 }
 
-export interface ManufacturerCardProps {
-  id: number;
-  shopName: string;
-  name: string;
-  location: string;
-  rating: number;
-  totalReviews: number;
-  images: string[];
+export interface Customization {
+  option: string;
+  price: number;
+}
+
+export interface PriceRange {
+  range: string;
+  price: number;
+}
+
+export interface Product {
+  productId: string;
+  productName: string;
+  variants: Variant[];
+}
+
+export interface VendorInfo {
+  vendorName: string;
+  vendorLocation: string;
+  vendorLogo: string;
+}
+
+export interface Vendor {
+  vendorInfo: VendorInfo;
+  products: Product[];
+}
+
+export interface CartData {
+  cart: Vendor[];
 }

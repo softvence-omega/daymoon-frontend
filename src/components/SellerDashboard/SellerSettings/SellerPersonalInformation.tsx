@@ -94,7 +94,7 @@ const SellerPersonalInformation = () => {
         <div className="space-y-6 lg:col-span-8">
           <PageHeader
             title="Personal Details"
-            onEdit={handleSubmit}
+            onButtonClick={handleSubmit}
             buttonTitle="Edit"
             icon={<ImPencil />}
           />

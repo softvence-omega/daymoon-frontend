@@ -30,7 +30,7 @@ const PaymentInformation: React.FC<Props> = ({ payment }) => {
   } = payment;
 
   return (
-    <div className="w-full bg-white p-10 rounded-2xl border border-foundation-white">
+    <div className="w-full bg-white p-10 rounded-2xl border border-foundation-white mb-10 ">
       <CommonHeader className="!text-2xl font-semibold  text-jet-black   mb-6">
         Payment Information
       </CommonHeader>
@@ -46,25 +46,27 @@ const PaymentInformation: React.FC<Props> = ({ payment }) => {
           <SubHeader className="text-lg font-medium text-jet-black">
             {method}
           </SubHeader>
-          <SubHeader>**** **** **** {last4}</SubHeader>
+          <SubHeader className="!line-clamp-1">
+            **** **** **** {last4}
+          </SubHeader>
         </div>
       </div>
 
       {/* Payment Details */}
       <div className="space-y-6">
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center gap-6 ">
           <SubHeader>Payment Status</SubHeader>
           <SubHeader className="text-green-600 font-medium">{status}</SubHeader>
         </div>
 
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center gap-6 ">
           <SubHeader>Transaction ID</SubHeader>
           <SubHeader className="text-jet-black font-medium">
             {transactionId}
           </SubHeader>
         </div>
 
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center gap-6 ">
           <SubHeader>Payment Date</SubHeader>
           <SubHeader className="text-jet-black font-medium">
             {paymentDate}
@@ -73,7 +75,7 @@ const PaymentInformation: React.FC<Props> = ({ payment }) => {
 
         <hr className="border-gray-200" />
 
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center gap-6 ">
           <SubHeader>Total Payment</SubHeader>
           <SubHeader className="text-jet-black font-semibold text-lg">
             {currency ? currency : "$"}

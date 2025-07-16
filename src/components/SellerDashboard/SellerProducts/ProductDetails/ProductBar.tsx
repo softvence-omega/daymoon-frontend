@@ -1,7 +1,7 @@
 import ButtonWithIcon from "@/common/ButtonWithIcon";
 import CommonHeader from "@/common/CommonHeader";
 import SubHeader from "@/common/SubHeader";
-import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { EyeOff, Pencil, Trash2 } from "lucide-react";
 
 interface ProductData {
@@ -56,11 +56,13 @@ const ProductBar = () => {
               <CommonHeader className="!text-black">
                 {productData.name}
               </CommonHeader>
-              <Badge
-                className={`${getStatusColor(productData.status)} font-medium`}
+              <Button
+                className={`${getStatusColor(
+                  productData.status
+                )} font-medium rounded-lg`}
               >
                 {productData.status}
-              </Badge>
+              </Button>
             </div>
             <SubHeader>SKU: {productData.sku}</SubHeader>
 
@@ -94,19 +96,19 @@ const ProductBar = () => {
 
           <div className="flex flex-wrap items-center gap-3">
             <ButtonWithIcon
-              className=" not-lg:w-full flex justify-center  "
+              className="flex justify-center hover:text-white hover:bg-catalien-blue      "
               icon={EyeOff}
             >
               Unpublish
             </ButtonWithIcon>
             <ButtonWithIcon
-              className=" not-lg:w-full flex justify-center  "
+              className="flex justify-center hover:text-white hover:bg-catalien-blue  "
               icon={Trash2}
             >
               Delete
             </ButtonWithIcon>
             <ButtonWithIcon
-              className="text-white bg-catalien-blue border-transparent  not-lg:w-full flex justify-center"
+              className="hover:text-white hover:bg-catalien-blue   flex justify-center "
               icon={Pencil}
             >
               Edit

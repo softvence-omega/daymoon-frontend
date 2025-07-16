@@ -21,6 +21,8 @@ const SearchByImage = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  console.log("productId", error);
+
   const handleButtonClick = () => {
     fileInputRef.current?.click();
   };

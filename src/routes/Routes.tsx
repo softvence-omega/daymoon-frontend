@@ -42,6 +42,7 @@ import BuyerRFQ from "../pages/BuyerDashboard/BuyerRFQ";
 
 import OrderDetails from "@/components/SellerDashboard/SellerOrder/OrderDetails/OrderDetails";
 
+import CartPage from "@/components/Cart/Cart";
 import BuyerProfile from "@/components/SellerDashboard/SellerOrder/Profile/BuyerProfile";
 import BuyerFavorites from "@/pages/BuyerDashboard/BuyerFavorites";
 import BuyerMessages from "@/pages/BuyerDashboard/BuyerMessages";
@@ -52,6 +53,8 @@ import BuyerRefund from "@/pages/BuyerDashboard/BuyerRefund";
 import BuyerReview from "@/pages/BuyerDashboard/BuyerReview";
 import SupplierProfileDetails from "@/pages/BuyerLandingPage/SupplierProfileDetails";
 import CreatePromotionPage from "@/pages/SellerDashboard/CreatePromotionPage";
+import Checkout from "@/pages/Checkout";
+import PaymentSummary from "@/components/Checkout/PaymentSummary";
 
 const routes = createBrowserRouter([
   {
@@ -79,8 +82,20 @@ const routes = createBrowserRouter([
         element: <Seller />,
       },
       {
+        path: "/cart",
+        element: <CartPage />,
+      },
+      {
         path: "/single",
         element: <IndividualProduct />,
+      },
+      {
+        path: "checkout",
+        element: <Checkout />,
+      },
+      {
+        path: "payment",
+        element: <PaymentSummary />,
       },
 
       {
@@ -124,14 +139,15 @@ const routes = createBrowserRouter([
     element: <Signup />,
   },
   {
-    path: "signup-buyer",
+    path: "buyer-signup",
     element: <BuyerSignup />,
   },
 
   {
-    path: "signup-seller",
+    path: "seller-signup",
     element: <SellerRegistration />,
   },
+
   {
     path: "*",
     element: <NotFound />,
@@ -161,7 +177,7 @@ const routes = createBrowserRouter([
             element: <BuyerRefund />,
           },
           {
-            path: "orders/:id",
+            path: "orders/oderDetails/:id",
             element: <BuyerOrderDetails />,
           },
           {

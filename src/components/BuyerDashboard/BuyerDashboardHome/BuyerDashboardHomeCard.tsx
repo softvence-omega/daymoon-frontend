@@ -2,6 +2,7 @@ import { BsFillBoxSeamFill } from "react-icons/bs";
 import { MdOutlineCreditCard } from "react-icons/md";
 import { FaTruck } from "react-icons/fa";
 import { FaCircleCheck } from "react-icons/fa6";
+import { Link } from 'react-router-dom';
 
 const BuyerDashboardHomeCard = () => {
   const statusData = [
@@ -9,24 +10,28 @@ const BuyerDashboardHomeCard = () => {
       title: "Pending Orders",
       amount: "07",
       text: "View All Orders",
+      link:"/buyer/dashboard/orders",
       icon: <BsFillBoxSeamFill />,
     },
     {
       title: "Shipped Orders",
       amount: "03",
       text: "Track Shipment",
+      link:"/buyer/dashboard/orders",
       icon: <FaTruck />,
     },
     {
       title: "Completed Orders",
       amount: "28",
       text: "View History",
+      link:"/buyer/dashboard/orders",
       icon: <FaCircleCheck />,
     },
     {
       title: "Total Spend",
       amount: "$2344",
       text: "Financial Details",
+      link:"/buyer/dashboard/orders",
       icon: <MdOutlineCreditCard />,
     },
   ];
@@ -72,11 +77,11 @@ const BuyerDashboardHomeCard = () => {
             </div>
 
             {/* Bottom Row: Change & Unit */}
-            <div className="">
+            <Link to={single.link} className="w-full">
               <p className="text-base underline font-medium text-[#192D4E]">
                 {single.text}
               </p>
-            </div>
+            </Link>
           </div>
         );
       })}

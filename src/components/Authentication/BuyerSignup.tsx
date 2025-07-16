@@ -71,7 +71,7 @@ const BuyerSignup = () => {
         </div>
 
         {/* Right Side - Full width on mobile, half width on desktop */}
-        <div className="w-full md:w-1/2 bg-white flex flex-col items-center justify-center px-4 py-12">
+        <div className="w-full md:w-1/2 bg-white flex flex-col items-center justify-center px-4 sm:px-8 py-12">
           {/* Nav always at the top */}
           <div className="w-full max-w-full pb-8">
             <Nav />

@@ -11,7 +11,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { IProduct } from "@/types";
+import { IProduct, VariantQuantities } from "@/types";
 import { motion } from "motion/react";
 import { useState } from "react";
 
@@ -21,11 +21,8 @@ function AddToCart({ productData }: { productData: IProduct }) {
     string[]
   >([]);
 
-  const [variantQuantities, setVariantQuantities] = useState(
-    productData.variants.reduce((acc, variant) => {
-      acc[variant.color] = 0;
-      return acc;
-    }, {} as Record<string, number>)
+  const [variantQuantities, setVariantQuantities] = useState<VariantQuantities>(
+    {}
   );
 
   const handleCustomizationChange = (option: string) => {
@@ -40,7 +37,7 @@ function AddToCart({ productData }: { productData: IProduct }) {
 
   // Handle the change in quantity for each variant (via input or buttons)
   const handleQuantityChange = (action: string, variant: string) => {
-    setVariantQuantities((prev) => {
+    setVariantQuantities((prev: VariantQuantities) => {
       let newQuantity = prev[variant] + (action === "increase" ? 1 : -1);
       if (newQuantity < 0) newQuantity = 0;
       console.log("Updated quantity: ", { ...prev, [variant]: newQuantity });
@@ -54,7 +51,7 @@ function AddToCart({ productData }: { productData: IProduct }) {
   ) => {
     let value = parseInt(e.target.value, 10);
     if (isNaN(value) || value < 0) value = 0;
-    setVariantQuantities((prev) => {
+    setVariantQuantities((prev: VariantQuantities) => {
       console.log(`Updated quantity for ${variant}: ${value}`);
       return { ...prev, [variant]: value };
     });
@@ -63,7 +60,7 @@ function AddToCart({ productData }: { productData: IProduct }) {
   // Calculate total quantity of all variants selected
   const calculateTotalQuantity = () => {
     return Object.values(variantQuantities).reduce(
-      (total, quantity) => total + quantity,
+      (total, quantity) => (total || 0) + (quantity || 0),
       0
     );
   };
@@ -72,13 +69,19 @@ function AddToCart({ productData }: { productData: IProduct }) {
   const calculateVariantPrice = (variant: any) => {
     const selectedQuantity = variantQuantities[variant.color];
 
+    // Find the price tier based on quantity
     const priceTier = productData.moq.find((tier) => {
       const [minQty, maxQty] = tier.range.split("-").map(Number);
       return selectedQuantity >= minQty && selectedQuantity <= maxQty;
     });
 
-    // Get the price from the corresponding MOQ range, if available
-    const variantPrice = priceTier ? parseFloat(priceTier.price.slice(1)) : 0;
+    // Ensure priceTier and price are defined before using .slice
+    const variantPrice =
+      priceTier && priceTier.price
+        ? typeof priceTier.price === "string"
+          ? parseFloat(priceTier.price.slice(1)) // Remove the '$' symbol if price is a string
+          : priceTier.price // If price is a number, use it directly
+        : 0; // Return 0 if priceTier is not found or price is undefined
 
     return variantPrice;
   };
@@ -98,7 +101,6 @@ function AddToCart({ productData }: { productData: IProduct }) {
 
     return customizationTotal;
   };
-
   // Final price calculation
   const calculateTotalPrice = () => {
     return productData.variants.reduce((total, variant) => {

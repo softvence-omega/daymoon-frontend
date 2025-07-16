@@ -1,15 +1,29 @@
 import { useEffect, useState } from "react";
 import { FaChevronDown, FaGlobe } from "react-icons/fa";
-import { Link, useLocation } from "react-router-dom";
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from "@/components/ui/select";
 import buyer from "../../assets/Icon/cart.png";
 import seller from "../../assets/Icon/truck.png";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+
+const roles = [
+  { label: "Buyer", value: "buyer", icon: buyer },
+  { label: "Seller", value: "seller", icon: seller },
+];
 
 const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedRole, setSelectedRole] = useState("Buyer"); // New state to track selected role
-  const location = useLocation();
+  const [selectedRole, setSelectedRole] = useState("buyer");
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
 
-  // Close dropdown when clicking outside
+  console.log("selectedRole", selectedRole);
+
   useEffect(() => {
     const closeDropdown = () => setIsOpen(false);
     if (isOpen) {
@@ -18,71 +32,58 @@ const Nav = () => {
     return () => document.removeEventListener("click", closeDropdown);
   }, [isOpen]);
 
-  // Determine if we're on the login page
-  const isLogin = location.pathname === "/login";
+  const isLogin = pathname === "/login";
 
   return (
-    <div className="w-full px-4 md:px-6 pt-2 pb-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-      {/* Sign In / Register section */}
-      <div className="flex flex-col items-end md:order-2">
-        <div className="flex justify-end">
-          <FaGlobe className="text-gray-800 w-[20px] h-[20px]" />
-        </div>
-        <p className="text-gray-500 text-sm my-4 text-right">
-          {isLogin ? "Don't have an account? " : "Already have an account? "}
-          <Link to={isLogin ? "/signup-buyer" : "/login"}>
-            <span className="text-[#F14141] font-medium cursor-pointer">
-              {isLogin ? "Register" : "Sign In"}
-            </span>
-          </Link>
-        </p>
+    <>
+      <div className=" flex items-center justify-between">
+        <Select
+          value={selectedRole}
+          onValueChange={(val) => {
+            setSelectedRole(val);
+            if (!isLogin) {
+              navigate(val === "buyer" ? "/buyer-signup" : "/seller-signup");
+            }
+          }}
+        >
+          <SelectTrigger className="min-w-[180px] bg-[#FCFCFC] border border-[#B3B3B3] px-3 py-5 cursor-pointer rounded-2xl outline-none text-sm focus:ring-0 focus:border-none hover:border-gray-400 transition-all duration-200">
+            <SelectValue />
+            <FaChevronDown className=" text-[#F14141] text-xs w-4 h-4 ml-auto" />
+          </SelectTrigger>
+          <SelectContent className="bg-white border border-[#B3B3B3] rounded-md shadow-md">
+            {roles.map((role) => (
+              <SelectItem
+                key={role.label}
+                value={role.value}
+                className="flex items-center gap-2  cursor-pointer px-4 py-2 hover:bg-gray-100 transition-colors rounded"
+              >
+                <div className="flex gap-1">
+                  <img src={role.icon} alt={role.label} className="w-5 h-5" />
+                  <span>{role.label}</span>
+                </div>
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+        <FaGlobe className="text-gray-800 w-5 h-5" />
       </div>
 
-      {/* Role Selector */}
-      <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-0 md:order-1">
-        <div className="relative w-full md:w-auto">
-          <button
-            className="flex items-center justify-between gap-2 border border-foundation-gray px-4 md:px-5 py-3 rounded-full text-sm font-medium shadow-sm w-full md:w-auto"
-            onClick={(e) => {
-              e.stopPropagation();
-              setIsOpen(!isOpen);
-            }}
-          >
-            <span className="flex items-center gap-2">
-              <img
-                src={selectedRole === "Buyer" ? buyer : seller}
-                alt=""
-                className="w-5 h-5"
-              />
-              <span>{selectedRole}</span>
-            </span>
-            <FaChevronDown className="text-[#F14141] text-xs" />
-          </button>
+      <div className="text-gray-500 text-sm my-4 text-right">
+        {isLogin ? "Don't have an account? " : "Already have an account? "}
 
-          {isOpen && (
-            <div
-              className="absolute top-full left-0 right-0 mt-1 bg-white border border-foundation-gray rounded-lg shadow-sm z-10"
-              onClick={(e) => e.stopPropagation()}
+        <span className="text-[#F14141] font-medium cursor-pointer">
+          {isLogin ? (
+            <Link
+              to={selectedRole === "buyer" ? "/buyer-signup" : "/seller-signup"}
             >
-              <p
-                className="w-full text-left flex items-center gap-2 px-5 py-3 border-b border-foundation-gray cursor-pointer"
-                onClick={() => setSelectedRole("Buyer")} // Set role to "Buyer"
-              >
-                <img src={buyer} alt="" className="w-5 h-5" />
-                <span>Buyer</span>
-              </p>
-              <p
-                className="w-full text-left flex items-center gap-2 px-5 py-3 cursor-pointer"
-                onClick={() => setSelectedRole("Seller")} // Set role to "Seller"
-              >
-                <img src={seller} alt="" className="w-5 h-5" />
-                <span>Seller</span>
-              </p>
-            </div>
+              Register
+            </Link>
+          ) : (
+            <Link to={"/login"}> Sign In</Link>
           )}
-        </div>
+        </span>
       </div>
-    </div>
+    </>
   );
 };
 

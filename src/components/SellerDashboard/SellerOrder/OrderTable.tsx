@@ -1,10 +1,3 @@
-import { Button } from "@/components/ui/button";
-
-import image1 from "../../../assets/landing/product2.png";
-import image2 from "../../../assets/landing/product3.png";
-import image3 from "../../../assets/landing/image1.png";
-import image4 from "../../../assets/landing/products.png";
-
 import {
   Table,
   TableBody,
@@ -14,290 +7,19 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import Pagination from "../../../common/Pagination";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SearchFilter from "./SearchFilter";
+import { useEffect, useMemo, useState } from "react";
+import { orders } from "./orderData";
+import { slugify } from "../Help/help";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch } from "@/store/store";
+import {
+  selectTableShow,
+  showAll as showAllAction,
+} from "@/store/Slices/TableSlice/tableSlice";
 
-interface Order {
-  id: string;
-  orderNo: string;
-  product: {
-    name: string;
-    sku: string;
-    image: string;
-  };
-  buyer: {
-    name: string;
-    company: string;
-  };
-  date: string;
-  status: "Shipped" | "Delivered" | "Pending";
-  price: number;
-}
-
-const mockOrders: Order[] = [
-  {
-    id: "1",
-    orderNo: "001-GADGETS",
-    product: {
-      name: "Ultra HD Display",
-      sku: "SP-X2023-BLK",
-      image: image1,
-    },
-    buyer: { name: "Jane Smith", company: "XYZ Company" },
-    date: "17/06/2025",
-    status: "Shipped",
-    price: 89.99,
-  },
-  {
-    id: "2",
-    orderNo: "002-FASHION",
-    product: {
-      name: "4K Gaming Monitor",
-      sku: "SP-X2023-BLK",
-      image: image2,
-    },
-    buyer: { name: "Jane Smith", company: "XYZ Company" },
-    date: "15/08/23",
-    status: "Delivered",
-    price: 79.99,
-  },
-  {
-    id: "3",
-    orderNo: "003-HOME",
-    product: {
-      name: "High-Resolution Screen",
-      sku: "SP-X2023-BLK",
-      image: image3,
-    },
-    buyer: { name: "Jane Smith", company: "XYZ Company" },
-    date: "22/11/24",
-    status: "Delivered",
-    price: 59.99,
-  },
-  {
-    id: "4",
-    orderNo: "004-TOYS",
-    product: {
-      name: "Crystal Clear Monitor",
-      sku: "SP-X2023-BLK",
-      image: image4,
-    },
-    buyer: { name: "Jane Smith", company: "XYZ Company" },
-    date: "03/05/25",
-    status: "Pending",
-    price: 69.99,
-  },
-  {
-    id: "5",
-    orderNo: "005-SUSTAINABLE",
-    product: {
-      name: "Vivid Color Display",
-      sku: "SP-X2023-BLK",
-      image: image1,
-    },
-    buyer: { name: "Jane Smith", company: "XYZ Company" },
-    date: "09/12/22",
-    status: "Delivered",
-    price: 49.99,
-  },
-  {
-    id: "6",
-    orderNo: "006-BEAUTY",
-    product: {
-      name: "Premium Visual Monitor",
-      sku: "SP-X2023-BLK",
-      image: image2,
-    },
-    buyer: { name: "Jane Smith", company: "XYZ Company" },
-    date: "09/12/22",
-    status: "Shipped",
-    price: 99.99,
-  },
-  {
-    id: "7",
-    orderNo: "007-TRENDY",
-    product: {
-      name: "Next-Gen 4K Screen",
-      sku: "SP-X2023-BLK",
-      image: image4,
-    },
-    buyer: { name: "Jane Smith", company: "XYZ Company" },
-    date: "09/12/22",
-    status: "Delivered",
-    price: 89.99,
-  },
-  {
-    id: "8",
-    orderNo: "008-OUTDOOR",
-    product: {
-      name: "Stunning Clarity Monitor",
-      sku: "SP-X2023-BLK",
-      image: image1,
-    },
-    buyer: { name: "Jane Smith", company: "XYZ Company" },
-    date: "09/12/22",
-    status: "Delivered",
-    price: 79.99,
-  },
-  {
-    id: "9",
-    orderNo: "009-TECH",
-    product: {
-      name: "Dynamic Display",
-      sku: "SP-X2023-BLK",
-      image: image3,
-    },
-    buyer: { name: "Jane Smith", company: "XYZ Company" },
-    date: "09/12/22",
-    status: "Shipped",
-    price: 69.99,
-  },
-  {
-    id: "10",
-    orderNo: "010-LIFESTYLE",
-    product: {
-      name: "Elite 4K Monitor",
-      sku: "SP-X2023-BLK",
-      image: image1,
-    },
-    buyer: { name: "Jane Smith", company: "XYZ Company" },
-    date: "09/12/22",
-    status: "Delivered",
-    price: 89.99,
-  },
-  {
-    id: "11",
-    orderNo: "011-OFFICE",
-    product: {
-      name: "Business Pro Display",
-      sku: "SP-X2023-BLK",
-      image: image2,
-    },
-    buyer: { name: "Jane Smith", company: "XYZ Company" },
-    date: "10/01/23",
-    status: "Pending",
-    price: 74.99,
-  },
-  {
-    id: "12",
-    orderNo: "012-SPORTS",
-    product: {
-      name: "Wide Angle Display",
-      sku: "SP-X2023-BLK",
-      image: image3,
-    },
-    buyer: { name: "Jane Smith", company: "XYZ Company" },
-    date: "12/03/24",
-    status: "Delivered",
-    price: 64.99,
-  },
-  {
-    id: "13",
-    orderNo: "013-KITCHEN",
-    product: {
-      name: "Smart Kitchen Display",
-      sku: "SP-X2023-BLK",
-      image: image4,
-    },
-    buyer: { name: "Jane Smith", company: "XYZ Company" },
-    date: "18/06/25",
-    status: "Shipped",
-    price: 54.99,
-  },
-  {
-    id: "14",
-    orderNo: "014-PETS",
-    product: {
-      name: "Pet-Friendly Monitor",
-      sku: "SP-X2023-BLK",
-      image: image1,
-    },
-    buyer: { name: "Jane Smith", company: "XYZ Company" },
-    date: "21/04/25",
-    status: "Delivered",
-    price: 44.99,
-  },
-  {
-    id: "15",
-    orderNo: "015-TECH2",
-    product: {
-      name: "AI Ready Display",
-      sku: "SP-X2023-BLK",
-      image: image2,
-    },
-    buyer: { name: "Jane Smith", company: "XYZ Company" },
-    date: "02/09/23",
-    status: "Pending",
-    price: 94.99,
-  },
-  {
-    id: "16",
-    orderNo: "016-KIDS",
-    product: {
-      name: "Colorful Learning Monitor",
-      sku: "SP-X2023-BLK",
-      image: image3,
-    },
-    buyer: { name: "Jane Smith", company: "XYZ Company" },
-    date: "13/11/23",
-    status: "Delivered",
-    price: 39.99,
-  },
-  {
-    id: "17",
-    orderNo: "017-AUTO",
-    product: {
-      name: "In-Car Entertainment Display",
-      sku: "SP-X2023-BLK",
-      image: image4,
-    },
-    buyer: { name: "Jane Smith", company: "XYZ Company" },
-    date: "29/06/24",
-    status: "Shipped",
-    price: 59.99,
-  },
-  {
-    id: "18",
-    orderNo: "018-HEALTH",
-    product: {
-      name: "Medical-Grade Display",
-      sku: "SP-X2023-BLK",
-      image: image1,
-    },
-    buyer: { name: "Jane Smith", company: "XYZ Company" },
-    date: "03/02/25",
-    status: "Delivered",
-    price: 109.99,
-  },
-  {
-    id: "19",
-    orderNo: "019-EDU",
-    product: {
-      name: "Smart Classroom Display",
-      sku: "SP-X2023-BLK",
-      image: image2,
-    },
-    buyer: { name: "Jane Smith", company: "XYZ Company" },
-    date: "16/10/23",
-    status: "Delivered",
-    price: 84.99,
-  },
-  {
-    id: "20",
-    orderNo: "020-ARTS",
-    product: {
-      name: "Creative Studio Monitor",
-      sku: "SP-X2023-BLK",
-      image: image3,
-    },
-    buyer: { name: "Jane Smith", company: "XYZ Company" },
-    date: "07/07/25",
-    status: "Pending",
-    price: 77.99,
-  },
-];
-
-const getStatusColor = (status: Order["status"]) => {
+const getStatusColor = (status: string) => {
   switch (status) {
     case "Delivered":
       return "bg-[#10B981]/20 text-[#10B981] hover:bg-green-100";
@@ -310,22 +32,81 @@ const getStatusColor = (status: Order["status"]) => {
   }
 };
 
-export const slugify = (text: string) => {
-  return text
-    ?.toLowerCase()
-    .replace(/[^\w\s-]/g, "")
-    .trim()
-    .replace(/\s+/g, "-");
-};
+type StatusValue = "all" | "delivered" | "shipped" | "pending";
+type RangeValue = "all" | "30days" | "7days" | "90days" | "1year";
 
 const OrderTable = () => {
-  const { pathname } = useLocation();
-  const handleMarkAsDelivered = (orderId: string) => {
-    console.log("Mark as delivered:", orderId);
-  };
+  const dispatch = useDispatch<AppDispatch>();
+  const showAll = useSelector(selectTableShow);
+  const navigate = useNavigate();
+  const [statusFilter, setStatusFilter] = useState<StatusValue>("all");
+  const [dateFilter, setDateFilter] = useState<RangeValue>("all");
 
-  const handleMarkAsShipped = (orderId: string) => {
-    console.log("Mark as shipped:", orderId);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const ITEMS_PER_PAGE = 5;
+  const now = new Date();
+
+  const filteredOrders = useMemo(() => {
+    return orders.filter((order) => {
+      const matchesSearch =
+        searchQuery.trim() === "" ||
+        order.orderNo.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        order.product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        order.buyer.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        order.buyer.company.toLowerCase().includes(searchQuery.toLowerCase());
+
+      const matchesStatus =
+        statusFilter === "all" ||
+        order.status.toLowerCase() === statusFilter.toLowerCase();
+
+      const [day, month, year] = order.date.split("/").map(Number);
+      const orderDate = new Date(
+        year < 100 ? 2000 + year : year,
+        month - 1,
+        day
+      );
+
+      let dateThreshold;
+      switch (dateFilter) {
+        case "7days":
+          dateThreshold = new Date(now);
+          dateThreshold.setDate(now.getDate() - 7);
+          break;
+        case "30days":
+          dateThreshold = new Date(now);
+          dateThreshold.setDate(now.getDate() - 30);
+          break;
+        case "90days":
+          dateThreshold = new Date(now);
+          dateThreshold.setDate(now.getDate() - 90);
+          break;
+        case "1year":
+          dateThreshold = new Date(now);
+          dateThreshold.setFullYear(now.getFullYear() - 1);
+          break;
+        case "all":
+        default:
+          dateThreshold = null; // ← change this
+      }
+      const matchesDate = !dateThreshold || orderDate >= dateThreshold;
+
+      return matchesSearch && matchesStatus && matchesDate;
+    });
+  }, [searchQuery, statusFilter, dateFilter]);
+
+  const startIdx = (currentPage - 1) * ITEMS_PER_PAGE;
+  const totalPages = Math.ceil(filteredOrders.length / ITEMS_PER_PAGE);
+  const displayList = showAll
+    ? filteredOrders
+    : filteredOrders.slice(startIdx, startIdx + ITEMS_PER_PAGE);
+
+  const handleShow = () => {
+    dispatch(showAllAction());
+    setCurrentPage(1);
+    navigate("/seller-dashboard/all-orders");
   };
 
   const headList = [
@@ -338,122 +119,151 @@ const OrderTable = () => {
     "Action",
   ];
 
-  return (
-    <div className="w-full ">
-      <SearchFilter />
-      <div className="p-2  border border-[#E0E0E1] rounded-xl bg-white">
-        <Table>
-          <TableHeader className=" pb-5">
-            <TableRow className="first:border-none ">
-              {headList?.map((item, i) => (
-                <TableHead
-                  key={i}
-                  className="font-medium text-sm first:text-start nth-[2]:text-start  text-center text-foundation-gray bg-foundation-white  first:rounded-l-xl last:rounded-r-xl py-4 "
-                >
-                  {item}
-                </TableHead>
-              ))}
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {mockOrders?.map((order) => (
-              <TableRow key={order.id} className=" hover:bg-gray-50  ">
-                <TableCell className="font-medium py-6 ">
-                  {order.orderNo}
-                </TableCell>
-                <TableCell>
-                  <div className="flex items-center gap-3">
-                    <img
-                      src={order.product.image || "/placeholder.svg"}
-                      alt={order.product.name}
-                      className="w-10 h-10 rounded object-cover"
-                    />
-                    <div>
-                      <div className="font-medium">{order.product.name}</div>
-                      <div className="text-sm text-gray-500">
-                        SKU: {order.product.sku}
-                      </div>
-                    </div>
-                  </div>
-                </TableCell>
-                <TableCell className="font-medium text-center">
-                  <div>
-                    <div className="font-medium">{order.buyer.name}</div>
-                    <div className="text-sm text-gray-500">
-                      {order.buyer.company}
-                    </div>
-                  </div>
-                </TableCell>
-                <TableCell className="font-medium text-center">
-                  {order.date}
-                </TableCell>
-                <TableCell className="font-medium text-center">
-                  <Button
-                    className={`${getStatusColor(
-                      order.status
-                    )} transition cursor-pointer py-5 rounded-2xl`}
-                  >
-                    {order.status}
-                  </Button>
-                </TableCell>
-                <TableCell className="font-medium text-center">
-                  ${order.price}
-                </TableCell>
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchQuery, statusFilter, dateFilter]);
 
-                <TableCell>
-                  <div className="flex items-center justify-center gap-2">
-                    {order.status === "Shipped" && (
-                      <Button
-                        size="sm"
-                        className="bg-[#10B981] hover:bg-green-700 text-white transition  cursor-pointer py-5 rounded-2xl"
-                        onClick={() => handleMarkAsDelivered(order.id)}
+  return (
+    <div className="w-full">
+      <SearchFilter
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        statusFilter={statusFilter}
+        setStatusFilter={setStatusFilter}
+        dateFilter={dateFilter}
+        setDateFilter={setDateFilter}
+      />
+      {displayList.length > 0 && (
+        <div
+          className={`p-2 border border-[#E0E0E1] rounded-xl bg-white w-full ${
+            showAll && "mb-10"
+          }`}
+        >
+          <div className="overflow-x-auto ">
+            <Table className="w-full table-auto">
+              <TableHeader className="py-4 pb-5">
+                <TableRow className="first:border-none">
+                  {headList.map((item, idx) => (
+                    <TableHead
+                      key={idx}
+                      className={`font-medium text-sm text-center text-foundation-gray bg-foundation-white first:text-start first:rounded-l-xl last:rounded-r-xl py-4 
+                ${idx === 1 ? "rounded-l-xl xl:rounded-none text-start" : ""}
+                ${idx === 0 || idx === 3 ? "hidden xl:table-cell" : ""}
+                ${idx === 2 ? "hidden lg:table-cell" : ""}
+              `}
+                    >
+                      {item}
+                    </TableHead>
+                  ))}
+                </TableRow>
+              </TableHeader>
+
+              <TableBody>
+                {displayList.map((order) => (
+                  <TableRow key={order.id} className="hover:bg-gray-50">
+                    <TableCell className="hidden font-medium xl:table-cell">
+                      {order.orderNo}
+                    </TableCell>
+                    <TableCell className="py-4">
+                      <div className="flex items-center justify-center gap-3 md:justify-start">
+                        <img
+                          src={order.product.image}
+                          alt={order.product.name}
+                          className="object-cover w-8 h-8 rounded sm:w-10 sm:h-10"
+                        />
+                        <div className="hidden md:block">
+                          <div className="font-medium">
+                            {order.product.name}
+                          </div>
+                          <div className="text-sm text-gray-500">
+                            SKU: {order.product.sku}
+                          </div>
+                        </div>
+                      </div>
+                    </TableCell>
+                    <TableCell className="hidden font-medium text-center lg:table-cell">
+                      <div>
+                        <div className="font-medium">{order.buyer.name}</div>
+                        <div className="text-sm text-gray-500">
+                          {order.buyer.company}
+                        </div>
+                      </div>
+                    </TableCell>
+                    <TableCell className="hidden font-medium text-center xl:table-cell">
+                      {order.date}
+                    </TableCell>
+                    <TableCell className="font-medium text-center">
+                      <button
+                        className={`${getStatusColor(
+                          order.status
+                        )} sm:px-4 sm:py-2 rounded-xl px-2 py-1  !text-[10px] sm:text-base `}
                       >
-                        Mark As Delivered
-                      </Button>
-                    )}
-                    {order?.status === "Pending" ? (
-                      <>
-                        <Button
-                          size="sm"
-                          className="bg-[#10B981] hover:bg-green-700 text-white transition  cursor-pointer    py-5 rounded-2xl"
-                          onClick={() => handleMarkAsShipped(order.id)}
-                        >
-                          Mark As Shipped
-                        </Button>
-                        <Button
-                          size="sm"
-                          className="bg-[#D9222A] hover:bg-red-700 transition  cursor-pointer text-white  py-5 rounded-2xl"
-                        >
-                          Cancel Order
-                        </Button>
-                      </>
-                    ) : (
-                      <Link
-                        className="text-sunset-orange hover:text-red-700 transition  cursor-pointer   py-5 rounded-2xl"
-                        to={`/seller-dashboard/all-orders/${slugify(
-                          order?.orderNo
-                        )}`}
-                      >
-                        View
-                      </Link>
-                    )}
-                  </div>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </div>
-      {pathname !== "/seller-dashboard/all-orders" && (
-        <div className="py-6">
-          <Pagination
-            title="All Orders"
-            showText="Showing 1 to 10 of 24 orders "
-            path="/seller-dashboard/all-orders"
-          />
+                        {order.status}
+                      </button>
+                    </TableCell>
+                    <TableCell className="font-medium text-center">
+                      ${order.price}
+                    </TableCell>
+                    <TableCell>
+                      <div className="flex flex-col items-center justify-center w-full h-full gap-1 p-1 sm:flex-row sm:gap-2">
+                        {order.status === "Shipped" && (
+                          <button className="bg-[#10B981] hover:bg-green-700 text-white  sm:px-4 sm:py-2 rounded-xl px-2 py-1 !text-[10px] sm:text-base cursor-pointer ">
+                            Mark As Delivered
+                          </button>
+                        )}
+                        {order.status === "Pending" ? (
+                          <>
+                            <button className="bg-[#10B981] hover:bg-green-700 sm:px-4 sm:py-2 rounded-xl px-2 py-1 !text-[10px] sm:text-base text-white cursor-pointer">
+                              Mark As Shipped
+                            </button>
+                            <button className="bg-[#D9222A] hover:bg-red-700 sm:px-4 sm:py-2 rounded-xl px-2 py-1 !text-[10px] sm:text-base text-white cursor-pointer">
+                              Cancel Order
+                            </button>
+                          </>
+                        ) : (
+                          <Link
+                            className="py-5 text-sunset-orange hover:text-red-700 rounded-2xl"
+                            to={`/seller-dashboard/all-orders/${slugify(
+                              order.orderNo
+                            )}`}
+                          >
+                            View
+                          </Link>
+                        )}
+                      </div>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
+        </div>
+      )}
+
+      {displayList.length > 0 ? (
+        !showAll ? (
+          <div className="py-6">
+            <Pagination
+              title="All Orders"
+              showText={`Showing ${startIdx + 1} to ${Math.min(
+                startIdx + ITEMS_PER_PAGE,
+                filteredOrders.length
+              )} of ${filteredOrders.length} Orders`}
+              totalPages={totalPages}
+              currentPage={currentPage}
+              onPageChange={setCurrentPage}
+              showAll={showAll}
+              onToggleShowAll={handleShow}
+            />
+          </div>
+        ) : null
+      ) : (
+        <div className="text-gray-500 text-center py-6">
+          No orders available at the moment.
         </div>
       )}
     </div>
   );
 };
+
 export default OrderTable;

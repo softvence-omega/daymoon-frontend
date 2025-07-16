@@ -11,7 +11,6 @@ const cardData = [
     value: "29,553",
     unit: "This Month",
     icon: <FaDollarSign className="h-6 w-6 text-[#F46A39]" />,
-    trend: { percentage: 12, isPositive: true },
     iconBgColor: "bg-[#FEECEB]",
     bottomSection:{
       color: "text-[#08AD36]",
@@ -24,7 +23,6 @@ const cardData = [
     value: "12500",
     unit: "3 Transactions",
     icon: <MdAccessTime className="h-6 w-6 text-[#F28B31]" />,
-    trend: { percentage: 12, isPositive: true },
     iconBgColor: "bg-[#F28B311A]",
     bottomSection:{
       color: "text-[#F28B31]",
@@ -37,7 +35,6 @@ const cardData = [
     value: "253",
     unit: "2 Pending",
     icon: <VscRefresh className="h-6 w-6 text-[#E8292C]" />,
-    trend: { percentage: 12, isPositive: true },
     iconBgColor: "bg-[#E8292C1A]",
     bottomSection:{
       color: "text-[#F04436]",
@@ -49,7 +46,7 @@ const cardData = [
 const PaymentsHeaderCards = () => {
   return (
     <>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-6">
         {cardData.map((data, index) => (
           <PaymentHeaderCard key={index} data={data} />
         ))}

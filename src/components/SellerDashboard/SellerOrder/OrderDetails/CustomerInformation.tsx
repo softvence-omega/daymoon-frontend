@@ -2,7 +2,7 @@ import CommonHeader from "@/common/CommonHeader";
 import SubHeader from "@/common/SubHeader";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
-import { slugify } from "../OrderTable";
+import { slugify } from "../../Help/help";
 
 export interface Customer {
   name: string;

@@ -1,3 +1,4 @@
+import React, { useState, useEffect, Dispatch, SetStateAction } from "react";
 import Pagination from "@/common/Pagination";
 import {
   Table,
@@ -10,207 +11,15 @@ import {
 import { Button } from "@/components/ui/button";
 import { LuFileText } from "react-icons/lu";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
-import { Link, useLocation } from "react-router-dom";
-import image from "../../../assets/image/product.png";
-import image1 from "../../../assets/landing/image1.png";
-import { slugify } from "../SellerOrder/OrderTable";
-
-
-type Product = {
-  id: number;
-  name: string;
-  category: string;
-  price: string;
-  status: "Active" | "Low Stock" | "Out Of Stock";
-  stock: number;
-  views: number;
-  inquiries: number;
-  date: string;
-  img: string;
-};
-
-const products: Product[] = [
-  {
-    id: 1,
-    name: "Ultra HD Display",
-    category: "Gadgets & Electronics",
-    price: "$89.99",
-    status: "Active",
-    stock: 80,
-    views: 3473,
-    inquiries: 67,
-    date: "17/06/2025",
-    img: image,
-  },
-  {
-    id: 2,
-    name: "4K Gaming Monitor",
-    category: "Fashion & Accessories",
-    price: "$79.99",
-    status: "Active",
-    stock: 80,
-    views: 3473,
-    inquiries: 67,
-    date: "15/08/2023",
-    img: image1,
-  },
-  {
-    id: 3,
-    name: "High‑Resolution Screen",
-    category: "Home & Living",
-    price: "$59.99",
-    status: "Low Stock",
-    stock: 40,
-    views: 3473,
-    inquiries: 67,
-    date: "22/11/2024",
-    img: image,
-  },
-  {
-    id: 4,
-    name: "Crystal Clear Monitor",
-    category: "Toys & Games",
-    price: "$69.99",
-    status: "Out Of Stock",
-    stock: 0,
-    views: 3473,
-    inquiries: 67,
-    date: "03/05/2025",
-    img: image1,
-  },
-  {
-    id: 5,
-    name: "Smart Fitness Tracker",
-    category: "Gadgets & Electronics",
-    price: "$49.99",
-    status: "Active",
-    stock: 150,
-    views: 2810,
-    inquiries: 42,
-    date: "10/06/2025",
-    img: image,
-  },
-  {
-    id: 6,
-    name: "Wireless Noise-Canceling Headphones",
-    category: "Fashion & Accessories",
-    price: "$119.99",
-    status: "Low Stock",
-    stock: 25,
-    views: 3962,
-    inquiries: 89,
-    date: "25/07/2025",
-    img: image1,
-  },
-  {
-    id: 7,
-    name: "Ergonomic Office Chair",
-    category: "Home & Living",
-    price: "$199.99",
-    status: "Active",
-    stock: 60,
-    views: 1789,
-    inquiries: 34,
-    date: "02/03/2024",
-    img: image,
-  },
-  {
-    id: 8,
-    name: "Virtual Reality Headset",
-    category: "Gadgets & Electronics",
-    price: "$149.99",
-    status: "Active",
-    stock: 70,
-    views: 4521,
-    inquiries: 102,
-    date: "19/09/2023",
-    img: image1,
-  },
-  {
-    id: 9,
-    name: "Adjustable Standing Desk",
-    category: "Home & Living",
-    price: "$229.99",
-    status: "Out Of Stock",
-    stock: 0,
-    views: 1354,
-    inquiries: 21,
-    date: "11/12/2024",
-    img: image,
-  },
-  {
-    id: 10,
-    name: "LED Ring Light Set",
-    category: "Toys & Games",
-    price: "$39.99",
-    status: "Active",
-    stock: 95,
-    views: 3120,
-    inquiries: 58,
-    date: "07/01/2025",
-    img: image1,
-  },
-  {
-    id: 11,
-    name: "Bluetooth Smart Glasses",
-    category: "Gadgets & Electronics",
-    price: "$99.99",
-    status: "Low Stock",
-    stock: 18,
-    views: 2740,
-    inquiries: 46,
-    date: "29/04/2025",
-    img: image,
-  },
-  {
-    id: 12,
-    name: "Portable Projector",
-    category: "Gadgets & Electronics",
-    price: "$129.99",
-    status: "Active",
-    stock: 110,
-    views: 2987,
-    inquiries: 64,
-    date: "13/06/2025",
-    img: image1,
-  },
-  {
-    id: 13,
-    name: "Noise-Isolation Gaming Headset",
-    category: "Toys & Games",
-    price: "$89.00",
-    status: "Active",
-    stock: 55,
-    views: 3881,
-    inquiries: 73,
-    date: "16/02/2025",
-    img: image,
-  },
-  {
-    id: 14,
-    name: "Rechargeable Mini Fan",
-    category: "Home & Living",
-    price: "$24.99",
-    status: "Out Of Stock",
-    stock: 0,
-    views: 2105,
-    inquiries: 39,
-    date: "04/08/2024",
-    img: image1,
-  },
-  {
-    id: 15,
-    name: "Rechargeable Mini Fan",
-    category: "Home & Living",
-    price: "$24.99",
-    status: "Out Of Stock",
-    stock: 0,
-    views: 2105,
-    inquiries: 39,
-    date: "04/08/2024",
-    img: image,
-  },
-];
+import { Link, useNavigate } from "react-router-dom";
+import { Product } from "@/pages/SellerDashboard/SellerOrder/SellerData";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch } from "@/store/store";
+import {
+  selectTableShow,
+  showAll as showAllAction,
+} from "@/store/Slices/TableSlice/tableSlice";
+import { slugify } from "../Help/help";
 
 const statusColor = {
   Active: "bg-green-100 text-green-800",
@@ -229,129 +38,222 @@ const tableHead = [
   "Action",
 ];
 
-export const ProductTable = () => {
-  const { pathname } = useLocation();
+type Props = {
+  searchText: string;
+  selectedIds: number[];
+  productsList: Product[];
+  setSelectedIds: Dispatch<SetStateAction<number[]>>;
+};
 
+export const ProductTable: React.FC<Props> = ({
+  searchText,
+  selectedIds,
+  setSelectedIds,
+  productsList,
+}) => {
+  const dispatch = useDispatch<AppDispatch>();
+  const showAll = useSelector(selectTableShow);
+  const navigate = useNavigate();
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const ITEMS_PER_PAGE = 5;
+  const startIdx = (currentPage - 1) * ITEMS_PER_PAGE;
+  const totalPages = Math.ceil(productsList.length / ITEMS_PER_PAGE);
+
+  const filtered = productsList.filter((p) =>
+    [p.name, p.category].some((field) =>
+      field?.toLowerCase().includes(searchText.toLowerCase())
+    )
+  );
+
+  const displayList = showAll
+    ? filtered
+    : filtered.slice(startIdx, startIdx + ITEMS_PER_PAGE);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchText]);
+
+  const toggleSelect = (id: number) => {
+    if (selectedIds.includes(id)) {
+      setSelectedIds(selectedIds.filter((x) => x !== id));
+    } else {
+      setSelectedIds([...selectedIds, id]);
+    }
+  };
+
+  const toggleSelectAll = () => {
+    if (selectedIds.length === displayList.length) {
+      setSelectedIds([]);
+    } else {
+      setSelectedIds(displayList.map((p) => p.id));
+    }
+  };
+
+  const handleShow = () => {
+    dispatch(showAllAction());
+    setCurrentPage(1);
+    navigate("/seller-dashboard/all-products");
+  };
   return (
     <div className="w-full">
-      <div className="p-2  border border-[#E0E0E1] rounded-xl bg-white mb-5">
-        <Table>
-          <TableHeader className="pb-5">
-            <TableRow className="first:border-none">
-              {/* Checkbox Column */}
-              <TableHead className="rounded-l-xl bg-foundation-white">
-                <input type="checkbox" />
-              </TableHead>
-
-              {/* Dynamic Table Headers */}
-              {tableHead.map((header, index) => (
-                <TableHead
-                  key={header}
-                  className={`
-        font-medium text-sm text-center last:pr-2
-        ${index === 0 || index === 1 ? "text-start" : ""}
-        ${index === 1 || index === 6 ? "hidden xl:table-cell" : ""}
-        ${index === 3 || index === 5 ? "hidden md:table-cell" : ""}
-        ${index === tableHead.length - 1 ? "rounded-r-xl" : ""}
-        py-4 h-full bg-foundation-white text-foundation-gray
-      `}
-                >
-                  {header}
-                </TableHead>
-              ))}
-            </TableRow>
-          </TableHeader>
-
-          <TableBody>
-            {products.map((p) => (
-              <TableRow key={p.id} className="hover:bg-gray-50">
-                <TableCell>
-                  <input type="checkbox" />
-                </TableCell>
-                <TableCell className="flex items-center py-4">
-                  <img src={p.img} alt="" className="w-10 h-10 rounded mr-3" />
-                  <div className="hidden xl:block">
-                    <div className="font-medium text-gray-800  ">{p.name}</div>
-                    <div className="text-xs text-gray-500 ">
-                      SKU: SP‑X2023‑BLK
-                    </div>
-                  </div>
-                </TableCell>
-                <TableCell className="text-gray-700 hidden  xl:table-cell ">
-                  {p.category}
-                </TableCell>
-                <TableCell className="text-gray-700 text-center">
-                  {p.price}
-                </TableCell>
-                <TableCell className="font-medium text-center hidden  md:table-cell">
-                  <Button
-                    size="sm"
-                    className={`p-5 text-sm font-semibold rounded-xl ${
-                      statusColor[p.status]
-                    }`}
-                  >
-                    {p.status}
-                  </Button>
-                </TableCell>
-                <TableCell>
-                  <div className="flex items-center  justify-center">
-                    <span className="text-gray-700 mr-2">
-                      {p.stock.toString().padStart(2, "0")}
-                    </span>
-                    <div className="w-24 h-2 bg-gray-200 rounded overflow-hidden">
-                      <div
-                        className="h-full bg-green-500"
-                        style={{ width: `${p.stock}%` }}
+      {displayList.length > 0 && (
+        <div
+          className={`p-2 border border-[#E0E0E1] rounded-xl bg-white mb-5 w-full ${
+            showAll && "mb-10"
+          }`}
+        >
+          <div className="overflow-x-auto ">
+            <Table className="w-full table-auto ">
+              <TableHeader>
+                <TableRow className="first:border-none">
+                  <TableHead className="h-full py-4 bg-foundation-white text-foundation-gray rounded-l-xl ">
+                    <input
+                      type="checkbox"
+                      className="accent-[#F14141] focus:ring-[#F14141] w-fit"
+                      checked={
+                        displayList.length > 0 &&
+                        selectedIds.length === displayList.length
+                      }
+                      onChange={toggleSelectAll}
+                    />
+                  </TableHead>
+                  {tableHead.map((header, idx) => (
+                    <TableHead
+                      key={header}
+                      className={`
+                    font-medium text-sm text-center last:pr-2
+                    ${idx === 0 || idx === 1 ? "text-start" : ""}
+                    ${idx === 1 || idx === 6 ? "hidden xl:table-cell" : ""}
+                    ${idx === 3 || idx === 5 ? "hidden md:table-cell" : ""}
+                    ${idx === tableHead.length - 1 ? "rounded-r-xl" : ""}
+                    py-4 h-full bg-foundation-white text-foundation-gray 
+                  `}
+                    >
+                      {header}
+                    </TableHead>
+                  ))}
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {displayList.map((p) => (
+                  <TableRow key={p.id} className="hover:bg-gray-50">
+                    <TableCell>
+                      <input
+                        type="checkbox"
+                        checked={selectedIds.includes(p.id)}
+                        onChange={() => toggleSelect(p.id)}
+                        className="accent-[#F14141] focus:ring-[#F14141]"
                       />
-                    </div>
-                  </div>
-                </TableCell>
-                <TableCell className="hidden  md:table-cell">
-                  <div className="flex space-x-4 items-center  justify-center">
-                    <div>
-                      <div className="flex items-center gap-1 text-[#666] pb-1">
-                        <MdOutlineRemoveRedEye className="text-2xl" />
-                        <span>View</span>
-                      </div>
-                      <span className="text-jet-black font-medium">
-                        {p.views}
-                      </span>
-                    </div>
-                    <div>
-                      <div className="flex items-center gap-1 text-[#666] pb-1">
-                        <LuFileText className="text-2xl" />
-                        <span>Inquiries</span>
-                      </div>
-                      <span className="text-jet-black font-medium">
-                        {p.inquiries}
-                      </span>
-                    </div>
-                  </div>
-                </TableCell>
-                <TableCell className="text-gray-700 text-center hidden xl:table-cell">
-                  {p.date}
-                </TableCell>
+                    </TableCell>
 
-                <TableCell className="text-center">
-                  <Link
-                    to={`/seller-dashboard/all-products/${slugify(p.name)}`}
-                    className="text-sunset-orange cursor-pointer"
-                  >
-                    View
-                  </Link>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </div>
+                    <TableCell className="w-fit !px-0 py-4">
+                      <div className="flex items-center">
+                        <img
+                          src={p.img}
+                          alt={p.name}
+                          className="w-8 h-8 rounded sm:w-10 sm:h-10 xl:mr-3"
+                        />
+                        <div className="hidden xl:block">
+                          <div className="font-medium text-gray-800">
+                            {p.name}
+                          </div>
+                          <div className="text-xs text-gray-500">
+                            SKU: SP‑X2023‑BLK
+                          </div>
+                        </div>
+                      </div>
+                    </TableCell>
 
-      {pathname !== "/seller-dashboard/all-products" && (
-        <Pagination
-          title="All Products"
-          showText="Showing 1 to 10 of 24 orders"
-          path="/seller-dashboard/all-products"
-        />
+                    <TableCell className="hidden text-gray-700 xl:table-cell">
+                      {p.category}
+                    </TableCell>
+                    <TableCell className="text-center text-gray-700">
+                      {p.price}
+                    </TableCell>
+                    <TableCell className="hidden font-medium text-center md:table-cell">
+                      <Button
+                        size="sm"
+                        className={`p-5 text-sm font-semibold rounded-xl ${
+                          statusColor[p.status]
+                        }`}
+                      >
+                        {p.status}
+                      </Button>
+                    </TableCell>
+                    <TableCell>
+                      <div className="flex items-center justify-center">
+                        <span className="text-gray-700 sm:mr-2 ">
+                          {p.stock.toString().padStart(2, "0")}
+                        </span>
+                        <div className="w-24 h-1.5 overflow-hidden bg-gray-200 rounded hidden sm:block">
+                          <div
+                            className="h-full bg-green-500"
+                            style={{ width: `${p.stock}%` }}
+                          />
+                        </div>
+                      </div>
+                    </TableCell>
+                    <TableCell className="hidden md:table-cell">
+                      <div className="flex items-center justify-center sm:gap-2 ">
+                        <div>
+                          <div className="flex items-center gap-1 text-[#666] pb-1">
+                            <MdOutlineRemoveRedEye className="text-2xl" />
+                            <span>View</span>
+                          </div>
+                          <span className="font-medium text-jet-black">
+                            {p.views}
+                          </span>
+                        </div>
+                        <div>
+                          <div className="flex items-center gap-1 text-[#666] pb-1">
+                            <LuFileText className="text-2xl" />
+                            <span>Inquiries</span>
+                          </div>
+                          <span className="font-medium text-jet-black">
+                            {p.inquiries}
+                          </span>
+                        </div>
+                      </div>
+                    </TableCell>
+                    <TableCell className="hidden text-center text-gray-700 xl:table-cell">
+                      {p.date}
+                    </TableCell>
+                    <TableCell className="text-center">
+                      <Link
+                        to={`/seller-dashboard/all-products/${slugify(p.name)}`}
+                        className="cursor-pointer text-sunset-orange"
+                      >
+                        View
+                      </Link>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
+        </div>
+      )}
+
+      {displayList.length > 0 ? (
+        !showAll ? (
+          <Pagination
+            title="All Products"
+            showText={`Showing ${startIdx + 1} to ${Math.min(
+              startIdx + ITEMS_PER_PAGE,
+              filtered.length
+            )} of ${filtered.length} products`}
+            totalPages={totalPages}
+            currentPage={currentPage}
+            onPageChange={setCurrentPage}
+            showAll={showAll}
+            onToggleShowAll={handleShow}
+          />
+        ) : null
+      ) : (
+        <div className="text-gray-500 text-center">
+          No products available at the moment.
+        </div>
       )}
     </div>
   );
