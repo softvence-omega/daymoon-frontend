@@ -40,8 +40,8 @@ const CustomerInformation: React.FC<CustomerInformationProps> = ({
   } = customer;
 
   return (
-    <div className="w-full bg-white p-10 rounded-2xl border border-foundation-white">
-      <CommonHeader className="!text-2xl font-semibold mb-6 text-[#484848]">
+    <div className="w-full bg-white p-4 sm:p-10 rounded-2xl border border-foundation-white">
+      <CommonHeader className="sm:!text-2xl font-semibold mb-4 sm:mb-6 text-[#484848]">
         Customer Information
       </CommonHeader>
 

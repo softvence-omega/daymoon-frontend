@@ -57,7 +57,7 @@ const SearchFilter = ({
   }, []);
 
   return (
-    <div className="flex flex-col w-full gap-4 p-4 mx-auto mb-6 border rounded-full lg:flex-row lg:items-center lg:justify-between lg:max-w-6xl border-foundation-white">
+    <div className="flex flex-col w-full gap-4 p-4 mx-auto mb-6 lg:border rounded-full lg:flex-row lg:items-center lg:justify-between lg:max-w-6xl border-foundation-white">
       {/* Search Input */}
       <div className="relative w-full lg:flex-1">
         <span className="absolute right-3 top-1/2 -translate-y-1/2 transform rounded-full bg-sunset-orange p-2.5">
@@ -75,7 +75,6 @@ const SearchFilter = ({
         />
       </div>
 
-      {/* Filter Selects */}
       <div className="flex flex-col w-full gap-3 sm:flex-row sm:items-center lg:w-auto lg:flex-row lg:gap-3">
         <CommonSelect
           value={statusFilter}
