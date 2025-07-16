@@ -109,6 +109,7 @@ const EnquiriesByStatus: React.FC = () => {
     <div className="w-full h-full max-h-[555px] p-6 bg-white rounded-xl shadow-md">
       {/* Top Section: Title & Dropdown */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
+        {/* <div className="flex flex-col sm:flex-row md:flex-row justify-between items-start md:items-center gap-4 md:gap-8 mb-8 w-full"></div> */}
         <div className="w-full md:flex-1">
           <h1 className="text-[24px] leading-[130%] font-medium text-[#484848] mb-4">
             Order Status

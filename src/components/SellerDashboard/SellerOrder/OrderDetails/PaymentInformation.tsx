@@ -30,8 +30,8 @@ const PaymentInformation: React.FC<Props> = ({ payment }) => {
   } = payment;
 
   return (
-    <div className="w-full bg-white p-10 rounded-2xl border border-foundation-white mb-10 ">
-      <CommonHeader className="!text-2xl font-semibold  text-jet-black   mb-6">
+    <div className="w-full bg-white p-4 sm:p-10 rounded-2xl border border-foundation-white mb-10 ">
+      <CommonHeader className="sm:!text-2xl font-semibold mb-4 sm:mb-6 text-[#484848]">
         Payment Information
       </CommonHeader>
 

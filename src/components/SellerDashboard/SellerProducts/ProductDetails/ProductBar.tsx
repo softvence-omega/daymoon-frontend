@@ -49,7 +49,7 @@ const ProductBar = () => {
   };
   return (
     <div>
-      <div className="bg-white rounded-xl border border-foundation-white p-8 mb-8">
+      <div className="bg-white rounded-xl border border-foundation-white p-4 sm:p-10 mb-8">
         <div className="flex flex-col lg:flex-row items-start justify-between mb-6 gap-6">
           <div className="flex-1 ">
             <div className="flex items-center space-x-3 mb-2">
