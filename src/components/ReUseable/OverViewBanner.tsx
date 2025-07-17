@@ -1,12 +1,13 @@
 import CommonWrapper from "@/common/CommonWrapper";
-import banner from "../../assets/Reuseable/overview.png";
-import icon from "../../assets/Reuseable/techIcon.svg";
+import { motion } from "framer-motion";
 import { FaStar } from "react-icons/fa";
 import { MdLocationOn } from "react-icons/md";
+import { Link } from "react-router-dom";
 import fav from "../../assets/Icon/favorite.svg";
 import share from "../../assets/Icon/share.svg";
-import mail from "../../assets/Icon/inquiry-mail 1.svg";
 import sms from "../../assets/Icon/textsms.svg";
+import banner from "../../assets/Reuseable/overview.png";
+import icon from "../../assets/Reuseable/techIcon.svg";
 import OverView from "./OverView";
 
 const OverViewBanner = () => {
@@ -101,26 +102,41 @@ const OverViewBanner = () => {
               {/* Right: Eight Buttons & Icon Section */}
               <div className="flex flex-col justify-between gap-3 w-full md:w-auto md:min-w-[220px] mt-2 md:mt-0 h-full">
                 {/* Eight Buttons */}
-                <div className="flex flex-col gap-3 md:gap-4">
-                  <button className="bg-[#192D4E] border-[#192D4E] text-white rounded-[20px] px-4 py-2 md:px-[40px] md:py-[10px] text-[16px] md:text-[18px] font-[500] hover:bg-[#192D4E] transition flex items-center gap-2 justify-center cursor-pointer">
+                <div className="flex flex-col gap-2 md:gap-4">
+                  <motion.button
+                    whileTap={{ scale: 0.8 }}
+                    whileHover={{ scale: 1.03 }}
+                    className="bg-[#192D4E] border-[#192D4E] text-white rounded-[20px] px-4 py-2 md:px-[40px] md:py-[10px] text-[16px] md:text-[18px] font-[500] hover:bg-[#192D4E] transition flex items-center gap-2 justify-center cursor-pointer"
+                  >
                     <img
                       className="w-[20px] h-[20px] md:w-[24px] md:h-[24px]"
                       src={sms}
                       alt=""
                     />
                     <span>Contact Supplier</span>
-                  </button>
-                  <button
-                    className="border border-[#192D4E] text-[#192D4E] rounded-[20px] px-4 py-2 md:px-[40px] 
-                    md:py-[10px] text-[16px] md:text-[18px] font-[500] hover:bg-gray-50 transition flex items-center gap-2 justify-center cursor-pointer"
-                  >
-                    <img
-                      className="w-[20px] h-[20px] md:w-[24px] md:h-[24px]"
-                      src={mail}
-                      alt=""
-                    />
-                    <span>Send Inquiry</span>
-                  </button>
+                  </motion.button>
+                  <Link to="/buyer/dashboard/rfq">
+                    <motion.button
+                      whileTap={{ scale: 0.8 }}
+                      whileHover={{ scale: 1.03 }}
+                      className="border border-[#192D4E] text-[#192D4E] rounded-[20px] px-4 py-2 md:px-[50px] 
+                    md:py-[9px] text-[16px] md:text-[18px] font-[500] hover:bg-gray-50 transition flex items-center gap-2 justify-center cursor-pointer"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="25"
+                        height="24"
+                        viewBox="0 0 25 24"
+                        fill="none"
+                      >
+                        <path
+                          d="M14.5 2H6.5C5.4 2 4.5 2.9 4.5 4V20C4.5 21.1 5.4 22 6.5 22H18.5C19.6 22 20.5 21.1 20.5 20V8L14.5 2ZM6.5 20V4H13.5V8H18.5V20H6.5ZM11.5 19H13.5V18H14.5C15.05 18 15.5 17.55 15.5 17V14C15.5 13.45 15.05 13 14.5 13H11.5V12H15.5V10H13.5V9H11.5V10H10.5C9.95 10 9.5 10.45 9.5 11V14C9.5 14.55 9.95 15 10.5 15H13.5V16H9.5V18H11.5V19Z"
+                          fill="#192D4E"
+                        />
+                      </svg>
+                      <span>Request Quote</span>
+                    </motion.button>
+                  </Link>
                 </div>
                 {/* Icon Section */}
                 <div className="flex items-center gap-4 md:gap-[20px] justify-center md:justify-end mt-4 md:mt-0">

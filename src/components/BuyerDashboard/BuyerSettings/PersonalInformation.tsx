@@ -1,3 +1,4 @@
+import PageHeader from "@/components/BuyerDashboard/BuyerSettings/PageHeader";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -10,9 +11,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useState, useCallback } from "react";
+import { useCallback, useState } from "react";
 import { ImPencil } from "react-icons/im";
-import PageHeader from "@/components/BuyerDashboard/BuyerSettings/PageHeader";
 
 // Types
 interface FormData {
@@ -125,9 +125,13 @@ const PersonalInformation = () => {
         >
           <SelectValue placeholder={value || placeholder} />
         </SelectTrigger>
-        <SelectContent className="bg-white">
+        <SelectContent className="bg-white border-none">
           {options.map((option) => (
-            <SelectItem key={option.value} value={option.value}>
+            <SelectItem
+              className="hover:bg-gray-100 hover:text-sunset-orange   cursor-pointer "
+              key={option.value}
+              value={option.value}
+            >
               {option.label}
             </SelectItem>
           ))}
@@ -211,9 +215,13 @@ const PersonalInformation = () => {
               className="text-[#1A1A1A] font-medium text-base"
             />
           </SelectTrigger>
-          <SelectContent className="bg-white">
+          <SelectContent className="bg-white border-none">
             {options.map((option) => (
-              <SelectItem key={option.value} value={option.value}>
+              <SelectItem
+                className="hover:bg-gray-100 hover:text-sunset-orange   cursor-pointer "
+                key={option.value}
+                value={option.value}
+              >
                 {option.label}
               </SelectItem>
             ))}

@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
-import { Outlet, useLocation } from "react-router-dom";
-import Sidebar from "@/Layout/reusable-component/Sidebar";
 import DashboardNavbar from "@/Layout/reusable-component/DashboardNavbar";
+import Sidebar from "@/Layout/reusable-component/Sidebar";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { useEffect, useState } from "react";
+import { Outlet, useLocation } from "react-router-dom";
+import { Bounce, ToastContainer } from "react-toastify";
 
 const BuyerLayout = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -46,6 +47,16 @@ const BuyerLayout = () => {
         {/* Page Content */}
         <main className="flex-1 overflow-auto p-6 md:p-10">
           <Outlet />
+          <ToastContainer
+            position="bottom-right"
+            autoClose={2000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick={true}
+            rtl={false}
+            theme="light"
+            transition={Bounce}
+          />
         </main>
       </div>
     </div>

@@ -42,7 +42,7 @@ const StyledSelect = ({
       <SelectContent className="bg-white border-none ">
         {options.map((option) => (
           <SelectItem
-            className="hover:bg-[#E5E5E5] "
+            className="hover:bg-[#E5E5E5] hover:text-sunset-orange"
             key={option.value}
             value={option.value}
           >

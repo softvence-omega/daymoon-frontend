@@ -1,3 +1,4 @@
+import { motion } from "motion/react";
 import { Link } from "react-router-dom";
 import img from "../../assets/About/joinUs.png";
 
@@ -14,9 +15,13 @@ const JoinUs = () => {
           trust, quality, and convenience.
         </p>
         <Link to="/signup">
-          <button className="px-6 md:px-8 lg:px-[40px] py-2 md:py-[8px] lg:py-[10px] rounded-full md:rounded-[20px] bg-catalien-blue text-white font-medium hover:opacity-90  transition text-sm md:text-base cursor-pointer">
+          <motion.button
+            whileTap={{ scale: 0.8 }}
+            whileHover={{ scale: 1.05 }}
+            className="px-6 md:px-8 lg:px-[40px] py-2 md:py-[8px] lg:py-[10px] rounded-full md:rounded-[20px] bg-catalien-blue  text-white font-medium hover:opacity-90  transition text-sm md:text-base cursor-pointer"
+          >
             Sign Up Now
-          </button>
+          </motion.button>
         </Link>
       </div>
 

@@ -1,11 +1,11 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Separator } from "@/components/ui/separator";
-import PersonalInformation from "@/components/BuyerDashboard/BuyerSettings/PersonalInformation";
-import BusinessInformation from "@/components/BuyerDashboard/BuyerSettings/BusinessInformation";
-import ShippingAddress from "@/components/BuyerDashboard/BuyerSettings/ShippingAddress";
 import AccountSettings from "@/components/BuyerDashboard/BuyerSettings/AccountSettings";
+import BusinessInformation from "@/components/BuyerDashboard/BuyerSettings/BusinessInformation";
 import PaymentMethods from "@/components/BuyerDashboard/BuyerSettings/PaymentMethods";
+import PersonalInformation from "@/components/BuyerDashboard/BuyerSettings/PersonalInformation";
+import ShippingAddress from "@/components/BuyerDashboard/BuyerSettings/ShippingAddress";
 import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { IoIosArrowBack } from "react-icons/io";
 
 const tabsData = [
@@ -68,7 +68,6 @@ const BuyerSettings = () => {
 
       <Separator />
 
-      {/* Tabs for larger screens */}
       <div className="hidden md:block">
         <Tabs defaultValue="personal-information" className="space-y-4">
           <TabsList className="grid w-full gap-4 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 h-auto">
@@ -76,7 +75,7 @@ const BuyerSettings = () => {
               <TabsTrigger
                 key={tab.value}
                 value={tab.value}
-                className="md:text-lg lg:text-xl [@media(min-width:1600px)]:text-2xl font-normal border-b-2 border-transparent hover:border-gray-300 focus:border-gray-300"
+                className="md:text-lg lg:text-xl [@media(min-width:1600px)]:text-2xl font-normal border-b-2 border-transparent cursor-pointer hover:border-gray-300 focus:border-gray-300"
               >
                 {tab.label}
               </TabsTrigger>

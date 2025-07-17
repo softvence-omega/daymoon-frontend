@@ -171,7 +171,7 @@ const NavCatgegory = ({ data = categories }: { data?: typeof categories }) => {
       </DropdownMenuTrigger>
 
       <DropdownMenuContent
-        className="bg-white border-none max-w-[1100px] p-8 rounded-2xl shadow-[0_0_1px_0px_#666]  z-60"
+        className="bg-[#FCFCFC] border-none max-w-[1100px] p-8 rounded-2xl shadow-[0_0_1px_0px_#666]  z-60"
         align="start"
       >
         <div className="flex justify-between items-start mb-6">
@@ -192,10 +192,10 @@ const NavCatgegory = ({ data = categories }: { data?: typeof categories }) => {
               {data.map((cat, idx) => (
                 <motion.button
                   whileHover={{ scale: 1.03 }}
-                  className={`flex items-center justify-between w-full bg-white border cursor-pointer rounded-xl px-2 py-2 gap-2 shadow-[0_0_1px_0px_#F46A39]  transition ${
+                  className={`flex items-center justify-between w-full bg-white  cursor-pointer rounded-xl px-2 py-2 gap-2 !shadow-[0_1px_2px_rgba(0,0,0,0.06)]   transition ${
                     activeIndex === idx
-                      ? "border-[#B3B3B3] shadow-[0_0_0_2px_#F46A39]"
-                      : "border-transparent"
+                      ? " border border-[#B3B3B3]"
+                      : "border-none"
                   }`}
                   key={cat.label}
                   onClick={() => setActiveIndex(idx)}
@@ -208,7 +208,7 @@ const NavCatgegory = ({ data = categories }: { data?: typeof categories }) => {
                     />
                     <span className="font-semibold text-md">{cat.label}</span>
                   </span>
-                  <div className="bg-[#FEECEB] w-8 h-8 rounded-full flex items-center justify-center mr-2">
+                  <div className="bg-[#E8E8E8] w-8 h-8 rounded-full flex items-center justify-center mr-2">
                     {activeIndex === idx ? (
                       <img src={arrow1} className="w-4 h-4" />
                     ) : (

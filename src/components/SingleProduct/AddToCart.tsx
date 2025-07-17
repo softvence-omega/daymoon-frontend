@@ -128,7 +128,6 @@ function AddToCart({ productData }: { productData: IProduct }) {
         </DialogHeader>
 
         <div className="grid gap-6 mt-4">
-          {/* Display MOQ Range and Prices */}
           <div>
             <div className="flex justify-between flex-wrap items-center gap-5">
               {productData.moq.map((tier, i) => (

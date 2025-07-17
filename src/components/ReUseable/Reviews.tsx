@@ -1,14 +1,3 @@
-import { useState } from "react";
-import { reviews } from "@/lib/reviews";
-import ReviewCard from "./ReviewCard";
-import frame from "../../assets/Icon/frame.svg";
-import {
-  Select,
-  SelectValue,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-} from "@/components/ui/select";
 import {
   Dialog,
   DialogContent,
@@ -16,9 +5,21 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { FaArrowRightLong, FaChevronDown, FaStar } from "react-icons/fa6";
 import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import { reviews } from "@/lib/reviews";
+import { useState } from "react";
+import { FaArrowRightLong, FaChevronDown, FaStar } from "react-icons/fa6";
+import frame from "../../assets/Icon/frame.svg";
+import RedButton from "./RedButton";
+import ReviewCard from "./ReviewCard";
 
 const Reviews = () => {
   const [sortOption, setSortOption] = useState("latest");
@@ -34,7 +35,9 @@ const Reviews = () => {
     return true;
   });
 
-  const sortedReviews = [...filteredReviews].sort((a, b) => b.rating - a.rating);
+  const sortedReviews = [...filteredReviews].sort(
+    (a, b) => b.rating - a.rating
+  );
   const visibleReviews = sortedReviews.slice(0, visibleCount);
 
   const handleLoadMore = () => {
@@ -46,12 +49,12 @@ const Reviews = () => {
     setRating(selectedRating);
   };
 
-  const handleSubmitReview = () => {
-    console.log({ name, rating, description });
-    setName("");
-    setRating(0);
-    setDescription("");
-  };
+  // const handleSubmitReview = () => {
+  //   console.log({ name, rating, description });
+  //   setName("");
+  //   setRating(0);
+  //   setDescription("");
+  // };
 
   return (
     <section className="mt-8 md:mt-[24px]">
@@ -80,14 +83,23 @@ const Reviews = () => {
                 <SelectValue placeholder="Latest" />
                 <FaChevronDown className="ml-2 h-4 w-4 text-sunset-orange" />
               </SelectTrigger>
-              <SelectContent className="rounded-lg bg-white py-4">
-                <SelectItem value="latest" className="cursor-pointer">
+              <SelectContent className="rounded-lg bg-white py-4 border-none">
+                <SelectItem
+                  value="latest"
+                  className="cursor-pointer hover:bg-gray-100 hover:text-sunset-orange"
+                >
                   Latest
                 </SelectItem>
-                <SelectItem value="highest" className="cursor-pointer hover:text-sunset-orange">
+                <SelectItem
+                  value="highest"
+                  className="cursor-pointer hover:text-sunset-orange hover:bg-gray-100"
+                >
                   Highest
                 </SelectItem>
-                <SelectItem value="lowest" className="cursor-pointer hover:text-sunset-orange">
+                <SelectItem
+                  value="lowest"
+                  className="cursor-pointer hover:text-sunset-orange hover:bg-gray-100"
+                >
                   Lowest
                 </SelectItem>
               </SelectContent>
@@ -112,7 +124,10 @@ const Reviews = () => {
 
               <div className="space-y-5">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label
+                    htmlFor="name"
+                    className="block text-sm font-medium text-gray-700 mb-2"
+                  >
                     Your Name
                   </label>
                   <Input
@@ -125,7 +140,7 @@ const Reviews = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
                     Your Rating
                   </label>
                   <div className="flex gap-1">
@@ -142,7 +157,10 @@ const Reviews = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label
+                    htmlFor="description"
+                    className="block text-sm   font-medium text-gray-700 mb-2"
+                  >
                     Review Description
                   </label>
                   <Textarea
@@ -157,12 +175,7 @@ const Reviews = () => {
               </div>
 
               <div className="mt-6 flex justify-end">
-                <button
-                  onClick={handleSubmitReview}
-                  className="bg-sunset-orange text-white px-6 py-2.5 rounded-full font-medium hover:bg-orange-600 transition duration-300"
-                >
-                  Submit Review
-                </button>
+                <RedButton title="Submit Review" />
               </div>
             </DialogContent>
           </Dialog>

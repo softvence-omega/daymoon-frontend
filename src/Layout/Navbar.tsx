@@ -27,7 +27,9 @@ const Navbar = () => {
 
   const isActive = (path: string) => location.pathname === path;
   const menuItems = [
-    { label: "Become A Supplier", href: "/supplier" },
+    { label: "Buyer Dashboard", href: "/buyer/dashboard" },
+    { label: "Seller Dashboard ", href: "/seller-dashboard" },
+    { label: "Become A Supplier", href: "/signup" },
     { label: "App & Extensions", href: "/apps" },
     { label: "Help Centre", href: "/help" },
     { label: "Log In & Sign Up", href: "/login" },
@@ -65,7 +67,7 @@ const Navbar = () => {
       </div>
 
       <div className="hidden lg:block lg:mx-5 2xl:mx-auto">
-        <div className="flex justify-between items-center max-w-[1400px] mx-auto px-4 lg:px-0 py-4">
+        <div className="flex justify-between items-center  w-full max-w-[1400px] mx-auto my-auto px-4 md:px-10  py-4">
           <Link to="/">
             <img
               className="w-[124px] cursor-pointer h-[48px] object-cover"
@@ -119,7 +121,7 @@ const Navbar = () => {
                   {countries.map((country) => (
                     <DropdownMenuItem
                       key={country.code}
-                      className="cursor-pointer"
+                      className="cursor-pointer hover:bg-gray-100"
                     >
                       <img
                         alt="flag"

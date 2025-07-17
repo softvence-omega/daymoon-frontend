@@ -1,13 +1,11 @@
-import React, { useState } from "react";
+import CommonCalender from "@/common/CommonCalender";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import {
   Select,
   SelectContent,
@@ -15,8 +13,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
 import { X } from "lucide-react";
+import React, { useState } from "react";
 import { MdOutlineCloudUpload } from "react-icons/md";
+import { toast } from "react-toastify";
 
 interface RFQModalProps {
   isOpen: boolean;
@@ -110,6 +111,7 @@ const RFQModal: React.FC<RFQModalProps> = ({ isOpen, onClose }) => {
 
   const handleSubmit = () => {
     // TODO: Implement form submission logic
+    toast.success("RFQ created successfully!");
     console.log("Form submitted:", formData);
     onClose();
   };
@@ -186,7 +188,11 @@ const RFQModal: React.FC<RFQModalProps> = ({ isOpen, onClose }) => {
                 </SelectTrigger>
                 <SelectContent className="bg-white">
                   {productCategories.map((category) => (
-                    <SelectItem key={category} value={category}>
+                    <SelectItem
+                      className="hover:bg-gray-200 hover:text-sunset-orange cursor-pointer01"
+                      key={category}
+                      value={category}
+                    >
                       {category}
                     </SelectItem>
                   ))}
@@ -259,7 +265,6 @@ const RFQModal: React.FC<RFQModalProps> = ({ isOpen, onClose }) => {
               />
             </div>
 
-            {/* Expected Delivery Date */}
             <div className="">
               <label
                 htmlFor="expectedDeliveryDate"
@@ -267,19 +272,7 @@ const RFQModal: React.FC<RFQModalProps> = ({ isOpen, onClose }) => {
               >
                 Expected Delivery Date
               </label>
-              <Input
-                id="expectedDeliveryDate"
-                type="date"
-                value={formData.expectedDeliveryDate}
-                onChange={(e) =>
-                  handleInputChange("expectedDeliveryDate", e.target.value)
-                }
-                min={new Date().toISOString().split("T")[0]}
-                className="w-full bg-[#E5E5E5] border border-[#B3B3B3] text-base rounded-xl placeholder:text-[#969696] h-auto p-3 mt-2 [&::-webkit-calendar-picker-indicator]:text-[#F04436] [&::-webkit-calendar-picker-indicator]:cursor-pointer [&::-webkit-calendar-picker-indicator]:ml-auto"
-                style={{
-                  colorScheme: "light",
-                }}
-              />
+              <CommonCalender />
             </div>
 
             {/* Requirements */}
@@ -360,19 +353,18 @@ const RFQModal: React.FC<RFQModalProps> = ({ isOpen, onClose }) => {
 
             {/* Action Buttons */}
             <div className="grid grid-cols-2 gap-4">
-              <Button
-                onClick={handleSubmit}
-                className="w-full bg-[#FFF] text-[#F04436] rounded-[20px] py-4 h-auto border border-[#F04436] cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                Post Lead
-              </Button>
-              <Button
-                variant="outline"
+              <button
                 onClick={handleCancel}
-                className="w-full bg-[#F04436] text-white rounded-[20px] py-4 h-auto border border-[#F04436] hover:bg-[#F04436]/90 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full hover:scale-103 transition-all  rounded-2xl py-4 h-fit border border-[#F04436]  cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Cancel
-              </Button>
+              </button>
+              <button
+                onClick={handleSubmit}
+                className="w-full bg-[#F04436] hover:bg-[#AA3026] text-white flex justify-center text-sm md:text-base hover:scale-103 transition-all  itews-center gap-2 px-4  py-4  rounded-xl cursor-pointer"
+              >
+                Post Lead
+              </button>
             </div>
           </div>
         </div>

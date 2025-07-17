@@ -1,3 +1,5 @@
+import CommonHeader from "@/common/CommonHeader";
+import SubHeader from "@/common/SubHeader";
 import { Badge } from "@/components/ui/badge";
 import {
   Select,
@@ -6,24 +8,22 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useParams } from "react-router-dom";
 import {
   Bar,
   BarChart,
+  CartesianGrid,
   ResponsiveContainer,
+  Tooltip,
   XAxis,
   YAxis,
-  Tooltip,
-  CartesianGrid,
 } from "recharts";
-import Breadcrumbs from "../../SellerProducts/Breadcrumbs";
-import { useParams } from "react-router-dom";
 import profile from "../../../../assets/landing/profile.png";
-import CommonHeader from "@/common/CommonHeader";
-import SubHeader from "@/common/SubHeader";
+import Breadcrumbs from "../../SellerProducts/Breadcrumbs";
 
-import { BsFillTagFill } from "react-icons/bs";
 import ButtonWithIcon from "@/common/ButtonWithIcon";
 import DashboardCommonSpace from "@/common/DashboardCommonSpace";
+import { BsFillTagFill } from "react-icons/bs";
 
 const purchaseData = [
   { month: "Jan", amount: 200 },
@@ -57,7 +57,7 @@ export default function BuyerProfile() {
       <div className=" bg-white p-10 rounded-2xl border border-foundation-white h-[400px]">
         <div className="flex items-start justify-between h-full ">
           <div className="flex  gap-4">
-            <div className="w-16 h-16 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden">
+            <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center overflow-hidden">
               <img
                 src={profile}
                 alt="Marvin McKinney"

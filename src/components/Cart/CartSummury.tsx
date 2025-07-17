@@ -34,7 +34,7 @@ export function CartSummary({ cartData }: CartSummaryProps) {
   const calculateTotal = () => {
     let total = 0;
 
-    cartData.cart.forEach((vendor) => {
+    cartData?.cart?.forEach((vendor) => {
       vendor.products.forEach((product) => {
         product.variants.forEach((variant) => {
           const price = getPriceBasedOnQuantity(
@@ -52,10 +52,10 @@ export function CartSummary({ cartData }: CartSummaryProps) {
   const totalPrice = calculateTotal();
 
   return (
-    <Card className="lg:sticky top-6 my-20 border-1 border-[#E5E5E5]">
+    <Card className="lg:sticky top-28 my-20 border-1 border-[#E5E5E5]">
       <CardContent className="space-y-4">
         <div className="space-y-2">
-          {cartData.cart.flatMap((vendor) =>
+          {cartData?.cart?.flatMap((vendor) =>
             vendor.products.flatMap((product) =>
               product.variants.map((variant) => (
                 <div
