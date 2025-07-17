@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import img from "../../assets/SignUp/signup.png";
 import { FaGlobe } from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
 import buyer from "../../assets/Icon/cart.png";
 import supplier from "../../assets/Icon/truck.png";
+import img from "../../assets/SignUp/signup.png";
 
 const SignupJoin = () => {
   const [role, setRole] = useState<"buyer" | "seller" | "">("");
@@ -11,9 +11,9 @@ const SignupJoin = () => {
 
   const handleSubmit = () => {
     if (role === "buyer") {
-      navigate("/signup-buyer");
+      navigate("/buyer-signup");
     } else if (role === "seller") {
-      navigate("/signup-seller");
+      navigate("/seller-signup");
     }
   };
 

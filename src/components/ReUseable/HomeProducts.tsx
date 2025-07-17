@@ -27,7 +27,8 @@ const HomeProducts = ({ cols, rows }: HomeProductsProps) => {
     typeof window !== "undefined" ? window.innerWidth : 1024
   );
   const [visibleCount, setVisibleCount] = useState(0);
-
+  cols.xl = cols.xl || 6;
+  rows.xl = rows.xl || 6;
   useEffect(() => {
     const handleResize = () => setWindowWidth(window.innerWidth);
     window.addEventListener("resize", handleResize);

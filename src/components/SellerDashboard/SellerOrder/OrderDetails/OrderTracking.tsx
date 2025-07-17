@@ -1,9 +1,9 @@
-import { Check, Truck, Package } from "lucide-react";
-import { FC } from "react";
 import ButtonWithIcon from "@/common/ButtonWithIcon";
 import CommonButton from "@/common/CommonButton";
-import SubHeader from "@/common/SubHeader";
 import CommonHeader from "@/common/CommonHeader";
+import SubHeader from "@/common/SubHeader";
+import { Check, Package, Truck } from "lucide-react";
+import { FC } from "react";
 
 interface TrackingStep {
   id: string;
@@ -98,7 +98,7 @@ const OrderTracking: FC<OrderTrackingProps> = ({ data }) => {
               <div className="relative z-10">{getStepIcon(step)}</div>
 
               {!isLast && (
-                <div className="absolute left-2.5 sm:left-6 top-6 sm:top-12 w-0.5 h-full bg-gray-200" />
+                <div className="absolute left-2.5 sm:left-6 top-6 sm:top-12 w-0.5 h-full bg-gray-100" />
               )}
 
               <div className="flex-1 pt-1 sm:pt-2">

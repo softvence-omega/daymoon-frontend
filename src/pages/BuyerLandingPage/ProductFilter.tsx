@@ -64,7 +64,9 @@ const ProductFilter = () => {
           )}
         </div>
       </div>
-      <JoinUs />
+      <div className="my-32">
+        <JoinUs />
+      </div>
     </CommonWrapper>
   );
 };

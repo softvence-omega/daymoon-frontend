@@ -1,5 +1,3 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -9,10 +7,12 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { products } from "@/lib/productCard/cardData";
-import { ChevronDown, Check } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+import { Check, ChevronDown } from "lucide-react";
+import { useState } from "react";
+import MoreButton from "./MoreButton";
 import ProductsComponent from "./ProductsComponent";
 import Reviews from "./Reviews";
-import MoreButton from "./MoreButton";
 
 const OverViewTab = () => {
   const [activeTab, setActiveTab] = useState("product");
@@ -52,7 +52,7 @@ const OverViewTab = () => {
           <TabsTrigger
             value="product"
             className="relative px-2 py-2 text-sm sm:text-base font-medium text-muted-foreground
-              data-[state=active]:text-black data-[state=active]:font-semibold
+              data-[state=active]:text-black data-[state=active]:font-semibold md:text-2xl
               data-[state=active]:after:content-[''] data-[state=active]:after:absolute
               data-[state=active]:after:left-0 data-[state=active]:after:bottom-[-1px]
               data-[state=active]:after:h-[2px] data-[state=active]:after:w-full
@@ -64,7 +64,7 @@ const OverViewTab = () => {
 
           <TabsTrigger
             value="reviews"
-            className="relative px-2 py-2 text-sm sm:text-base font-medium text-muted-foreground
+            className="relative px-2 py-2 text-sm sm:text-base md:text-2xl font-medium text-muted-foreground
               data-[state=active]:text-black data-[state=active]:font-semibold
               data-[state=active]:after:content-[''] data-[state=active]:after:absolute
               data-[state=active]:after:left-0 data-[state=active]:after:bottom-[-1px]
@@ -84,7 +84,7 @@ const OverViewTab = () => {
               <DropdownMenuTrigger asChild>
                 <Button
                   variant="outline"
-                  className="w-[180px] flex justify-between items-center cursor-pointer"
+                  className="w-[180px] flex justify-between items-center cursor-pointer border-[#B3B3B3] "
                 >
                   {selectedCategory === "All"
                     ? "All Categories"
@@ -92,7 +92,7 @@ const OverViewTab = () => {
                   <ChevronDown className="ml-2 h-4 w-4 text-sunset-orange" />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="bg-white max-h-[60vh] overflow-y-auto w-[180px]">
+              <DropdownMenuContent className="bg-white max-h-[60vh] overflow-y-auto w-[180px] border-none">
                 {categories.map((cat) => (
                   <DropdownMenuItem
                     key={cat}
@@ -112,18 +112,17 @@ const OverViewTab = () => {
               </DropdownMenuContent>
             </DropdownMenu>
 
-            {/* Price Filter */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button
                   variant="outline"
-                  className="w-[150px] flex justify-between items-center cursor-pointer"
+                  className="w-[160px] flex justify-between items-center cursor-pointer border-[#B3B3B3] "
                 >
                   Price: {selectedPrice}
                   <ChevronDown className="ml-2 h-4 w-4 text-sunset-orange" />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="bg-white max-h-[60vh] overflow-y-auto w-[150px]">
+              <DropdownMenuContent className="bg-white max-h-[60vh] overflow-y-auto w-[160px] border-none">
                 {prices.map((price) => (
                   <DropdownMenuItem
                     key={price}
@@ -145,7 +144,6 @@ const OverViewTab = () => {
           </div>
         )}
 
-        {/* Animate switching tab content */}
         <AnimatePresence mode="wait">
           {activeTab === "product" && (
             <TabsContent value="product" className="mt-6" forceMount>

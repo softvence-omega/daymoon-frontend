@@ -1,19 +1,6 @@
-import { useState } from "react";
-import { Card } from "@/components/ui/card";
-  import{ Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import PageHeader from "@//components/BuyerDashboard/BuyerSettings/PageHeader";
 import { Button } from "@/components/ui/button";
-import { ImPencil } from "react-icons/im";
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { TbBriefcase2 } from "react-icons/tb";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
+import { Card } from "@/components/ui/card";
 import {
   Drawer,
   DrawerClose,
@@ -22,7 +9,20 @@ import {
   DrawerHeader,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import PageHeader from "@//components/BuyerDashboard/BuyerSettings/PageHeader";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
+import { useState } from "react";
+import { ImPencil } from "react-icons/im";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { TbBriefcase2 } from "react-icons/tb";
 
 const BusinessInformation = () => {
   const [formData, setFormData] = useState({
@@ -74,7 +74,7 @@ const BusinessInformation = () => {
   ];
 
   return (
-    <Card className="mx-auto mt-8 md:p-10 bg-[#FFFFFF] border border-[#E5E5E5] rounded-[20px] py-0 md:py-6 shadow-none ">
+    <Card className="mx-auto mt-8 md:p-10 bg-[#FFFFFF] border border-[#E5E5E5] rounded-[20px] py-0  shadow-none ">
       <div className="space-y-6 lg:col-span-8">
         <div className="hidden md:block">
           <PageHeader
@@ -128,9 +128,13 @@ const BusinessInformation = () => {
                     }
                   />
                 </SelectTrigger>
-                <SelectContent className="bg-white">
+                <SelectContent className="border-none bg-white">
                   {businessTypeOptions.map((option) => (
-                    <SelectItem key={option.value} value={option.value}>
+                    <SelectItem
+                      className="hover:bg-gray-100 hover:text-sunset-orange   cursor-pointer "
+                      key={option.value}
+                      value={option.value}
+                    >
                       {option.label}
                     </SelectItem>
                   ))}
@@ -192,9 +196,13 @@ const BusinessInformation = () => {
                     }
                   />
                 </SelectTrigger>
-                <SelectContent className="bg-white">
+                <SelectContent className="border-none bg-white">
                   {industryOptions.map((option) => (
-                    <SelectItem key={option.value} value={option.value}>
+                    <SelectItem
+                      className="hover:bg-gray-100 hover:text-sunset-orange  cursor-pointer "
+                      key={option.value}
+                      value={option.value}
+                    >
                       {option.label}
                     </SelectItem>
                   ))}
@@ -222,9 +230,13 @@ const BusinessInformation = () => {
                     placeholder={formData.companySize || "Select Company Size"}
                   />
                 </SelectTrigger>
-                <SelectContent className="bg-white">
+                <SelectContent className="border-none bg-white">
                   {companySizeOptions.map((option) => (
-                    <SelectItem key={option.value} value={option.value}>
+                    <SelectItem
+                      className="hover:bg-gray-100 hover:text-sunset-orange  cursor-pointer "
+                      key={option.value}
+                      value={option.value}
+                    >
                       {option.label}
                     </SelectItem>
                   ))}
@@ -334,9 +346,13 @@ const BusinessInformation = () => {
                           className="text-[#1A1A1A] font-medium text-base placeholder:text-[#1A1A1A] placeholder:font-medium placeholder:text-base"
                         />
                       </SelectTrigger>
-                      <SelectContent className="bg-white">
+                      <SelectContent className="border-none bg-white">
                         {businessTypeOptions.map((option) => (
-                          <SelectItem key={option.value} value={option.value}>
+                          <SelectItem
+                            className="hover:bg-gray-100 hover:text-sunset-orange  cursor-pointer "
+                            key={option.value}
+                            value={option.value}
+                          >
                             {option.label}
                           </SelectItem>
                         ))}
@@ -422,9 +438,13 @@ const BusinessInformation = () => {
                           className="text-[#1A1A1A] font-medium text-base"
                         />
                       </SelectTrigger>
-                      <SelectContent className="bg-white">
+                      <SelectContent className="border-none bg-white ">
                         {industryOptions.map((option) => (
-                          <SelectItem key={option.value} value={option.value}>
+                          <SelectItem
+                            className="hover:bg-gray-100 hover:text-sunset-orange  cursor-pointer "
+                            key={option.value}
+                            value={option.value}
+                          >
                             {option.label}
                           </SelectItem>
                         ))}
@@ -458,9 +478,13 @@ const BusinessInformation = () => {
                           className="text-[#1A1A1A] font-medium text-base"
                         />
                       </SelectTrigger>
-                      <SelectContent className="bg-white">
+                      <SelectContent className="border-none bg-white">
                         {companySizeOptions.map((option) => (
-                          <SelectItem key={option.value} value={option.value}>
+                          <SelectItem
+                            className="hover:bg-gray-100 hover:text-sunset-orange  cursor-pointer "
+                            key={option.value}
+                            value={option.value}
+                          >
                             {option.label}
                           </SelectItem>
                         ))}

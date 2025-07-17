@@ -1,6 +1,6 @@
-import { FaPlus } from "react-icons/fa";
-import visa from "@/assets/dashboard/buyer-dashboard/visa.svg";
 import mastercard from "@/assets/dashboard/buyer-dashboard/mastercard.svg";
+import visa from "@/assets/dashboard/buyer-dashboard/visa.svg";
+import { FaPlus } from "react-icons/fa";
 import PaymentMethodCard from "../Shared/PaymentMethodCard";
 
 const cardDetails = [
@@ -56,7 +56,7 @@ const PaymentMethods = () => {
       <h2 className="text-2xl sm:text-3xl font-medium text-[#1A1A1A] mt-6 sm:mt-10 mb-4 sm:mb-6">
         Payment Methods
       </h2>
-      <div className="mx-auto mt-6 sm:mt-8 md:p-6 sm:p-10 bg-[#FFFFFF] md:border border-[#B3B3B3] rounded-[20px]">
+      <div className="mx-auto mt-6 sm:mt-8 md:p-6 sm:p-10 bg-[#FFFFFF] md:border border-[#E5E5E5] rounded-[20px]">
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-6">
           {cardDetails.map((card) => (
             <PaymentMethodCard
@@ -67,9 +67,9 @@ const PaymentMethods = () => {
               onSetDefault={handleSetDefault}
             />
           ))}
-          
+
           {/* Add New Payment Method Card */}
-          <div 
+          <div
             className="bg-[#FFFFFF] p-4 sm:p-6 rounded-xl border border-dashed border-[#B3B3B3] flex flex-col gap-2 items-center justify-center cursor-pointer hover:bg-[#F9F9F9] transition-colors"
             onClick={handleAddPaymentMethod}
           >

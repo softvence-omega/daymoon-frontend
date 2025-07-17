@@ -24,8 +24,8 @@ const ContactOptions = () => {
       buttonText: "Send Email",
       bgColor: "bg-red-50",
       iconColor: "text-red-400",
-      buttonBgColor: "bg-red-500",
-      buttonHoverColor: "hover:bg-red-600",
+      buttonBgColor: "bg-sunset-orange",
+      buttonHoverColor: "hover:bg-[#AA3026]",
     },
     {
       id: 3,
@@ -75,7 +75,7 @@ const ContactOptions = () => {
             <motion.button
               whileTap={{ scale: 0.8 }}
               whileHover={{ scale: 1.02 }}
-              className={`w-full py-2 md:py-3 px-6 text-sm lg:text-base md:px-8 rounded-xl text-white ${option.buttonBgColor} ${option.buttonHoverColor}`}
+              className={`w-full py-2 md:py-3 px-6 text-sm lg:text-base md:px-8  cursor-pointer rounded-xl text-white ${option.buttonBgColor} ${option.buttonHoverColor}`}
             >
               {option.buttonText}
             </motion.button>

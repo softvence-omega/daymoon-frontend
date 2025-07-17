@@ -5,6 +5,7 @@ import StyledSelect from "@/components/ReUseable/StyledSelect";
 import { BuyerOrderTableData } from "@/lib/Buyer/BuyerOrderTable";
 import { BuyerOrder } from "@/types/Buyer/BuyerOrderTypes";
 import { Search } from "lucide-react";
+import { motion } from "motion/react";
 import React, { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 interface BuyerOrdersTableProps {
@@ -111,10 +112,10 @@ const BuyerOrdersTable: React.FC<BuyerOrdersTableProps> = () => {
             Manage and track your order history
           </p>
         </div>
-        <div className="flex gap-3 mt-4 md:mt-0 flex-wrap md:flex-nowrap">
+        <div className="flex items-center mt-4 md:mt-0 flex-wrap md:flex-nowrap gap-6">
           <Link
             to="reviews"
-            className="flex items-center cursor-pointer gap-2 md:px-4 md:py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+            className="flex text-catalien-blue items-center cursor-pointer gap-2 md:px-4 md:py-2 text-sm font-medium  hover:bg-gray-50 transition-colors"
           >
             <span className="border-b border-catalien-blue text-lg">
               Reviews
@@ -122,18 +123,22 @@ const BuyerOrdersTable: React.FC<BuyerOrdersTableProps> = () => {
             <img src={reviews} alt="" className="w-5 h-5" />
           </Link>
           <Link to="refund">
-            <button className="flex cursor-pointer items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700  transition-colors">
+            <button className="flex cursor-pointer items-center gap-2 px-4 py-2 text-sm font-medium text-catalien-blue text-nowrap transition-colors">
               <span className="border-b border-catalien-blue text-lg">
-                Refund
+                Refund Requests
               </span>
               <img src={refund} alt="" className="w-5 h-5" />
             </button>
           </Link>
-          {/* <Link to="refund"> */}
-          <button className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-red-500 rounded-full hover:bg-red-600 transition-colors">
+
+          <motion.button
+            whileTap={{ scale: 0.9 }}
+            whileHover={{ scale: 1.02 }}
+            className={`w-full bg-[#F04436] hover:bg-[#AA3026] text-white flex justify-center text-sm md:text-base itews-center gap-2 p-4   rounded-xl cursor-pointer`}
+          >
             <img src={coupon} alt="" className="w-5 h-5" />
             Coupons
-          </button>
+          </motion.button>
           {/* </Link> */}
         </div>
       </div>

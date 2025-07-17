@@ -1,5 +1,5 @@
-import React, { useState, useEffect, Dispatch, SetStateAction } from "react";
 import Pagination from "@/common/Pagination";
+import { Button } from "@/components/ui/button";
 import {
   Table,
   TableBody,
@@ -8,17 +8,17 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Button } from "@/components/ui/button";
-import { LuFileText } from "react-icons/lu";
-import { MdOutlineRemoveRedEye } from "react-icons/md";
-import { Link, useNavigate } from "react-router-dom";
 import { Product } from "@/pages/SellerDashboard/SellerOrder/SellerData";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch } from "@/store/store";
 import {
   selectTableShow,
   showAll as showAllAction,
 } from "@/store/Slices/TableSlice/tableSlice";
+import { AppDispatch } from "@/store/store";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { LuFileText } from "react-icons/lu";
+import { MdOutlineRemoveRedEye } from "react-icons/md";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import { slugify } from "../Help/help";
 
 const statusColor = {
@@ -186,7 +186,7 @@ export const ProductTable: React.FC<Props> = ({
                         <span className="text-gray-700 sm:mr-2 ">
                           {p.stock.toString().padStart(2, "0")}
                         </span>
-                        <div className="w-24 h-1.5 overflow-hidden bg-gray-200 rounded hidden sm:table-cell">
+                        <div className="w-24 h-1.5 overflow-hidden bg-gray-100 rounded hidden sm:table-cell">
                           <div
                             className="h-full bg-green-500"
                             style={{ width: `${p.stock}%` }}

@@ -140,7 +140,7 @@ const GlobalSearchBar = () => {
                   <span
                     key={tag}
                     onClick={() => handleFillInput(tag, true)}
-                    className="px-3 py-1 rounded-full bg-gray-100 text-sm cursor-pointer hover:bg-gray-200"
+                    className="px-3 py-1 rounded-full bg-gray-100 text-sm cursor-pointer hover:bg-gray-100"
                   >
                     {tag}
                   </span>

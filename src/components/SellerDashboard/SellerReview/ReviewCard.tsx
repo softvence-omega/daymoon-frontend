@@ -87,7 +87,7 @@ const ReviewCard = () => {
         </div>
 
         {showProgressBar && (
-          <div className="w-full bg-gray-200 rounded-full min-h-1.5 mb-2">
+          <div className="w-full bg-gray-100 rounded-full min-h-1.5 mb-2">
             <div
               className={`h-1.5 rounded-full ${
                 progressColor === "green" ? "bg-green-500" : "bg-red-500"
