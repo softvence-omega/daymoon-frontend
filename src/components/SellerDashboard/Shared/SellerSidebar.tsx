@@ -1,5 +1,6 @@
 import logo from "@/assets/dashboard/buyer-dashboard/logo.png"; // Adjust the path to your logo image
 import { Badge } from "@/components/ui/badge";
+import { Home } from "lucide-react";
 import { FaRegHeart, FaRegStar } from "react-icons/fa";
 import { FaTruck } from "react-icons/fa6";
 import { GrAnnounce } from "react-icons/gr";
@@ -31,6 +32,7 @@ export interface SidebarProps {
 }
 
 const defaultSidebarItems: SidebarItem[] = [
+  { icon: Home, label: "Home", href: "/" },
   { icon: MdGridView, label: "Dashboard", href: "/seller-dashboard/dashboard" },
   { icon: FaTruck, label: "Products", href: "/seller-dashboard/products" },
   { icon: MdOutlineMessage, label: "Orders", href: "/seller-dashboard/orders" },
@@ -76,7 +78,9 @@ const SellerSidebar: React.FC<SidebarProps> = ({
     >
       {/* Logo */}
       <div className="flex items-center justify-center p-2 sm:p-3 border-b border-[#E5E5E5]">
-        <img src={logo} className="w-30 md:w-32" alt="Logo" />
+        <Link to="/">
+          <img src={logo} className="w-30 md:w-32" alt="Logo" />
+        </Link>
       </div>
 
       {/* Navigation */}

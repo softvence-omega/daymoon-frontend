@@ -1,4 +1,4 @@
-import CommonCalender from "@/common/CommonCalender";
+import CommonCalendar from "@/common/CommonCalender";
 import {
   Dialog,
   DialogContent,
@@ -48,7 +48,14 @@ const RFQModal: React.FC<RFQModalProps> = ({ isOpen, onClose }) => {
   });
 
   const [dragActive, setDragActive] = useState(false);
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
 
+  const handleDateChange = (date: Date | undefined) => {
+    if (date) {
+      setSelectedDate(date);
+      handleInputChange("expectedDeliveryDate", date.toISOString());
+    }
+  };
   const productCategories = [
     "Electronics",
     "Clothing & Apparel",
@@ -272,7 +279,14 @@ const RFQModal: React.FC<RFQModalProps> = ({ isOpen, onClose }) => {
               >
                 Expected Delivery Date
               </label>
-              <CommonCalender />
+              <div className="mt-2">
+                {" "}
+                <CommonCalendar
+                  label="Expected Delivery Date"
+                  selectedDate={selectedDate}
+                  onSelectDate={handleDateChange}
+                />
+              </div>
             </div>
 
             {/* Requirements */}

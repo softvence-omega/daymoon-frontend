@@ -1,15 +1,16 @@
+import logo from "@/assets/dashboard/buyer-dashboard/logo.png";
+import { Badge } from "@/components/ui/badge";
+import { Home } from "lucide-react";
+import { FaRegHeart } from "react-icons/fa";
+import { FaTruck } from "react-icons/fa6";
+import { IoMdSettings } from "react-icons/io";
 import {
   MdGridView,
-  MdOutlineMessage,
   MdOutlineCreditCard,
+  MdOutlineMessage,
   MdOutlineRateReview,
 } from "react-icons/md";
-import { FaTruck } from "react-icons/fa6";
-import { FaRegHeart } from "react-icons/fa";
-import { IoMdSettings } from "react-icons/io";
-import { Badge } from "@/components/ui/badge";
 import { Link, useLocation } from "react-router-dom";
-import logo from "@/assets/dashboard/buyer-dashboard/logo.png";
 
 // Define types for better reusability
 export interface SidebarItem {
@@ -30,6 +31,7 @@ export interface SidebarProps {
 
 // Updated sidebar items to match your route structure
 const defaultSidebarItems: SidebarItem[] = [
+  { icon: Home, label: "Home", href: "/" },
   { icon: MdGridView, label: "Dashboard", href: "/buyer/dashboard" },
   { icon: FaTruck, label: "Orders", href: "/buyer/dashboard/orders" },
   {
@@ -55,13 +57,15 @@ const Sidebar: React.FC<SidebarProps> = ({ items = defaultSidebarItems }) => {
   const location = useLocation();
 
   return (
-     <div
+    <div
       className="flex flex-col bg-white sticky top-0 h-screen"
       style={{ boxShadow: "3px 4px 42.3px 0px #0000001A" }}
     >
       {/* Logo */}
       <div className="flex items-center justify-center p-2 sm:p-3 border-b border-[#E5E5E5]">
-        <img src={logo} className="w-30 md:w-32" alt="Logo" />
+        <Link to="/">
+          <img src={logo} className="w-30 md:w-32" alt="Logo" />
+        </Link>
       </div>
 
       {/* Navigation */}

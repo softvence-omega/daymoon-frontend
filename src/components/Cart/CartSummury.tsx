@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { CartData } from "@/types";
+import { Link } from "react-router-dom";
 import RedButton from "../ReUseable/RedButton";
 
 interface CartSummaryProps {
@@ -88,7 +89,10 @@ export function CartSummary({ cartData }: CartSummaryProps) {
           </span>
         </div>
 
-        <RedButton title="Proceed to checkout" />
+        <Link to="/checkout">
+          {" "}
+          <RedButton title="Proceed to checkout" />
+        </Link>
 
         <div className="text-xs text-gray-500 text-center mt-4">
           <p className="mt-1">Secure checkout with SSL encryption</p>

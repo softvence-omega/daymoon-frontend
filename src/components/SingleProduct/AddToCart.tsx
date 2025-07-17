@@ -14,6 +14,7 @@ import { Input } from "@/components/ui/input";
 import { IProduct, VariantQuantities } from "@/types";
 import { motion } from "motion/react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function AddToCart({ productData }: { productData: IProduct }) {
   // Track selected customizations and variant quantities
@@ -250,6 +251,7 @@ function AddToCart({ productData }: { productData: IProduct }) {
               Cancel
             </motion.button>
           </DialogClose>
+
           <motion.button
             whileTap={{ scale: 0.95 }}
             whileHover={{ scale: 1.03 }}
@@ -257,7 +259,8 @@ function AddToCart({ productData }: { productData: IProduct }) {
               !isQuantityValid ? "opacity-50 cursor-not-allowed" : ""
             }`}
           >
-            Continue to Checkout
+            {" "}
+            <Link to="/cart">Continue to Checkout</Link>
           </motion.button>
         </DialogFooter>
       </DialogContent>
