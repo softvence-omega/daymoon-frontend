@@ -9,7 +9,7 @@ import linkedin from "../assets/footer/linkedin.svg";
 import logo from "../assets/footer/logo.png";
 import playstore from "../assets/footer/playstore.svg";
 import tiktok from "../assets/footer/tiktok.svg";
-import twitter from "../assets/footer/twitter.svg";
+import twitter from "../assets/footer/x.svg";
 import youtube from "../assets/footer/youtube.svg";
 
 export function Footer() {
@@ -75,7 +75,7 @@ export function Footer() {
   ];
 
   return (
-    <footer className="bg-[#0B1321] pb-20  sm:pb-32 text-white py-12 ">
+    <footer className=" bg-[#0B1321] pb-20  sm:pb-32 text-white py-12 ">
       <CommonWrapper>
         <div className="w-full  md:block flex justify-center items-center mb-12">
           <img
@@ -158,7 +158,7 @@ export function Footer() {
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.95 }}
-              className=" text-[#E5E5E5] mt-4 sm:mt-0 text-md  w-full md:w-fit bg-black hover:text-white px-10 justify-center  py-3 rounded-4xl flex items-center gap-2 text-sm
+              className=" text-[#E5E5E5] mt-4 sm:mt-0 text-md  w-full md:w-fit bg-black  shadow-[1px_3px_1px_rgba(0,0,0,0.5)] hover:text-white px-10 justify-center  py-3 rounded-4xl flex items-center gap-2 text-sm
 md:text-md md:font-semibold cursor-pointer"
             >
               Download for Android
