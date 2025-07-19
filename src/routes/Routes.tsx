@@ -35,7 +35,6 @@ import Shop from "@/components/Shop/Shop";
 import SellerInvoiceFormPage from "@/pages/SellerDashboard/SellerInvoiceFormPage";
 // import BuyerOrdersPage from "@/pages/BuyerDashboard/BuyerOrdersPage";
 import IndividualProduct from "@/components/SingleProduct/IndividualProduct";
-import BuyerHome from "@/pages/BuyerLandingPage/BuyerHome";
 import ProductCategories from "@/pages/BuyerLandingPage/ProductCategories";
 import ProductFilter from "@/pages/BuyerLandingPage/ProductFilter";
 import BuyerRFQ from "../pages/BuyerDashboard/BuyerRFQ";
@@ -43,6 +42,7 @@ import BuyerRFQ from "../pages/BuyerDashboard/BuyerRFQ";
 import OrderDetails from "@/components/SellerDashboard/SellerOrder/OrderDetails/OrderDetails";
 
 import CartPage from "@/components/Cart/Cart";
+import PaymentSummary from "@/components/Checkout/PaymentSummary";
 import BuyerProfile from "@/components/SellerDashboard/SellerOrder/Profile/BuyerProfile";
 import BuyerFavorites from "@/pages/BuyerDashboard/BuyerFavorites";
 import BuyerMessages from "@/pages/BuyerDashboard/BuyerMessages";
@@ -51,10 +51,10 @@ import BuyerOrdersPage from "@/pages/BuyerDashboard/BuyerOrdersPage";
 import BuyerPayments from "@/pages/BuyerDashboard/BuyerPayments";
 import BuyerRefund from "@/pages/BuyerDashboard/BuyerRefund";
 import BuyerReview from "@/pages/BuyerDashboard/BuyerReview";
+import BuyerHome from "@/pages/BuyerLandingPage/BuyerHome";
 import SupplierProfileDetails from "@/pages/BuyerLandingPage/SupplierProfileDetails";
-import CreatePromotionPage from "@/pages/SellerDashboard/CreatePromotionPage";
 import Checkout from "@/pages/Checkout";
-import PaymentSummary from "@/components/Checkout/PaymentSummary";
+import CreatePromotionPage from "@/pages/SellerDashboard/CreatePromotionPage";
 
 const routes = createBrowserRouter([
   {
@@ -72,6 +72,18 @@ const routes = createBrowserRouter([
       {
         path: "/shop",
         element: <Shop />,
+      },
+      {
+        path: "/buyerHome",
+        element: <BuyerHome />,
+      },
+      {
+        path: "/buyerHome/:slug",
+        element: <ProductCategories />,
+      },
+      {
+        path: "/buyerHome/:slug/:subCategory",
+        element: <ProductFilter />,
       },
       {
         path: "/contact",
@@ -103,18 +115,7 @@ const routes = createBrowserRouter([
         element: <OverViewBanner />,
       },
       // rakib demo route for buyer
-      {
-        path: "/buyerHome",
-        element: <BuyerHome />,
-      },
-      {
-        path: "/buyerHome/:slug",
-        element: <ProductCategories />,
-      },
-      {
-        path: "/buyerHome/:slug/:subCategory",
-        element: <ProductFilter />,
-      },
+
       {
         path: "/suppliersDetails",
         element: <SupplierProfileDetails />,
