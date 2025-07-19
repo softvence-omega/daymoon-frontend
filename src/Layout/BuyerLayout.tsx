@@ -29,10 +29,13 @@ const BuyerLayout = () => {
       {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Top Navbar */}
-        <DashboardNavbar
-          onMobileMenuToggle={handleMobileMenuToggle}
-          notificationCount={3}
-        />
+
+        <div className="fixed top-0 left-0 right-0 z-20 bg-white border-b border-gray-200">
+          <DashboardNavbar
+            onMobileMenuToggle={handleMobileMenuToggle}
+            notificationCount={3}
+          />
+        </div>
 
         {/* Mobile Sidebar */}
         <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
