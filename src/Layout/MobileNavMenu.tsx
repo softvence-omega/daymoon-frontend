@@ -6,7 +6,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { motion } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu } from "lucide-react";
 import { FaInfoCircle, FaPhoneAlt, FaShoppingCart } from "react-icons/fa";
 import { MdExtension, MdHelpOutline } from "react-icons/md";
 import { Link, useLocation } from "react-router-dom";
