@@ -7,7 +7,7 @@ export default function ConversionFunnel() {
   ];
 
   return (
-    <div className=" border border-[#E5E5E5] rounded-2xl mx-auto p-8 bg-white">
+    <div className=" border border-[#E5E5E5] rounded-2xl mx-auto p-8 bg-[#FFFFFF]">
       <h1 className="text-[24px] leading-[130%]  text-[#484848] mb-5">
         Conversion Funnel
       </h1>

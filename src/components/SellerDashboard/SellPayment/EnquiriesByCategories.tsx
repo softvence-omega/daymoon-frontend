@@ -80,7 +80,7 @@ const EnquiriesByCategories: React.FC = () => {
   };
 
   return (
-    <div className="w-full max-w-[775px] h-full max-h-[555px] p-6 bg-white rounded-xl shadow-md">
+    <div className="w-full h-full max-h-[555px] p-6 bg-white rounded-xl shadow-md">
       {/* Top Section: Title & Dropdown */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-0 lg:mb-8">
         {/* Title */}

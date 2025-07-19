@@ -58,8 +58,8 @@ const renderCustomizedLabel = ({
 
 export default function CustomerInsights() {
   return (
-    <div className="w-full mx-auto h-[420px]">
-      <Card className="bg-gray-50 border-0 shadow-sm h-full flex flex-col">
+    <div className="w-full mx-auto h-[420px] bg-[#FFFFFF]">
+      <Card className="border-0 shadow-sm h-full flex flex-col">
         <CardHeader>
           <CardTitle className="text-lg font-medium text-gray-700">
             Customer Insights

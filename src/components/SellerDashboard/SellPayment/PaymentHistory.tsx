@@ -48,7 +48,7 @@ const orderData = [
 
 export function PaymentHistory() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 ">
       {/* Page Title */}
 
       <div className="flex justify-between items-center ">
@@ -61,7 +61,7 @@ export function PaymentHistory() {
       </div>
 
       {/* Table */}
-      <div className="border border-[#E5E5E5] rounded-2xl shadow-sm p-4 overflow-x-auto">
+      <div className="bg-[#FFFFFF] border border-[#E5E5E5] rounded-2xl shadow-sm p-4 overflow-x-auto">
         <Table className="w-full">
           {/* Table Header with custom background */}
           <TableHeader>
