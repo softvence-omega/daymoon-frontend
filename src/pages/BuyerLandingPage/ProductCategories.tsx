@@ -25,16 +25,17 @@ const ProductCategories = () => {
         <ShopSubCategories number={6} />
 
         {/* Products Section */}
-        <div className="mt-20">
+        <div className="md:mt-20">
           <ProductsComponent
+          // titleProducts=""
             selectedCategory="All"
             selectedPrice="All"
             showAll={showAllProducts}
-            cols={{ mobile: 2, md: 4, lg: 4 }} // example columns per breakpoint
+            cols={{ mobile: 2, md: 4, lg: 4 }}      // example columns per breakpoint
             rows={
               showAllProducts
-                ? { mobile: 100, md: 100, lg: 100 } // show all products
-                : { mobile: 2, md: 3, lg: 3 } // show limited rows initially
+                ? { mobile: 100, md: 100, lg: 100 }  // show all products
+                : { mobile: 2, md: 3, lg: 3 }        // show limited rows initially
             }
           />
           {!showAllProducts && (
@@ -63,8 +64,8 @@ const ProductCategories = () => {
             text="Explore More"
           />
         )}
-        <div className="my-32">
-          <JoinUs />
+        <div className="my-24 max-[767px]:my-10">
+          <JoinUs/>
         </div>
       </CommonWrapper>
     </div>
