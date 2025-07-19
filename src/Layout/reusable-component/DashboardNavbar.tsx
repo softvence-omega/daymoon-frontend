@@ -1,4 +1,4 @@
-import { Bell, ShoppingCart,Menu } from "lucide-react";
+import { Bell, ShoppingCart, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
@@ -24,7 +24,7 @@ const DashboardNavbar: React.FC<NavbarProps> = ({
   userInitials = "JD",
 }) => {
   return (
-    <header className="bg-white border-b border-gray-200 px-4 md:px-10 py-3">
+    <header className="bg-white border-b border-gray-200 px-4 md:px-10 py-3 ">
       <div className="flex items-center justify-between">
         {/* Left Side - Mobile Menu & Title */}
         <div className="flex items-center space-x-2 sm:space-x-4">

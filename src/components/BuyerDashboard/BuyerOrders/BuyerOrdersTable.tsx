@@ -101,6 +101,27 @@ const BuyerOrdersTable: React.FC<BuyerOrdersTableProps> = () => {
     }
   };
 
+  const [currentPage, setCurrentPage] = useState(0);
+  const itemsPerPage = 3;
+
+  const startIndex = currentPage * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const paginatedOrders = filteredOrders.slice(startIndex, endIndex);
+
+  const totalPages = Math.ceil(filteredOrders.length / itemsPerPage);
+
+  const handlePrevious = () => {
+    if (currentPage > 0) setCurrentPage(currentPage - 1);
+  };
+
+  const handleNext = () => {
+    if (currentPage < totalPages - 1) setCurrentPage(currentPage + 1);
+  };
+
+  const handlePageClick = (pageIndex: number) => {
+    setCurrentPage(pageIndex);
+  };
+
   return (
     <div className="mx-auto  ">
       <div className="flex justify-between items-center mb-6 flex-wrap md:flex-nowrap">
@@ -237,7 +258,7 @@ const BuyerOrdersTable: React.FC<BuyerOrdersTableProps> = () => {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {filteredOrders.map((order) => (
+              {paginatedOrders.map((order) => (
                 <tr
                   key={order.id}
                   className="hover:bg-gray-50 transition-colors"
@@ -304,27 +325,65 @@ const BuyerOrdersTable: React.FC<BuyerOrdersTableProps> = () => {
         )}
       </div>
 
-      <div className="flex items-center justify-between mt-6">
-        <div className="text-sm text-gray-700">
-          Showing 1 to 10 of {filteredOrders.length} orders
+      <div className="flex flex-col sm:flex-row items-center justify-between mt-6">
+        <div className="text-sm text-gray-700 mb-2 sm:mb-0">
+          Showing {filteredOrders.length > 0 ? startIndex + 1 : 0} to{" "}
+          {Math.min(endIndex, filteredOrders.length)} of {filteredOrders.length}{" "}
+          orders
         </div>
-        <div className="flex items-center space-x-2">
-          <button className="px-3 py-1 text-sm text-gray-500 hover:text-gray-700 transition-colors">
-            «
-          </button>
-          <button className="px-3 py-1 text-sm bg-red-500 text-white rounded">
-            1
-          </button>
-          <button className="px-3 py-1 text-sm text-gray-500 hover:text-gray-700 transition-colors">
-            2
-          </button>
-          <button className="px-3 py-1 text-sm text-gray-500 hover:text-gray-700 transition-colors">
-            3
-          </button>
-          <button className="px-3 py-1 text-sm text-gray-500 hover:text-gray-700 transition-colors">
-            »
-          </button>
-        </div>
+
+        {totalPages > 1 && (
+          <ul className="flex items-center border border-[#E5E5E5] rounded-xl overflow-hidden text-base cursor-pointer self-end md:self-auto">
+            {/* Previous Button */}
+            <li>
+              <button
+                onClick={handlePrevious}
+                disabled={currentPage === 0}
+                className={`text-xl p-2 sm:p-4 border-r border-[#E5E5E5] text-[#FCAB3F] ${
+                  currentPage === 0
+                    ? "cursor-not-allowed text-gray-300"
+                    : "hover:bg-[#E5E7EB] hover:text-black"
+                }`}
+              >
+                «
+              </button>
+            </li>
+
+            {/* Page Numbers */}
+            {Array.from({ length: totalPages }).map((_, index) => {
+              const isActive = currentPage === index;
+              return (
+                <li key={index}>
+                  <button
+                    onClick={() => handlePageClick(index)}
+                    className={`p-3 sm:p-4 w-12 border-r border-[#E5E5E5] transition-colors duration-150 ${
+                      isActive
+                        ? "bg-[#E5E7EB] text-black"
+                        : "text-black hover:bg-[#E5E7EB] hover:text-black"
+                    }`}
+                  >
+                    {index + 1}
+                  </button>
+                </li>
+              );
+            })}
+
+            {/* Next Button */}
+            <li>
+              <button
+                onClick={handleNext}
+                disabled={currentPage === totalPages - 1}
+                className={`text-xl p-2 sm:p-4 text-[#FCAB3F] ${
+                  currentPage === totalPages - 1
+                    ? "cursor-not-allowed text-gray-300"
+                    : "hover:bg-[#E5E7EB] hover:text-black"
+                }`}
+              >
+                »
+              </button>
+            </li>
+          </ul>
+        )}
       </div>
     </div>
   );

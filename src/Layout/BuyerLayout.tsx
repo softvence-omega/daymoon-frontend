@@ -21,7 +21,7 @@ const BuyerLayout = () => {
     <div className="flex min-h-screen bg-gray-50">
       {/* Desktop Sidebar */}
       <div className="hidden lg:flex md:w-64 md:flex-col">
-        <div className="border-r border-gray-200 h-full">
+        <div className="border-r border-gray-200 h-full ">
           <Sidebar />
         </div>
       </div>
@@ -30,7 +30,7 @@ const BuyerLayout = () => {
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Top Navbar */}
 
-        <div className="fixed top-0 left-0 right-0 z-20 bg-white border-b border-gray-200">
+        <div className="sticky top-0 left-0 right-0 z-20 bg-white border-b border-gray-200">
           <DashboardNavbar
             onMobileMenuToggle={handleMobileMenuToggle}
             notificationCount={3}
@@ -48,7 +48,7 @@ const BuyerLayout = () => {
         </Sheet>
 
         {/* Page Content */}
-        <main className="flex-1 overflow-auto p-6 md:p-10">
+        <main className="flex-1 overflow-auto p-6 md:p-10 mt-16" >
           <Outlet />
           <ToastContainer
             position="bottom-right"

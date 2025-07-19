@@ -1,6 +1,6 @@
 import React from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 // Messages Data
 const messages = [
@@ -69,10 +69,13 @@ export function RecentMessages() {
     <div className="border border-[#E5E5E5] rounded-2xl shadow-sm p-4 overflow-x-auto space-y-6">
       {/* Header */}
       <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-medium text-[#484848] leading-tight">
+        <h1 className="text-lg sm:text-xl gap-2 md:text-2xl font-medium text-[#484848] leading-tight">
           Recent Messages
         </h1>
-        <Link to="/buyer/dashboard/messages" className="underline text-[#F04436] text-base font-medium hover:text-[#d6332a] transition-colors">
+        <Link
+          to="/buyer/dashboard/messages"
+          className="underline text-[#F04436] text-sm md:text-base font-medium hover:text-[#d6332a] transition-colors"
+        >
           View All
         </Link>
       </div>

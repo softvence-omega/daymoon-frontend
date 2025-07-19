@@ -16,6 +16,7 @@ import mastercard from "@/assets/dashboard/buyer-dashboard/mastercard.svg";
 import paypal from "@/assets/dashboard/buyer-dashboard/paypal.svg";
 import card from "@/assets/dashboard/buyer-dashboard/card.svg";
 
+
 // Status configuration for styling
 const statusConfig = {
   completed: {
@@ -240,7 +241,6 @@ const PaymentsTable = () => {
   // Filter and sort data based on filters
   const filteredAndSortedData = useMemo(() => {
     let filtered = [...paymentData];
-  
 
     // Filter by status
     if (filters.status !== "all") {
@@ -366,7 +366,7 @@ const PaymentsTable = () => {
     startIndex,
     endIndex,
     currentDataLength: currentData.length,
-    showPagination: filteredAndSortedData.length > itemsPerPage
+    showPagination: filteredAndSortedData.length > itemsPerPage,
   });
 
   // Ensure currentPage is within valid range
@@ -398,7 +398,12 @@ const PaymentsTable = () => {
   };
 
   const handleNext = () => {
-    console.log("Next clicked - Current page:", currentPage, "Total pages:", totalPages);
+    console.log(
+      "Next clicked - Current page:",
+      currentPage,
+      "Total pages:",
+      totalPages
+    );
     if (currentPage < totalPages - 1) {
       setCurrentPage(currentPage + 1);
       console.log("Moving to page:", currentPage + 1);
@@ -499,46 +504,60 @@ const PaymentsTable = () => {
           {Math.min(endIndex, filteredAndSortedData.length)} of{" "}
           {filteredAndSortedData.length} payments
         </div>
+
         {filteredAndSortedData.length > itemsPerPage && (
-          <div className="flex items-center border border-[#E5E5E5] rounded-xl overflow-hidden">
-            <button
-              className={`border-r border-[#E5E5E5] p-2 md:p-4 text-sm md:text-lg ${
-                currentPage === 0
-                  ? "text-gray-400 cursor-not-allowed"
-                  : "text-[#F04436] hover:bg-gray-50 cursor-pointer"
-              }`}
-              onClick={handlePrevious}
-              disabled={currentPage === 0}
-            >
-              <IoIosArrowBack />
-            </button>
-
-            {Array.from({ length: totalPages }).map((_, index) => (
+          <ul className="flex items-center border border-[#E5E5E5] rounded-xl overflow-hidden text-base cursor-pointer self-end md:self-auto">
+            {/* Previous Button */}
+            <li>
               <button
-                key={index}
-                className={`border-r border-[#E5E5E5] p-2 md:p-4 text-sm md:text-lg cursor-pointer hover:bg-gray-50 ${
-                  currentPage === index
-                    ? "bg-[#F04436] text-white"
-                    : "text-gray-700"
+                onClick={handlePrevious}
+                disabled={currentPage === 0}
+                aria-label="Previous Page"
+                className={`text-xl p-2 sm:p-4 border-r border-[#E5E5E5] text-[#FCAB3F] ${
+                  currentPage === 0
+                    ? "cursor-not-allowed text-gray-300"
+                    : "hover:bg-[#E5E7EB] hover:text-black"
                 }`}
-                onClick={() => handlePageClick(index)}
               >
-                {index + 1}
+                <IoIosArrowBack />
               </button>
-            ))}
+            </li>
 
-            <button
-              className={`p-2 md:p-4 text-sm md:text-lg ${
-                currentPage === totalPages - 1
-                  ? "text-gray-400 cursor-not-allowed"
-                  : "text-[#F04436] hover:bg-gray-50 cursor-pointer"
-              }`}
-              onClick={handleNext}
-              disabled={currentPage === totalPages - 1}
-            >
-              <IoIosArrowForward />
-            </button>
-          </div>
+            {/* Page Number Buttons */}
+            {Array.from({ length: totalPages }).map((_, index) => {
+              const isActive = currentPage === index;
+              return (
+                <li key={index}>
+                  <button
+                    onClick={() => handlePageClick(index)}
+                    className={`p-3 sm:p-4 w-12 border-r border-[#E5E5E5] transition-colors duration-150 ${
+                      isActive
+                        ? "bg-[#E5E7EB] text-black"
+                        : "text-black hover:bg-[#E5E7EB] hover:text-black"
+                    }`}
+                  >
+                    {index + 1}
+                  </button>
+                </li>
+              );
+            })}
+
+            {/* Next Button */}
+            <li>
+              <button
+                onClick={handleNext}
+                disabled={currentPage === totalPages - 1}
+                aria-label="Next Page"
+                className={`text-xl p-2 sm:p-4 text-[#FCAB3F] ${
+                  currentPage === totalPages - 1
+                    ? "cursor-not-allowed text-gray-300"
+                    : "hover:bg-[#E5E7EB] hover:text-black"
+                }`}
+              >
+                <IoIosArrowForward />
+              </button>
+            </li>
+          </ul>
         )}
       </div>
     </div>

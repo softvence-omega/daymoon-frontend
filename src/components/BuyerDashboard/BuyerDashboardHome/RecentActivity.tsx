@@ -3,7 +3,7 @@ import { FiAlertCircle } from "react-icons/fi";
 import { BsFillBoxSeamFill } from "react-icons/bs";
 import { MdOutlineCreditCard, MdOutlineMessage } from "react-icons/md";
 import { FaTruck } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 // Activity data structure
 interface Activity {
@@ -119,10 +119,13 @@ const RecentActivity = () => {
     <div className="border border-[#E5E5E5] rounded-2xl shadow-sm p-6 overflow-x-auto space-y-6">
       {/* Header */}
       <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-medium text-[#484848] leading-tight">
+        <h1 className="text-lg sm:text-xl gap-2 md:text-2xl font-medium text-[#484848] leading-tight">
           Recent Activity
         </h1>
-        <Link to="/buyer/dashboard/orders" className="underline text-[#F04436] text-base font-medium hover:text-[#d6332a] transition-colors">
+        <Link
+          to="/buyer/dashboard/orders"
+          className="underline text-[#F04436] text-sm md:text-base font-medium hover:text-[#d6332a] transition-colors"
+        >
           View All
         </Link>
       </div>

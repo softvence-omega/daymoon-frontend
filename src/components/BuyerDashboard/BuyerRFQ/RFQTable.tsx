@@ -326,48 +326,68 @@ export const RFQTable = ({
 
       {/* Pagination Footer */}
       <div className="flex flex-col sm:flex-row items-center justify-between mt-4 px-2">
+        {/* Showing Results Text */}
         <div className="text-sm md:text-lg text-gray-600 mb-2 sm:mb-0">
-          Showing {startIndex + 1} to{" "}
+          Showing {filteredAndSortedData.length > 0 ? startIndex + 1 : 0} to{" "}
           {Math.min(endIndex, filteredAndSortedData.length)} of{" "}
           {filteredAndSortedData.length} RFQ leads
         </div>
-        <ul className="flex items-center border border-foundation-white rounded-xl overflow-hidden">
-          <li
-            className={`border-r border-foundation-white p-2 md:p-4 text-sm md:text-lg cursor-pointer ${
-              currentPage === 0
-                ? "text-gray-400 cursor-not-allowed"
-                : "text-sunset-orange hover:bg-gray-50"
-            }`}
-            onClick={handlePrevious}
-          >
-            <IoIosArrowBack />
-          </li>
 
-          {Array.from({ length: totalPages }).map((_, index) => (
-            <li
-              key={index}
-              className={`border-r border-foundation-white p-2 md:p-4 text-sm md:text-lg cursor-pointer hover:bg-gray-50 ${
-                currentPage === index
-                  ? "bg-sunset-orange text-white"
-                  : "text-gray-700"
-              }`}
-              onClick={() => setCurrentPage(index)}
-            >
-              {index + 1}
+        {/* Pagination Control */}
+        {filteredAndSortedData.length > itemsPerPage && (
+          <ul className="flex items-center border border-[#E5E5E5] rounded-xl overflow-hidden text-base cursor-pointer self-end md:self-auto">
+            {/* Previous Button */}
+            <li>
+              <button
+                onClick={handlePrevious}
+                disabled={currentPage === 0}
+                aria-label="Previous Page"
+                className={`text-xl p-2 sm:p-4 border-r border-[#E5E5E5] text-[#FCAB3F] ${
+                  currentPage === 0
+                    ? "cursor-not-allowed text-gray-300"
+                    : "hover:bg-[#E5E7EB] hover:text-black"
+                }`}
+              >
+                <IoIosArrowBack />
+              </button>
             </li>
-          ))}
 
-          <li
-            className={`p-2 md:p-4 text-sm md:text-lg cursor-pointer ${
-              currentPage === totalPages - 1
-                ? "text-gray-400 cursor-not-allowed"
-                : "text-sunset-orange hover:bg-gray-50"
-            }`}
-            onClick={handleNext}
-          >
-            <IoIosArrowForward />
-          </li>
-        </ul>
+            {/* Page Number Buttons */}
+            {Array.from({ length: totalPages }).map((_, index) => {
+              const isActive = currentPage === index;
+              return (
+                <li key={index}>
+                  <button
+                    onClick={() => setCurrentPage(index)}
+                    className={`p-3 sm:p-4 w-12 border-r border-[#E5E5E5] transition-colors duration-150 ${
+                      isActive
+                        ? "bg-[#E5E7EB] text-black"
+                        : "text-black hover:bg-[#E5E7EB] hover:text-black"
+                    }`}
+                  >
+                    {index + 1}
+                  </button>
+                </li>
+              );
+            })}
+
+            {/* Next Button */}
+            <li>
+              <button
+                onClick={handleNext}
+                disabled={currentPage === totalPages - 1}
+                aria-label="Next Page"
+                className={`text-xl p-2 sm:p-4 text-[#FCAB3F] ${
+                  currentPage === totalPages - 1
+                    ? "cursor-not-allowed text-gray-300"
+                    : "hover:bg-[#E5E7EB] hover:text-black"
+                }`}
+              >
+                <IoIosArrowForward />
+              </button>
+            </li>
+          </ul>
+        )}
       </div>
     </div>
   );
