@@ -63,7 +63,7 @@ const ProductCategories = () => {
             text="Explore More"
           />
         )}
-        <div className="my-32">
+        <div className="my-12 md:my-32">
           <JoinUs />
         </div>
       </CommonWrapper>

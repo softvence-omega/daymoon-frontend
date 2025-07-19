@@ -1,13 +1,14 @@
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { useState } from "react";
-import { countryList } from "./CountryList";
-import CommonSelect from "@/common/CommonSelect";
 import CommonButton from "@/common/CommonButton";
 import CommonHeader from "@/common/CommonHeader";
+import CommonSelect from "@/common/CommonSelect";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { countryList } from "./CountryList";
 
 const BillingAddress = ({}) => {
   const [sameAsShipping, setSameAsShipping] = useState(true);
@@ -145,9 +146,11 @@ const BillingAddress = ({}) => {
         </Card>
 
         <div className="flex flex-col gap-3 px-6 pb-6">
-          <CommonButton className="w-full bg-sunset-orange hover:bg-red-600 text-white py-3 text-base font-medium">
-            Continue To Payment
-          </CommonButton>
+          <Link to="/payment">
+            <CommonButton className="w-full bg-sunset-orange hover:bg-red-600 text-white py-3 text-base font-medium">
+              Continue To Payment
+            </CommonButton>
+          </Link>
           <CommonButton className="w-full border border-sunset-orange bg-transparent !text-sunset-orange py-3 text-base font-medium">
             Back To Cart
           </CommonButton>

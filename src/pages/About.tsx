@@ -16,7 +16,7 @@ const About = () => {
         <Core />
         <Facts />
         <Founders />
-        <div className="my-20">
+        <div className="my-12 md:my-20">
           <JoinUs />
         </div>
       </CommonWrapper>

@@ -7,11 +7,16 @@ import {
 } from "@/components/ui/sheet";
 import { motion } from "framer-motion";
 import { Menu } from "lucide-react";
-import { FaInfoCircle, FaPhoneAlt, FaShoppingCart } from "react-icons/fa";
-import { MdExtension, MdHelpOutline } from "react-icons/md";
+import { useState } from "react";
+import { FaInfoCircle, FaPhoneAlt } from "react-icons/fa";
+import { FaCartShopping, FaShop } from "react-icons/fa6";
+import {
+  MdDashboardCustomize,
+  MdExtension,
+  MdHelpOutline,
+} from "react-icons/md";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../assets/Navbar/logo.png";
-import { useState } from "react";
 
 const MobileSidebar = () => {
   const location = useLocation();
@@ -23,7 +28,12 @@ const MobileSidebar = () => {
     {
       name: "Shop",
       path: "/shop",
-      icon: <FaShoppingCart className="w-5 h-5 text-sunset-orange" />,
+      icon: <FaShop className="w-5 h-5 text-sunset-orange" />,
+    },
+    {
+      name: "Cart",
+      path: "/cart",
+      icon: <FaCartShopping className="w-5 h-5 text-sunset-orange" />,
     },
     {
       name: "About",
@@ -34,6 +44,16 @@ const MobileSidebar = () => {
       name: "Contact",
       path: "/contact",
       icon: <FaPhoneAlt className="w-5 h-5 text-sunset-orange" />,
+    },
+    {
+      name: "Buyer Dashboard",
+      path: "/buyer/dashboard",
+      icon: <MdDashboardCustomize className="w-5 h-5 text-sunset-orange" />,
+    },
+    {
+      name: "Seller Dashboard",
+      path: "/seller-dashboard",
+      icon: <MdDashboardCustomize className="w-5 h-5 text-sunset-orange" />,
     },
     {
       name: "Become A Supplier",

@@ -1,15 +1,18 @@
-import React, { useState } from "react";
-import { Check } from "lucide-react";
+import CommonButton from "@/common/CommonButton";
 import CommonHeader from "@/common/CommonHeader";
 import CommonWrapper from "@/common/CommonWrapper";
-import stripe from "../../assets/landing/stripe.png";
-import CommonButton from "@/common/CommonButton";
 import SubHeader from "@/common/SubHeader";
+import { Check } from "lucide-react";
+import React, { useState } from "react";
+import { toast } from "react-toastify";
+import stripe from "../../assets/landing/stripe.png";
 
 const PaymentSummary: React.FC = () => {
   const [agree, setAgree] = useState(false);
   const [selectedMethod, setSelectedMethod] = useState("stripe");
-
+  const handleClick = () => {
+    toast.error("Work will Progress after the backend integration");
+  };
   const total = 248.66;
 
   return (
@@ -89,6 +92,7 @@ const PaymentSummary: React.FC = () => {
 
         <div className=" flex flex-col sm:flex-row gap-6 ">
           <CommonButton
+            onClick={handleClick}
             disabled={!agree}
             className={`  ${
               agree
@@ -99,7 +103,10 @@ const PaymentSummary: React.FC = () => {
             Pay ${total.toFixed(2)}
           </CommonButton>
 
-          <CommonButton className="  border border-sunset-orange !text-sunset-orange bg-transparent">
+          <CommonButton
+            onClick={handleClick}
+            className="  border border-sunset-orange !text-sunset-orange bg-transparent"
+          >
             Back To Shipping
           </CommonButton>
         </div>
