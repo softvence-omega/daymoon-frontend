@@ -76,7 +76,9 @@ const OverView = () => {
             <SidebarInfo />
           </div>
         </div>
+
         <div className="my-28 max-[767px]:my-10">
+
           <JoinUs />
         </div>
       </CommonWrapper>

@@ -3,6 +3,7 @@ import GlobalSearchBar from "@/components/ReUseable/GlobalSearchBar";
 import JoinUs from "@/components/ReUseable/JoinUs";
 import MoreButton from "@/components/ReUseable/MoreButton";
 import ProductsComponent from "@/components/ReUseable/ProductsComponent";
+import Breadcrumbs from "@/components/SellerDashboard/SellerProducts/Breadcrumbs";
 import FilterSection from "@/components/Shop/FilterSection";
 import ShopCategories from "@/components/Shop/ShopCategories";
 import TopManufacturer from "@/components/Shop/TopManufacturer";
@@ -23,6 +24,9 @@ const ProductFilter = () => {
         </div>
         <div className="lg:w-3/4">
           <GlobalSearchBar />
+          <div className="block md:hidden">
+            <Breadcrumbs title="Categories" subtitle="All Categories" />
+          </div>
           <ShopCategories number={6} />
           <div className="my-24 max-[767px]:my-10">
             <ProductsComponent
@@ -65,8 +69,9 @@ const ProductFilter = () => {
           )}
         </div>
       </div>
+
       <div className="my-24 max-[767px]:my-14">
-        <JoinUs />
+       <JoinUs />
       </div>
     </CommonWrapper>
   );

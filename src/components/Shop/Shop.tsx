@@ -4,6 +4,7 @@ import GlobalSearchBar from "../ReUseable/GlobalSearchBar";
 import JoinUs from "../ReUseable/JoinUs";
 import MoreButton from "../ReUseable/MoreButton";
 import ProductsComponent from "../ReUseable/ProductsComponent";
+import Breadcrumbs from "../SellerDashboard/SellerProducts/Breadcrumbs";
 import ShopCategories from "./ShopCategories";
 import TopManufacturer from "./TopManufacturer";
 
@@ -27,6 +28,10 @@ const Shop = () => {
             <FlashSaleBanner />
             <BestSellingBanner />
           </div>*/}
+        </div>
+        <div className="block md:hidden ">
+          {" "}
+          <Breadcrumbs title="Categories" subtitle="All Categories" />
         </div>
         <ShopCategories number={8} />
 
@@ -89,8 +94,10 @@ const Shop = () => {
           />
         )} */}
 
+
         <div className="my-16 max-[767px]:my-12">
-          {" "}
+
+       
           <JoinUs />
         </div>
       </CommonWrapper>

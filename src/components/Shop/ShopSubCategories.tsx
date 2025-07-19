@@ -59,7 +59,7 @@ const ShopSubCategories = ({ number }: { number: number }) => {
 
   return (
     <div>
-      <div className="relative mt-10 md:mt-20">
+      <div className="relative mt-6 md:mt-20">
         {!isSmallDevice && (
           <Carousel className="w-full">
             <CarouselContent>
@@ -97,9 +97,8 @@ const ShopSubCategories = ({ number }: { number: number }) => {
           </Carousel>
         )}
 
-        {/* Grid for small devices */}
         {isSmallDevice && (
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-8">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
             {categoriesData
               .slice(0, visibleCategories)
               .map((category, index) => (
