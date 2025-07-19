@@ -42,7 +42,7 @@ const OverViewTab = () => {
     <div>
       <Tabs
         defaultValue="product"
-        className="w-full mt-12"
+        className="w-full mt-12 max-[767px]:mt-0"
         onValueChange={(val) => {
           setActiveTab(val);
           if (val !== "product") setShowAll(false);
@@ -78,7 +78,7 @@ const OverViewTab = () => {
 
         {/* Filters */}
         {activeTab === "product" && (
-          <div className="flex flex-wrap justify-end gap-4 mt-10">
+          <div className="flex flex-wrap justify-end gap-4 mt-10 max-[767px]:mt-8">
             {/* Category Filter */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -146,7 +146,7 @@ const OverViewTab = () => {
 
         <AnimatePresence mode="wait">
           {activeTab === "product" && (
-            <TabsContent value="product" className="mt-6" forceMount>
+            <TabsContent value="product" className="mt-6 max-[767px]:mt-0" forceMount>
               <motion.div
                 key="product"
                 initial={{ opacity: 0, y: 10 }}

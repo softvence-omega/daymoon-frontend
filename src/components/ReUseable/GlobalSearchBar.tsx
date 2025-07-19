@@ -69,7 +69,7 @@ const GlobalSearchBar = () => {
   const suggestedTags = ["smart watch", "Tractors", "Fertilizers"];
 
   return (
-    <div className="max-w-[1000px] mx-auto  flex flex-col lg:flex-row items-center justify-between mb-12 gap-4 h-[80px] mt-12">
+    <div className="max-w-[1000px] mx-auto  flex flex-col lg:flex-row items-center justify-between gap-4 h-[80px] my-12">
       <div className="w-full flex-1 relative" ref={wrapperRef}>
         <div className="w-full flex items-center  rounded-full shadow-[0_0_1px_0px_#F46A39] bg-white px-2 py-4">
           <DropdownMenu>

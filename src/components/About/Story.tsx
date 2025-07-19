@@ -1,6 +1,6 @@
 const Story = () => {
   return (
-    <div className="flex justify-center items-center mt-[60px] md:mt-[80px] lg:mt-[100px] mb-[60px] md:mb-[90px] lg:mb-[120px]">
+    <div className="flex justify-center items-center my-[100px] max-[767px]:my-[60px]">
       <div className="self-stretch w-full md:w-[90%] lg:w-[1132px] flex flex-col items-center gap-4 md:gap-5 lg:gap-6">
         <h2 className="text-2xl md:text-4xl font-semibold leading-[1.2] md:leading-[1.25] lg:leading-[24px] text-goldenrod">
           Our Story

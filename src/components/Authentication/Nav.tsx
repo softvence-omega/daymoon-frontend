@@ -35,7 +35,7 @@ const Nav = () => {
   const isLogin = pathname === "/login";
 
   return (
-    <>
+    <div>
       <div className=" flex items-center justify-between">
         <Select
           value={selectedRole}
@@ -68,7 +68,7 @@ const Nav = () => {
         <FaGlobe className="text-gray-800 w-5 h-5" />
       </div>
 
-      <div className="text-gray-500 text-sm my-4 text-right">
+      <div className="text-gray-500 text-sm my-4 text-right ">
         {isLogin ? "Don't have an account? " : "Already have an account? "}
 
         <span className="text-[#F14141] font-medium cursor-pointer">
@@ -83,7 +83,7 @@ const Nav = () => {
           )}
         </span>
       </div>
-    </>
+    </div>
   );
 };
 

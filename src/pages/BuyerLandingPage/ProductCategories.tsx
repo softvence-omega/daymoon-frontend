@@ -25,8 +25,9 @@ const ProductCategories = () => {
         <ShopSubCategories number={6} />
 
         {/* Products Section */}
-        <div className="mt-20">
+        <div className="md:mt-20">
           <ProductsComponent
+          // titleProducts=""
             selectedCategory="All"
             selectedPrice="All"
             showAll={showAllProducts}
@@ -63,7 +64,9 @@ const ProductCategories = () => {
             text="Explore More"
           />
         )}
-        <JoinUs/>
+        <div className="my-24 max-[767px]:my-10">
+          <JoinUs/>
+        </div>
       </CommonWrapper>
     </div>
   );

@@ -76,7 +76,8 @@ const HomeTabs = () => {
                   <GlobalSearchBar />
                 </div>
                 <HomeProducts
-                  cols={{ mobile: 1, md: 3, lg: 4, xl: 6 }}
+                // title="All Products"
+                  cols={{ mobile: 2, md: 3, lg: 4, xl: 6 }}
                   rows={{ mobile: 4, md: 3, lg: 5, xl: 6 }}
                 />
               </CommonWrapper>
@@ -113,6 +114,7 @@ const HomeTabs = () => {
                   <MoreButton
                     onClick={() => setShowAllTopRated(true)}
                     text="Explore More"
+                  
                   />
                 )}
 

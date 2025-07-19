@@ -136,7 +136,7 @@ export default function ProductDetails() {
           </div>
         </div>
       </Link>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-10">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-10 max-[767px]:mt-0">
         <div className="relative">{/* <SingleProductImage /> */}</div>
 
         <div className="space-y-4 text-sm bg-white p-4 rounded-xl shadow-[0_0_1px_0] ">

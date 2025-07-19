@@ -89,12 +89,12 @@ const TopManufacturer = ({
   };
 
   const colClass = getColsClass(currentCols);
-  const gridClass = `grid gap-4 md:gap-6 lg:gap-8 mt-12 ${colClass}`;
+  const gridClass = `grid gap-4 md:gap-6 lg:gap-8 max-[767px]:mt-8 mt-12 ${colClass}`;
 
   return (
-    <section className="mt-18 max-w-full mx-auto">
+    <section className="my-10 md:my-18 lg:my-18 xl:my-18 2xl:my-18 max-w-full mx-auto">
       {title && (
-        <h2 className="text-2xl lg:text-[32px] text-center md:text-left lg:text-left pt-6 md:pt-0 lg:pt-0 font-semibold mb-6 uppercase">
+        <h2 className="text-2xl lg:text-[32px] text-left md:text-left lg:text-left pt-2 md:pt-0 lg:pt-0 max-[767px]:font-medium font-semibold mb-0 md:mb-6 lg:mb-6 xl:mb-6 2xl:mb-6 uppercase ">
           {title}
         </h2>
       )}

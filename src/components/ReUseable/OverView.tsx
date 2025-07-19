@@ -32,11 +32,11 @@ const overviewData = [
 
 const OverView = () => {
   return (
-    <div className="mt-[80px] mb-[90px]">
+    <div className="mt-[80px] mb-[80px]">
       <CommonWrapper>
         <div className="flex flex-col lg:flex-row justify-between gap-[24px]">
           {/* Left/Main Content */}
-          <div className="w-full lg:w-3/4 my-10 md:my-0 lg:my-0">
+          <div className="w-full lg:w-3/4 my-6 md:my-0 lg:my-0">
             <h1 className="text-[28px] lg:text-[32px] font-semibold leading-[120%] uppercase text-[#000] mb-[20px] text-center md:text-left lg:text-left">
               Company Overview
             </h1>
@@ -76,7 +76,7 @@ const OverView = () => {
             <SidebarInfo />
           </div>
         </div>
-        <div className="my-32">
+        <div className="my-28 max-[767px]:my-10">
           <JoinUs />
         </div>
       </CommonWrapper>

@@ -34,8 +34,9 @@ const Shop = () => {
         <ShopCategories number={8} />
 
         {/* Products Section */}
-        <div className="mt-20">
+        <div className="mt-10 md:mt-20 lg:mt-20">
           <ProductsComponent
+          titleProducts="All Products"
             selectedCategory="All"
             selectedPrice="All"
             showAll={showAllProducts}
@@ -91,7 +92,7 @@ const Shop = () => {
           />
         )} */}
 
-        <div className="my-20">
+        <div className="my-16 max-[767px]:my-12">
           {" "}
           <JoinUs />
         </div>

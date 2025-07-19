@@ -30,6 +30,7 @@ const BuyerHome = () => {
             <NewArrivalBanner />
           </div>
           <HomeProducts
+          // title="All Products"
             cols={{ mobile: 2, md: 4, lg: 6 }}
             rows={{ mobile: 2, md: 4, lg: 8 }}
           />

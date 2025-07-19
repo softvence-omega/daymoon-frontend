@@ -55,8 +55,8 @@ const reviews = [
 ];
 const TestimonialCarousel = () => {
   return (
-    <section className=" relative mt-10 lg:mt-32 ">
-      <h2 className="text-2xl md:text-5xl font-semibold px-2 md:px-0 tracking-tight">
+    <section className=" relative mt-0 lg:mt-32 ">
+      <h2 className="text-2xl md:text-5xl max-[767px]:font-medium max-[767px]:text-center font-semibold px-2 md:px-0 tracking-tight ">
         WHAT PEOPLE SAYS
       </h2>
       <div className="relative  md:ml-0 flex mt-6 md:mt-12 items-center justify-center ">
