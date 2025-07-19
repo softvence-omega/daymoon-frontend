@@ -118,11 +118,11 @@ const ShopCategories = ({ number }: { number: number }) => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <div className="absolute -top-0 shadow-lg curosr-pointer bg-white left-7 bottom-0 opacity-100">
-              <CarouselPrevious className="bg-white curosr-pointer border-none rounded-full w-12 h-12 flex justify-center items-center text-[#f04436] hover:bg-gray-100" />
+            <div className="absolute -top-0 shadow-lg  bg-white left-7 bottom-0 opacity-100">
+              <CarouselPrevious className="bg-white cursor-pointer border-none rounded-full w-12 h-12 flex justify-center items-center text-[#f04436] hover:bg-gray-100" />
             </div>
-            <div className="absolute -top-0 shadow-lg curosr-pointer bg-white right-6 bottom-0 opacity-100">
-              <CarouselNext className="bg-white border-none curosr-pointer rounded-full w-12 h-12 flex justify-center items-center text-[#f04436] hover:bg-gray-100" />
+            <div className="absolute -top-0 shadow-lg !cursor-pointer bg-white right-6 bottom-0 opacity-100">
+              <CarouselNext className="bg-white border-none cursor-pointer rounded-full w-12 h-12 flex justify-center items-center text-[#f04436] hover:bg-gray-100" />
             </div>
           </Carousel>
         </div>
