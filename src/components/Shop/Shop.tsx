@@ -39,7 +39,7 @@ const Shop = () => {
             selectedCategory="All"
             selectedPrice="All"
             showAll={showAllProducts}
-            cols={{ mobile: 1, md: 4, lg: 4 }}
+            cols={{ mobile: 2, md: 4, lg: 4 }}
             rows={
               showAllProducts
                 ? { mobile: 100, md: 100, lg: 100 } // Show all products

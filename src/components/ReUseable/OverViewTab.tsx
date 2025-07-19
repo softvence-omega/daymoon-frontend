@@ -158,11 +158,11 @@ const OverViewTab = () => {
                   selectedCategory={selectedCategory}
                   selectedPrice={selectedPrice}
                   showAll={showAll}
-                  cols={{ mobile: 1, md: 2, lg: 3 }}
+                  cols={{ mobile: 2, md: 2, lg: 3 }}
                   rows={
                     showAll
                       ? { mobile: 100, md: 100, lg: 100 }
-                      : { mobile: 1, md: 4, lg: 4 }
+                      : { mobile: 2, md: 4, lg: 4 }
                   }
                 />
 
