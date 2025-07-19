@@ -38,7 +38,7 @@ function StaticPurchaseBehaviorChart({
   };
 
   return (
-    <Card className="w-full border border-[#E5E5E5]">
+    <Card className="w-full border border-[#E5E5E5] bg-[#FFFFFF]">
       <CardHeader className="pb-4">
         <CardTitle className="text-xl font-medium text-gray-700">
           {title}
