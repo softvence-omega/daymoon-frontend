@@ -43,7 +43,7 @@ const CommonCalendar: React.FC<CommonCalendarProps> = ({
             <Calendar
               mode="single"
               selected={selectedDate}
-              onSelect={onSelectDate} // Correctly pass the onSelect handler
+              onSelect={onSelectDate}
               className="custom-calendar"
               required={true}
             />

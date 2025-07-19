@@ -65,7 +65,7 @@ const TestimonialCard: React.FC<Props> = ({ name, company, message }) => (
 // Main CustomersReview component
 export function CustomersReview() {
   return (
-    <div className="border border-[#E5E5E5] rounded-2xl shadow-sm p-4 overflow-x-auto space-y-6">
+    <div className="bg-[#FFFFFF] border border-[#E5E5E5] rounded-2xl shadow-sm p-4 overflow-x-auto space-y-6">
       {/* Header */}
       <div className="flex justify-between items-center">
         <h1 className="text-2xl font-medium text-[#484848] leading-tight">

@@ -93,7 +93,7 @@ const PromotionsAnalytics = () => {
   };
 
   return (
-    <div className="bg-white rounded-xl shadow-md p-8">
+    <div className="bg-[#FFFFFF] rounded-xl shadow-md p-8">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-medium text-[#484848]">
           Promotions Analytics

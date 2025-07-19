@@ -1,11 +1,18 @@
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import { TfiImport } from "react-icons/tfi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Title from "../Shared/Title";
 import Card from "./Card";
+import ButtonWithIcon from "@/common/ButtonWithIcon";
 
 const SellerCard = () => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/seller-dashboard/add-product");
+  };
+
   return (
     <div className="w-full ">
       {/* Top Section: Title + Action Buttons */}
@@ -34,7 +41,15 @@ const SellerCard = () => {
           </Button>
 
           {/* Add New Product Button */}
-          <Button
+          <ButtonWithIcon
+            onClick={handleClick}
+            className="flex flex-row-reverse justify-center text-white border-transparent !bg-sunset-orange"
+          >
+            <Plus />
+            Add New Product
+          </ButtonWithIcon>
+
+          {/* <Button
             asChild
             // className="h-[48px] sm:h-[50px] w-full sm:w-[200px] md:w-[237px] px-4 sm:px-6 md:px-10 py-2 sm:py-[10px] gap-1 sm:gap-2 rounded-[16px] sm:rounded-[20px] bg-[var(--color-sunset-orange)] text-white flex items-center justify-center text-sm sm:text-base md:text-[18px] font-medium font-poppins leading-[130%] shadow-md hover:shadow-lg transition "
             className="h-[48px] sm:h-[50px] w-full sm:w-auto px-4 sm:px-6 bg-[var(--color-sunset-orange)] text-white rounded-[16px] sm:rounded-[20px] flex items-center justify-center text-sm sm:text-base md:text-[18px] font-medium font-poppins leading-[130%] transition shadow-none"
@@ -46,7 +61,7 @@ const SellerCard = () => {
               Add New Product
               <Plus className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
             </Link>
-          </Button>
+          </Button> */}
         </div>
       </div>
 

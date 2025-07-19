@@ -172,7 +172,7 @@ export default function CartItemComponent({
                     </Button>
                   </div>
 
-                  <div className="text-right min-w-[60px]">
+                  <div className="text-right min-w-[80px]  tabular-nums">
                     <span className="font-semibold text-[#F04436] text-lg">
                       ${calculateVariantTotal()}
                     </span>

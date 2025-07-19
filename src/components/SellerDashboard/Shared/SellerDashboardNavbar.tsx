@@ -85,7 +85,7 @@ const SellerDashboardNavbar: React.FC<NavbarProps> = ({
               size="icon"
               className="relative cursor-pointer"
             >
-              <ShoppingCart className="w-6 h-6" />
+              <ShoppingCart className="w-7 h-7 text-[#F67D3A]" />
               {cartItems > 0 && (
                 <Badge
                   // variant="destructive"
@@ -102,7 +102,7 @@ const SellerDashboardNavbar: React.FC<NavbarProps> = ({
               size="icon"
               className="relative cursor-pointer"
             >
-              <Bell className="w-6 h-6" />
+              <Bell className="w-6 h-6 text-[#F67D3A]" />
               {notificationCount > 0 && (
                 <Badge
                   // variant="destructive"

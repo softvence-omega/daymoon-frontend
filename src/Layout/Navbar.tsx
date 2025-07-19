@@ -34,16 +34,6 @@ const Navbar = () => {
     { label: "Help Centre", href: "/help" },
     { label: "Log In & Sign Up", href: "/login" },
   ];
-  // const categories = [
-  //   "Electronics",
-  //   "Fashion",
-  //   "Home & Garden",
-  //   "Sports & Outdoors",
-  //   "Books",
-  //   "Beauty & Health",
-  //   "Automotive",
-  //   "Toys & Games",
-  // ];
 
   const countries = [
     { code: "USA", name: "United States", flag: usa },

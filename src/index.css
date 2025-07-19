@@ -93,6 +93,7 @@
   background-color: #f46a39 !important; /* Sunset Red */
   color: white !important; /* Make the text white to stand out */
 }
+
 @theme inline {
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
