@@ -124,7 +124,7 @@ export default function ProductDetails() {
           />
 
           <div className="flex flex-row items-center space-x-2">
-            <p className="text-sm font-semibold underline text-[#FCAB3F]">
+            <p className="text-sm font-semibold hover:underline text-[#FCAB3F]">
               {product.vendorInfo.vendorName}
             </p>
             <StarIcon className="h-4 w-4 mx-1 text-yellow-400" />

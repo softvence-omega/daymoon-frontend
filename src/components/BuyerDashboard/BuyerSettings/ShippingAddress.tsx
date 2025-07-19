@@ -1,8 +1,4 @@
-import { FaPlus } from "react-icons/fa";
 import PageHeader from "@/components/BuyerDashboard/BuyerSettings/PageHeader";
-import { ImPencil } from "react-icons/im";
-import { MdOutlineDelete } from "react-icons/md";
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { Button } from "@/components/ui/button";
 import {
   Drawer,
@@ -11,6 +7,10 @@ import {
   DrawerHeader,
   DrawerTrigger,
 } from "@/components/ui/drawer";
+import { FaPlus } from "react-icons/fa";
+import { ImPencil } from "react-icons/im";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { MdOutlineDelete } from "react-icons/md";
 
 import { useState } from "react";
 import ShippingModal from "./ShippingModal";
@@ -89,20 +89,20 @@ const ShippingAddress = () => {
   };
 
   return (
-    <div className="mx-auto mt-8 md:p-10 bg-[#FFFFFF] border border-[#E5E5E5] rounded-[20px] shadow-none ">
+    <div className="mx-auto mt-8 md:p-10  bg-[#FFFFFF] border border-[#E5E5E5] rounded-[20px] shadow-none ">
       <div className="space-y-6 lg:col-span-8">
         <div className="hidden md:block">
           <PageHeader
             title="Shipping Addresses"
             icon={<FaPlus />}
             buttonTitle="Add New Address"
-            onButtonClick={() => setIsAddModalOpen(true)} // <-- open modal
+            onButtonClick={() => setIsAddModalOpen(true)}
           />
         </div>
       </div>
 
       {/* Desktop View */}
-      <div className="hidden md:block space-y-4 mt-8">
+      <div className="hidden md:block space-y-4 mt-12">
         {addresses.map((address, index) => (
           <div
             key={index}

@@ -28,7 +28,7 @@ export default function NotFound() {
             </p>
             <Button
               onClick={() => navigate?.("/")}
-              className="bg-[#F04436] hover:bg-[#FCAB3F] text-white font-bold px-8 py-3 rounded-full text-lg shadow-md transition-all"
+              className="bg-[#F04436] hover:bg-[#FCAB3F] text-white cursor-pointer font-bold px-8 py-3 rounded-full text-lg shadow-md transition-all"
             >
               Go Home
             </Button>

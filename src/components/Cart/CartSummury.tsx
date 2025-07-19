@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { CartData } from "@/types";
+import { Link } from "react-router-dom";
 import RedButton from "../ReUseable/RedButton";
 
 interface CartSummaryProps {
@@ -34,7 +35,7 @@ export function CartSummary({ cartData }: CartSummaryProps) {
   const calculateTotal = () => {
     let total = 0;
 
-    cartData.cart.forEach((vendor) => {
+    cartData?.cart?.forEach((vendor) => {
       vendor.products.forEach((product) => {
         product.variants.forEach((variant) => {
           const price = getPriceBasedOnQuantity(
@@ -52,10 +53,10 @@ export function CartSummary({ cartData }: CartSummaryProps) {
   const totalPrice = calculateTotal();
 
   return (
-    <Card className="lg:sticky top-6 my-20 border-1 border-[#E5E5E5]">
+    <Card className="lg:sticky top-28 my-20 border-1 border-[#E5E5E5]">
       <CardContent className="space-y-4">
         <div className="space-y-2">
-          {cartData.cart.flatMap((vendor) =>
+          {cartData?.cart?.flatMap((vendor) =>
             vendor.products.flatMap((product) =>
               product.variants.map((variant) => (
                 <div
@@ -88,7 +89,10 @@ export function CartSummary({ cartData }: CartSummaryProps) {
           </span>
         </div>
 
-        <RedButton title="Proceed to checkout" />
+        <Link to="/checkout">
+          {" "}
+          <RedButton title="Proceed to checkout" />
+        </Link>
 
         <div className="text-xs text-gray-500 text-center mt-4">
           <p className="mt-1">Secure checkout with SSL encryption</p>

@@ -1,13 +1,11 @@
-import { Card } from "@/components/ui/card";
-import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { Card } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { useState } from "react";
 
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { RiLockPasswordLine } from "react-icons/ri";
 import {
   Drawer,
   DrawerClose,
@@ -16,7 +14,11 @@ import {
   DrawerHeader,
   DrawerTrigger,
 } from "@/components/ui/drawer";
+import { motion } from "framer-motion";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { RiLockPasswordLine } from "react-icons/ri";
 
+import RedButton from "@/components/ReUseable/RedButton";
 import {
   Select,
   SelectContent,
@@ -24,6 +26,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { toast } from "react-toastify";
 
 const currencyOptions = [
   { value: "usd", label: "USD ($)" },
@@ -80,7 +83,7 @@ const AccountSettings = () => {
   };
 
   return (
-    <Card className="mx-auto mt-4 md:mt-8 p-4 md:p-10 bg-[#FFFFFF] border border-[#B3B3B3] rounded-[20px]">
+    <Card className="mx-auto mt-4 md:mt-8 p-4 md:p-10 bg-[#FFFFFF] border border-[#E5E5E5]  rounded-[20px]">
       <h1 className="text-xl md:text-2xl lg:text-3xl font-medium text-[#1A1A1A] mb-4 md:mb-6">
         Account Settings
       </h1>
@@ -143,12 +146,14 @@ const AccountSettings = () => {
               className="border border-[#B3B3B3] rounded-xl px-4 py-3 md:py-4 text-sm md:text-base lg:text-lg h-auto w-full sm:w-1/2"
             />
           </div>
-          <Button
-            className="text-sm md:text-base lg:text-lg px-6 md:px-8 lg:px-10 py-3 md:py-4 border-[#192D4E] text-white bg-[#192D4E] rounded-[20px] h-auto w-auto"
+          <motion.button
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.8 }}
+            className="text-sm md:text-base mt-10 cursor-pointer lg:text-lg px-6 md:px-8 lg:px-10 py-3  border-[#192D4E] text-white bg-[#192D4E] rounded-[20px] font-medium h-auto "
             onClick={handleSubmit}
           >
             Update Password
-          </Button>
+          </motion.button>
         </div>
 
         {/* Mobile Drawer */}
@@ -249,12 +254,14 @@ const AccountSettings = () => {
               </div>
 
               <DrawerFooter className="px-4 md:px-6 py-4 md:py-6">
-                <Button
+                <motion.button
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.8 }}
+                  className="text-sm md:text-base cursor-pointer lg:text-lg px-6 md:px-8 lg:px-10 py-3  border-[#192D4E] text-white bg-[#192D4E] rounded-[20px] font-medium h-auto "
                   onClick={handleSubmit}
-                  className="w-full bg-[#F04436] text-white rounded-xl py-3 md:py-4 px-4 md:px-6 font-medium text-sm md:text-base"
                 >
                   Update Password
-                </Button>
+                </motion.button>
               </DrawerFooter>
             </DrawerContent>
           </Drawer>
@@ -270,12 +277,14 @@ const AccountSettings = () => {
           Add an extra layer of security to your account by requiring access to
           your phone when you log in.
         </p>
-        <Button
-          className="text-sm md:text-base lg:text-lg px-6 md:px-8 lg:px-10 py-3 md:py-4 border-[#192D4E] text-white bg-[#192D4E] rounded-[20px] h-auto w-auto"
+        <motion.button
+          whileHover={{ scale: 1.03 }}
+          whileTap={{ scale: 0.8 }}
+          className="text-sm md:text-base cursor-pointer lg:text-lg px-6 md:px-8 lg:px-10 py-3  border-[#192D4E] text-white bg-[#192D4E] rounded-[20px] font-medium h-auto "
           onClick={() => handleInputChange("twoFactorEnabled", true)}
         >
           Enable Two-Factor Authentication
-        </Button>
+        </motion.button>
       </div>
 
       {/* Email Preferences Section */}
@@ -407,15 +416,19 @@ const AccountSettings = () => {
             >
               <SelectTrigger
                 id="language"
-                className="w-full border border-[#B3B3B3] rounded-xl px-4 py-3 md:py-4 text-sm md:text-base lg:text-lg h-auto data-[size=default]:h-auto [&_svg:not([class*='text-'])]:text-[#F04436] [&_svg]:text-[##F04436]"
+                className="w-full border bg-white border-[#B3B3B3] rounded-xl px-4 py-3 md:py-4 text-sm md:text-base lg:text-lg h-auto data-[size=default]:h-auto [&_svg:not([class*='text-'])]:text-[#F04436] [&_svg]:text-[##F04436]"
               >
                 <SelectValue
                   placeholder={formData.language || "Select Language"}
                 />
               </SelectTrigger>
-              <SelectContent className="bg-white">
+              <SelectContent className="bg-white border-none">
                 {languageOptions.map((option) => (
-                  <SelectItem key={option.value} value={option.value}>
+                  <SelectItem
+                    className="hover:bg-gray-100 hover:text-sunset-orange cursor-pointer"
+                    key={option.value}
+                    value={option.value}
+                  >
                     {option.label}
                   </SelectItem>
                 ))}
@@ -440,9 +453,13 @@ const AccountSettings = () => {
                   placeholder={formData.currency || "Select Currency"}
                 />
               </SelectTrigger>
-              <SelectContent className="bg-white">
+              <SelectContent className="bg-white border-none">
                 {currencyOptions.map((option) => (
-                  <SelectItem key={option.value} value={option.value}>
+                  <SelectItem
+                    className="hover:bg-gray-100 hover:text-sunset-orange cursor-pointer"
+                    key={option.value}
+                    value={option.value}
+                  >
                     {option.label}
                   </SelectItem>
                 ))}
@@ -461,22 +478,24 @@ const AccountSettings = () => {
           Once you delete your account, there is no going back. Please be
           certain.
         </p>
-        <Button
-          className="text-sm md:text-base lg:text-lg px-6 md:px-8 lg:px-10 py-3 md:py-4 border-[#D30009] text-white bg-[#D30009] rounded-[20px] h-auto w-auto"
-          onClick={() => alert("Account deleted successfully!")}
-        >
-          Delete Account
-        </Button>
+        <div className="w-fit">
+          <RedButton
+            className="text-sm md:text-base lg:text-lg px-6 md:px-8 lg:px-10 py-3 md:py-4 border-[#D30009] text-white bg-[#D30009] rounded-[20px] h-auto "
+            onClick={() => toast.success("Account deleted successfully!")}
+            title="  Delete Account"
+          ></RedButton>
+        </div>
       </div>
 
       {/* Save Changes Button */}
-      <div className="mt-8 md:mt-16 lg:mt-20 flex justify-end">
-        <Button
-          className="text-sm md:text-base lg:text-lg px-6 md:px-8 lg:px-10 py-3 md:py-4 border-[#F04436] text-white bg-[#F04436] rounded-[20px] h-auto w-auto"
-          onClick={() => alert("Account deleted successfully!")}
-        >
-          Save Changes
-        </Button>
+      <div className="mt-8 md:mt-16 lg:mt-20 flex justify-end items-center w-full ">
+        <div>
+          <RedButton
+            className="text-sm   w-fit  md:text-base lg:text-lg px-6 md:px-8 lg:px-10 py-3 md:py-4 border-[#D30009] text-white bg-[#D30009] rounded-[20px] h-auto "
+            onClick={() => toast.success("Account deleted successfully!")}
+            title="  Save Changes"
+          ></RedButton>
+        </div>
       </div>
     </Card>
   );

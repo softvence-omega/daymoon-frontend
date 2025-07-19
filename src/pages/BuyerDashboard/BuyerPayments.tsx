@@ -14,7 +14,7 @@ const BuyerPayments = () => {
       </div>
       <PaymentMethods />
       <RefundRequests />
-      <div className="flex items-center justify-end gap-6 mt-12 mb-6">
+      <div className="flex flex-col md:flex-row items-center justify-end gap-6 mt-12 mb-6">
         <Link to="/buyer/dashboard/orders/refund">
           <button className="text-[#192D4E] underline  text-lg font-medium flex items-center justify-center cursor-pointer  px-5 py-3  gap-2 w-fit">
             Refund Request{" "}
@@ -36,7 +36,7 @@ const BuyerPayments = () => {
             </svg>
           </button>
         </Link>
-        <button className="bg-[#192D4E] cursor-pointer text-white  px-5 py-3 rounded-2xl text-lg font-medium flex items-center justify-center gap-4 w-fit">
+        <button className="bg-[#192D4E] cursor-pointer text-white px-5 py-3 w-full rounded-2xl text-sm md:text-lg font-medium  flex items-center justify-center gap-4 md:w-fit">
           Contact Support
         </button>
       </div>

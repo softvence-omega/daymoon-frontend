@@ -6,6 +6,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import CommonWrapper from "@/common/CommonWrapper";
+import RedButton from "../ReUseable/RedButton";
 import CartItemComponent from "./CartItem";
 import { CartSummary } from "./CartSummury";
 
@@ -55,7 +56,7 @@ export default function CartPage() {
     variantIndex: number
   ) => {
     setData((prevData) => {
-      const updatedItems = prevData.cart.map((vendor, vIndex) => {
+      const updatedItems = prevData?.cart.map((vendor, vIndex) => {
         if (vIndex === vendorIndex) {
           const updatedProducts = vendor.products.map((product, pIndex) => {
             if (pIndex === productIndex) {
@@ -74,7 +75,7 @@ export default function CartPage() {
     });
   };
 
-  const totalItems = Data.cart.reduce(
+  const totalItems = Data?.cart?.reduce(
     (sum, vendor) =>
       sum +
       vendor.products.reduce(
@@ -89,11 +90,11 @@ export default function CartPage() {
     0
   );
 
-  if (Data.cart.length === 0) {
+  if (Data?.cart?.length === 0) {
     return (
-      <div className="min-h-[50dvh] bg-gray-50">
+      <div className="min-h-[80dvh] flex justify-center items-center  ">
         <CommonWrapper>
-          <div className="text-center py-16">
+          <div className="text-center  w-fit mx-auto  py-16">
             <ShoppingCart className="w-16 h-16 text-gray-300 mx-auto mb-4" />
             <h2 className="text-2xl font-semibold text-gray-900 mb-2">
               Your cart is empty
@@ -102,10 +103,10 @@ export default function CartPage() {
               Add some products to get started
             </p>
             <Link to="/shop">
-              <Button className="bg-[#F04436] hover:bg-[#D7362F] text-white">
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                Continue Shopping
-              </Button>
+              <RedButton
+                title="Continue Shopping "
+                Icon={ArrowLeft}
+              ></RedButton>
             </Link>
           </div>
         </CommonWrapper>
@@ -135,7 +136,7 @@ export default function CartPage() {
             </div>
 
             <div className="space-y-6 mt-10">
-              {Data.cart.map((vendor, vendorIndex) =>
+              {Data?.cart?.map((vendor, vendorIndex) =>
                 vendor.products.map((product, productIndex) =>
                   product.variants.map((variant, variantIndex) => (
                     <CartItemComponent

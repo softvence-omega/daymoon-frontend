@@ -41,13 +41,13 @@ const HomeProductCard = ({
       transition={{ duration: 0.2, ease: "easeIn" }}
     >
       <motion.button
-        className="absolute top-4 right-4 z-10 h-8 w-8 flex items-center justify-center rounded-[10px] bg-[rgba(26,26,26,0.5)] backdrop-blur-[10.65px] hover:bg-sunset-orange cursor-pointer"
+        className="absolute top-3 right-3 z-10 h-8 w-8 flex items-center justify-center rounded-[10px] bg-[rgba(26,26,26,0.5)] backdrop-blur-[10.65px] hover:bg-sunset-orange cursor-pointer"
         whileTap={{ scale: 0.9 }}
         onClick={handleBookMark}
       >
-        <Heart className="h-4 w-4 text-white" />
+        <Heart className="h-5 w-5 text-white" />
       </motion.button>
-      <Link to="single">
+      <Link to="/single">
         <motion.div
           className="w-full h-[207px] rounded-[12px] overflow-hidden"
           variants={imageVariants}

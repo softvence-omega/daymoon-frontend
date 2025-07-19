@@ -10,7 +10,7 @@ export function BestSellingBanner() {
 
       <div className="flex flex-col  sm:flex-row">
         <div className=" p-6  pt-6   lg:p-8  py-0 flex flex-col  ">
-          <h3 className="text-lg  text-[#1A1A1A] lg:text-xl font-semibold mb-4 xl:text-nowrap  z-50 ">
+          <h3 className="text-lg  text-[#1A1A1A] lg:text-xl font-semibold mb-4 xl:text-nowrap  z-10 ">
             Best Selling Products
           </h3>
 
@@ -25,10 +25,7 @@ export function BestSellingBanner() {
             <motion.button
               whileTap={{ scale: 0.75 }}
               whileHover={{ scale: 1.03 }}
-              className="bg-[#F04436]   md:absolute z-100  bottom-12 hover:bg-red-600 text-white px-8 md:px-10 py-2 md:py-3  mt-8 rounded-3xl text-base md:text-lg md:font-medium shadow-lg  cursor-pointer"
-              onClick={(e) => {
-                e.stopPropagation();
-              }}
+              className="bg-[#F04436]   md:absolute  bottom-12 hover:bg-red-600 text-white px-8 md:px-10 py-2 md:py-3  mt-8 rounded-3xl text-base md:text-lg md:font-medium shadow-lg  cursor-pointer"
             >
               Shop Now
             </motion.button>

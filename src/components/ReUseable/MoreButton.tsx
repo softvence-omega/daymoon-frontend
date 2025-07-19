@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import arrow from "../../assets/Icon/arrow.svg";
 
 interface ExploreMoreButtonProps {
@@ -11,11 +12,13 @@ const MoreButton: React.FC<ExploreMoreButtonProps> = ({
 }) => {
   return (
     <div className="flex justify-center mt-[48px]">
-      <button
+      <motion.button
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.8 }}
         onClick={onClick}
         className="flex h-10 md:h-[50px] px-5 gap-3 items-center rounded-[20px] bg-white shadow-[3px_4px_14.6px_0_rgba(0,0,0,0.12)]
           text-sunset-orange font-medium md:font-semibold text-base text-[14px] md:text-[18px] lg:text-[18px] not-italic 
-          hover:shadow-xl transition-shadow cursor-pointer"
+           transition-shadow cursor-pointer"
       >
         {text}
         <img
@@ -23,7 +26,7 @@ const MoreButton: React.FC<ExploreMoreButtonProps> = ({
           alt="arrow icon"
           className="w-4 h-4 lg:h-6 lg:w-6 md:h-6 md:w-6 object-contain"
         />
-      </button>
+      </motion.button>
     </div>
   );
 };
