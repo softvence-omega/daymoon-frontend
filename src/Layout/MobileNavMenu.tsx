@@ -23,37 +23,37 @@ const MobileSidebar = () => {
     {
       name: "Shop",
       path: "/shop",
-      icon: <FaShoppingCart className="w-5 h-5" />,
+      icon: <FaShoppingCart className="w-5 h-5 text-sunset-orange" />,
     },
     {
       name: "About",
       path: "/about",
-      icon: <FaInfoCircle className="w-5 h-5" />,
+      icon: <FaInfoCircle className="w-5 h-5 text-sunset-orange" />,
     },
     {
       name: "Contact",
       path: "/contact",
-      icon: <FaPhoneAlt className="w-5 h-5" />,
+      icon: <FaPhoneAlt className="w-5 h-5 text-sunset-orange" />,
     },
     {
       name: "Become A Supplier",
       path: "#",
-      icon: <MdHelpOutline className="w-5 h-5" />,
+      icon: <MdHelpOutline className="w-5 h-5 text-sunset-orange" />,
     },
     {
       name: "App & Extensions",
       path: "#",
-      icon: <MdExtension className="w-5 h-5" />,
+      icon: <MdExtension className="w-5 h-5 text-sunset-orange" />,
     },
     {
       name: "Help Centre",
       path: "#",
-      icon: <MdHelpOutline className="w-5 h-5" />,
+      icon: <MdHelpOutline className="w-5 h-5 text-sunset-orange" />,
     },
     {
       name: "Log In & Sign Up",
       path: "/login",
-      icon: <FaInfoCircle className="w-5 h-5" />,
+      icon: <FaInfoCircle className="w-5 h-5 text-sunset-orange" />,
     },
   ];
 
