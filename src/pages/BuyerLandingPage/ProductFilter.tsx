@@ -29,7 +29,7 @@ const ProductFilter = () => {
               selectedCategory="All"
               selectedPrice="All"
               showAll={showAllProducts}
-              cols={{ mobile: 1, md: 2, lg: 3 }}
+              cols={{ mobile: 2, md: 2, lg: 3 }}
               rows={
                 showAllProducts
                   ? { mobile: 100, md: 100, lg: 100 } // Show all products

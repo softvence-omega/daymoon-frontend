@@ -1,4 +1,5 @@
 import CommonWrapper from "@/common/CommonWrapper";
+import DashboardCommonSpace from "@/common/DashboardCommonSpace";
 import HomeTabs from "@/components/HomePage/HomeTabs";
 import HowItWorks from "@/components/HomePage/HowItWorks";
 import SourceDirectSection from "@/components/HomePage/SourceDirection";
@@ -19,9 +20,9 @@ const Home = () => {
       <CommonWrapper>
         <HowItWorks />
         <TestimonialCarousel />
-        <div className="my-32">
+        <DashboardCommonSpace className="py-16">
           <JoinUs />
-        </div>
+        </DashboardCommonSpace>
       </CommonWrapper>
     </>
   );

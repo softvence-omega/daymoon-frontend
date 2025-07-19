@@ -299,7 +299,7 @@ export function ProductCategory() {
         </div>
 
         {/* Product Table */}
-        <div className="border border-[#E5E5E5] rounded-2xl shadow-sm p-4 overflow-x-auto space-y-6">
+        <div className="bg-[#FFFFFF] border border-[#E5E5E5] rounded-2xl shadow-sm p-4 overflow-x-auto space-y-6">
           <Table className="w-full">
             <TableHeader>
               <TableRow className="bg-[#E5E5E5] text-[#666666] text-sm rounded-2xl border">

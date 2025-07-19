@@ -26,24 +26,50 @@ const EnquiriesByCategories: React.FC = () => {
     },
     legend: {
       position: "right",
-      offsetY: 50, // Push the legend down
-      offsetX: -80, // Slightly to the right if needed
+      offsetY: 50,
+      offsetX: -60,
       fontSize: "16px",
       labels: {
         colors: ["#484848"],
         useSeriesColors: false,
       },
-      height: 330,
+      height: 230,
     },
-
     colors: ["#9BDFC4", "#62B2FD", "#FFB450", "#FF676E"],
     responsive: [
+      {
+        breakpoint: 1200,
+        options: {
+          legend: {
+            offsetX: -10,
+          },
+        },
+      },
+      {
+        breakpoint: 1024,
+        options: {
+          legend: {
+            offsetX: -40,
+          },
+        },
+      },
+      {
+        breakpoint: 768,
+        options: {
+          legend: {
+            offsetX: 0,
+            position: "bottom",
+            offsetY: 20,
+            height: undefined,
+          },
+        },
+      },
       {
         breakpoint: 480,
         options: {
           chart: {
-            width: 320,
-            height: 320,
+            width: 300,
+            height: 300,
           },
           legend: {
             show: false,
@@ -54,9 +80,9 @@ const EnquiriesByCategories: React.FC = () => {
   };
 
   return (
-    <div className="w-full max-w-[775px] h-full max-h-[555px] p-6 bg-white rounded-xl shadow-md">
+    <div className="w-full h-full max-h-[555px] p-6 bg-white rounded-xl shadow-md">
       {/* Top Section: Title & Dropdown */}
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-0 lg:mb-8">
         {/* Title */}
         <h1 className="text-[24px] leading-[130%]  text-[#484848]">
           Enquiries By Catagories

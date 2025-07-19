@@ -30,7 +30,7 @@ const ProductCategories = () => {
             selectedCategory="All"
             selectedPrice="All"
             showAll={showAllProducts}
-            cols={{ mobile: 1, md: 4, lg: 4 }} // example columns per breakpoint
+            cols={{ mobile: 2, md: 4, lg: 4 }} // example columns per breakpoint
             rows={
               showAllProducts
                 ? { mobile: 100, md: 100, lg: 100 } // show all products

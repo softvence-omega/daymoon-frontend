@@ -48,7 +48,7 @@ const orderData = [
 
 export function RecentOrders() {
   return (
-    <div className="border border-[#E5E5E5] rounded-2xl shadow-sm p-4 md:p-6 space-y-4 md:space-y-6">
+    <div className="bg-[#FFFFFF] border border-[#E5E5E5] rounded-2xl shadow-sm p-4 md:p-6 space-y-4 md:space-y-6">
       <div className="flex justify-between items-center">
         <div>
           <h1 className="text-lg md:text-2xl font-medium text-[#484848]">

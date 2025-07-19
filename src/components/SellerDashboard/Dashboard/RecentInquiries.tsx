@@ -107,7 +107,7 @@ const inquiries: InquiryCardProps[] = [
 // Main Component
 export function RecentInquiries() {
   return (
-    <div className="border border-[#E5E5E5] rounded-2xl shadow-sm p-4 overflow-x-auto space-y-6">
+    <div className="bg-[#FFFFFF] border border-[#E5E5E5] rounded-2xl shadow-sm p-4 overflow-x-auto space-y-6">
       {/* Header */}
       <div className="flex justify-between items-center">
         <h1 className="text-[24px] font-medium leading-[130%] text-[#484848]">
