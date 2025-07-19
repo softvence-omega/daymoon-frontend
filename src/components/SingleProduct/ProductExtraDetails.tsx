@@ -302,12 +302,12 @@ export default function ProductExtraDetails() {
         {earbuds.map((src, idx) => (
           <div
             key={idx}
-            className="aspect-square overflow-hidden rounded-lg border border-[#B3B3B3]"
+            className="md:aspect-square overflow-hidden rounded-lg border border-[#B3B3B3]"
           >
             <img
               src={src.img}
               alt={`Product image ${idx + 1}`}
-              className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+              className="h-[40dvh] contain w-full md:h-full md:object-cover hover:scale-105 transition-transform duration-300"
             />
           </div>
         ))}

@@ -3,6 +3,7 @@ import GlobalSearchBar from "@/components/ReUseable/GlobalSearchBar";
 import JoinUs from "@/components/ReUseable/JoinUs";
 import MoreButton from "@/components/ReUseable/MoreButton";
 import ProductsComponent from "@/components/ReUseable/ProductsComponent";
+import Breadcrumbs from "@/components/SellerDashboard/SellerProducts/Breadcrumbs";
 import FashionBanner from "@/components/Shop/FashonBanner";
 import ShopAdvertise from "@/components/Shop/ShopAdvertise";
 // import ShopCategories from "@/components/Shop/ShopCategories";
@@ -22,6 +23,9 @@ const ProductCategories = () => {
           <GlobalSearchBar />
         </div>
         <ShopAdvertise />
+        <div className="block md:hidden">
+          <Breadcrumbs title="Categories" subtitle="Sub Categories" />
+        </div>
         <ShopSubCategories number={6} />
 
         {/* Products Section */}

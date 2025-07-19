@@ -28,7 +28,7 @@ const ShopCategories = ({ number }: { number: number }) => {
   const getResponsiveBasisClass = (number: number) => {
     switch (number) {
       case 6:
-        return "lg:basis-1/6 xl:basis-1/6";
+        return "lg:basis-1/4 xl:basis-1/6";
       case 8:
         return "lg:basis-1/6 xl:basis-1/8";
       default:
@@ -50,7 +50,7 @@ const ShopCategories = ({ number }: { number: number }) => {
   ];
 
   const [visibleCategories, setVisibleCategories] = useState(2); // Initially show 2 categories
-  const isSmallDevice = useMediaQuery({ query: "(max-width: 768px)" });
+  const isSmallDevice = useMediaQuery({ query: "(max-width: 425px)" });
 
   const handleCategoryClick = (category: ICategory) => {
     // This will navigate to the correct route
@@ -62,9 +62,9 @@ const ShopCategories = ({ number }: { number: number }) => {
   };
 
   return (
-    <div className="w-full mt-10 md:mt-20">
+    <div className="w-full mt-6 md:mt-10 ">
       {isSmallDevice ? (
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           {categoriesData.slice(0, visibleCategories).map((category, index) => (
             <div key={index}>
               <Card
@@ -108,7 +108,7 @@ const ShopCategories = ({ number }: { number: number }) => {
                           className="object-fill w-full h-full transition-transform duration-300 ease-in-out group-hover:scale-105"
                         />
                         <div className="absolute bottom-2 left-0 right-0">
-                          <h3 className="text-white bg-black/50 w-fit mx-auto px-2 line-clamp-1  md:text-sm py-1 rounded-md backdrop-blur-md font-medium text-nowrap">
+                          <h3 className="text-white bg-black/50 w-fit mx-auto px-2 line-clamp-1  md:text-xs xl:text-sm py-1 rounded-md backdrop-blur-md font-medium text-nowrap">
                             {category.name}
                           </h3>
                         </div>

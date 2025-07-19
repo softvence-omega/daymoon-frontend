@@ -28,8 +28,8 @@ const IndividualProduct = () => {
           cols={{ mobile: 2, md: 4, lg: 4 }}
           rows={
             showAllProducts
-              ? { mobile: 100, md: 100, lg: 100 } // Show all products
-              : { mobile: 2, md: 1, lg: 1 } // Show limited initially
+              ? { mobile: 100, md: 100, lg: 100 }
+              : { mobile: 2, md: 1, lg: 1 }
           }
         />
       </div>
@@ -46,8 +46,8 @@ const IndividualProduct = () => {
           cols={{ mobile: 1, md: 4, lg: 4 }}
           rows={
             showAllProducts
-              ? { mobile: 100, md: 100, lg: 100 } // Show all products
-              : { mobile: 1, md: 1, lg: 1 } // Show limited initially
+              ? { mobile: 100, md: 100, lg: 100 }
+              : { mobile: 1, md: 1, lg: 1 }
           }
         />
         {!showAllProducts && (

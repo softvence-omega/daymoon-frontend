@@ -89,7 +89,7 @@ export default function CartItemComponent({
   };
 
   return (
-    <div className="bg-white  md:p-4">
+    <div className="bg-white  ">
       <div className="flex items-center gap-4   mb-8">
         <div className="w-12 h-12  rounded-lg overflow-hidden">
           <img
@@ -111,13 +111,16 @@ export default function CartItemComponent({
         </div>
       </div>
 
-      <div className=" md:mx-8">
+      <div
+        className=" md:mx-8 md:border-none  border-1 
+      px-4 border-[#E5E5E5] rounded-lg"
+      >
         {cardData?.cart?.[vendorIndex]?.products?.map((product) =>
           product?.variants?.map((variant) => {
             return (
               <div
                 key={variant?.variantId}
-                className="flex border-t border-[#E5E5E5] flex-col py-6 md:py-0 md:pt-10 sm:flex-row md:items-center justify-between gap-4 mb-4"
+                className="flex md:border-t border-[#E5E5E5] flex-col py-6 md:py-4  sm:flex-row md:items-center justify-between gap-4 "
               >
                 <div className="flex  flex-row  items-start md:items-center gap-4 justify-between">
                   <div className="flex-shrink-0 ">
@@ -158,7 +161,7 @@ export default function CartItemComponent({
                   </motion.button>
                 </div>
 
-                <div className="flex flex-col md:flex-row items-center gap-10  ">
+                <div className="flex flex-col md:flex-row md:items-center gap-2  ">
                   <div className="flex items-center shadow-sm rounded-xl p-2 border-gray-300 gap-2">
                     <Button
                       size="sm"
