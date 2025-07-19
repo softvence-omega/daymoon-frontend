@@ -16,6 +16,7 @@ interface ProductsComponentProps {
     md?: number;
     lg?: number;
   };
+  // titleProducts:string;
 }
 
 const ProductsComponent: React.FC<ProductsComponentProps> = ({
@@ -24,6 +25,7 @@ const ProductsComponent: React.FC<ProductsComponentProps> = ({
   showAll,
   cols,
   rows,
+  // titleProducts,
 }) => {
   const [windowWidth, setWindowWidth] = useState(0);
 
@@ -73,7 +75,8 @@ const ProductsComponent: React.FC<ProductsComponentProps> = ({
   const productsToShow = filteredProducts.slice(0, visibleCount);
 
   return (
-    <div className="mx-auto mt-12">
+    <div className="mx-auto mt-4 md:mt-12 lg:mt-12 xl:mt-12 2xl:mt-12">
+      {/* <h1 className="text-2xl lg:text-[32px] text-center md:text-left lg:text-left pt-2 md:pt-0 lg:pt-0 max-[767px]:font-medium mb-8 font-semibold uppercase ">{titleProducts}</h1> */}
       {filteredProducts.length === 0 ? (
         <div className="text-center text-gray-500 text-lg font-medium py-10">
           Sorry, this price range has no product.

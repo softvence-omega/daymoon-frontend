@@ -16,6 +16,7 @@ interface HomeProductsProps {
     lg: number;
     xl?: number;
   };
+  // title:string;
 }
 
 const isMobileWidth = (width: number) => width < 768;
@@ -55,10 +56,10 @@ const HomeProducts = ({ cols, rows }: HomeProductsProps) => {
   const currentCols = isMobileWidth(windowWidth)
     ? cols.mobile
     : isMdWidth(windowWidth)
-    ? cols.md
-    : isXlWidth(windowWidth)
-    ? cols.xl // Set XL breakpoint columns
-    : cols.lg;
+      ? cols.md
+      : isXlWidth(windowWidth)
+        ? cols.xl // Set XL breakpoint columns
+        : cols.lg;
 
   const rowsCount = Math.ceil(displayedProducts.length / currentCols!);
 
@@ -90,7 +91,8 @@ const HomeProducts = ({ cols, rows }: HomeProductsProps) => {
       : {};
 
   return (
-    <div className="mt-[80px]">
+    <div className="mt-10 md:mt-[80px] lg:mt-[80px] xl:mt-[80px] 2xl:mt-[80px]">
+      {/* <h1 className="text-2xl lg:text-[32px] text-center md:text-left lg:text-left pt-0 md:pt-0 lg:pt-0 max-[767px]:font-medium mb-8 font-semibold uppercase ">{title}</h1> */}
       <div
         className={gridClass}
         style={{

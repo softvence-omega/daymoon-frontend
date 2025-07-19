@@ -51,7 +51,7 @@ const Faq = () => {
   };
 
   return (
-    <div className="space-y-8 mt-32">
+    <div className="space-y-8 mt-32 max-[767px]:mt-14">
       <div className="space-y-4">
         <h2 className="text-3xl md:text-5xl text-[#1A1A1A] text-center font-bold">
           FAQ

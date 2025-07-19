@@ -5,7 +5,7 @@ import SellerHeader from "../Seller/SellerHeader";
 
 const Core = () => {
   return (
-    <div className="flex flex-col xl:flex-row w-full items-center gap-10 px-4">
+    <div className="flex flex-col xl:flex-row w-full items-center gap-10">
       <div className="w-full xl:w-2/3">
         <div className="block lg:relative">
           {/* Only show on mobile */}
@@ -59,8 +59,8 @@ const Core = () => {
       </div>
 
       {/* Text Section */}
-      <div className="w-full xl:w-1/3 pt-10 md:pt-0">
-        <SellerHeader className="!text-2xl !capitalize !font-[600]">
+      <div className="w-full xl:w-1/3 max-[767px]:pt-6 pt-10 md:pt-0">
+        <SellerHeader className="!text-3xl !capitalize !font-[600]">
           Our Core Values
         </SellerHeader>
         <p className="text-[#484848] font-[400] pb-8 mt-2 md:text-[18px] leading-relaxed">
