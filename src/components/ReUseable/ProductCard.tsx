@@ -5,6 +5,7 @@ import { ChevronLeft, ChevronRight, Heart } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import { motion } from "framer-motion";
 import discImg from "../../assets/Icon/discount.svg";
 
 interface ProductProps {
@@ -75,10 +76,12 @@ const ProductCard = ({
                 key={i}
                 className="keen-slider__slide flex items-center justify-center"
               >
-                <img
+                <motion.img
                   src={src}
                   alt={`product-slide-${i}`}
                   className="w-full h-full object-cover"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
                 />
               </div>
             ))}
@@ -111,9 +114,8 @@ const ProductCard = ({
             {images.map((_, idx) => (
               <span
                 key={idx}
-                className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
-                  idx === currentSlide ? "bg-sunset-orange" : "bg-[#E4E7EC]"
-                }`}
+                className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${idx === currentSlide ? "bg-sunset-orange" : "bg-[#E4E7EC]"
+                  }`}
               />
             ))}
           </div>

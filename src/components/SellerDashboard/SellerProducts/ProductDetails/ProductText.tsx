@@ -21,7 +21,7 @@ const ProductText = () => {
     <div className="flex flex-col gap-4 border border-foundation-white rounded-3xl p-4">
       <CommonHeader>
         Bluetooth Wireless Earbuds with Deep Bass, 40H Playtime, LED Display,
-        IP7 Rating, Mic for iPhone and Android, Black.
+        IP7 Rating, Mic for iPhone and Android, Blackk.
       </CommonHeader>
       <div className="flex items-center gap-4">
         <div className="flex gap-2 text-[#FFC633] text-xl">
