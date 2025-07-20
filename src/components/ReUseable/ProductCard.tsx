@@ -1,7 +1,7 @@
 import star from "@/assets/Icon/star_rate.svg";
 import "keen-slider/keen-slider.min.css";
 import { useKeenSlider } from "keen-slider/react";
-import { ChevronLeft, ChevronRight, Heart } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -34,8 +34,15 @@ const ProductCard = ({
     },
   });
 
-  const handleBookmark = () => {
-    toast.success("Product Bookmarked!");
+  const [bookmarked, setBookmarked] = useState(false);
+
+  const handleBookMark = () => {
+    setBookmarked((prev) => !prev);
+    if (!bookmarked) {
+      toast.success("Product Bookmarked");
+    } else {
+      toast.info("Bookmark Removed");
+    }
   };
 
   const location = "/single";
@@ -43,7 +50,7 @@ const ProductCard = ({
   return (
     <div className="bg-white shadow-[0px_0px_20px_1px_#ffbb763f] border border-[#e5e5e5]/[0.454] rounded-lg hover:shadow-lg transition-shadow duration-300 overflow-hidden relative flex flex-col md:min-h-[420px] lg:min-h-[420px] xl:min-h-[420px] 2xl:min-h-[420px]">
       {/* Discount Badge */}
-      <div className="absolute top-4 left-0 w-full px-4 flex items-center justify-between z-10">
+      <div className="absolute top-2 left-0 w-full px-2 flex items-center justify-between z-10">
         {discount > 0 ? (
           <div className="relative flex items-center">
             <img src={discImg} alt="discount" className="w-10 h-10 sm:w-12 sm:h-12" />
@@ -58,11 +65,35 @@ const ProductCard = ({
 
       {/* Bookmark Button */}
       <button
-        onClick={handleBookmark}
-        className="absolute top-4 right-4 z-10 h-9 w-9 sm:h-10 sm:w-10 flex items-center justify-center rounded-[12px] bg-[rgba(26,26,26,0.5)] backdrop-blur-[10.65px] hover:bg-sunset-orange"
+        onClick={handleBookMark}
+        className="absolute top-3 right-3 z-10 h-9 w-9 flex items-center justify-center rounded-lg bg-[rgba(26,26,26,0.4)] backdrop-blur-md transition duration-200 max-[767px]:h-8 max-[767px]:w-8 cursor-pointer"
       >
-        <Heart className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+        {bookmarked ? (
+          // Sunset-orange filled icon (active state)
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16"
+            fill="#FD6A3A"
+            className="h-6 w-6 max-md:h-5 max-md:w-5"
+          >
+            <path d="M8.90108 13.5381C8.39441 13.9981 7.61441 13.9981 7.10775 13.5314L7.03441 13.4648C3.53441 10.2981 1.24775 8.22478 1.33441 5.63811C1.37441 4.50478 1.95441 3.41811 2.89441 2.77811C4.65441 1.57811 6.82775 2.13811 8.00108 3.51145C9.17441 2.13811 11.3477 1.57145 13.1077 2.77811C14.0477 3.41811 14.6277 4.50478 14.6677 5.63811C14.7611 8.22478 12.4677 10.2981 8.96775 13.4781L8.90108 13.5381Z" />
+          </svg>
+        ) : (
+          // White outline icon (default state)
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16"
+            fill="none"
+            className="h-6 w-6 max-md:h-5 max-md:w-5"
+          >
+            <path
+              d="M13.1081 2.77811C11.3481 1.57811 9.17478 2.13811 8.00144 3.51145C6.82811 2.13811 4.65478 1.57145 2.89478 2.77811C1.96144 3.41811 1.37478 4.49811 1.33478 5.63811C1.24144 8.22478 3.53478 10.2981 7.03478 13.4781L7.10144 13.5381C7.60811 13.9981 8.38811 13.9981 8.89478 13.5314L8.96811 13.4648C12.4681 10.2914 14.7548 8.21811 14.6681 5.63145C14.6281 4.49811 14.0414 3.41811 13.1081 2.77811ZM8.06811 12.4848L8.00144 12.5514L7.93478 12.4848C4.76144 9.61144 2.66811 7.71145 2.66811 5.78478C2.66811 4.45145 3.66811 3.45145 5.00144 3.45145C6.02811 3.45145 7.02811 4.11145 7.38144 5.02478H8.62811C8.97478 4.11145 9.97478 3.45145 11.0014 3.45145C12.3348 3.45145 13.3348 4.45145 13.3348 5.78478C13.3348 7.71145 11.2414 9.61144 8.06811 12.4848Z"
+              fill="#FCFCFC"
+            />
+          </svg>
+        )}
       </button>
+
 
       {/* Image Slider */}
       <div className="relative w-full h-[200px] md:h-[264px] lg:h-[264px] xl:h-[264px] 2xl:h-[264px] flex items-center justify-center">
