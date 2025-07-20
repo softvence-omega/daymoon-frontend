@@ -29,7 +29,7 @@ const HomeProductCard = ({
       {/* Bookmark Button */}
       <button
         onClick={handleBookMark}
-        className="absolute top-3 right-3 z-10 h-9 w-9 flex items-center justify-center rounded-lg bg-[rgba(26,26,26,0.4)] backdrop-blur-md hover:bg-sunset-orange transition duration-200 max-[767px]:h-8 max-[767px]:w-8"
+        className="absolute top-3 right-3 z-10 h-9 w-9 flex items-center justify-center rounded-lg bg-[rgba(26,26,26,0.4)] backdrop-blur-md hover:bg-sunset-orange transition duration-200 max-[767px]:h-8 max-[767px]:w-8 cursor-pointer"
       >
         <Heart className="h-5 w-5 text-white max-[767px]:h-4 max-[767px]:w-4" />
       </button>
