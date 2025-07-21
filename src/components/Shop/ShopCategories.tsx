@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import {
   Carousel,
@@ -8,8 +7,6 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { ICategory } from "@/types";
-import { useState } from "react";
-import { useMediaQuery } from "react-responsive";
 import { useNavigate } from "react-router-dom"; // Make sure useNavigate is imported correctly
 import img1 from "../../assets/Home/electronics.png";
 import img2 from "../../assets/Home/image(1).png";
@@ -49,96 +46,50 @@ const ShopCategories = ({ number }: { number: number }) => {
     { name: "Jewellery", image: img8, slug: "jewellery" },
   ];
 
-  const [visibleCategories, setVisibleCategories] = useState(2); // Initially show 2 categories
-  const isSmallDevice = useMediaQuery({ query: "(max-width: 425px)" });
-
   const handleCategoryClick = (category: ICategory) => {
-    // This will navigate to the correct route
     navigate(`/buyerHome/${category.slug}`);
   };
 
-  const handleShowMore = () => {
-    setVisibleCategories((prev) => prev + 4); // Show 4 more categories
-  };
-
   return (
-    <div className="w-full mt-6 md:mt-10 ">
-      {isSmallDevice ? (
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-          {categoriesData.slice(0, visibleCategories).map((category, index) => (
-            <div key={index}>
-              <Card
-                onClick={() => handleCategoryClick(category)}
-                className="relative border-none overflow-hidden m-0 p-0 border-box h-[140px] rounded-lg cursor-pointer transition-transform group"
+    <div className="w-full md:mt-10 ">
+      <div className="relative mt-10 md:mt-20">
+        <Carousel className="w-full">
+          <CarouselContent>
+            {categoriesData.map((category, index) => (
+              <CarouselItem
+                key={index}
+                className={`basis-1/2 md:basis-1/4  ${responsiveBasis}`}
               >
-                <div className="w-full h-full">
-                  <img
-                    src={category.image}
-                    alt={category.name}
-                    className="object-fill w-full h-full transition-transform duration-300 ease-in-out group-hover:scale-105"
-                  />
-                  <div className="absolute bottom-2 left-0 right-0">
-                    <h3 className="text-white bg-black/50 w-fit mx-auto px-2 text-xs md:text-sm py-1 rounded-md backdrop-blur-md font-medium text-nowrap">
-                      {category.name}
-                    </h3>
-                  </div>
-                </div>
-              </Card>
-            </div>
-          ))}
-        </div>
-      ) : (
-        <div className="relative mt-10 md:mt-20">
-          <Carousel className="w-full">
-            <CarouselContent>
-              {categoriesData.map((category, index) => (
-                <CarouselItem
-                  key={index}
-                  className={`basis-1/2 md:basis-1/4  ${responsiveBasis}`}
-                >
-                  <div>
-                    <Card
-                      onClick={() => handleCategoryClick(category)}
-                      className="relative border-none overflow-hidden m-0 p-0 border-box h-[140px] rounded-lg cursor-pointer transition-transform group"
-                    >
-                      <div className="w-full h-full">
-                        <img
-                          src={category.image}
-                          alt={category.name}
-                          className="object-fill w-full h-full transition-transform duration-300 ease-in-out group-hover:scale-105"
-                        />
-                        <div className="absolute bottom-2 left-0 right-0">
-                          <h3 className="text-white bg-black/50 w-fit mx-auto px-2 line-clamp-1  md:text-xs xl:text-sm py-1 rounded-md backdrop-blur-md font-medium text-nowrap">
-                            {category.name}
-                          </h3>
-                        </div>
+                <div>
+                  <Card
+                    onClick={() => handleCategoryClick(category)}
+                    className="relative border-none overflow-hidden m-0 p-0 border-box h-[140px] rounded-lg cursor-pointer transition-transform group"
+                  >
+                    <div className="w-full h-full">
+                      <img
+                        src={category.image}
+                        alt={category.name}
+                        className="object-fill w-full h-full transition-transform duration-300 ease-in-out group-hover:scale-105"
+                      />
+                      <div className="absolute bottom-2 left-0 right-0">
+                        <h3 className="text-white bg-black/50 w-fit mx-auto px-2 line-clamp-1  text-xs xl:text-sm py-1 rounded-md backdrop-blur-md font-medium text-nowrap">
+                          {category.name}
+                        </h3>
                       </div>
-                    </Card>
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <div className="absolute -top-0 shadow-lg  bg-white left-7 bottom-0 opacity-100">
-              <CarouselPrevious className="bg-white cursor-pointer border-none rounded-full w-12 h-12 flex justify-center items-center text-[#f04436] hover:bg-gray-100" />
-            </div>
-            <div className="absolute -top-0 shadow-lg !cursor-pointer bg-white right-6 bottom-0 opacity-100">
-              <CarouselNext className="bg-white border-none cursor-pointer rounded-full w-12 h-12 flex justify-center items-center text-[#f04436] hover:bg-gray-100" />
-            </div>
-          </Carousel>
-        </div>
-      )}
-
-      {isSmallDevice && visibleCategories < categoriesData.length && (
-        <div className="text-center mt-6">
-          <Button
-            onClick={handleShowMore}
-            variant="outline"
-            className="text-[#F46A39] bg-white border border-[#F46A39] hover:bg-[#F46A39] hover:text-white"
-          >
-            Show More
-          </Button>
-        </div>
-      )}
+                    </div>
+                  </Card>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <div className="absolute -top-0 shadow-lg  bg-white left-7 bottom-0 opacity-100">
+            <CarouselPrevious className="bg-white cursor-pointer border-none rounded-full w-12 h-12 flex justify-center items-center text-[#f04436] hover:bg-gray-100" />
+          </div>
+          <div className="absolute -top-0 shadow-lg !cursor-pointer bg-white right-6 bottom-0 opacity-100">
+            <CarouselNext className="bg-white border-none cursor-pointer rounded-full w-12 h-12 flex justify-center items-center text-[#f04436] hover:bg-gray-100" />
+          </div>
+        </Carousel>
+      </div>
     </div>
   );
 };
