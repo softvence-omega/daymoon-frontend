@@ -31,8 +31,8 @@ export interface SidebarProps {
 
 // Updated sidebar items to match your route structure
 const defaultSidebarItems: SidebarItem[] = [
-  { icon: Home, label: "Home", href: "/" },
   { icon: MdGridView, label: "Dashboard", href: "/buyer/dashboard" },
+  { icon: Home, label: "Home", href: "/" },
   { icon: FaTruck, label: "Orders", href: "/buyer/dashboard/orders" },
   {
     icon: MdOutlineMessage,
