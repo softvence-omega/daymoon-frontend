@@ -50,7 +50,7 @@ const ProductCard = ({
   return (
     <div className="bg-white shadow-[0px_0px_20px_1px_#ffbb763f] border border-[#e5e5e5]/[0.454] rounded-lg hover:shadow-lg transition-shadow duration-300 overflow-hidden relative flex flex-col md:min-h-[420px] lg:min-h-[420px] xl:min-h-[420px] 2xl:min-h-[420px]">
       {/* Discount Badge */}
-      <div className="absolute top-2 left-0 w-full px-2 flex items-center justify-between z-10">
+      <div className="absolute top-2 max-[767px]:top-1 left-0 w-full px-2 flex items-center justify-between z-10">
         {discount > 0 ? (
           <div className="relative flex items-center">
             <img src={discImg} alt="discount" className="w-10 h-10 sm:w-12 sm:h-12" />
@@ -96,7 +96,7 @@ const ProductCard = ({
 
 
       {/* Image Slider */}
-      <div className="relative w-full h-[200px] md:h-[264px] lg:h-[264px] xl:h-[264px] 2xl:h-[264px] flex items-center justify-center">
+      <div className="relative w-full h-[170px] md:h-[264px] lg:h-[264px] xl:h-[264px] 2xl:h-[264px] flex items-center justify-center">
         <Link
           to={location}
           className="relative w-full h-full flex items-center justify-center"
