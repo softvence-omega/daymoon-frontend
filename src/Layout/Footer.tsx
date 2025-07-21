@@ -75,7 +75,7 @@ export function Footer() {
   ];
 
   return (
-    <footer className=" bg-[#0B1321] pb-20  sm:pb-32 text-white py-12 ">
+    <footer className=" bg-[#0B1321] md:pb-20 pb-40 text-white py-12 ">
       <CommonWrapper>
         <div className="w-full  md:block flex justify-center items-center mb-12">
           <img

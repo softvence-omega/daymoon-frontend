@@ -51,8 +51,8 @@ const ShopCategories = ({ number }: { number: number }) => {
   };
 
   return (
-    <div className="w-full md:mt-10 ">
-      <div className="relative mt-10 md:mt-20">
+    <div className="w-full  lg:mt-10 ">
+      <div className="relative  lg:mt-20">
         <Carousel className="w-full">
           <CarouselContent>
             {categoriesData.map((category, index) => (

@@ -39,7 +39,7 @@ const HomeTabs = () => {
                 data-[state=active]:after:left-0 data-[state=active]:after:bottom-[-1px]
                 data-[state=active]:after:h-[2px] data-[state=active]:after:w-full
                 data-[state=active]:after:bg-[#FCAB3F] rounded-none bg-transparent
-                border-none shadow-none text-center cursor-pointer flex flex-row items-center gap-2"
+                border-none shadow-none text-center cursor-pointer flex flex-col md:flex-row  items-center gap-2"
             >
               <img
                 alt="product"
@@ -57,7 +57,7 @@ const HomeTabs = () => {
                 data-[state=active]:after:left-0 data-[state=active]:after:bottom-[-1px]
                 data-[state=active]:after:h-[2px] data-[state=active]:after:w-full
                 data-[state=active]:after:bg-[#FCAB3F] rounded-none bg-transparent flex
-                border-none shadow-none text-center cursor-pointer  items-center gap-2"
+                border-none shadow-none text-center cursor-pointer  flex-col md:flex-row items-center gap-2"
             >
               <img
                 alt="manufacturer"
@@ -84,9 +84,11 @@ const HomeTabs = () => {
                 <div className=" hidden lg:block  lg:w-3/4 mx-auto">
                   <GlobalSearchBar />
                 </div>
-                <ShopCategories number={8} />
+                <div className="mt-8 mb-16">
+                  <ShopCategories number={8} />
+                </div>
                 <HomeProducts
-                // title="All Products"
+                  // title="All Products"
                   cols={{ mobile: 2, md: 3, lg: 4, xl: 6 }}
                   rows={{ mobile: 4, md: 3, lg: 5, xl: 6 }}
                 />
@@ -108,7 +110,9 @@ const HomeTabs = () => {
                 <div className=" hidden lg:block lg:w-3/4 mx-auto">
                   <GlobalSearchBar />
                 </div>
-                <ShopCategories number={8} />
+                <div className="my-8 mb-16">
+                  <ShopCategories number={8} />
+                </div>
                 <TopManufacturer
                   title="Top Rated Manufacturers"
                   showTopRatedOnly={true}
@@ -124,7 +128,6 @@ const HomeTabs = () => {
                   <MoreButton
                     onClick={() => setShowAllTopRated(true)}
                     text="Explore More"
-                  
                   />
                 )}
 

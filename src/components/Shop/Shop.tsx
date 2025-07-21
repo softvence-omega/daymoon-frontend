@@ -29,11 +29,11 @@ const Shop = () => {
       </div>
       <div className="block  md:hidden ">
         {" "}
-        <h1 className="text-start  text-sm font-bold text-black/60 ">
-          Categories &gt; Sub Categories{" "}
+        <h1 className="text-start  text-base font-semibold text-black/60 ">
+          All categories
         </h1>
       </div>
-      <div className="-mt-6">
+      <div className="mt-2">
         <ShopCategories number={8} />
       </div>
 

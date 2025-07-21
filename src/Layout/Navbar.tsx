@@ -14,8 +14,8 @@ import { Link, useLocation } from "react-router-dom";
 // image imports
 import NavCatgegory from "@/components/Category/NavCategory";
 import arrow from "../assets/Navbar/arrow.svg";
-import logo from "../assets/Navbar/logo.png";
 import menu from "../assets/Navbar/menu.svg";
+import logo from "../assets/Navbar/Pangeti-logo.png";
 import world from "../assets/Navbar/public.svg";
 import shopping from "../assets/Navbar/shopping_cart.svg";
 import usa from "../assets/Navbar/usa.svg";
@@ -24,7 +24,7 @@ import MobileSidebar from "./MobileNavMenu";
 const Navbar = () => {
   const [cartCount] = useState(3);
   const location = useLocation();
-
+  const routes = ["shop", "about", "contact"];
   const isActive = (path: string) => location.pathname === path;
   const menuItems = [
     { label: "Buyer Dashboard", href: "/buyer/dashboard" },
@@ -43,11 +43,11 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="w-full bg-white shadow sticky top-0 z-50 py-2 ">
-      <div className="lg:hidden flex items-center justify-between w-full px-4">
+    <nav className="w-full bg-white shadow lg:sticky top-0 z-50 py-2 ">
+      <div className="lg:hidden  flex items-center justify-between w-full px-4">
         <Link to="/">
           <img
-            className="w-[100px] cursor-pointer h-[40px] object-contain"
+            className="w-32 cursor-pointer h-fit object-cover"
             src={logo}
             alt="logo"
           />
@@ -60,7 +60,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center  w-full max-w-[1400px] mx-auto my-auto px-4 md:px-10  py-4">
           <Link to="/">
             <img
-              className="w-[124px] cursor-pointer h-[48px] object-cover"
+              className="w-fit cursor-pointer h-9 object-cover"
               src={logo}
               alt="logo"
             />
@@ -69,7 +69,7 @@ const Navbar = () => {
           <section className="flex items-center justify-center gap-7 xl:ml-52">
             <NavCatgegory />
 
-            {["shop", "about", "contact"].map((page) => (
+            {routes.map((page) => (
               <Link key={page} to={`/${page}`}>
                 <motion.button
                   whileTap={{ scale: 0.75 }}
