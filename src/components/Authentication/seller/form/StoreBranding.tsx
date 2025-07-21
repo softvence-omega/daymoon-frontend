@@ -37,7 +37,7 @@ const schema = z.object({
           .optional()
           .refine(
             (val) =>
-              !val || /^https?:\/\/[\w\-]+(\.[\w\-]+)+[/#?]?.*$/.test(val),
+              !val || /^https?:\/\/[\w-]+(\.[\w-]+)+[/#?]?.*$/.test(val),
             {
               message: "Enter a valid URL",
             }

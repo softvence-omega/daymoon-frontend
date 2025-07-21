@@ -79,7 +79,7 @@ const ProductsComponent: React.FC<ProductsComponentProps> = ({
           Sorry, this price range has no product.
         </div>
       ) : (
-        <div className={`grid gap-6 md:gap-8 ${gridClass}`}>
+        <div className={`grid gap-4 md:gap-8 lg:gap-8 xl:gap-8 2xl:gap-8 ${gridClass}`}>
           {productsToShow.map((product) => (
             <ProductCard
               key={product.id}

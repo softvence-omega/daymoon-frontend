@@ -4,9 +4,6 @@ import GlobalSearchBar from "../ReUseable/GlobalSearchBar";
 import JoinUs from "../ReUseable/JoinUs";
 import MoreButton from "../ReUseable/MoreButton";
 import ProductsComponent from "../ReUseable/ProductsComponent";
-import { BestSellingBanner } from "./BestSale";
-import { FlashSaleBanner } from "./FlashSale";
-import { NewArrivalBanner } from "./NewArrival";
 import ShopCategories from "./ShopCategories";
 import TopManufacturer from "./TopManufacturer";
 
@@ -25,11 +22,11 @@ const Shop = () => {
       <CommonWrapper>
         <div className="lg:w-3/4 mx-auto">
           <GlobalSearchBar />
-          <NewArrivalBanner />
+          {/* <NewArrivalBanner />
           <div className="xl:flex items-center lg:gap-6">
             <FlashSaleBanner />
             <BestSellingBanner />
-          </div>
+          </div>*/}
         </div>
         <ShopCategories number={8} />
 
@@ -39,7 +36,7 @@ const Shop = () => {
             selectedCategory="All"
             selectedPrice="All"
             showAll={showAllProducts}
-            cols={{ mobile: 1, md: 4, lg: 4 }}
+            cols={{ mobile: 2, md: 4, lg: 4 }}
             rows={
               showAllProducts
                 ? { mobile: 100, md: 100, lg: 100 } // Show all products
