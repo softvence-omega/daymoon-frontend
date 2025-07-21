@@ -111,7 +111,7 @@ const ProductCard = ({
                   src={src}
                   alt={`product-slide-${i}`}
                   className="w-full h-full object-cover"
-                  whileHover={{ scale: 1.05 }}
+                  whileHover={{ scale: 1.12 }}
                   transition={{ duration: 0.4, ease: "easeOut" }}
                 />
               </div>
@@ -125,7 +125,7 @@ const ProductCard = ({
             e.stopPropagation();
             instanceRef.current?.prev();
           }}
-          className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 bg-white border border-[#E4E7EC] p-2 rounded-full shadow hover:bg-sunset-orange hover:text-white text-sunset-orange transition cursor-pointer"
+          className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow hover:bg-sunset-orange hover:text-white text-sunset-orange transition cursor-pointer"
         >
           <ChevronLeft className="w-4 h-4" />
         </button>
@@ -134,7 +134,7 @@ const ProductCard = ({
             e.stopPropagation();
             instanceRef.current?.next();
           }}
-          className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 bg-white border border-[#E4E7EC] p-2 rounded-full shadow hover:bg-sunset-orange hover:text-white text-sunset-orange transition cursor-pointer"
+          className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow hover:bg-sunset-orange hover:text-white text-sunset-orange transition cursor-pointer"
         >
           <ChevronRight className="w-4 h-4" />
         </button>
