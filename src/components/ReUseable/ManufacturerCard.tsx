@@ -21,7 +21,7 @@ const ManufacturerCard = ({ manufacturer }: { manufacturer: Manufacturer }) => {
               />
             </div>
             <div className="flex flex-col gap-1 text-start items-start justify-center">
-              <h4 className="text-md lg:text-lg font-semibold text-[#1A1A1A]">
+              <h4 className="text-sm md:text-md lg:text-lg font-semibold text-[#1A1A1A]">
                 {manufacturer.shopName}
               </h4>
               <div className="flex text-xs lg:text-sm text-[#666666] gap-1">
@@ -46,18 +46,22 @@ const ManufacturerCard = ({ manufacturer }: { manufacturer: Manufacturer }) => {
         </div>
 
         {/* Image Grid - Show 4 images on desktop, 3 on mobile */}
-        <div className="grid max-[767px]:grid-cols-3 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-2 gap-5">
-          {manufacturer.images.slice(0, 4).map((img: string, index: number) => (
-            <img
-              key={index}
-              src={img}
-              alt={`Product ${index + 1}`}
-              className={`w-full h-[120px] object-cover rounded-[12px] ${
-                index === 3 ? "max-md:hidden" : ""
-              }`}
-            />
-          ))}
+        <div className="grid grid-cols-3 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-2 gap-5">
+          {manufacturer.images.map((img: string, index: number) => {
+            // Hide the 4th image (index === 3) on screens smaller than lg
+            const isHiddenOnSmall = index === 3 ? "max-lg:hidden" : "";
+
+            return (
+              <img
+                key={index}
+                src={img}
+                alt={`Product ${index + 1}`}
+                className={`w-full h-[120px] object-cover rounded-[12px] ${isHiddenOnSmall}`}
+              />
+            );
+          })}
         </div>
+
       </CardContent>
     </Card>
   );
