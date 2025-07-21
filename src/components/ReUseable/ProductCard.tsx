@@ -50,7 +50,7 @@ const ProductCard = ({
   return (
     <div className="bg-white shadow-[0px_0px_20px_1px_#ffbb763f] border border-[#e5e5e5]/[0.454] rounded-lg hover:shadow-lg transition-shadow duration-300 overflow-hidden relative flex flex-col md:min-h-[420px] lg:min-h-[420px] xl:min-h-[420px] 2xl:min-h-[420px]">
       {/* Discount Badge */}
-      <div className="absolute top-2 left-0 w-full px-2 flex items-center justify-between z-10">
+      <div className="absolute top-2 max-[767px]:top-1 left-0 w-full px-2 flex items-center justify-between z-10">
         {discount > 0 ? (
           <div className="relative flex items-center">
             <img src={discImg} alt="discount" className="w-10 h-10 sm:w-12 sm:h-12" />
@@ -96,7 +96,7 @@ const ProductCard = ({
 
 
       {/* Image Slider */}
-      <div className="relative w-full h-[200px] md:h-[264px] lg:h-[264px] xl:h-[264px] 2xl:h-[264px] flex items-center justify-center">
+      <div className="relative w-full h-[160px] md:h-[264px] lg:h-[264px] xl:h-[264px] 2xl:h-[264px] flex items-center justify-center">
         <Link
           to={location}
           className="relative w-full h-full flex items-center justify-center"
@@ -111,7 +111,7 @@ const ProductCard = ({
                   src={src}
                   alt={`product-slide-${i}`}
                   className="w-full h-full object-cover"
-                  whileHover={{ scale: 1.05 }}
+                  whileHover={{ scale: 1.12 }}
                   transition={{ duration: 0.4, ease: "easeOut" }}
                 />
               </div>
@@ -125,7 +125,7 @@ const ProductCard = ({
             e.stopPropagation();
             instanceRef.current?.prev();
           }}
-          className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 bg-white border border-[#E4E7EC] p-2 rounded-full shadow hover:bg-sunset-orange hover:text-white text-sunset-orange transition cursor-pointer"
+          className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow hover:bg-sunset-orange hover:text-white text-sunset-orange transition cursor-pointer"
         >
           <ChevronLeft className="w-4 h-4" />
         </button>
@@ -134,7 +134,7 @@ const ProductCard = ({
             e.stopPropagation();
             instanceRef.current?.next();
           }}
-          className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 bg-white border border-[#E4E7EC] p-2 rounded-full shadow hover:bg-sunset-orange hover:text-white text-sunset-orange transition cursor-pointer"
+          className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow hover:bg-sunset-orange hover:text-white text-sunset-orange transition cursor-pointer"
         >
           <ChevronRight className="w-4 h-4" />
         </button>
@@ -171,12 +171,12 @@ const ProductCard = ({
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
-            <span className="text-[14px] max-[767px]:text-[12px] sm:text-[15px] font-semibold text-[#FCAB3F]">
+          <div className="flex items-center gap-2 font-semibold">
+            <span className="text-[14px] max-[767px]:text-[12px] max-[350px]:text-[10px] text-[#FCAB3F]">
               {priceRange}
             </span>
             <span className="text-[#484848] text-[14px] sm:text-[15px]">•</span>
-            <span className="text-[12px] sm:text-[13px] text-[#484848]">{moq}</span>
+            <span className="text-[14px] max-[767px]:text-[12px] max-[350px]:text-[10px] text-[#484848]">{moq}</span>
           </div>
         </Link>
       </div>

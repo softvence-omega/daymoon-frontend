@@ -16,32 +16,32 @@ interface HomeProductsProps {
     lg: number;
     xl?: number;
   };
-  // title:string;
 }
 
 const isMobileWidth = (width: number) => width < 768;
 const isMdWidth = (width: number) => width >= 768 && width < 1024;
-const isXlWidth = (width: number) => width >= 1280; // For XL screens
+const isXlWidth = (width: number) => width >= 1280;
 
 const HomeProducts = ({ cols, rows }: HomeProductsProps) => {
   const [windowWidth, setWindowWidth] = useState(
     typeof window !== "undefined" ? window.innerWidth : 1024
   );
   const [visibleCount, setVisibleCount] = useState(0);
+
   cols.xl = cols.xl || 6;
   rows.xl = rows.xl || 6;
+
   useEffect(() => {
     const handleResize = () => setWindowWidth(window.innerWidth);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // ✅ Custom logic: 6 for mobile, 12 for all others
   const getVisibleCount = useCallback(() => {
-    if (isMobileWidth(windowWidth)) return cols.mobile * rows.mobile;
-    if (isMdWidth(windowWidth)) return cols.md * rows.md;
-    if (isXlWidth(windowWidth)) return cols.xl! * rows.xl!; // Handle XL breakpoint
-    return cols.lg * rows.lg;
-  }, [windowWidth, cols, rows]);
+    if (isMobileWidth(windowWidth)) return 6;
+    return 12;
+  }, [windowWidth]);
 
   useEffect(() => {
     setVisibleCount(getVisibleCount());
@@ -58,7 +58,7 @@ const HomeProducts = ({ cols, rows }: HomeProductsProps) => {
     : isMdWidth(windowWidth)
       ? cols.md
       : isXlWidth(windowWidth)
-        ? cols.xl // Set XL breakpoint columns
+        ? cols.xl
         : cols.lg;
 
   const rowsCount = Math.ceil(displayedProducts.length / currentCols!);
@@ -92,7 +92,6 @@ const HomeProducts = ({ cols, rows }: HomeProductsProps) => {
 
   return (
     <div className="mt-10 md:mt-[80px] lg:mt-[80px] xl:mt-[80px] 2xl:mt-[80px]">
-      {/* <h1 className="text-2xl lg:text-[32px] text-center md:text-left lg:text-left pt-0 md:pt-0 lg:pt-0 max-[767px]:font-medium mb-8 font-semibold uppercase ">{title}</h1> */}
       <div
         className={gridClass}
         style={{
