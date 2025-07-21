@@ -11,13 +11,13 @@ const MoreButton: React.FC<ExploreMoreButtonProps> = ({
   text = "Explore More",
 }) => {
   return (
-    <div className="flex justify-center mt-8 md:mt-10 lg:mt-10 xl:mt-10 2xl:mt-10">
+    <div className="flex justify-center mt-6 md:mt-8 lg:mt-8 xl:mt-10 2xl:mt-10">
       <motion.button
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={onClick}
         className="flex items-center gap-2 md:gap-3 px-5 md:px-6 h-10 md:h-[50px]
-          rounded-full bg-white border border-[#FF6E3A33] 
+          rounded-full bg-white  
           shadow-md hover:shadow-lg transition-all duration-300
           text-sunset-orange text-[12px] md:text-base font-medium md:font-semibold 
           focus:outline-none focus:ring-2 focus:ring-sunset-orange/50 cursor-pointer"
