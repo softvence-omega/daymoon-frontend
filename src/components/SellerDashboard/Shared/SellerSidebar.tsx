@@ -79,7 +79,7 @@ const SellerSidebar: React.FC<SidebarProps> = ({
       {/* Logo */}
       <div className="flex items-center justify-center p-2 sm:p-3 border-b border-[#E5E5E5]">
         <Link to="/">
-          <img src={logo} className="w-30 md:w-32 pt-1 pb-2" alt="Logo" />
+          <img src={logo} className="h-8 sm:h-10 md:my-1 my-3" alt="Logo" />
         </Link>
       </div>
 

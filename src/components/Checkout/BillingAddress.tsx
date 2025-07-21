@@ -151,9 +151,11 @@ const BillingAddress = ({}) => {
               Continue To Payment
             </CommonButton>
           </Link>
-          <CommonButton className="w-full border border-sunset-orange bg-transparent !text-sunset-orange py-3 text-base font-medium">
-            Back To Cart
-          </CommonButton>
+          <Link to="/cart">
+            <CommonButton className="w-full border border-sunset-orange bg-transparent !text-sunset-orange py-3 text-base font-medium">
+              Back To Cart
+            </CommonButton>
+          </Link>
         </div>
       </div>
     </div>

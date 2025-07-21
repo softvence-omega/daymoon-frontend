@@ -112,7 +112,7 @@ const SingleProductImage: React.FC<SingleProductImageProps> = ({
           </div>
         </div>
 
-        <div className="flex-1 flex items-center justify-center rounded-3xl border border-foundation-white min-h-[300px] relative overflow-hidden">
+        <div className="flex-1 flex items-center justify-center rounded-3xl border border-foundation-white min-h-[300px] relative overflow-hidden ">
           <div
             className="relative lg:cursor-cell "
             onMouseEnter={() => setLensVisible(true)}
@@ -136,8 +136,14 @@ const SingleProductImage: React.FC<SingleProductImageProps> = ({
                   left: lensPos.x - LENS_SIZE / 2,
                   backgroundImage: `url(${imageSrc})`,
                   backgroundRepeat: "no-repeat",
-                  backgroundSize: `${imgRef.current?.width! * ZOOM}px ${
-                    imgRef.current?.height! * ZOOM
+                  backgroundSize: `${
+                    imgRef.current && imgRef.current.width
+                      ? imgRef.current.width * ZOOM
+                      : LENS_SIZE * ZOOM
+                  }px ${
+                    imgRef.current && imgRef.current.height
+                      ? imgRef.current.height * ZOOM
+                      : LENS_SIZE * ZOOM
                   }px`,
                   backgroundPosition: `-${
                     lensPos.x * ZOOM - LENS_SIZE / 2

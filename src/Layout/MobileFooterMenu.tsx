@@ -97,13 +97,13 @@ export default function MobileFooterMenu({
                   <Icon
                     className={cn(
                       "w-6 h-6 transition-colors duration-200",
-                      isActive ? "text-[#F46A39]" : "text-gray-400"
+                      isActive ? "text-[#F46A39]" : "text-[#969696]"
                     )}
                   />
                   <span
                     className={cn(
                       "text-xs font-medium transition-colors duration-200",
-                      isActive ? "text-[#F46A39]" : "text-gray-400"
+                      isActive ? "text-[#F46A39]" : "text-[#969696]"
                     )}
                   >
                     {item.label}

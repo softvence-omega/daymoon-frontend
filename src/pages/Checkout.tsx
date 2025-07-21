@@ -6,7 +6,7 @@ export default function Checkout() {
     <div className=" bg-ghost">
       <CommonWrapper className="">
         <div className="flex items-center justify-center py-8">
-          <h1 className="text-xl md:text-3xl lg:text-5xl font-semibold text-[#1A1A1A] mb-2">
+          <h1 className="text-3xl lg:text-5xl font-semibold text-[#1A1A1A] mb-2">
             Check Out
           </h1>
         </div>
