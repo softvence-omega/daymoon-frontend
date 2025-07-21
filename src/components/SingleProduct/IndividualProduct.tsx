@@ -1,10 +1,10 @@
 import CommonWrapper from "@/common/CommonWrapper";
-import { useState } from "react";
 import { useParams } from "react-router-dom";
-import MoreButton from "../ReUseable/MoreButton";
-import ProductsComponent from "../ReUseable/ProductsComponent";
 import ProductDetails from "./ProductDetails";
 import ProductExtraDetails from "./ProductExtraDetails";
+import ProductsComponent from "../ReUseable/ProductsComponent";
+import { useState } from "react";
+import MoreButton from "../ReUseable/MoreButton";
 
 const IndividualProduct = () => {
   const { productId } = useParams();
@@ -16,38 +16,42 @@ const IndividualProduct = () => {
     <CommonWrapper>
       <ProductDetails />
 
-      <div className="mt-20 mb-32">
+      <div className="my-20 max-[767px]:my-10">
         <h1 className="text-xl font-semibold md:text-5xl">
           Frequently bought together
         </h1>
 
         <ProductsComponent
+        // titleProducts=""
           selectedCategory="All"
           selectedPrice="All"
           showAll={showAllProducts}
           cols={{ mobile: 2, md: 4, lg: 4 }}
           rows={
             showAllProducts
+
               ? { mobile: 100, md: 100, lg: 100 } // Show all products
-              : { mobile: 2, md: 1, lg: 1 } // Show limited initially
+              : { mobile: 2, md: 1, lg: 1 }       // Show limited initially
+
           }
         />
       </div>
       <ProductExtraDetails />
       {/* Products Section */}
-      <div className="my-20">
-        <h1 className="text-[24px] lg:text-[40px] font-semibold uppercase">
-          More From the seller
-        </h1>
+      <div className="my-20 max-[767px]:my-14">
+        <h1 className="text-[24px] lg:text-[40px] font-semibold uppercase">More From the seller</h1>
         <ProductsComponent
+        // titleProducts=""
           selectedCategory="All"
           selectedPrice="All"
           showAll={showAllProducts}
-          cols={{ mobile: 1, md: 4, lg: 4 }}
+          cols={{ mobile: 2, md: 4, lg: 4 }}
           rows={
             showAllProducts
+
               ? { mobile: 100, md: 100, lg: 100 } // Show all products
-              : { mobile: 1, md: 1, lg: 1 } // Show limited initially
+              : { mobile: 1, md: 1, lg: 1 }       // Show limited initially
+
           }
         />
         {!showAllProducts && (
@@ -57,6 +61,7 @@ const IndividualProduct = () => {
           />
         )}
       </div>
+
     </CommonWrapper>
   );
 };

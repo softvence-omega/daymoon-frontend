@@ -181,7 +181,7 @@ export default function ProductExtraDetails() {
   const [tabValue, setTabValue] = useState("details");
 
   return (
-    <div className="mt-32 space-y-10">
+    <div className="mt-32 max-[767px]:mt-16 space-y-10">
       <Tabs value={tabValue} onValueChange={setTabValue} className="w-full ">
         <TabsList className=" w-full   gap-5 flex lg:gap-8 bg-transparent border-b border-[#B3B3B3] rounded-none h-auto p-0  flex-row">
           <TabsTrigger
@@ -260,7 +260,7 @@ export default function ProductExtraDetails() {
             </div>
           </div>
 
-          <div className="space-y-5 mt-32">
+        <div className="mt-32 max-[767px]:mt-16 ">
             <h3 className="text-xl md:text-2xl font-semibold ">
               Key Attributes
             </h3>
@@ -298,16 +298,16 @@ export default function ProductExtraDetails() {
         </TabsContent>
       </Tabs>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 mt-28 gap-4 lg:gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 mt-28 max-[767px]:mt-18 gap-4 lg:gap-6">
         {earbuds.map((src, idx) => (
           <div
             key={idx}
-            className="aspect-square overflow-hidden rounded-lg border border-[#B3B3B3]"
+            className="md:aspect-square overflow-hidden rounded-lg border border-[#B3B3B3]"
           >
             <img
               src={src.img}
               alt={`Product image ${idx + 1}`}
-              className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+              className="h-[40dvh] contain w-full md:h-full md:object-cover hover:scale-105 transition-transform duration-300"
             />
           </div>
         ))}

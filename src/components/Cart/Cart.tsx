@@ -126,8 +126,8 @@ export default function CartPage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 mt-20 lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2">
+        <div className="grid grid-cols-1 mt-20 xl:grid-cols-3 gap-8">
+          <div className="xl:col-span-2">
             <div className="mb-6">
               <h2 className="text-lg md:text-xl lg:text-3xl font-semibold text-gray-900">
                 ALL PRODUCTS{" "}
@@ -135,7 +135,7 @@ export default function CartPage() {
               </h2>
             </div>
 
-            <div className="space-y-6 mt-10">
+            <div className="space-y-6   md:mt-10">
               {Data?.cart?.map((vendor, vendorIndex) =>
                 vendor.products.map((product, productIndex) =>
                   product.variants.map((variant, variantIndex) => (
@@ -163,7 +163,7 @@ export default function CartPage() {
             </div>
           </div>
 
-          <div className="lg:col-span-1">
+          <div className="xl:col-span-1">
             <CartSummary cartData={Data} />
           </div>
         </div>

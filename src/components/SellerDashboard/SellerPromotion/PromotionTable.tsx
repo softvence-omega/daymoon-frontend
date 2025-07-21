@@ -77,7 +77,7 @@ const data: Inquiry[] = [
   {
     id: "3",
     inquiryId: "INQ-123789",
-    productName: "Brand Bluetooth Headphones",
+    productName: "Brand Bluetooth Headphone",
     photo: samplePhoto,
     buyerName: "Emily Davis",
     buyerCompany: "Digital House",

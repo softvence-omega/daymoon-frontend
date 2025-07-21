@@ -120,7 +120,7 @@ const OverViewBanner = () => {
                       whileTap={{ scale: 0.8 }}
                       whileHover={{ scale: 1.03 }}
                       className="border border-[#192D4E] text-[#192D4E] rounded-[20px] px-4 py-2 md:px-[50px] 
-                    md:py-[9px] text-[16px] md:text-[18px] font-[500] hover:bg-gray-50 transition flex items-center gap-2 justify-center cursor-pointer"
+                    md:py-[9px] text-[16px] md:text-[18px] font-[500] hover:bg-gray-50 transition flex items-center gap-2 justify-center cursor-pointer w-full"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"

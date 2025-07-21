@@ -3,6 +3,7 @@ import GlobalSearchBar from "@/components/ReUseable/GlobalSearchBar";
 import JoinUs from "@/components/ReUseable/JoinUs";
 import MoreButton from "@/components/ReUseable/MoreButton";
 import ProductsComponent from "@/components/ReUseable/ProductsComponent";
+import Breadcrumbs from "@/components/SellerDashboard/SellerProducts/Breadcrumbs";
 import FilterSection from "@/components/Shop/FilterSection";
 import ShopCategories from "@/components/Shop/ShopCategories";
 import TopManufacturer from "@/components/Shop/TopManufacturer";
@@ -23,9 +24,13 @@ const ProductFilter = () => {
         </div>
         <div className="lg:w-3/4">
           <GlobalSearchBar />
+          <div className="block md:hidden">
+            <Breadcrumbs title="Categories" subtitle="All Categories" />
+          </div>
           <ShopCategories number={6} />
-          <div className="mt-20">
+          <div className="my-24 max-[767px]:my-10">
             <ProductsComponent
+            // titleProducts=""
               selectedCategory="All"
               selectedPrice="All"
               showAll={showAllProducts}
@@ -53,7 +58,7 @@ const ProductFilter = () => {
             rows={
               showAllTopRated
                 ? { mobile: 100, md: 100, lg: 100 } // Show all top rated
-                : { mobile: 2, md: 2, lg: 2 } // Show initial few
+                : { mobile: 3, md: 2, lg: 2 } // Show initial few
             }
           />
           {!showAllTopRated && (
@@ -64,8 +69,9 @@ const ProductFilter = () => {
           )}
         </div>
       </div>
-      <div className="my-32">
-        <JoinUs />
+
+      <div className="my-24 max-[767px]:my-14">
+       <JoinUs />
       </div>
     </CommonWrapper>
   );

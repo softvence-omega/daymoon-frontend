@@ -29,23 +29,23 @@ const BuyerLayout = () => {
       {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Top Navbar */}
-        <DashboardNavbar
-          onMobileMenuToggle={handleMobileMenuToggle}
-          notificationCount={3}
-        />
+        <div className="md:block md:sticky fixed inset-0 z-20 ">
+          <DashboardNavbar
+            onMobileMenuToggle={handleMobileMenuToggle}
+            notificationCount={3}
+          />
+        </div>
 
         {/* Mobile Sidebar */}
         <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
-          <SheetTrigger asChild>
-            <div className="hidden" />
-          </SheetTrigger>
+          <SheetTrigger asChild></SheetTrigger>
           <SheetContent side="left" className="w-64 p-0">
             <Sidebar />
           </SheetContent>
         </Sheet>
 
         {/* Page Content */}
-        <main className="flex-1 overflow-auto p-6 md:p-10">
+        <main className="flex-1 mt-16  overflow-auto p-6 md:p-10">
           <Outlet />
           <ToastContainer
             position="bottom-right"
