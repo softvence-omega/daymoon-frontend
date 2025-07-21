@@ -14,7 +14,7 @@ import FilterSection from "./FilterSection";
 
 const MobileFilterSection = () => {
   const handleFilterClick = () => {
-    toast.error("System has been hacked! You have pressed the Done button");
+    toast.error(" You have pressed the Done button");
   };
 
   return (

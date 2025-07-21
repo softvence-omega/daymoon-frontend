@@ -1,7 +1,7 @@
 import img from "../../assets/Shop/fashon.png";
 const FashionBanner = () => {
   return (
-    <section className="relative w-full h-[30dvh] overflow-hidden">
+    <section className="relative w-full h-[30dvh] md:h-[50dvh] overflow-hidden">
       <img
         src={img}
         alt="Fashion Banner"
