@@ -11,7 +11,7 @@ const MoreButton: React.FC<ExploreMoreButtonProps> = ({
   text = "Explore More",
 }) => {
   return (
-    <div className="flex justify-center mt-8 md:mt-10 lg:mt-10 xl:mt-10 2xl:mt-10">
+    <div className="flex justify-center mt-6 md:mt-8 lg:mt-8 xl:mt-10 2xl:mt-10">
       <motion.button
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
