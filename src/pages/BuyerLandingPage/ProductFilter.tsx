@@ -3,8 +3,8 @@ import GlobalSearchBar from "@/components/ReUseable/GlobalSearchBar";
 import JoinUs from "@/components/ReUseable/JoinUs";
 import MoreButton from "@/components/ReUseable/MoreButton";
 import ProductsComponent from "@/components/ReUseable/ProductsComponent";
-import Breadcrumbs from "@/components/SellerDashboard/SellerProducts/Breadcrumbs";
 import FilterSection from "@/components/Shop/FilterSection";
+import MobileFilterSection from "@/components/Shop/MobileFilterSection";
 import ShopCategories from "@/components/Shop/ShopCategories";
 import TopManufacturer from "@/components/Shop/TopManufacturer";
 import { useState } from "react";
@@ -24,13 +24,20 @@ const ProductFilter = () => {
         </div>
         <div className="lg:w-3/4">
           <GlobalSearchBar />
-          <div className="block md:hidden">
-            <Breadcrumbs title="Categories" subtitle="All Categories" />
+
+          <div className="block mb-2 md:hidden ">
+            {" "}
+            <h1 className="text-start  text-base font-semibold text-black/60 ">
+              All categories
+            </h1>
           </div>
           <ShopCategories number={6} />
-          <div className="my-24 max-[767px]:my-10">
+          <div className="flex  lg:hidden justify-end items-center mt-12 ">
+            <MobileFilterSection />
+          </div>
+          <div className="mt-6 lg:my-24 max-[767px]:mb-10">
             <ProductsComponent
-            // titleProducts=""
+              // titleProducts=""
               selectedCategory="All"
               selectedPrice="All"
               showAll={showAllProducts}
@@ -71,7 +78,7 @@ const ProductFilter = () => {
       </div>
 
       <div className="my-24 max-[767px]:my-14">
-       <JoinUs />
+        <JoinUs />
       </div>
     </CommonWrapper>
   );

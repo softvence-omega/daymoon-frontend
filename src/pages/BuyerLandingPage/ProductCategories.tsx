@@ -3,7 +3,6 @@ import GlobalSearchBar from "@/components/ReUseable/GlobalSearchBar";
 import JoinUs from "@/components/ReUseable/JoinUs";
 import MoreButton from "@/components/ReUseable/MoreButton";
 import ProductsComponent from "@/components/ReUseable/ProductsComponent";
-import Breadcrumbs from "@/components/SellerDashboard/SellerProducts/Breadcrumbs";
 import FashionBanner from "@/components/Shop/FashonBanner";
 import ShopAdvertise from "@/components/Shop/ShopAdvertise";
 // import ShopCategories from "@/components/Shop/ShopCategories";
@@ -23,23 +22,26 @@ const ProductCategories = () => {
           <GlobalSearchBar />
         </div>
         <ShopAdvertise />
-        <div className="block md:hidden">
-          <Breadcrumbs title="Categories" subtitle="Sub Categories" />
+        <div className="block  md:hidden ">
+          {" "}
+          <h1 className="text-start  text-base  text-jet-black/60  font-semibold flex justify-start items-center">
+            All Categories &gt; Sub Categories
+          </h1>
         </div>
         <ShopSubCategories number={6} />
 
         {/* Products Section */}
-        <div className="md:mt-20">
+        <div className="mt-12 md:mt-20">
           <ProductsComponent
-          // titleProducts=""
+            // titleProducts=""
             selectedCategory="All"
             selectedPrice="All"
             showAll={showAllProducts}
-            cols={{ mobile: 2, md: 4, lg: 4 }}      // example columns per breakpoint
+            cols={{ mobile: 2, md: 4, lg: 4 }} // example columns per breakpoint
             rows={
               showAllProducts
-                ? { mobile: 100, md: 100, lg: 100 }  // show all products
-                : { mobile: 2, md: 3, lg: 3 }        // show limited rows initially
+                ? { mobile: 100, md: 100, lg: 100 } // show all products
+                : { mobile: 2, md: 3, lg: 3 } // show limited rows initially
             }
           />
           {!showAllProducts && (
@@ -70,8 +72,7 @@ const ProductCategories = () => {
         )}
 
         <div className="my-24 max-[767px]:my-10">
-          <JoinUs/>
-
+          <JoinUs />
         </div>
       </CommonWrapper>
     </div>

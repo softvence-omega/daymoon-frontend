@@ -29,7 +29,7 @@ const BuyerLayout = () => {
       {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Top Navbar */}
-        <div className="md:block md:sticky fixed inset-0 z-20 ">
+        <div className="md:block fixed inset-0 z-20 lg:relative">
           <DashboardNavbar
             onMobileMenuToggle={handleMobileMenuToggle}
             notificationCount={3}
@@ -45,7 +45,7 @@ const BuyerLayout = () => {
         </Sheet>
 
         {/* Page Content */}
-        <main className="flex-1 mt-16  overflow-auto p-6 md:p-10">
+        <main className="flex-1 mt-16  z-40 overflow-auto p-6 md:p-10">
           <Outlet />
           <ToastContainer
             position="bottom-right"

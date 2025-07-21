@@ -71,7 +71,7 @@ const HomeProductCard = ({
             src={images?.[0]}
             alt={title}
             className="w-full h-[220px] object-cover rounded-xl max-[767px]:h-[160px] max-[480px]:h-[140px]"
-            whileHover={{ scale: 1.05 }}
+            whileHover={{ scale: 1.10 }}
             transition={{ duration: 0.4, ease: "easeOut" }}
           />
         </div>

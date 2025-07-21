@@ -1,4 +1,4 @@
-import logo from "@/assets/dashboard/buyer-dashboard/logo.png"; // Adjust the path to your logo image
+import logo from "@/assets/Navbar/Pangeti-logo.png";
 import { Badge } from "@/components/ui/badge";
 import { Home } from "lucide-react";
 import { FaRegHeart, FaRegStar } from "react-icons/fa";
@@ -32,8 +32,8 @@ export interface SidebarProps {
 }
 
 const defaultSidebarItems: SidebarItem[] = [
-  { icon: Home, label: "Home", href: "/" },
   { icon: MdGridView, label: "Dashboard", href: "/seller-dashboard/dashboard" },
+  { icon: Home, label: "Home", href: "/" },
   { icon: FaTruck, label: "Products", href: "/seller-dashboard/products" },
   { icon: MdOutlineMessage, label: "Orders", href: "/seller-dashboard/orders" },
   {
@@ -79,21 +79,27 @@ const SellerSidebar: React.FC<SidebarProps> = ({
       {/* Logo */}
       <div className="flex items-center justify-center p-2 sm:p-3 border-b border-[#E5E5E5]">
         <Link to="/">
-          <img src={logo} className="w-30 md:w-32" alt="Logo" />
+          <img src={logo} className="w-30 md:w-32 pt-1 pb-2" alt="Logo" />
         </Link>
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 p-4 md:p-8">
+      <nav className="flex-1 p-4 md:p-8 overflow-y-auto">
         <div className="space-y-4 md:space-y-6">
           {items.map((item) => {
-            const isActive = location.pathname === item.href;
+            const isDashboard = item.label === "Dashboard";
+            const isActive =
+              item.href !== "/" &&
+              (location.pathname === item.href ||
+                location.pathname.startsWith(item.href) ||
+                (isDashboard && location.pathname === "/seller-dashboard"));
+
             return (
               <Link
                 key={item.label}
                 to={item.href}
                 onClick={onItemClick}
-                className={`flex items-center justify-between w-full px-3 py-2 text-sm font-normal rounded-none transition-colors border-b-2 ${
+                className={`flex items-center justify-between w-full px-3 py-2 text-sm font-medium transition-colors border-b-2 ${
                   isActive
                     ? "text-[#F7813B] border-[#F7813B]"
                     : "text-[#666666] border-transparent hover:text-[#F46A39] hover:border-[#F46A39]"
@@ -101,7 +107,7 @@ const SellerSidebar: React.FC<SidebarProps> = ({
               >
                 <div className="flex items-center space-x-2 md:text-lg">
                   <item.icon
-                    className={`w-5 h-5 ${
+                    className={`w-5 h-5 transition-colors ${
                       isActive
                         ? "text-[#F7813B]"
                         : "text-[#666666] hover:text-[#F46A39]"
