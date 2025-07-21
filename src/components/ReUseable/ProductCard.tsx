@@ -96,7 +96,7 @@ const ProductCard = ({
 
 
       {/* Image Slider */}
-      <div className="relative w-full h-[170px] md:h-[264px] lg:h-[264px] xl:h-[264px] 2xl:h-[264px] flex items-center justify-center">
+      <div className="relative w-full h-[160px] md:h-[264px] lg:h-[264px] xl:h-[264px] 2xl:h-[264px] flex items-center justify-center">
         <Link
           to={location}
           className="relative w-full h-full flex items-center justify-center"
