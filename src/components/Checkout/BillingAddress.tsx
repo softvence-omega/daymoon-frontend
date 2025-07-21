@@ -10,7 +10,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { countryList } from "./CountryList";
 
-const BillingAddress = ({}) => {
+const BillingAddress = () => {
   const [sameAsShipping, setSameAsShipping] = useState(true);
   const [shippingMethod, setShippingMethod] = useState("standard");
   const [country, setCountry] = useState("bangladesh");
