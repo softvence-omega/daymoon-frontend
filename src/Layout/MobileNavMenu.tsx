@@ -16,7 +16,7 @@ import {
   MdHelpOutline,
 } from "react-icons/md";
 import { Link, useLocation } from "react-router-dom";
-import logo from "../assets/Navbar/logo.png";
+import logo from "../assets/Navbar/logo.svg";
 
 const MobileSidebar = () => {
   const location = useLocation();
@@ -93,7 +93,11 @@ const MobileSidebar = () => {
           <SheetHeader className="relative">
             <SheetTitle className="text-xl font-semibold mb-4">
               <Link to="/" onClick={() => setOpen(false)}>
-                <img src={logo} className="w-30 md:w-32" alt="Logo" />
+                <img
+                  src={logo}
+                  className="w-[132px]  h-[40px] object-cover "
+                  alt="Logo"
+                />
               </Link>
             </SheetTitle>
           </SheetHeader>

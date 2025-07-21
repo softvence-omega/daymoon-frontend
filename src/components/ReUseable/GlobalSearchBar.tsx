@@ -121,8 +121,9 @@ const GlobalSearchBar = () => {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               onFocus={() => setFocused(true)}
-              className="bg-transparent text-sm md:text-base border-none outline-none focus:outline-none focus:shadow-none shadow-none p-2 focus:border-[#F46A39] focus:ring-0 focus:ring-white"
+              className="bg-transparent text-sm md:text-base border-none outline-none focus:outline-none focus:shadow-none shadow-none p-2 focus:border-[#F46A39] focus:ring-0 focus:ring-white placeholder-jet-black/30"
             />
+
             <Button
               onClick={handleSearch}
               className="bg-jet-black  text-white rounded-full w-8 h-8 md:w-9 md:h-9 cursor-pointer"
@@ -132,7 +133,6 @@ const GlobalSearchBar = () => {
           </div>
         </div>
 
-        {/* Suggestions and Recent Searches */}
         {focused && (
           <div className="absolute top-full left-0 w-full bg-white shadow-[0_0_1px_0px_#F46A39] rounded-xl mt-2 z-50 p-4 space-y-6">
             <div className="my-2">
