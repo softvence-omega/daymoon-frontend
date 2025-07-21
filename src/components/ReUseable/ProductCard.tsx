@@ -171,12 +171,12 @@ const ProductCard = ({
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
-            <span className="text-[14px] max-[767px]:text-[12px] sm:text-[15px] font-semibold text-[#FCAB3F]">
+          <div className="flex items-center gap-2 font-semibold">
+            <span className="text-[14px] max-[767px]:text-[12px] max-[350px]:text-[10px] text-[#FCAB3F]">
               {priceRange}
             </span>
             <span className="text-[#484848] text-[14px] sm:text-[15px]">•</span>
-            <span className="text-[12px] sm:text-[13px] text-[#484848]">{moq}</span>
+            <span className="text-[14px] max-[767px]:text-[12px] max-[350px]:text-[10px] text-[#484848]">{moq}</span>
           </div>
         </Link>
       </div>

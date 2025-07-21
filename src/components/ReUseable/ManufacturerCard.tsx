@@ -46,7 +46,7 @@ const ManufacturerCard = ({ manufacturer }: { manufacturer: Manufacturer }) => {
         </div>
 
         {/* Image Grid - Show 4 images on desktop, 3 on mobile */}
-        <div className="grid grid-cols-3 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-2 gap-5">
+        <div className="grid max-[767px]:grid-cols-3 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-2 gap-5">
           {manufacturer.images.slice(0, 4).map((img: string, index: number) => (
             <img
               key={index}
