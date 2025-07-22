@@ -1,4 +1,4 @@
-import logo from "@/assets/dashboard/buyer-dashboard/logo.png";
+import logo from "@/assets/Navbar/Pangeti-logo.png";
 import { Badge } from "@/components/ui/badge";
 import { Home } from "lucide-react";
 import { FaRegHeart } from "react-icons/fa";
@@ -31,8 +31,8 @@ export interface SidebarProps {
 
 // Updated sidebar items to match your route structure
 const defaultSidebarItems: SidebarItem[] = [
-  { icon: Home, label: "Home", href: "/" },
   { icon: MdGridView, label: "Dashboard", href: "/buyer/dashboard" },
+  { icon: Home, label: "Home", href: "/" },
   { icon: FaTruck, label: "Orders", href: "/buyer/dashboard/orders" },
   {
     icon: MdOutlineMessage,
@@ -62,9 +62,9 @@ const Sidebar: React.FC<SidebarProps> = ({ items = defaultSidebarItems }) => {
       style={{ boxShadow: "3px 4px 42.3px 0px #0000001A" }}
     >
       {/* Logo */}
-      <div className="flex items-center justify-center p-2 sm:p-3 border-b border-[#E5E5E5]">
+      <div className="flex items-center justify-center  sm:p-3 border-b border-[#E5E5E5]">
         <Link to="/">
-          <img src={logo} className="w-30 md:w-32" alt="Logo" />
+          <img src={logo} className="h-10 md:my-1 my-3 " alt="Logo" />
         </Link>
       </div>
 

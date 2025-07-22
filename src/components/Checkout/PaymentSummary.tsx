@@ -4,6 +4,7 @@ import CommonWrapper from "@/common/CommonWrapper";
 import SubHeader from "@/common/SubHeader";
 import { Check } from "lucide-react";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import stripe from "../../assets/landing/stripe.png";
 
@@ -18,9 +19,9 @@ const PaymentSummary: React.FC = () => {
   return (
     <CommonWrapper>
       <div className="flex items-center justify-center py-8">
-        <CommonHeader className="!text-2xl sm:!text-6xl font-semibold">
+        <h1 className="text-3xl lg:text-5xl font-semibold text-[#1A1A1A] mb-2">
           Payment
-        </CommonHeader>
+        </h1>
       </div>
 
       <div className="flex flex-col gap-6 pb-10">
@@ -103,12 +104,11 @@ const PaymentSummary: React.FC = () => {
             Pay ${total.toFixed(2)}
           </CommonButton>
 
-          <CommonButton
-            onClick={handleClick}
-            className="  border border-sunset-orange !text-sunset-orange bg-transparent"
-          >
-            Back To Shipping
-          </CommonButton>
+          <Link to="/cart">
+            <CommonButton className="  border border-sunset-orange w-full !text-sunset-orange bg-transparent">
+              Back To Shipping
+            </CommonButton>
+          </Link>
         </div>
       </div>
     </CommonWrapper>

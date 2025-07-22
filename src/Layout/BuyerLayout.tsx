@@ -29,7 +29,7 @@ const BuyerLayout = () => {
       {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Top Navbar */}
-        <div className="md:block fixed inset-0 z-20 lg:relative">
+        <div className="md:block bg-white fixed top-0 left-0 right-0 lg:left-64 lg:right-0 z-50">
           <DashboardNavbar
             onMobileMenuToggle={handleMobileMenuToggle}
             notificationCount={3}

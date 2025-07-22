@@ -95,11 +95,11 @@ export default function CartPage() {
       <div className="min-h-[80dvh] flex justify-center items-center  ">
         <CommonWrapper>
           <div className="text-center  w-fit mx-auto  py-16">
-            <ShoppingCart className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-            <h2 className="text-2xl font-semibold text-gray-900 mb-2">
+            <ShoppingCart className="w-16 h-16 text-[#969696] mx-auto mb-4" />
+            <h2 className="text-3xl font-semibold text-jet-black mb-2">
               Your cart is empty
             </h2>
-            <p className="text-gray-600 mb-6">
+            <p className="text-[#969696] mb-6">
               Add some products to get started
             </p>
             <Link to="/shop">
@@ -116,17 +116,17 @@ export default function CartPage() {
 
   return (
     <CommonWrapper>
-      <div className="min-h-screen mt-12">
+      <div className="min-h-screen mt-10">
         <div className="text-center mb-8">
-          <h1 className="text-xl md:text-3xl lg:text-5xl font-semibold text-[#1A1A1A] mb-2">
+          <h1 className="text-3xl lg:text-5xl font-semibold text-[#1A1A1A] mb-2">
             MY CART
           </h1>
-          <p className="text-[#666] mt-6">
+          <p className="text-[#666] md:mt-6">
             Your selected items are ready for checkout
           </p>
         </div>
 
-        <div className="grid grid-cols-1 mt-20 xl:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 mt-10 md:mt-20 xl:grid-cols-3 gap-8">
           <div className="xl:col-span-2">
             <div className="mb-6">
               <h2 className="text-lg md:text-xl lg:text-3xl font-semibold text-gray-900">

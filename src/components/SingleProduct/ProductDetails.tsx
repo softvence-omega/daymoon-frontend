@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import { ChevronRight, StarIcon, Truck } from "lucide-react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import image3 from "../../assets/landing/product2.png";
 import image2 from "../../assets/landing/product3.png";
 import image1 from "../../assets/landing/products.png";
@@ -9,6 +9,7 @@ import { IProduct } from "@/types";
 import { motion } from "motion/react";
 import { Link } from "react-router-dom";
 import Breadcrumbs from "../SellerDashboard/SellerProducts/Breadcrumbs";
+import SingleProductImage from "../SellerDashboard/SellerProducts/ProductDetails/SingleProductImage";
 import { StarRating } from "../SellerDashboard/SellerProducts/ProductDetails/StarRating";
 import AddToCart from "./AddToCart";
 
@@ -107,7 +108,11 @@ export default function ProductDetails() {
   const [selectedColor, setSelectedColor] = useState<string>(
     product.variants[0]?.color || ""
   );
-
+  const [lensVisible, setLensVisible] = useState(false);
+  const [lensPos, setLensPos] = useState({ x: 0, y: 0 });
+  const [imageSrc, setImageSrc] = useState("");
+  console.log(imageSrc);
+  const imgRef = useRef<HTMLImageElement>(null);
   return (
     <div className="mt-6 mx-auto">
       <Breadcrumbs
@@ -138,8 +143,16 @@ export default function ProductDetails() {
       </Link>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-10 max-[767px]:mt-0">
-
-        <div className="relative">{/* <SingleProductImage /> */}</div>
+        <div className="relative mt-6 md:mt-0">
+          <SingleProductImage
+            lensVisible={lensVisible}
+            lensPos={lensPos}
+            setLensVisible={setLensVisible}
+            setLensPos={setLensPos}
+            setImageSrc={setImageSrc}
+            imgRef={imgRef}
+          />
+        </div>
 
         <div className="space-y-4 text-sm bg-white p-4 rounded-xl shadow-[0_0_1px_0] ">
           <div>
@@ -215,10 +228,10 @@ export default function ProductDetails() {
           <hr className="text-[#B3B3B3] my-8 h1 w-full" />
           <div className="grid grid-cols-1 md:grid-cols-3 mt-12 gap-3 ">
             <AddToCart productData={product} />
-            <motion.button className=" px-10 py-3 rounded-3xl border-[#F04436] border-1 hover:bg-[#F04436] hover:text-white text-[#F04436] transition-colors duration-200 font-semibold ">
+            <motion.button className="cursor-pointer px-10 py-3 rounded-3xl border-[#F04436] border-1 hover:bg-[#F04436] hover:text-white text-[#F04436] transition-colors  duration-200 font-semibold ">
               Chat Now
             </motion.button>
-            <motion.button className=" px-10 py-3 rounded-3xl border-[#F04436] border-1 hover:bg-[#F04436] hover:text-white text-[#F04436] transition-colors duration-200 font-semibold ">
+            <motion.button className="cursor-pointer px-10 py-3 rounded-3xl border-[#F04436] border-1 hover:bg-[#F04436] hover:text-white text-[#F04436] transition-colors duration-200 font-semibold ">
               Buy Now
             </motion.button>
           </div>

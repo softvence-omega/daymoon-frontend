@@ -86,6 +86,18 @@ const routes = createBrowserRouter([
         element: <ProductFilter />,
       },
       {
+        path: "checkout",
+        element: <Checkout />,
+      },
+      {
+        path: "/cart",
+        element: <CartPage />,
+      },
+      {
+        path: "/payment",
+        element: <PaymentSummary />,
+      },
+      {
         path: "/contact",
         element: <Contact />,
       },
@@ -93,21 +105,10 @@ const routes = createBrowserRouter([
         path: "/seller",
         element: <Seller />,
       },
-      {
-        path: "/cart",
-        element: <CartPage />,
-      },
+
       {
         path: "/single",
         element: <IndividualProduct />,
-      },
-      {
-        path: "checkout",
-        element: <Checkout />,
-      },
-      {
-        path: "payment",
-        element: <PaymentSummary />,
       },
 
       {

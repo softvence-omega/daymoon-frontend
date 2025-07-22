@@ -114,7 +114,7 @@ function AddToCart({ productData }: { productData: IProduct }) {
         <motion.button
           whileTap={{ scale: 0.95 }}
           whileHover={{ scale: 1.03 }}
-          className="px-10 py-3 rounded-3xl border-[#F04436] border-1 hover:bg-[#F04436] hover:text-white text-[#F04436] transition-colors duration-200 font-semibold"
+          className="px-10 py-3 rounded-3xl border-[#F04436] border-1 hover:bg-[#F04436] hover:text-white text-[#F04436] transition-colors cursor-pointer  duration-200 font-semibold"
         >
           Add to Cart
         </motion.button>
