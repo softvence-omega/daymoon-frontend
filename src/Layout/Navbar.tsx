@@ -47,7 +47,7 @@ const Navbar = () => {
       <div className="lg:hidden  flex items-center justify-between w-full px-4">
         <Link to="/">
           <img
-            className="w-32 cursor-pointer h-fit object-cover"
+            className="w-[110px] cursor-pointer h-[32px] object-cover"
             src={logo}
             alt="logo"
           />
