@@ -12,150 +12,138 @@ import OverView from "./OverView";
 
 const OverViewBanner = () => {
   return (
-    <div>
-      <div className="relative w-full bg-white min-h-screen">
-        {/* Banner Background */}
+    <div className="w-full bg-white">
+      {/* Banner */}
+      <div className="w-full h-[350px] md:h-[400px] lg:h-[600px] overflow-hidden">
         <img
           src={banner}
           alt="Banner"
-          className="w-full h-[350px] md:h-[400px] lg:h-[600px] object-cover"
+          className="w-full h-full object-cover"
         />
+      </div>
 
-        {/* Overlapping Card */}
-        <div className="absolute top-[120px] md:top-[350px] lg:top-[400px] left-0 w-full">
-          <CommonWrapper>
-            <div className="bg-white rounded-[20px] lg:shadow-xl md:shadow-md shadow p-6 md:p-[40px] flex flex-col md:flex-row items-center justify-between gap-6 h-auto md:h-[450px]">
-              {/* Left: Company Info */}
-              <div className="flex flex-col items-center md:items-start w-full md:w-auto">
-                {/* Logo */}
-                <div className="w-[100px] h-[100px] md:w-[120px] md:h-[120px] lg:w-[164px] lg:h-[164px] rounded-full flex items-center justify-center overflow-hidden">
-                  <img src={icon} alt="Logo" className="object-contain" />
-                </div>
-                {/* Text Info */}
-                <div className="mt-4 text-center md:text-left">
-                  <h2 className="text-[20px] md:text-[24px] font-semibold leading-[120%]">
-                    TechCraft Industries
-                  </h2>
-                  <p className="text-[14px] font-normal leading-[160%] py-2 md:py-[12px]">
-                    Manufacturer
-                  </p>
-                  <div className="mb-2">
-                    <span
-                      className="bg-[rgba(8,173,54,0.10)] text-[#08AD36] text-xs font-medium 
-                      px-[10px] py-[6px] md:py-[10px] rounded-[12px]"
-                    >
-                      Verified Supplier
-                    </span>
-                  </div>
-                  <div className="flex flex-col items-center md:items-start">
-                    <div className="flex items-center gap-1 text-sm py-2 md:py-[12px]">
-                      {[...Array(5)].map((_, i) => (
-                        <FaStar
-                          key={i}
-                          className="text-[#FFC633] w-[18px] h-[18px] md:w-[22px] md:h-[22px]"
-                        />
-                      ))}
-
-                      {/* Group numbers properly aligned */}
-                      <div className="flex items-center ml-4 gap-1">
-                        <span className="text-jet-black font-medium text-[14px] md:text-[16px] leading-[1] flex items-center">
-                          4.5
-                        </span>
-                        <span className="text-[#666] font-normal text-[14px] md:text-[16px] leading-[1] flex items-center">
-                          (234)
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center text-sm text-[#484848] gap-1">
-                      <MdLocationOn className="h-[20px] w-[20px] md:h-[24px] md:w-[24px]" />
-                      <p className="text-sm font-normal leading-[1.6]">
-                        Sunnyvale, California, USA
-                      </p>
-                    </div>
-                  </div>
-                </div>
+      {/* Info Card - overlapping via negative margin */}
+      <div className="-mt-[80px] md:-mt-[200px] lg:-mt-[250px] relative z-10">
+        <CommonWrapper>
+          <div className="bg-white rounded-[20px] shadow-md lg:shadow-xl p-6 md:p-[40px] flex flex-col md:flex-row items-center justify-between gap-6">
+            {/* Left: Company Info */}
+            <div className="flex flex-col items-center md:items-start w-full md:w-auto">
+              <div className="w-[100px] h-[100px] md:w-[120px] md:h-[120px] lg:w-[164px] lg:h-[164px] rounded-full overflow-hidden flex items-center justify-center">
+                <img src={icon} alt="Logo" className="object-contain" />
               </div>
-
-              {/* Middle: Stats */}
-              <div className="flex flex-wrap justify-center gap-4 md:gap-8 px-0 md:px-6 min-w-0 w-full md:w-auto md:flex-1 md:divide-x divide-[#666] my-6 md:my-0">
-                {[
-                  { value: "12", label: "Years" },
-                  { value: "1,250", label: "Orders" },
-                  { value: "42", label: "Countries" },
-                  { value: "2H", label: "Responses" },
-                ].map((stat, index) => (
-                  <div
-                    key={index}
-                    className="text-center px-2 md:px-6 flex-1 min-w-[100px] md:flex-none"
-                  >
-                    <div className="text-[20px] md:text-[24px] lg:text-[32px] xl:text-[48px] text-[#192D4E] font-semibold leading-[120%] tracking-[-0.06em] uppercase">
-                      {stat.value}
-                    </div>
-                    <div className="text-[14px] text-jet-black">
-                      {stat.label}
+              <div className="mt-4 text-center md:text-left">
+                <h2 className="text-[20px] md:text-[24px] font-semibold leading-[120%]">
+                  TechCraft Industries
+                </h2>
+                <p className="text-[14px] font-normal leading-[160%] py-2 md:py-[12px]">
+                  Manufacturer
+                </p>
+                <div className="mb-2">
+                  <span className="bg-[rgba(8,173,54,0.10)] text-[#08AD36] text-xs font-medium px-[10px] py-[6px] md:py-[10px] rounded-[12px]">
+                    Verified Supplier
+                  </span>
+                </div>
+                <div className="flex flex-col items-center md:items-start">
+                  <div className="flex items-center gap-1 text-sm py-2 md:py-[12px]">
+                    {[...Array(5)].map((_, i) => (
+                      <FaStar
+                        key={i}
+                        className="text-[#FFC633] w-[18px] h-[18px] md:w-[22px] md:h-[22px]"
+                      />
+                    ))}
+                    <div className="flex items-center ml-4 gap-1">
+                      <span className="text-jet-black font-medium text-[14px] md:text-[16px]">
+                        4.5
+                      </span>
+                      <span className="text-[#666] text-[14px] md:text-[16px]">
+                        (234)
+                      </span>
                     </div>
                   </div>
-                ))}
-              </div>
-
-              {/* Right: Eight Buttons & Icon Section */}
-              <div className="flex flex-col justify-between gap-3 w-full md:w-auto md:min-w-[220px] mt-2 md:mt-0 h-full">
-                {/* Eight Buttons */}
-                <div className="flex flex-col gap-2 md:gap-4">
-                  <motion.button
-                    whileTap={{ scale: 0.8 }}
-                    whileHover={{ scale: 1.03 }}
-                    className="bg-[#192D4E] border-[#192D4E] text-white rounded-[20px] px-4 py-2 md:px-[40px] md:py-[10px] text-[16px] md:text-[18px] font-[500] hover:bg-[#192D4E] transition flex items-center gap-2 justify-center cursor-pointer"
-                  >
-                    <img
-                      className="w-[20px] h-[20px] md:w-[24px] md:h-[24px]"
-                      src={sms}
-                      alt=""
-                    />
-                    <span>Contact Supplier</span>
-                  </motion.button>
-                  <Link to="/buyer/dashboard/rfq">
-                    <motion.button
-                      whileTap={{ scale: 0.8 }}
-                      whileHover={{ scale: 1.03 }}
-                      className="border border-[#192D4E] text-[#192D4E] rounded-[20px] px-4 py-2 md:px-[50px] 
-                    md:py-[9px] text-[16px] md:text-[18px] font-[500] hover:bg-gray-50 transition flex items-center gap-2 justify-center cursor-pointer w-full"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="25"
-                        height="24"
-                        viewBox="0 0 25 24"
-                        fill="none"
-                      >
-                        <path
-                          d="M14.5 2H6.5C5.4 2 4.5 2.9 4.5 4V20C4.5 21.1 5.4 22 6.5 22H18.5C19.6 22 20.5 21.1 20.5 20V8L14.5 2ZM6.5 20V4H13.5V8H18.5V20H6.5ZM11.5 19H13.5V18H14.5C15.05 18 15.5 17.55 15.5 17V14C15.5 13.45 15.05 13 14.5 13H11.5V12H15.5V10H13.5V9H11.5V10H10.5C9.95 10 9.5 10.45 9.5 11V14C9.5 14.55 9.95 15 10.5 15H13.5V16H9.5V18H11.5V19Z"
-                          fill="#192D4E"
-                        />
-                      </svg>
-                      <span>Request Quote</span>
-                    </motion.button>
-                  </Link>
-                </div>
-                {/* Icon Section */}
-                <div className="flex items-center gap-4 md:gap-[20px] justify-center md:justify-end mt-4 md:mt-0">
-                  <img
-                    src={fav}
-                    alt="Favorite"
-                    className="w-[20px] h-[20px] md:w-[24px] md:h-[24px] cursor-pointer"
-                  />
-                  <img
-                    src={share}
-                    alt="Share"
-                    className="w-[20px] h-[20px] md:w-[24px] md:h-[24px] cursor-pointer"
-                  />
+                  <div className="flex items-center text-sm text-[#484848] gap-1">
+                    <MdLocationOn className="h-[20px] w-[20px] md:h-[24px] md:w-[24px]" />
+                    <p className="text-sm font-normal">Sunnyvale, California, USA</p>
+                  </div>
                 </div>
               </div>
             </div>
-          </CommonWrapper>
-        </div>
+
+            {/* Middle: Stats */}
+            <div className="flex flex-wrap justify-center gap-4 md:gap-8 px-0 md:px-6 min-w-0 w-full md:w-auto md:flex-1 md:divide-x max-[1000px]:divide-none divide-[#666] my-6 md:my-0">
+              {[
+                { value: "12", label: "Years" },
+                { value: "1,250", label: "Orders" },
+                { value: "42", label: "Countries" },
+                { value: "2H", label: "Responses" },
+              ].map((stat, index) => (
+                <div
+                  key={index}
+                  className="text-center px-2 md:px-6 flex-1 min-w-[100px] md:flex-none"
+                >
+                  <div className="text-[20px] md:text-[24px] lg:text-[32px] xl:text-[48px] text-[#192D4E] font-semibold leading-[120%] tracking-[-0.06em] uppercase">
+                    {stat.value}
+                  </div>
+                  <div className="text-[14px] text-jet-black">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Right: Buttons & Icons */}
+            <div className="flex flex-col justify-between gap-3 w-full md:w-auto md:min-w-[220px] mt-2 md:mt-0">
+              <div className="flex flex-col gap-2 md:gap-4">
+                <motion.button
+                  whileTap={{ scale: 0.95 }}
+                  whileHover={{ scale: 1.03 }}
+                  className="bg-[#192D4E] text-white rounded-[20px] px-4 py-2 md:px-[40px] md:py-[10px] text-[16px] md:text-[18px] font-medium flex items-center gap-2 justify-center"
+                >
+                  <img
+                    src={sms}
+                    alt=""
+                    className="w-[20px] h-[20px] md:w-[24px] md:h-[24px]"
+                  />
+                  Contact Supplier
+                </motion.button>
+                <Link to="/buyer/dashboard/rfq">
+                  <motion.button
+                    whileTap={{ scale: 0.95 }}
+                    whileHover={{ scale: 1.03 }}
+                    className="border border-[#192D4E] text-[#192D4E] rounded-[20px] px-4 py-2 md:px-[50px] md:py-[9px] text-[16px] md:text-[18px] md:w-full font-medium flex items-center gap-2 justify-center max-[767px]:w-full"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="25"
+                      height="24"
+                      fill="none"
+                    >
+                      <path
+                        d="M14.5 2H6.5C5.4 2 4.5 2.9 4.5 4V20C4.5 21.1 5.4 22 6.5 22H18.5C19.6 22 20.5 21.1 20.5 20V8L14.5 2ZM6.5 20V4H13.5V8H18.5V20H6.5ZM11.5 19H13.5V18H14.5C15.05 18 15.5 17.55 15.5 17V14C15.5 13.45 15.05 13 14.5 13H11.5V12H15.5V10H13.5V9H11.5V10H10.5C9.95 10 9.5 10.45 9.5 11V14C9.5 14.55 9.95 15 10.5 15H13.5V16H9.5V18H11.5V19Z"
+                        fill="#192D4E"
+                      />
+                    </svg>
+                    Request Quote
+                  </motion.button>
+                </Link>
+              </div>
+              <div className="flex items-center gap-4 md:gap-[20px] justify-center md:justify-end mt-4 md:mt-0">
+                <img
+                  src={fav}
+                  alt="Favorite"
+                  className="w-[20px] h-[20px] md:w-[24px] md:h-[24px] cursor-pointer"
+                />
+                <img
+                  src={share}
+                  alt="Share"
+                  className="w-[20px] h-[20px] md:w-[24px] md:h-[24px] cursor-pointer"
+                />
+              </div>
+            </div>
+          </div>
+        </CommonWrapper>
       </div>
+
+      {/* Next Section */}
       <OverView />
     </div>
   );
